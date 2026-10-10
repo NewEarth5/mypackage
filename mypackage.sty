@@ -1,0 +1,2618 @@
+% LTeX: enabled=false %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% PACKAGE INFORMATION %%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{%                                  % TeX format need                %
+  LaTeX2e%                                         % - Name                         %
+}[%                                                %                                %
+  2022-06-01%                                      % - Minimum version              %
+]                                                  %                                %
+\ProvidesPackage{%                                 % Package information            %
+  mypackage%                                       % - Name                         %
+}[%                                                %                                %
+  2026/09/25 V0.6%                                 % - Description                  %
+  Custom Package by Alexandre Lindsey%             %                                %
+]                                                  %                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% ESSENTIAL PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{xstring}                           % String manipulation tools      %
+\RequirePackage{kvoptions}                         % Better package/class options   %
+\RequirePackage{kvsetkeys}                         % Better suboptions              %
+\RequirePackage[%                                  % Set font output encoding       %
+  T1%                                              % - Encoding type                %
+]{fontenc}                                         %                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% PACKAGE OPTIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\SetupKeyvalOptions{%                              % Setup for main package options %
+  family=mypackage,%                               % - Package family name          %
+  prefix=mypackage@%                               % - Package prefix name          %
+}                                                  %                                %
+\DeclareStringOption[%                             % Language                       %
+  british%                                         % - Initial value                %
+]{%                                                %                                %
+  lang%                                            % - Name of the option           %
+}                                                  %                                %
+\DeclareStringOption{%                             % Paths to folders & files       %
+  paths%                                           % - Name of the option           %
+}                                                  %                                %
+\DeclareStringOption[%                             % Position default options       %
+  h%                                               % - Initial value                %
+]{%                                                %                                %
+  position%                                        % - Name of the option           %
+}                                                  %                                %
+\DeclareStringOption{%                             % TOC depth                      %
+  toc%                                             % - Name of the option           %
+}                                                  %                                %
+\DeclareStringOption[%                             % Annex TOC depth                %
+  0%                                               % - Initial value                %
+]{%                                                %                                %
+  annexdepth%                                      % - Name of the option           %
+}                                                  %                                %
+\ProcessKeyvalOptions*                             % Processes the options          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% PACKAGE SUB-OPTIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\SetupKeyvalOptions{%                              % Setup for "paths" options      %
+  family=mypackagepaths,%                          % - "paths" family name          %
+  prefix=mypackage@paths@%                         % - "paths" prefix name          %
+}                                                  %                                %
+\DeclareStringOption[%                             % Images folder path             %
+  images/%                                         % - Initial value                %
+]{%                                                %                                %
+  images%                                          % - Name of the option           %
+}                                                  %                                %
+\DeclareStringOption[%                             % Code folder path               %
+  ../code/%                                        % - Initial value                %
+]{%                                                %                                %
+  code%                                            % - Name of the option           %
+}                                                  %                                %
+\DeclareStringOption[%                             % Sources files path             %
+  sources/sources.bib%                             % - Initial value                %
+]{%                                                %                                %
+  sources%                                         % - Name of the option           %
+}                                                  %                                %
+\SetupKeyvalOptions{%                              % Setup for "position" options   %
+  family=mypackagepos,%                            % - "position" family name       %
+  prefix=mypackage@pos@%                           % - "position" prefix name       %
+}                                                  %                                %
+\DeclareStringOption[%                             % Figure & subfigure position    %
+  h%                                               % - Initial value                %
+]{%                                                %                                %
+  figure%                                          % - Name of the option           %
+}                                                  %                                %
+\DeclareStringOption[%                             % Table position                 %
+  h%                                               % - Initial value                %
+]{%                                                %                                %
+  table%                                           % - Name of the option           %
+}                                                  %                                %
+\DeclareStringOption[%                             % Program & listing position     %
+  h%                                               % - Initial value                %
+]{%                                                %                                %
+  program%                                         % - Name of the option           %
+}                                                  %                                %
+\DeclareStringOption[%                             % Pseudo code position           %
+  h%                                               % - Initial value                %
+]{%                                                %                                %
+  pseudocode%                                      % - Name of the option           %
+}                                                  %                                %
+\SetupKeyvalOptions{%                              % Setup for "toc" options        %
+  family=mypackagetoc,%                            % - "toc" family name            %
+  prefix=mypackage@toc@%                           % - "toc" prefix name            %
+}                                                  %                                %
+\DeclareStringOption[%                             % TOC depth                      %
+  2%                                               % - Initial value                %
+]{%                                                %                                %
+  depth%                                           % - Name of the option           %
+}                                                  %                                %
+\DeclareStringOption[%                             % Annex TOC depth                %
+  0%                                               % - Initial value                %
+]{%                                                %                                %
+  annexdepth%                                      % - Name of the option           %
+}                                                  %                                %
+\DeclareStringOption[%                             % Annex TOC depth                %
+  1%                                               % - Initial value                %
+]{%                                                %                                %
+  bibdepth%                                        % - Name of the option           %
+}                                                  %                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% PACKAGE OPTIONS PROCESSING %%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifx\mypackage@paths\@empty                        % Paths sub-options              %
+\else                                              %                                %
+  \kvsetkeys@expandafter{%                         %                                %
+    mypackagepaths%                                %                                %
+  }{%                                              %                                %
+    \mypackage@paths%                              %                                %
+  }                                                %                                %
+\fi                                                %                                %
+\ifx\mypackage@position\@empty                     % Position sub-options           %
+\else                                              %                                %
+  \IfSubStr{\mypackage@position}{=}{               %                                %
+    \kvsetkeys@expandafter{%                       %                                %
+      mypackagepos%                                %                                %
+    }{%                                            %                                %
+      \mypackage@position%                         %                                %
+    }                                              %                                %
+  }{                                               %                                %
+    \expandafter\def                               %                                %
+    \csname mypackage@pos@figure\endcsname{%       %                                %
+      \mypackage@position%                         %                                %
+    }                                              %                                %
+    \expandafter\def                               %                                %
+    \csname mypackage@pos@table\endcsname{%        %                                %
+      \mypackage@position%                         %                                %
+    }                                              %                                %
+    \expandafter\def                               %                                %
+    \csname mypackage@pos@program\endcsname{%      %                                %
+      \mypackage@position%                         %                                %
+    }                                              %                                %
+    \expandafter\def                               %                                %
+    \csname mypackage@pos@pseudocode\endcsname{%   %                                %
+      \mypackage@position%                         %                                %
+    }                                              %                                %
+  }                                                %                                %
+\fi                                                %                                %
+\ifx\mypackage@toc \@empty                         % TOC sub-options                %
+\else                                              %                                %
+  \kvsetkeys@expandafter{%                         %                                %
+    mypackagetoc%                                  %                                %
+  }{%                                              %                                %
+    \mypackage@toc%                                %                                %
+  }                                                %                                %
+\fi                                                %                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% REQUIRED PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{adjustbox}                         % Create custom boxes            %
+\RequirePackage[                                   % Multilingual text support      %
+  \mypackage@lang,                                 % - Language option              %
+]{babel}                                           %                                %
+\RequirePackage{bbm}                               % Blackboard bold math fonts     %
+\RequirePackage[                                   % Bbliography management tool    %
+  backend=biber,                                   % - Backend                      %
+  style=numeric,                                   % - Citation style               %
+  defernumbers=true,                               % - Citation numbers are ordered %
+]{biblatex}                                        %                                %
+\RequirePackage[                                       % Customize figure captions      %
+    format=plain,                                  % - Caption text formatting      %
+    labelfont=bf,                                  % - Font style for label         %
+    justification=justified,                       % - Caption text alignment       %
+]{caption}                                         %                                %
+\RequirePackage{chemmacros}                        % Chemistry symbols and units    %
+\RequirePackage{enumitem}                          % Bullet symbol for itemize      %
+\RequirePackage[                                   % Set page layout and margins    %
+  a4paper,                                         % - Set page size to A4          %
+  margin=2.5cm,                                    % - Set all page margins         %
+  bottom=2.5cm,                                    % - Bottom page margin size      %
+  top=2.5cm,                                       % - Top page margin size         %
+]{geometry}                                        %                                %
+\RequirePackage{graphicx}                          % Include and adjust graphics    %
+\RequirePackage[                                   % Add hyperlinks to document     %
+  linktoc=none,                                    % - Controls if TOC has links    %
+  colorlinks=true,                                 % - Enable colored hyperlinks    %
+  linkcolor=black,                                 % - Color for internal links     %
+  urlcolor=black,                                  % - Color for URL links          %
+  citecolor=black,                                 % - Color for citation links     %
+]{hyperref}                                        %                                %
+\RequirePackage[                                   % Typeset chemical equations     %
+    version=4,                                     % - Version number               %
+]{mhchem}                                          %                                %
+\RequirePackage{multirow}                          % Multirow cells in tabulars     %
+\RequirePackage{subcaption}                        % Subfigures with captions       %
+\RequirePackage{svg}                               % Include and scale SVG files    %
+\RequirePackage{tabularx}                          % More tabular customisation     %
+\RequirePackage[                                   % Colored boxes and frames       %
+  breakable,                                       % - Support for breakable boxes  %
+  skins,                                           % - Various box skins            %
+  minted,                                          % - Support for minted package   %
+]{tcolorbox}                                       %                                %
+\RequirePackage{upgreek}                           % Greek letters typesetting      %
+\RequirePackage{xurl}                              % Better URL line breaking       %
+\RequirePackage[                                   % Color management               %
+  table,                                           % - Make multicolored tables     %
+  dvipsnames,                                      % - Makes color names accessible %
+]{xcolor}                                          %                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% SETUPS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setminted{%                                       % Setup for "minted" package     %
+  style=lightbulb,%                                % - Visual Studio code style     %
+}                                                  %                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% GLOBAL FLAGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newif\ifGlobalMypartUsed                          % Checks for "mypart"            %
+\newif\ifGlobalMychapterUsed                       % Checks for "mychapter"         %
+\newif\ifGlobalMysectionUsed                       % Checks for "mysection"         %
+\newif\ifGlobalMysubsectionUsed                    % Checks for "mysubsection"      %
+\newif\ifGlobalMysubsubsectionUsed                 % Checks for "mysubsubsection"   %
+\newif\ifMyannexUsed                               % Checks for "myannex"           %
+\newif\ifMybibUsed                                 % Checks for "mymybibliography"  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% GLOBAL DEFINITIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\AddToHook{begindocument/end}{%                    % Run once everything is loaded  %
+  \let\mycontentsname\contentsname                 % Copy \contentsname             %
+  \let\mylistfigurename\listfigurename             % Copy \listfigurename           %
+  \let\mylisttablename\listtablename               % Copy \listtablename            %
+  \let\mybibname\bibname                           % Copy \bibname                  %
+  \let\myabstractname\abstractname                 % Copy \abstractname             %
+  \let\mychaptername\chaptername                   % Copy \chaptername              %
+}                                                  %                                %
+\let\mypartname\partname                           % Copy \partname                 %
+\let\myfigurename\figurename                       % Copy \figurename               %
+\let\mytablename\tablename                         % Copy \tablename                %
+\def\mycourseval{-NoValue-}                        % Default: \mycourse             %
+\def\mycourseidval{-NoValue-}                      % Default: \mycourse option      %
+\def\mycoursestarval{-NoValue-}                    % Default: \mycourse star        %
+\def\myprofessorval{-NoValue-}                     % Default: \myprofessor          %
+\def\myprofessortabval{-NoValue-}                  % Default: \myprofessor          %
+\def\myprofessorgenderval{-NoValue-}               % Default: \myprofessor star     %
+\def\myassistantval{-NoValue-}                     % Default: \myassistant          %
+\def\myassistanttabval{-NoValue-}                  % Default: \myassistant          %
+\def\myassistantgenderval{-NoValue-}               % Default: \myassistant star     %
+\def\myacademicyearval{\currentacyear}             % Default: \myacademicyear       %
+\def\mytitleval{-NoValue-}                         % Default: \mytitle              %
+\def\mytitlestarval{false}                         % Default: \mytitle star         %
+\def\mysubtitleval{-NoValue-}                      % Default: \mysubtitle           %
+\def\myimageval{-NoValue-}                         % Default: \myimage              %
+\def\mylogoval{-NoValue-}                          % Default: \mylogo               %
+\def\mydateval{\today}                             % Default: \mydate               %
+\def\myauthorval{-NoValue-}                        % Default: \myauthor             %
+\def\myauthoridval{-NoValue-}                      % Default: \myauthor option      %
+\def\myauthortabval{-NoValue-}                     % Default: \myauthor             %
+\def\myauthoridtabval{-NoValue-}                   % Default: \myauthor option      %
+\def\myauthorgenderval{-NoValue-}                  % Default: \myauthor star        %
+\def\mysubfigurelabel{-NoValue-}                   % Label name for subfigures      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% BIBLATEX SETUP %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addbibresource{\mypackage@paths@sources}          % Adds bibliography file         %
+\defbibfilter{articles}{                           % Type for articles              %
+  type=article                                     %                                %
+}                                                  %                                %
+\defbibfilter{books}{                              % Type for books                 %
+  type=book or                                     %                                %
+  type=mvbook or                                   %                                %
+  type=inbook or                                   %                                %
+  type=bookinbook or                               %                                %
+  type=suppbook or                                 %                                %
+  type=booklet or                                  %                                %
+  type=set                                         %                                %
+}                                                  %                                %
+\defbibfilter{collections}{                        % Type for collections           %
+  type=collection or                               %                                %
+  type=mvcollection or                             %                                %
+  type=incollection or                             %                                %
+  type=suppcollection                              %                                %
+}                                                  %                                %
+\defbibfilter{manuals}{                            % Type for manuals               %
+  type=manual                                      %                                %
+}                                                  %                                %
+\defbibfilter{references}{                         % Type for references            %
+  type=reference or                                %                                %
+  type=mvreference or                              %                                %
+  type=inreference                                 %                                %
+}                                                  %                                %
+\defbibfilter{theses}{                             % Type for theses                %
+  type=thesis or                                   %                                %
+  type=mastersthesis or                            %                                %
+  type=phdthesis                                   %                                %
+}                                                  %                                %
+\defbibfilter{reports}{                            % Type for reports               %
+  type=report                                      %                                %
+}                                                  %                                %
+\defbibfilter{websites}{                           % Type for websites              %
+  type=online or                                   %                                %
+  type=electronic                                  %                                %
+}                                                  %                                %
+\defbibfilter{patents}{                            % Type for patents               %
+  type=patent                                      %                                %
+}                                                  %                                %
+\defbibfilter{other}{                              % Type for the rest              %
+  type=misc or                                     %                                %
+  type=periodical or                               %                                %
+  type=suppperiodical or                           %                                %
+  type=proceedings or                              %                                %
+  type=mvproceedings or                            %                                %
+  type=inproceedings or                            %                                %
+  type=unpublished or                              %                                %
+  type=custom or                                   %                                %
+  type=conference or                               %                                %
+  type=techreport or                               %                                %
+  type=datatype                                    %                                %
+}                                                  %                                %
+\defbibfilter{not}{                                % Type for the rest              %
+  not type=article and                             %                                %
+  not type=book and                                %                                %
+  not type=mvbook and                              %                                %
+  not type=inbook and                              %                                %
+  not type=bookinbook and                          %                                %
+  not type=suppbook and                            %                                %
+  not type=booklet and                             %                                %
+  not type=set and                                 %                                %
+  not type=collection and                          %                                %
+  not type=mvcollection and                        %                                %
+  not type=incollection and                        %                                %
+  not type=suppcollection and                      %                                %
+  not type=manual and                              %                                %
+  not type=reference and                           %                                %
+  not type=mvreference and                         %                                %
+  not type=inreference and                         %                                %
+  not type=thesis and                              %                                %
+  not type=mastersthesis and                       %                                %
+  not type=phdthesis and                           %                                %
+  not type=report and                              %                                %
+  not type=online and                              %                                %
+  not type=electronic and                          %                                %
+  not type=patent                                  %                                %
+}                                                  %                                %
+\DeclareFieldFormat{url}{%                         % Changes field format           %
+  \url{#1}%                                        % - Format                       %
+}                                                  %                                %
+\DeclareFieldFormat{howpublished}{%                % Changes field format           %
+  \url{#1}%                                        % - Format                       %
+}                                                  %                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% BABEL SETUP %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                                                   % Default words                  %
+\newcommand{\myequationname}{Equation}%            % - Equation                     %
+\newcommand{\myacyearname}{Academic year}%         % - Academic year                %
+\newcommand{\mybooksname}{Books}%                  % - Books                        %
+\newcommand{\myarticlesname}{Articles}%            % - Articles                     %
+\newcommand{\mycollectionsname}{Collections}%      % - Collections                  %
+\newcommand{\mymanualsname}{Manuals}%              % - Manuals                      %
+\newcommand{\mythesesname}{Theses}%                % - Theses                       %
+\newcommand{\myreferencesname}{References}%        % - References                   %
+\newcommand{\myreportsname}{Reports}%              % - Reports                      %
+\newcommand{\mywebsitesname}{Websites}%            % - Websites                     %
+\newcommand{\mypatentsname}{Patents}%              % - Patents                      %
+\newcommand{\myprogramname}{Program}%              % - Program                      %
+\newcommand{\mylistprogramname}{List of Programs}% % - List of Programs             %
+\newcommand{\mylistequationname}{List of Equations}% - List of Equations            %
+\newcommand{\myintroductionname}{Introduction}%    % - Introduction                 %
+\newcommand{\mysectionname}{Section}%              % - Section                      %
+\newcommand{\mysubsectionname}{Subsection}%        % - Subsection                   %
+\newcommand{\mysubsubsectionname}{Subsubsection}%  % - Subsubsection                %
+\newcommand{\myannexname}{Annex}%                  % - Annex                        %
+\newcommand{\myprofessormname}{Professor}%         % - Professor (male)             %
+\newcommand{\myprofessorfname}{Professor}%         % - Professor (female)           %
+\newcommand{\myprofessormpname}{Professors}%       % - Professor (male plurial)     %
+\newcommand{\myprofessorfpname}{Professors}%       % - Professor (female plurial)   %
+\newcommand{\myassistantmname}{Assistant}%         % - Assistant (male)             %
+\newcommand{\myassistantfname}{Assistant}%         % - Assistant (female)           %
+\newcommand{\myassistantmpname}{Assistants}%       % - Assistant (male plurial)     %
+\newcommand{\myassistantfpname}{Assistants}%       % - Assistant (female plurial)   %
+\newcommand{\myauthormname}{Author}%               % - Author (male)                %
+\newcommand{\myauthorfname}{Author}%               % - Author (female)              %
+\newcommand{\myauthormpname}{Authors}%             % - Author (male plurial)        %
+\newcommand{\myauthorfpname}{Authors}%             % - Author (female plurial)      %
+                                                   %                                %
+\addto{\captionsbritish}{%                         % Adds words to UK Englsih       %
+  \renewcommand{\myequationname}{%                 %                                %
+    Equation%                                      % - Equation                     %
+  }                                                %                                %
+  \renewcommand{\myacyearname}{%                   %                                %
+    Academic year%                                 % - Academic year                %
+  }                                                %                                %
+  \renewcommand{\mybooksname}{%                    %                                %
+    Books%                                         % - Books                        %
+  }                                                %                                %
+  \renewcommand{\myarticlesname}{%                 %                                %
+    Articles%                                      % - Articles                     %
+  }                                                %                                %
+  \renewcommand{\mycollectionsname}{%              %                                %
+    Collections%                                   % - Collections                  %
+  }                                                %                                %
+  \renewcommand{\mymanualsname}{%                  %                                %
+    Manuals%                                       % - Manuals                      %
+  }                                                %                                %
+  \renewcommand{\mythesesname}{%                   %                                %
+    Theses%                                        % - Theses                       %
+  }                                                %                                %
+  \renewcommand{\myreferencesname}{%               %                                %
+    References%                                    % - References                   %
+  }                                                %                                %
+  \renewcommand{\myreportsname}{%                  %                                %
+    Reports%                                       % - Reports                      %
+  }                                                %                                %
+  \renewcommand{\mywebsitesname}{%                 %                                %
+    Websites%                                      % - Websites                     %
+  }                                                %                                %
+  \renewcommand{\mypatentsname}{%                  %                                %
+    Patents%                                       % - Patents                      %
+  }                                                %                                %
+  \renewcommand{\myprogramname}{%                  %                                %
+    Program%                                       % - Program                      %
+  }                                                %                                %
+  \renewcommand{\mylistprogramname}{%              %                                %
+    List of Programs%                              % - List of Programs             %
+  }                                                %                                %
+  \renewcommand{\mylistequationname}{%             %                                %
+    List of Equations%                             % - List of Equations            %
+  }                                                %                                %
+  \renewcommand{\myintroductionname}{%             %                                %
+    Introduction%                                  % - Introduction                 %
+  }                                                %                                %
+  \renewcommand{\mysectionname}{%                  %                                %
+    Section%                                       % - Section                      %
+  }                                                %                                %
+  \renewcommand{\mysubsectionname}{%               %                                %
+    Subsection%                                    % - Subsection                   %
+  }                                                %                                %
+  \renewcommand{\mysubsubsectionname}{%            %                                %
+    Subsubsection%                                 % - Subsubsection                %
+  }                                                %                                %
+  \renewcommand{\myannexname}{%                    %                                %
+    Annex%                                         % - Annex                        %
+  }                                                %                                %
+  \renewcommand{\myprofessormname}{%               %                                %
+    Professor%                                     % - Professor (male)             %
+  }                                                %                                %
+  \renewcommand{\myprofessorfname}{%               %                                %
+    Professor%                                     % - Professor (female)           %
+  }                                                %                                %
+  \renewcommand{\myprofessormpname}{%              %                                %
+    Professors%                                    % - Professor (male plurial)     %
+  }                                                %                                %
+  \renewcommand{\myprofessorfpname}{%              %                                %
+    Professors%                                    % - Professor (female plurial)   %
+  }                                                %                                %
+  \renewcommand{\myassistantmname}{%               %                                %
+    Assistant%                                     % - Assistant (male)             %
+  }                                                %                                %
+  \renewcommand{\myassistantfname}{%               %                                %
+    Assistant%                                     % - Assistant (female)           %
+  }                                                %                                %
+  \renewcommand{\myassistantmpname}{%              %                                %
+    Assistants%                                    % - Assistant (male plurial)     %
+  }                                                %                                %
+  \renewcommand{\myassistantfpname}{%              %                                %
+    Assistants%                                    % - Assistant (female plurial)   %
+  }                                                %                                %
+  \renewcommand{\myauthormname}{%                  %                                %
+    Author%                                        % - Author (male)                %
+  }                                                %                                %
+  \renewcommand{\myauthorfname}{%                  %                                %
+    Author%                                        % - Author (female)              %
+  }                                                %                                %
+  \renewcommand{\myauthormpname}{%                 %                                %
+    Authors%                                       % - Author (male plurial)        %
+  }                                                %                                %
+  \renewcommand{\myauthorfpname}{%                 %                                %
+    Authors%                                       % - Author (female plurial)      %
+  }                                                %                                %
+}                                                  %                                %
+\addto{\captionsenglish}{%                         % Adds words to US Englsih       %
+  \renewcommand{\myequationname}{%                 %                                %
+    Equation%                                      % - Equation                     %
+  }                                                %                                %
+  \renewcommand{\myacyearname}{%                   %                                %
+    Academic year%                                 % - Academic year                %
+  }                                                %                                %
+  \renewcommand{\mybooksname}{%                    %                                %
+    Books%                                         % - Books                        %
+  }                                                %                                %
+  \renewcommand{\myarticlesname}{%                 %                                %
+    Articles%                                      % - Articles                     %
+  }                                                %                                %
+  \renewcommand{\mycollectionsname}{%              %                                %
+    Collections%                                   % - Collections                  %
+  }                                                %                                %
+  \renewcommand{\mymanualsname}{%                  %                                %
+    Manuals%                                       % - Manuals                      %
+  }                                                %                                %
+  \renewcommand{\mythesesname}{%                   %                                %
+    Theses%                                        % - Theses                       %
+  }                                                %                                %
+  \renewcommand{\myreferencesname}{%               %                                %
+    References%                                    % - References                   %
+  }                                                %                                %
+  \renewcommand{\myreportsname}{%                  %                                %
+    Reports%                                       % - Reports                      %
+  }                                                %                                %
+  \renewcommand{\mywebsitesname}{%                 %                                %
+    Websites%                                      % - Websites                     %
+  }                                                %                                %
+  \renewcommand{\mypatentsname}{%                  %                                %
+    Patents%                                       % - Patents                      %
+  }                                                %                                %
+  \renewcommand{\myprogramname}{%                  %                                %
+    Program%                                       % - Program                      %
+  }                                                %                                %
+  \renewcommand{\mylistprogramname}{%              %                                %
+    List of Programs%                              % - List of Programs             %
+  }                                                %                                %
+  \renewcommand{\mylistequationname}{%             %                                %
+    List of Equations%                             % - List of Equations            %
+  }                                                %                                %
+  \renewcommand{\myintroductionname}{%             %                                %
+    Introduction%                                  % - Introduction                 %
+  }                                                %                                %
+  \renewcommand{\mysectionname}{%                  %                                %
+    Section%                                       % - Section                      %
+  }                                                %                                %
+  \renewcommand{\mysubsectionname}{%               %                                %
+    Subsection%                                    % - Subsection                   %
+  }                                                %                                %
+  \renewcommand{\mysubsubsectionname}{%            %                                %
+    Subsubsection%                                 % - Subsubsection                %
+  }                                                %                                %
+  \renewcommand{\myannexname}{%                    %                                %
+    Annex%                                         % - Annex                        %
+  }                                                %                                %
+  \renewcommand{\myprofessormname}{%               %                                %
+    Professor%                                     % - Professor (male)             %
+  }                                                %                                %
+  \renewcommand{\myprofessorfname}{%               %                                %
+    Professor%                                     % - Professor (female)           %
+  }                                                %                                %
+  \renewcommand{\myprofessormpname}{%              %                                %
+    Professors%                                    % - Professor (male plurial)     %
+  }                                                %                                %
+  \renewcommand{\myprofessorfpname}{%              %                                %
+    Professors%                                    % - Professor (female plurial)   %
+  }                                                %                                %
+  \renewcommand{\myassistantmname}{%               %                                %
+    Assistant%                                     % - Assistant (male)             %
+  }                                                %                                %
+  \renewcommand{\myassistantfname}{%               %                                %
+    Assistant%                                     % - Assistant (female)           %
+  }                                                %                                %
+  \renewcommand{\myassistantmpname}{%              %                                %
+    Assistants%                                    % - Assistant (male plurial)     %
+  }                                                %                                %
+  \renewcommand{\myassistantfpname}{%              %                                %
+    Assistants%                                    % - Assistant (female plurial)   %
+  }                                                %                                %
+  \renewcommand{\myauthormname}{%                  %                                %
+    Author%                                        % - Author (male)                %
+  }                                                %                                %
+  \renewcommand{\myauthorfname}{%                  %                                %
+    Author%                                        % - Author (female)              %
+  }                                                %                                %
+  \renewcommand{\myauthormpname}{%                 %                                %
+    Authors%                                       % - Author (male plurial)        %
+  }                                                %                                %
+  \renewcommand{\myauthorfpname}{%                 %                                %
+    Authors%                                       % - Author (female plurial)      %
+  }                                                %                                %
+}                                                  %                                %
+\addto{\captionsngerman}{%                         % Adds words to German           %
+  \renewcommand{\myequationname}{%                 %                                %
+    Gleichung%                                     % - Equation                     %
+  }                                                %                                %
+  \renewcommand{\myacyearname}{%                   %                                %
+    Akademisches Jahr%                             % - Academic year                %
+  }                                                %                                %
+  \renewcommand{\mypartname}{%                     %                                %
+    Teil%                                          % - Part                         %
+  }                                                %                                %
+  \renewcommand{\mybooksname}{%                    %                                %
+    Bücher%                                        % - Books                        %
+  }                                                %                                %
+  \renewcommand{\myarticlesname}{%                 %                                %
+    Artikel%                                       % - Articles                     %
+  }                                                %                                %
+  \renewcommand{\mycollectionsname}{%              %                                %
+    Sammlungen%                                    % - Collections                  %
+  }                                                %                                %
+  \renewcommand{\mymanualsname}{%                  %                                %
+    Handbücher%                                    % - Manuals                      %
+  }                                                %                                %
+  \renewcommand{\mythesesname}{%                   %                                %
+    Abhandlungen%                                  % - Theses                       %
+  }                                                %                                %
+  \renewcommand{\myreferencesname}{%               %                                %
+    Referenzen%                                    % - References                   %
+  }                                                %                                %
+  \renewcommand{\myreportsname}{%                  %                                %
+    Berichte%                                      % - Reports                      %
+  }                                                %                                %
+  \renewcommand{\mywebsitesname}{%                 %                                %
+    Webseiten%                                     % - Websites                     %
+  }                                                %                                %
+  \renewcommand{\mypatentsname}{%                  %                                %
+    Patente%                                       % - Patents                      %
+  }                                                %                                %
+  \renewcommand{\myprogramname}{%                  %                                %
+    Programm%                                      % - Program                      %
+  }                                                %                                %
+  \renewcommand{\mylistprogramname}{%              %                                %
+    Programmliste%                                 % - List of Programs             %
+  }                                                %                                %
+  \renewcommand{\mylistequationname}{%             %                                %
+    Gleichungsverzeichnis%                         % - List of Equations            %
+  }                                                %                                %
+  \renewcommand{\myintroductionname}{%             %                                %
+    Einleitung%                                    % - Introduction                 %
+  }                                                %                                %
+  \renewcommand{\mysectionname}{%                  %                                %
+    Abschnitt%                                     % - Section                      %
+  }                                                %                                %
+  \renewcommand{\mysubsectionname}{%               %                                %
+    Unterabschnitt%                                % - Subsection                   %
+  }                                                %                                %
+  \renewcommand{\mysubsubsectionname}{%            %                                %
+    Unterunterabschnitt%                           % - Subsubsection                %
+  }                                                %                                %
+  \renewcommand{\myannexname}{%                    %                                %
+    Annektieren%                                   % - Annex                        %
+  }                                                %                                %
+  \renewcommand{\myprofessormname}{%               %                                %
+    Professor%                                     % - Professor (male)             %
+  }                                                %                                %
+  \renewcommand{\myprofessorfname}{%               %                                %
+    Professorin%                                   % - Professor (female)           %
+  }                                                %                                %
+  \renewcommand{\myprofessormpname}{%              %                                %
+    Professoren%                                   % - Professor (male plurial)     %
+  }                                                %                                %
+  \renewcommand{\myprofessorfpname}{%              %                                %
+    Professorinnen%                                % - Professor (female plurial)   %
+  }                                                %                                %
+  \renewcommand{\myassistantmname}{%               %                                %
+    Assistent%                                     % - Assistant (male)             %
+  }                                                %                                %
+  \renewcommand{\myassistantfname}{%               %                                %
+    Assistentin%                                   % - Assistant (female)           %
+  }                                                %                                %
+  \renewcommand{\myassistantmpname}{%              %                                %
+    Assistenten%                                   % - Assistant (male plurial)     %
+  }                                                %                                %
+  \renewcommand{\myassistantfpname}{%              %                                %
+    Assistenten%                                   % - Assistant (female plurial)   %
+  }                                                %                                %
+  \renewcommand{\myauthormname}{%                  %                                %
+    Autor%                                         % - Author (male)                %
+  }                                                %                                %
+  \renewcommand{\myauthorfname}{%                  %                                %
+    Autorin%                                       % - Author (female)              %
+  }                                                %                                %
+  \renewcommand{\myauthormpname}{%                 %                                %
+    Autoren%                                       % - Author (male plurial)        %
+  }                                                %                                %
+  \renewcommand{\myauthorfpname}{%                 %                                %
+    Autorinnen%                                    % - Author (female plurial)      %
+  }                                                %                                %
+}                                                  %                                %
+\addto{\captionsfrench}{%                          % Adds words to French           %
+  \renewcommand{\myequationname}{%                 %                                %
+    Équation%                                      % - Equation                     %
+  }                                                %                                %
+  \renewcommand{\myacyearname}{%                   %                                %
+    Année académique%                              % - Academic year                %
+  }                                                %                                %
+  \renewcommand{\mypartname}{%                     %                                %
+    Partie%                                        % - Part                         %
+  }                                                %                                %
+  \renewcommand{\mybooksname}{%                    %                                %
+    Livres%                                        % - Books                        %
+  }                                                %                                %
+  \renewcommand{\myarticlesname}{%                 %                                %
+    Articles%                                      % - Articles                     %
+  }                                                %                                %
+  \renewcommand{\mycollectionsname}{%              %                                %
+    Collections%                                   % - Collections                  %
+  }                                                %                                %
+  \renewcommand{\mymanualsname}{%                  %                                %
+    Manuels%                                       % - Manuals                      %
+  }                                                %                                %
+  \renewcommand{\mythesesname}{%                   %                                %
+    Thèses%                                        % - Theses                       %
+  }                                                %                                %
+  \renewcommand{\myreferencesname}{%               %                                %
+    Références%                                    % - References                   %
+  }                                                %                                %
+  \renewcommand{\myreportsname}{%                  %                                %
+    Rapports%                                      % - Reports                      %
+  }                                                %                                %
+  \renewcommand{\mywebsitesname}{%                 %                                %
+    Sites Web%                                     % - Websites                     %
+  }                                                %                                %
+  \renewcommand{\mypatentsname}{%                  %                                %
+    Brevets%                                       % - Patents                      %
+  }                                                %                                %
+  \renewcommand{\myprogramname}{%                  %                                %
+    Programme%                                     % - Program                      %
+  }                                                %                                %
+  \AddToHook{begindocument/end}{%                  %                                %
+    \renewcommand{\mylistfigurename}{%             %                                %
+      Liste des figures%                           % - List of Figures              %
+    }                                              %                                %
+    \renewcommand{\mylisttablename}{%              %                                %
+      Liste des tables%                            % - List of Tables               %
+    }                                              %                                %
+  }                                                %                                %
+  \renewcommand{\mylistprogramname}{%              %                                %
+    Liste des programmes%                          % - List of Programs             %
+  }                                                %                                %
+  \renewcommand{\mylistequationname}{%             %                                %
+    Liste d'équations%                             % - List of Equations            %
+  }                                                %                                %
+  \renewcommand{\myintroductionname}{%             %                                %
+    Introduction%                                  % - Introduction                 %
+  }                                                %                                %
+  \renewcommand{\mysectionname}{%                  %                                %
+    Section%                                       % - Section                      %
+  }                                                %                                %
+  \renewcommand{\mysubsectionname}{%               %                                %
+    Sous-section%                                  % - Subsection                   %
+  }                                                %                                %
+  \renewcommand{\mysubsubsectionname}{%            %                                %
+    Sous-sous-section%                             % - Subsubsection                %
+  }                                                %                                %
+  \renewcommand{\myannexname}{%                    %                                %
+    Annexe%                                        % - Annex                        %
+  }                                                %                                %
+  \renewcommand{\myprofessormname}{%               %                                %
+    Professeur%                                    % - Professor (male)             %
+  }                                                %                                %
+  \renewcommand{\myprofessorfname}{%               %                                %
+    Professeure%                                   % - Professor (female)           %
+  }                                                %                                %
+  \renewcommand{\myprofessormpname}{%              %                                %
+    Professeurs%                                   % - Professor (male plurial)     %
+  }                                                %                                %
+  \renewcommand{\myprofessorfpname}{%              %                                %
+    Professeures%                                  % - Professor (female plurial)   %
+  }                                                %                                %
+  \renewcommand{\myassistantmname}{%               %                                %
+    Assistant%                                     % - Assistant (male)             %
+  }                                                %                                %
+  \renewcommand{\myassistantfname}{%               %                                %
+    Assistante%                                    % - Assistant (female)           %
+  }                                                %                                %
+  \renewcommand{\myassistantmpname}{%              %                                %
+    Assistants%                                    % - Assistant (male plurial)     %
+  }                                                %                                %
+  \renewcommand{\myassistantfpname}{%              %                                %
+    Assistantes%                                   % - Assistant (female plurial)   %
+  }                                                %                                %
+  \renewcommand{\myauthormname}{%                  %                                %
+    Auteur%                                        % - Author (male)                %
+  }                                                %                                %
+  \renewcommand{\myauthorfname}{%                  %                                %
+    Autrice%                                       % - Author (female)              %
+  }                                                %                                %
+  \renewcommand{\myauthormpname}{%                 %                                %
+    Auteurs%                                       % - Author (male plurial)        %
+  }                                                %                                %
+  \renewcommand{\myauthorfpname}{%                 %                                %
+    Autrices%                                      % - Author (female plurial)      %
+  }                                                %                                %
+}                                                  %                                %
+\addto{\captionsspanish}{%                         % Adds words to Spanish          %
+  \renewcommand{\myequationname}{%                 %                                %
+    Ecuación%                                      % - Equation                     %
+  }                                                %                                %
+  \renewcommand{\myacyearname}{%                   %                                %
+    Año académico%                                 % - Academic year                %
+  }                                                %                                %
+  \renewcommand{\mypartname}{%                     %                                %
+    Parte%                                         % - Part                         %
+  }                                                %                                %
+  \renewcommand{\mybooksname}{%                    %                                %
+    Libros%                                        % - Books                        %
+  }                                                %                                %
+  \renewcommand{\myarticlesname}{%                 %                                %
+    Artículos%                                     % - Articles                     %
+  }                                                %                                %
+  \renewcommand{\mycollectionsname}{%              %                                %
+    Colecciones%                                   % - Collections                  %
+  }                                                %                                %
+  \renewcommand{\mymanualsname}{%                  %                                %
+    Manuales%                                      % - Manuals                      %
+  }                                                %                                %
+  \renewcommand{\mythesesname}{%                   %                                %
+    Tesis%                                         % - Theses                       %
+  }                                                %                                %
+  \renewcommand{\myreferencesname}{%               %                                %
+    Referencias%                                   % - References                   %
+  }                                                %                                %
+  \renewcommand{\myreportsname}{%                  %                                %
+    Informes%                                      % - Reports                      %
+  }                                                %                                %
+  \renewcommand{\mywebsitesname}{%                 %                                %
+    Sitios web%                                    % - Websites                     %
+  }                                                %                                %
+  \renewcommand{\mypatentsname}{%                  %                                %
+    Patentes%                                      % - Patents                      %
+  }                                                %                                %
+  \renewcommand{\myprogramname}{%                  %                                %
+    Programa%                                      % - Program                      %
+  }                                                %                                %
+  \renewcommand{\mylistprogramname}{%              %                                %
+    Lista de programas%                            % - List of Programs             %
+  }                                                %                                %
+  \renewcommand{\mylistequationname}{%             %                                %
+    Lista de ecuaciones%                           % - List of Equations            %
+  }                                                %                                %
+  \renewcommand{\myintroductionname}{%             %                                %
+    Introducción%                                  % - Introduction                 %
+  }                                                %                                %
+  \renewcommand{\mysectionname}{%                  %                                %
+    Sección%                                       % - Section                      %
+  }                                                %                                %
+  \renewcommand{\mysubsectionname}{%               %                                %
+    Subsección%                                    % - Subsection                   %
+  }                                                %                                %
+  \renewcommand{\mysubsubsectionname}{%            %                                %
+    Subsubsección%                                 % - Subsubsection                %
+  }                                                %                                %
+  \renewcommand{\myannexname}{%                    %                                %
+    Anexo%                                         % - Annex                        %
+  }                                                %                                %
+  \renewcommand{\myprofessormname}{%               %                                %
+    Profesor%                                      % - Professor (male)             %
+  }                                                %                                %
+  \renewcommand{\myprofessorfname}{%               %                                %
+    Profesora%                                     % - Professor (female)           %
+  }                                                %                                %
+  \renewcommand{\myprofessormpname}{%              %                                %
+    Profesores%                                    % - Professor (male plurial)     %
+  }                                                %                                %
+  \renewcommand{\myprofessorfpname}{%              %                                %
+    Profesoras%                                    % - Professor (female plurial)   %
+  }                                                %                                %
+  \renewcommand{\myassistantmname}{%               %                                %
+    Ayudante%                                      % - Assistant (male)             %
+  }                                                %                                %
+  \renewcommand{\myassistantfname}{%               %                                %
+    Ayudante%                                      % - Assistant (female)           %
+  }                                                %                                %
+  \renewcommand{\myassistantmpname}{%              %                                %
+    Ayudantes%                                     % - Assistant (male plurial)     %
+  }                                                %                                %
+  \renewcommand{\myassistantfpname}{%              %                                %
+    Ayudantes%                                     % - Assistant (female plurial)   %
+  }                                                %                                %
+  \renewcommand{\myauthormname}{%                  %                                %
+    Autor%                                         % - Author (male)                %
+  }                                                %                                %
+  \renewcommand{\myauthorfname}{%                  %                                %
+    Autora%                                        % - Author (female)              %
+  }                                                %                                %
+  \renewcommand{\myauthormpname}{%                 %                                %
+    Autores%                                       % - Author (male plurial)        %
+  }                                                %                                %
+  \renewcommand{\myauthorfpname}{%                 %                                %
+    Autoras%                                       % - Author (female plurial)      %
+  }                                                %                                %
+}                                                  %                                %
+\addto{\captionsitalian}{%                         % Adds words to Italian          %
+  \renewcommand{\myequationname}{%                 %                                %
+    Equazione%                                     % - Equation                     %
+  }                                                %                                %
+  \renewcommand{\myacyearname}{%                   %                                %
+    Anno accademico%                               % - Academic year                %
+  }                                                %                                %
+  \renewcommand{\mypartname}{%                     %                                %
+    Parte%                                         % - Part                         %
+  }                                                %                                %
+  \renewcommand{\mybooksname}{%                    %                                %
+    Libri%                                         % - Books                        %
+  }                                                %                                %
+  \renewcommand{\myarticlesname}{%                 %                                %
+    Articoli%                                      % - Articles                     %
+  }                                                %                                %
+  \renewcommand{\mycollectionsname}{%              %                                %
+    Collezioni%                                    % - Collections                  %
+  }                                                %                                %
+  \renewcommand{\mymanualsname}{%                  %                                %
+    Manuali%                                       % - Manuals                      %
+  }                                                %                                %
+  \renewcommand{\mythesesname}{%                   %                                %
+    Tesi%                                          % - Theses                       %
+  }                                                %                                %
+  \renewcommand{\myreferencesname}{%               %                                %
+    Riferimenti%                                   % - References                   %
+  }                                                %                                %
+  \renewcommand{\myreportsname}{%                  %                                %
+    Rapporti%                                      % - Reports                      %
+  }                                                %                                %
+  \renewcommand{\mywebsitesname}{%                 %                                %
+    Siti Web%                                      % - Websites                     %
+  }                                                %                                %
+  \renewcommand{\mypatentsname}{%                  %                                %
+    Brevetti%                                      % - Patents                      %
+  }                                                %                                %
+  \renewcommand{\myprogramname}{%                  %                                %
+    Programma%                                     % - Program                      %
+  }                                                %                                %
+  \renewcommand{\mylistprogramname}{%              %                                %
+    Elenco dei programmi%                          % - List of Programs             %
+  }                                                %                                %
+  \renewcommand{\mylistequationname}{%             %                                %
+    Elenco di equazioni%                           % - List of Equations            %
+  }                                                %                                %
+  \renewcommand{\myintroductionname}{%             %                                %
+    Introduzione%                                  % - Introduction                 %
+  }                                                %                                %
+  \renewcommand{\mysectionname}{%                  %                                %
+    Sezione%                                       % - Section                      %
+  }                                                %                                %
+  \renewcommand{\mysubsectionname}{%               %                                %
+    Sottosezione%                                  % - Subsection                   %
+  }                                                %                                %
+  \renewcommand{\mysubsubsectionname}{%            %                                %
+    Sottosottosezione%                             % - Subsubsection                %
+  }                                                %                                %
+  \renewcommand{\myannexname}{%                    %                                %
+    Allegato%                                      % - Annex                        %
+  }                                                %                                %
+  \renewcommand{\myprofessormname}{%               %                                %
+    Professore%                                    % - Professor (male)             %
+  }                                                %                                %
+  \renewcommand{\myprofessorfname}{%               %                                %
+    Professoressa%                                 % - Professor (female)           %
+  }                                                %                                %
+  \renewcommand{\myprofessormpname}{%              %                                %
+    Professori%                                    % - Professor (male plurial)     %
+  }                                                %                                %
+  \renewcommand{\myprofessorfpname}{%              %                                %
+    Professoresse%                                 % - Professor (female plurial)   %
+  }                                                %                                %
+  \renewcommand{\myassistantmname}{%               %                                %
+    Assistente%                                    % - Assistant (male)             %
+  }                                                %                                %
+  \renewcommand{\myassistantfname}{%               %                                %
+    Assistente%                                    % - Assistant (female)           %
+  }                                                %                                %
+  \renewcommand{\myassistantmpname}{%              %                                %
+    Assistenti%                                    % - Assistant (male plurial)     %
+  }                                                %                                %
+  \renewcommand{\myassistantfpname}{%              %                                %
+    Assistenti%                                    % - Assistant (female plurial)   %
+  }                                                %                                %
+  \renewcommand{\myauthormname}{%                  %                                %
+    Autore%                                        % - Author (male)                %
+  }                                                %                                %
+  \renewcommand{\myauthorfname}{%                  %                                %
+    Autrice%                                       % - Author (female)              %
+  }                                                %                                %
+  \renewcommand{\myauthormpname}{%                 %                                %
+    Autori%                                        % - Author (male plurial)        %
+  }                                                %                                %
+  \renewcommand{\myauthorfpname}{%                 %                                %
+    Autrici%                                       % - Author (female plurial)      %
+  }                                                %                                %
+}                                                  %                                %
+\addto{\captionsportuguese}{%                      % Adds words to Portuguese       %
+  \renewcommand{\myequationname}{%                 %                                %
+    Equação%                                       % - Equation                     %
+  }                                                %                                %
+  \renewcommand{\myacyearname}{%                   %                                %
+    Ano acadêmico%                                 % - Academic year                %
+  }                                                %                                %
+  \renewcommand{\mypartname}{%                     %                                %
+    Parte%                                         % - Part                         %
+  }                                                %                                %
+  \renewcommand{\mybooksname}{%                    %                                %
+    Livros%                                        % - Books                        %
+  }                                                %                                %
+  \renewcommand{\myarticlesname}{%                 %                                %
+    Artigos%                                       % - Articles                     %
+  }                                                %                                %
+  \renewcommand{\mycollectionsname}{%              %                                %
+    Coleções%                                      % - Collections                  %
+  }                                                %                                %
+  \renewcommand{\mymanualsname}{%                  %                                %
+    Manuais%                                       % - Manuals                      %
+  }                                                %                                %
+  \renewcommand{\mythesesname}{%                   %                                %
+    Teses%                                         % - Theses                       %
+  }                                                %                                %
+  \renewcommand{\myreferencesname}{%               %                                %
+    Referências%                                   % - References                   %
+  }                                                %                                %
+  \renewcommand{\myreportsname}{%                  %                                %
+    Relatórios%                                    % - Reports                      %
+  }                                                %                                %
+  \renewcommand{\mywebsitesname}{%                 %                                %
+    Sites Web%                                     % - Websites                     %
+  }                                                %                                %
+  \renewcommand{\mypatentsname}{%                  %                                %
+    Patentes%                                      % - Patents                      %
+  }                                                %                                %
+  \renewcommand{\myprogramname}{%                  %                                %
+    Programa%                                      % - Program                      %
+  }                                                %                                %
+  \renewcommand{\mylistprogramname}{%              %                                %
+    Lista de Programas%                            % - List of Programs             %
+  }                                                %                                %
+  \renewcommand{\mylistequationname}{%             %                                %
+    Lista de Equações%                             % - List of Equations            %
+  }                                                %                                %
+  \renewcommand{\myintroductionname}{%             %                                %
+    Introdução%                                    % - Introduction                 %
+  }                                                %                                %
+  \renewcommand{\mysectionname}{%                  %                                %
+    Seção%                                         % - Section                      %
+  }                                                %                                %
+  \renewcommand{\mysubsectionname}{%               %                                %
+    Subseção%                                      % - Subsection                   %
+  }                                                %                                %
+  \renewcommand{\mysubsubsectionname}{%            %                                %
+    Subsubseção%                                   % - Subsubsection                %
+  }                                                %                                %
+  \renewcommand{\myannexname}{%                    %                                %
+    Anexo%                                         % - Annex                        %
+  }                                                %                                %
+  \renewcommand{\myprofessormname}{%               %                                %
+    Professor%                                     % - Professor (male)             %
+  }                                                %                                %
+  \renewcommand{\myprofessorfname}{%               %                                %
+    Professora%                                    % - Professor (female)           %
+  }                                                %                                %
+  \renewcommand{\myprofessormpname}{%              %                                %
+    Professores%                                   % - Professor (male plurial)     %
+  }                                                %                                %
+  \renewcommand{\myprofessorfpname}{%              %                                %
+    Professoras%                                   % - Professor (female plurial)   %
+  }                                                %                                %
+  \renewcommand{\myassistantmname}{%               %                                %
+    Assistente%                                    % - Assistant (male)             %
+  }                                                %                                %
+  \renewcommand{\myassistantfname}{%               %                                %
+    Assistente%                                    % - Assistant (female)           %
+  }                                                %                                %
+  \renewcommand{\myassistantmpname}{%              %                                %
+    Assistentes%                                   % - Assistant (male plurial)     %
+  }                                                %                                %
+  \renewcommand{\myassistantfpname}{%              %                                %
+    Assistentes%                                   % - Assistant (female plurial)   %
+  }                                                %                                %
+  \renewcommand{\myauthormname}{%                  %                                %
+    Autor%                                         % - Author (male)                %
+  }                                                %                                %
+  \renewcommand{\myauthorfname}{%                  %                                %
+    Autora%                                        % - Author (female)              %
+  }                                                %                                %
+  \renewcommand{\myauthormpname}{%                 %                                %
+    Autores%                                       % - Author (male plurial)        %
+  }                                                %                                %
+  \renewcommand{\myauthorfpname}{%                 %                                %
+    Autoras%                                       % - Author (female plurial)      %
+  }                                                %                                %
+}                                                  %                                %
+\addto{\captionsrussian}{%                         % Adds words to Russian          %
+  \renewcommand{\myequationname}{%                 %                                %
+    Уравнение%                                     % - Equation                     %
+  }                                                %                                %
+  \renewcommand{\myacyearname}{%                   %                                %
+    Учебный год%                                   % - Academic year                %
+  }                                                %                                %
+  \renewcommand{\mypartname}{%                     %                                %
+    Часть%                                         % - Part                         %
+  }                                                %                                %
+  \renewcommand{\mybooksname}{%                    %                                %
+    Книги%                                         % - Books                        %
+  }                                                %                                %
+  \renewcommand{\myarticlesname}{%                 %                                %
+    Статьи%                                        % - Articles                     %
+  }                                                %                                %
+  \renewcommand{\mycollectionsname}{%              %                                %
+    Сборники%                                      % - Collections                  %
+  }                                                %                                %
+  \renewcommand{\mymanualsname}{%                  %                                %
+    Руководства%                                   % - Manuals                      %
+  }                                                %                                %
+  \renewcommand{\mythesesname}{%                   %                                %
+    Диссертации%                                   % - Theses                       %
+  }                                                %                                %
+  \renewcommand{\myreferencesname}{%               %                                %
+    Ссылки%                                        % - References                   %
+  }                                                %                                %
+  \renewcommand{\myreportsname}{%                  %                                %
+    Отчёты%                                        % - Reports                      %
+  }                                                %                                %
+  \renewcommand{\mywebsitesname}{%                 %                                %
+    Веб-сайты%                                     % - Websites                     %
+  }                                                %                                %
+  \renewcommand{\mypatentsname}{%                  %                                %
+    Патенты%                                       % - Patents                      %
+  }                                                %                                %
+  \renewcommand{\myprogramname}{%                  %                                %
+    Программа%                                     % - Program                      %
+  }                                                %                                %
+  \renewcommand{\mylistprogramname}{%              %                                %
+    Список программ%                               % - List of Programs             %
+  }                                                %                                %
+  \renewcommand{\mylistequationname}{%             %                                %
+    Список уравнений%                              % - List of Equations            %
+  }                                                %                                %
+  \renewcommand{\myintroductionname}{%             %                                %
+    Введение%                                      % - Introduction                 %
+  }                                                %                                %
+  \renewcommand{\mysectionname}{%                  %                                %
+    Раздел%                                        % - Section                      %
+  }                                                %                                %
+  \renewcommand{\mysubsectionname}{%               %                                %
+    Подраздел%                                     % - Subsection                   %
+  }                                                %                                %
+  \renewcommand{\mysubsubsectionname}{%            %                                %
+    Подподраздел%                                  % - Subsubsection                %
+  }                                                %                                %
+  \renewcommand{\myannexname}{%                    %                                %
+    Приложение%                                    % - Annex                        %
+  }                                                %                                %
+  \renewcommand{\myprofessormname}{%               %                                %
+    Профессор%                                     % - Professor (male)             %
+  }                                                %                                %
+  \renewcommand{\myprofessorfname}{%               %                                %
+    Профессорша%                                   % - Professor (female)           %
+  }                                                %                                %
+  \renewcommand{\myprofessormpname}{%              %                                %
+    Профессора%                                    % - Professor (male plurial)     %
+  }                                                %                                %
+  \renewcommand{\myprofessorfpname}{%              %                                %
+    Профессорши%                                   % - Professor (female plurial)   %
+  }                                                %                                %
+  \renewcommand{\myassistantmname}{%               %                                %
+    Ассистент%                                     % - Assistant (male)             %
+  }                                                %                                %
+  \renewcommand{\myassistantfname}{%               %                                %
+    Ассистентка%                                   % - Assistant (female)           %
+  }                                                %                                %
+  \renewcommand{\myassistantmpname}{%              %                                %
+    Ассистенты%                                    % - Assistant (male plurial)     %
+  }                                                %                                %
+  \renewcommand{\myassistantfpname}{%              %                                %
+    Ассистентки%                                   % - Assistant (female plurial)   %
+  }                                                %                                %
+  \renewcommand{\myauthormname}{%                  %                                %
+    Автор%                                         % - Author (male)                %
+  }                                                %                                %
+  \renewcommand{\myauthorfname}{%                  %                                %
+    Авторка%                                       % - Author (female)              %
+  }                                                %                                %
+  \renewcommand{\myauthormpname}{%                 %                                %
+    Авторы%                                        % - Author (male plurial)        %
+  }                                                %                                %
+  \renewcommand{\myauthorfpname}{%                 %                                %
+    Авторки%                                       % - Author (female plurial)      %
+  }                                                %                                %
+}                                                  %                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% COUNTERS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{%                                      % Creates a new counter          %
+  pos%                                             % - Name                         %
+}                                                  %                                %
+\newcounter{%                                      % Creates a new counter          %
+  mypart%                                          % - Name                         %
+}                                                  %                                %
+\newcounter{%                                      % Creates a new counter          %
+  mychapter%                                       % - Name                         %
+}[%                                                %                                %
+  mypart%                                          % - Linked counter               %
+]                                                  %                                %
+\newcounter{%                                      % Creates a new counter          %
+  mysection%                                       % - Name                         %
+}[%                                                %                                %
+  mychapter%                                       % - Linked counter               %
+]                                                  %                                %
+\newcounter{%                                      % Creates a new counter          %
+  mysubsection%                                    % - Name                         %
+}[%                                                %                                %
+  mysection%                                       % - Linked counter               %
+]                                                  %                                %
+\newcounter{%                                      % Creates a new counter          %
+  mysubsubsection%                                 % - Name                         %
+}[%                                                %                                %
+  mysubsection%                                    % - Linked counter               %
+]                                                  %                                %
+\newcounter{%                                      % Creates a new counter          %
+  myfigure%                                        % - Name                         %
+}[%                                                %                                %
+  mychapter%                                       % - Linked counter               %
+]                                                  %                                %
+\newcounter{%                                      % Creates a new counter          %
+  mysubfigure%                                     % - Name                         %
+}[%                                                %                                %
+  myfigure%                                        % - Linked counter               %
+]                                                  %                                %
+\newcounter{%                                      % Creates a new counter          %
+  myprogram%                                       % - Name                         %
+}[%                                                %                                %
+  mychapter%                                       % - Linked counter               %
+]                                                  %                                %
+\newcounter{%                                      % Creates a new counter          %
+  myequation%                                      % - Name                         %
+}[%                                                %                                %
+  mychapter%                                       % - Linked counter               %
+]                                                  %                                %
+\newcounter{%                                      % Creates a new counter          %
+  mytable%                                         % - Name                         %
+}[%                                                %                                %
+  mychapter%                                       % - Linked counter               %
+]                                                  %                                %
+\newcounter{%                                      % Creates a new counter          %
+  myannex%                                         % - Name                         %
+}                                                  %                                %
+\newcounter{%                                      % Creates a new counter          %
+  myparttemp%                                      % - Name                         %
+}%                                                 %                                %
+\newcounter{%                                      % Creates a new counter          %
+  mychaptertemp%                                   % - Name                         %
+}%                                                 %                                %
+\newcounter{%                                      % Creates a new counter          %
+  mysectiontemp%                                   % - Name                         %
+}%                                                 %                                %
+\newcounter{%                                      % Creates a new counter          %
+  mysubsectiontemp%                                % - Name                         %
+}%                                                 %                                %
+\newcounter{%                                      % Creates a new counter          %
+  mysubsubsectiontemp%                             % - Name                         %
+}%                                                 %                                %
+\newcounter{%                                      % Creates a new counter          %
+  mytocdepth%                                      % - Name                         %
+}%                                                 %                                %
+\setcounter{%                                      % Set counter value              %
+  mytocdepth%                                      % - Counter name                 %
+}{%                                                %                                %
+  \mypackage@toc@depth%                            % - Value                        %
+}                                                  %                                %
+\newcounter{%                                      % Creates a new counter          %
+  myannexdepth%                                    % - Name                         %
+}%                                                 %                                %
+\setcounter{%                                      % Set counter value              %
+  myannexdepth%                                    % - Counter name                 %
+}{%                                                %                                %
+  \mypackage@toc@annexdepth%                       % - Value                        %
+}                                                  %                                %
+\newcounter{%                                      % Creates a new counter          %
+  mybibdepth%                                      % - Name                         %
+}%                                                 %                                %
+\setcounter{%                                      % Set counter value              %
+  mybibdepth%                                      % - Counter name                 %
+}{%                                                %                                %
+  \mypackage@toc@bibdepth%                         % - Value                        %
+}                                                  %                                %
+\newcounter{%                                      % Creates a new counter          %
+  mypartdepth%                                     % - Name                         %
+}%                                                 %                                %
+\setcounter{%                                      % Set counter value              %
+  mypartdepth%                                     % - Counter name                 %
+}{%                                                %                                %
+  -1%                                              % - Value                        %
+}                                                  %                                %
+\newcounter{%                                      % Creates a new counter          %
+  mychapterdepth%                                  % - Name                         %
+}%                                                 %                                %
+\setcounter{%                                      % Set counter value              %
+  mychapterdepth%                                  % - Counter name                 %
+}{%                                                %                                %
+  0%                                               % - Value                        %
+}                                                  %                                %
+\newcounter{%                                      % Creates a new counter          %
+  mysectiondepth%                                  % - Name                         %
+}%                                                 %                                %
+\setcounter{%                                      % Set counter value              %
+  mysectiondepth%                                  % - Counter name                 %
+}{%                                                %                                %
+  1%                                               % - Value                        %
+}                                                  %                                %
+\newcounter{%                                      % Creates a new counter          %
+  mysubsectiondepth%                               % - Name                         %
+}%                                                 %                                %
+\setcounter{%                                      % Set counter value              %
+  mysubsectiondepth%                               % - Counter name                 %
+}{%                                                %                                %
+  2%                                               % - Value                        %
+}                                                  %                                %
+\newcounter{%                                      % Creates a new counter          %
+  mysubsubsectiondepth%                            % - Name                         %
+}%                                                 %                                %
+\setcounter{%                                      % Set counter value              %
+  mysubsubsectiondepth%                            % - Counter name                 %
+}{%                                                %                                %
+  3%                                               % - Value                        %
+}                                                  %                                %
+\newcounter{%                                      % Creates a new counter          %
+  mycurrentdepth%                                  % - Name                         %
+}%                                                 %                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% COLOR DEFINITIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{%                                     % Defines a color                %
+  bg%                                              % - Name                         %
+}{%                                                %                                %
+  HTML%                                            % - Color model                  %
+}{%                                                %                                %
+  282828%                                          % - Color value                  %
+}                                                  %                                %
+\definecolor{%                                     % Defines a color                %
+  linebg%                                          % - Name                         %
+}{%                                                %                                %
+  rgb%                                             % - Color model                  %
+}{%                                                %                                %
+  0.1, 0.1, 0.1%                                   % - Color value                  %
+}                                                  %                                %
+\definecolor{%                                     % Defines a color                %
+  linecol%                                         % - Name                         %
+}{%                                                %                                %
+  rgb%                                             % - Color model                  %
+}{%                                                %                                %
+  0.5, 0.5, 0.5%                                   % - Color value                  %
+}                                                  %                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% CUSTOM COMMANDS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\RegisterStructureUsage}[1]{%
+  \immediate\write\@auxout{\global\noexpand\csname Global#1Usedtrue\endcsname}%
+  \global\csname Global#1Usedtrue\endcsname%
+}
+\newcommand{\mylenmax}[2]{%
+  \the\dimexpr%
+    \ifdim #1>#2%
+        #1%
+    \else%
+        #2%
+    \fi%
+  \relax%
+}
+\newcommand{\mylenmin}[2]{%
+  \the\dimexpr%
+    \ifdim #1<#2%
+        #1%
+    \else%
+        #2%
+    \fi%
+  \relax%
+}
+\newcommand{\mybeginfloat}[2]{%
+  \edef\mypackage@floatplacement{\noexpand\begin{#1}[#2]}%
+  \mypackage@floatplacement
+}
+\newcommand{\myhighestsec}{%
+  \ifGlobalMypartUsed%
+    mypart%
+  \else%
+    \ifGlobalMychapterUsed%
+      mychapter%
+    \else%
+      \ifGlobalMysectionUsed%
+        mysection%
+      \else%
+        \ifGlobalMysubsectionUsed%
+          mysubsection%
+        \else%
+          mysubsubsection%
+        \fi%
+      \fi%
+    \fi%
+  \fi%
+}
+\ExplSyntaxOn
+  \tl_new:N{\l_myclean_text_tl}
+  \seq_new:N{\l_myclean_match_seq}
+  \cs_new_protected:Nn{\mycl_text:N}{%
+    \tl_trim_spaces:N{#1}%
+  }
+  \cs_new_protected:Nn{\mycl_firstline:Nn}{%
+    \regex_extract_once:nnNTF{\A\s*(.*?[.!?]+)(?:\s|\Z)}{#2}{\l_myclean_match_seq}{
+      \tl_set:Ne{#1}{\seq_item:Nn{\l_myclean_match_seq}{2}}
+    }{
+      \tl_set:Nn{#1}{#2}
+    }
+  }
+  \cs_new_protected:Nn{\mycl_line:N}{%
+    \mycl_text:N{\l_myclean_text_tl}%
+    \regex_replace_once:nnN{[.,!?;:]+$}{}{\l_myclean_text_tl}%
+    \mycl_text:N{\l_myclean_text_tl}%
+  }
+  \NewDocumentCommand{\mycleantext}{m}{%
+    \tl_set:Nn{\l_myclean_text_tl}{#1}%
+    \mycl_text:N{\l_myclean_text_tl}%
+    \tl_use:N{\l_myclean_text_tl}%
+  }
+  \NewDocumentCommand{\mycleanline}{m}{%
+    \tl_set:Nn{\l_myclean_text_tl}{#1}%
+    \mycl_line:N{\l_myclean_text_tl}%
+    \tl_use:N{\l_myclean_text_tl}%
+  }
+  \NewDocumentCommand{\mycleanfirstline}{m}{%
+    \mycl_firstline:Nn{\l_myclean_text_tl}{#1}%
+    \mycl_line:N{\l_myclean_text_tl}%
+    \tl_use:N{\l_myclean_text_tl}%
+  }
+\ExplSyntaxOff
+\NewDocumentCommand{\myaddtotoc}{m m}{%
+  \setcounter{mycurrentdepth}{\value{#1depth}}%
+  \ifGlobalMypartUsed%
+    \addtocounter{mycurrentdepth}{1}%
+  \else%
+    \ifGlobalMychapterUsed%
+    \else%
+      \addtocounter{mycurrentdepth}{-1}%
+    \fi%
+  \fi%
+  \ifMyannexUsed%
+    \ifnum \value{mycurrentdepth} > \value{myannexdepth} \relax%
+    \else%
+      \addcontentsline{mytoc}{#1}{#2}%
+    \fi%
+  \else%
+    \ifMybibUsed%
+      \ifnum \value{mycurrentdepth} > \value{mybibdepth} \relax%
+      \else%
+        \addcontentsline{mytoc}{#1}{#2}%
+      \fi%
+    \else%
+      \ifnum \value{mycurrentdepth} > \value{mytocdepth} \relax%
+      \else%
+        \addcontentsline{mytoc}{#1}{#2}%
+      \fi%
+    \fi%
+  \fi%
+}
+\NewDocumentCommand{\IfIsRomanTF}{m m}{%
+  \IfSubStr{\thepage}{I}{%
+    #1%
+  }{%
+    \IfSubStr{\thepage}{V}{%
+      #1%
+    }{%
+      \IfSubStr{\thepage}{X}{%
+        #1%
+      }{%
+        \IfSubStr{\thepage}{L}{%
+          #1%
+        }{%
+          \IfSubStr{\thepage}{C}{%
+            #1%
+          }{%
+            \IfSubStr{\thepage}{D}{%
+              #1%
+            }{%
+              \IfSubStr{\thepage}{M}{%
+                #1%
+              }{%
+                #2%
+              }%
+            }%
+          }%
+        }%
+      }%
+    }%
+  }%
+}
+\NewDocumentCommand{\IfIsRomanT}{m}{%
+  \IfIsRomanTF{#1}{}%
+}
+\NewDocumentCommand{\IfIsRomanF}{m}{%
+  \IfIsRomanTF{}{#1}%
+}
+\NewDocumentCommand{\IfIsromanTF}{m m}{%
+  \IfSubStr{\thepage}{i}{%
+    #1%
+  }{%
+    \IfSubStr{\thepage}{v}{%
+      #1%
+    }{%
+      \IfSubStr{\thepage}{x}{%
+        #1%
+      }{%
+        \IfSubStr{\thepage}{l}{%
+          #1%
+        }{%
+          \IfSubStr{\thepage}{c}{%
+            #1%
+          }{%
+            \IfSubStr{\thepage}{d}{%
+              #1%
+            }{%
+              \IfSubStr{\thepage}{m}{%
+                #1%
+              }{%
+                #2%
+              }%
+            }%
+          }%
+        }%
+      }%
+    }%
+  }%
+}
+\NewDocumentCommand{\IfIsromanT}{m}{%
+  \IfIsromanTF{#1}{}%
+}
+\NewDocumentCommand{\IfIsromanF}{m}{%
+  \IfIsromanTF{}{#1}%
+}
+\NewDocumentCommand{\IfIsarabicTF}{m m}{%
+  \IfSubStr{\thepage}{0}{%
+    #1%
+  }{%
+    \IfSubStr{\thepage}{1}{%
+      #1%
+    }{%
+      \IfSubStr{\thepage}{2}{%
+        #1%
+      }{%
+        \IfSubStr{\thepage}{3}{%
+          #1%
+        }{%
+          \IfSubStr{\thepage}{4}{%
+            #1%
+          }{%
+            \IfSubStr{\thepage}{5}{%
+              #1%
+            }{%
+              \IfSubStr{\thepage}{6}{%
+                #1%
+              }{%
+                \IfSubStr{\thepage}{7}{%
+                  #1%
+                }{%
+                  \IfSubStr{\thepage}{8}{%
+                    #1%
+                  }{%
+                    \IfSubStr{\thepage}{9}{%
+                      #1%
+                    }{%
+                      #2%
+                    }%
+                  }%
+                }%
+              }%
+            }%
+          }%
+        }%
+      }%
+    }%
+  }%
+}
+\NewDocumentCommand{\IfIsarabicT}{m}{%
+  \IfIsarabicTF{#1}{}%
+}
+\NewDocumentCommand{\IfIsarabicF}{m}{%
+  \IfIsarabicTF{}{#1}%
+}
+\NewDocumentCommand{\IfIsAlphTF}{m m}{%
+  \IfSubStr{\thepage}{A}{%
+    #1%
+  }{%
+    \IfSubStr{\thepage}{B}{%
+      #1%
+    }{%
+      \IfSubStr{\thepage}{C}{%
+        #1%
+      }{%
+        \IfSubStr{\thepage}{D}{%
+          #1%
+        }{%
+          \IfSubStr{\thepage}{E}{%
+            #1%
+          }{%
+            \IfSubStr{\thepage}{F}{%
+              #1%
+            }{%
+              \IfSubStr{\thepage}{G}{%
+                #1%
+              }{%
+                \IfSubStr{\thepage}{H}{%
+                  #1%
+                }{%
+                  \IfSubStr{\thepage}{I}{%
+                    #1%
+                  }{%
+                    \IfSubStr{\thepage}{J}{%
+                      #1%
+                    }{%
+                      \IfSubStr{\thepage}{K}{%
+                        #1%
+                      }{%
+                        \IfSubStr{\thepage}{L}{%
+                          #1%
+                        }{%
+                          \IfSubStr{\thepage}{M}{%
+                            #1%
+                          }{%
+                            \IfSubStr{\thepage}{N}{%
+                              #1%
+                            }{%
+                              \IfSubStr{\thepage}{O}{%
+                                #1%
+                              }{%
+                                \IfSubStr{\thepage}{P}{%
+                                  #1%
+                                }{%
+                                  \IfSubStr{\thepage}{Q}{%
+                                    #1%
+                                  }{%
+                                    \IfSubStr{\thepage}{R}{%
+                                      #1%
+                                    }{%
+                                      \IfSubStr{\thepage}{S}{%
+                                        #1%
+                                      }{%
+                                        \IfSubStr{\thepage}{T}{%
+                                          #1%
+                                        }{%
+                                          \IfSubStr{\thepage}{U}{%
+                                            #1%
+                                          }{%
+                                            \IfSubStr{\thepage}{V}{%
+                                              #1%
+                                            }{%
+                                              \IfSubStr{\thepage}{W}{%
+                                                #1%
+                                              }{%
+                                                \IfSubStr{\thepage}{X}{%
+                                                  #1%
+                                                }{%
+                                                  \IfSubStr{\thepage}{Y}{%
+                                                    #1%
+                                                  }{%
+                                                    \IfSubStr{\thepage}{Z}{%
+                                                      #1%
+                                                    }{%
+                                                      #2%
+                                                    }%
+                                                  }%
+                                                }%
+                                              }%
+                                            }%
+                                          }%
+                                        }%
+                                      }%
+                                    }%
+                                  }%
+                                }%
+                              }%
+                            }%
+                          }%
+                        }%
+                      }%
+                    }%
+                  }%
+                }%
+              }%
+            }%
+          }%
+        }%
+      }%
+    }%
+  }%
+}
+\NewDocumentCommand{\IfIsAlphT}{m}{%
+  \IfIsAlphTF{#1}{}%
+}
+\NewDocumentCommand{\IfIsAlphF}{m}{%
+  \IfIsAlphTF{}{#1}%
+}
+\NewDocumentCommand{\IfIsalphTF}{m m}{%
+  \IfSubStr{\thepage}{a}{%
+    #1%
+  }{%
+    \IfSubStr{\thepage}{b}{%
+      #1%
+    }{%
+      \IfSubStr{\thepage}{c}{%
+        #1%
+      }{%
+        \IfSubStr{\thepage}{d}{%
+          #1%
+        }{%
+          \IfSubStr{\thepage}{e}{%
+            #1%
+          }{%
+            \IfSubStr{\thepage}{f}{%
+              #1%
+            }{%
+              \IfSubStr{\thepage}{g}{%
+                #1%
+              }{%
+                \IfSubStr{\thepage}{h}{%
+                  #1%
+                }{%
+                  \IfSubStr{\thepage}{i}{%
+                    #1%
+                  }{%
+                    \IfSubStr{\thepage}{j}{%
+                      #1%
+                    }{%
+                      \IfSubStr{\thepage}{k}{%
+                        #1%
+                      }{%
+                        \IfSubStr{\thepage}{l}{%
+                          #1%
+                        }{%
+                          \IfSubStr{\thepage}{m}{%
+                            #1%
+                          }{%
+                            \IfSubStr{\thepage}{n}{%
+                              #1%
+                            }{%
+                              \IfSubStr{\thepage}{o}{%
+                                #1%
+                              }{%
+                                \IfSubStr{\thepage}{p}{%
+                                  #1%
+                                }{%
+                                  \IfSubStr{\thepage}{q}{%
+                                    #1%
+                                  }{%
+                                    \IfSubStr{\thepage}{r}{%
+                                      #1%
+                                    }{%
+                                      \IfSubStr{\thepage}{s}{%
+                                        #1%
+                                      }{%
+                                        \IfSubStr{\thepage}{t}{%
+                                          #1%
+                                        }{%
+                                          \IfSubStr{\thepage}{u}{%
+                                            #1%
+                                          }{%
+                                            \IfSubStr{\thepage}{v}{%
+                                              #1%
+                                            }{%
+                                              \IfSubStr{\thepage}{w}{%
+                                                #1%
+                                              }{%
+                                                \IfSubStr{\thepage}{x}{%
+                                                  #1%
+                                                }{%
+                                                  \IfSubStr{\thepage}{y}{%
+                                                    #1%
+                                                  }{%
+                                                    \IfSubStr{\thepage}{z}{%
+                                                      #1%
+                                                    }{%
+                                                      #2%
+                                                    }%
+                                                  }%
+                                                }%
+                                              }%
+                                            }%
+                                          }%
+                                        }%
+                                      }%
+                                    }%
+                                  }%
+                                }%
+                              }%
+                            }%
+                          }%
+                        }%
+                      }%
+                    }%
+                  }%
+                }%
+              }%
+            }%
+          }%
+        }%
+      }%
+    }%
+  }%
+}
+\NewDocumentCommand{\IfIsalphT}{m}{%
+  \IfIsalphTF{#1}{}%
+}
+\NewDocumentCommand{\IfIsalphF}{m}{%
+  \IfIsalphTF{}{#1}%
+}
+\NewDocumentCommand{\mydotfill}{}{%
+  \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill\kern\z@%
+}
+\NewDocumentCommand{\currentacyear}{}{%
+  \ifnum \month > 8\relax%
+    \number\year-\number\numexpr\year+1\relax%
+  \else%
+    \number\numexpr\year-1\relax-\number\year\relax%
+  \fi%
+}
+\renewcommand{\themyequation}{%
+  \ifGlobalMypartUsed%
+    \themychapter.\arabic{myequation}%
+  \else%
+    \ifGlobalMychapterUsed%
+      \themychapter.\arabic{myequation}%
+    \else%
+      \ifGlobalMysectionUsed%
+        \themysection.\arabic{myequation}%
+      \else%
+        \ifGlobalMysubsectionUsed%
+          \themysubsection.\arabic{myequation}%
+        \else%
+          \ifGlobalMysubsubsectionUsed%
+            \themysubsubsection.\arabic{myequation}%
+          \else%
+            \arabic{myequation}%
+          \fi%
+        \fi%
+      \fi%
+    \fi%
+  \fi%
+}
+\renewcommand{\themyfigure}{%
+  \ifGlobalMypartUsed%
+    \themychapter.\arabic{myfigure}%
+  \else%
+    \ifGlobalMychapterUsed%
+      \themychapter.\arabic{myfigure}%
+    \else%
+      \ifGlobalMysectionUsed%
+        \themysection.\arabic{myfigure}%
+      \else%
+        \ifGlobalMysubsectionUsed%
+          \themysubsection.\arabic{myfigure}%
+        \else%
+          \ifGlobalMysubsubsectionUsed%
+            \themysubsubsection.\arabic{myfigure}%
+          \else%
+            \arabic{myfigure}%
+          \fi%
+        \fi%
+      \fi%
+    \fi%
+  \fi%
+}
+\renewcommand{\themysubfigure}{%
+    \themyfigure.\alph{mysubfigure}%
+}
+\renewcommand{\themytable}{%
+  \ifGlobalMypartUsed%
+    \themychapter.\arabic{mytable}%
+  \else%
+    \ifGlobalMychapterUsed%
+      \themychapter.\arabic{mytable}%
+    \else%
+      \ifGlobalMysectionUsed%
+        \themysection.\arabic{mytable}%
+      \else%
+        \ifGlobalMysubsectionUsed%
+          \themysubsection.\arabic{mytable}%
+        \else%
+          \ifGlobalMysubsubsectionUsed%
+            \themysubsubsection.\arabic{mytable}%
+          \else%
+            \arabic{mytable}%
+          \fi%
+        \fi%
+      \fi%
+    \fi%
+  \fi%
+}
+\renewcommand{\themyprogram}{%
+  \ifGlobalMypartUsed%
+    \themychapter.\arabic{myprogram}%
+  \else%
+    \ifGlobalMychapterUsed%
+      \themychapter.\arabic{myprogram}%
+    \else%
+      \ifGlobalMysectionUsed%
+        \themysection.\arabic{myprogram}%
+      \else%
+        \ifGlobalMysubsectionUsed%
+          \themysubsection.\arabic{myprogram}%
+        \else%
+          \ifGlobalMysubsubsectionUsed%
+            \themysubsubsection.\arabic{myprogram}%
+          \else%
+            \arabic{myprogram}%
+          \fi%
+        \fi%
+      \fi%
+    \fi%
+  \fi%
+}
+\renewcommand{\themypart}{%
+  \ifGlobalMypartUsed%
+    \ifMyannexUsed%
+      \Alph{mypart}%
+    \else%
+      \arabic{mypart}%
+    \fi%
+  \fi%
+}
+\renewcommand{\themychapter}{%
+  \ifGlobalMypartUsed%
+    \themypart%
+    \ifGlobalMychapterUsed%
+      .\arabic{mychapter}%
+    \fi%
+  \else%
+    \ifGlobalMychapterUsed%
+      \ifMyannexUsed%
+        \Alph{mychapter}%
+      \else%
+        \arabic{mychapter}%
+      \fi%
+    \fi%
+  \fi%
+}
+\renewcommand{\themysection}{%
+  \ifGlobalMypartUsed%
+    \themychapter%
+    \ifGlobalMysectionUsed%
+      .\arabic{mysection}%
+    \fi%
+  \else%
+    \ifGlobalMychapterUsed%
+      \themychapter%
+      \ifGlobalMysectionUsed%
+        .\arabic{mysection}%
+      \fi%
+    \else%
+      \ifGlobalMysectionUsed%
+        \ifMyannexUsed%
+          \Alph{mysection}%
+        \else%
+          \arabic{mysection}%
+        \fi%
+      \fi%
+    \fi%
+  \fi%
+}
+\renewcommand{\themysubsection}{%
+  \ifGlobalMypartUsed%
+    \themysection%
+    \ifGlobalMysubsectionUsed%
+      .\arabic{mysubsection}%
+    \fi%
+  \else%
+    \ifGlobalMychapterUsed%
+      \themysection%
+      \ifGlobalMysubsectionUsed%
+        .\arabic{mysubsection}%
+      \fi%
+    \else%
+      \ifGlobalMysectionUsed%
+        \themysection%
+        \ifGlobalMysubsectionUsed%
+          .\arabic{mysubsection}%
+        \fi%
+      \else%
+        \ifGlobalMysubsectionUsed%
+          \ifMyannexUsed%
+            \Alph{mysubsection}%
+          \else%
+            \arabic{mysubsection}%
+          \fi%
+        \fi%
+      \fi%
+    \fi%
+  \fi%
+}
+\renewcommand{\themysubsubsection}{%
+  \ifGlobalMypartUsed%
+    \themysubsection%
+    \ifGlobalMysubsubsectionUsed%
+      .\arabic{mysubsubsection}%
+    \fi%
+  \else%
+    \ifGlobalMychapterUsed%
+      \themysubsection%
+      \ifGlobalMysubsubsectionUsed%
+        .\arabic{mysubsubsection}%
+      \fi%
+    \else%
+      \ifGlobalMysectionUsed%
+        \themysubsection%
+        \ifGlobalMysubsubsectionUsed%
+          .\arabic{mysubsubsection}%
+        \fi%
+      \else%
+        \ifGlobalMysubsectionUsed%
+          \themysubsection%
+          \ifGlobalMysubsubsectionUsed%
+            .\arabic{mysubsubsection}%
+          \fi%
+        \else%
+          \ifGlobalMysubsubsectionUsed%
+            \ifMyannexUsed%
+              \Alph{mysubsubsection}%
+            \else%
+              \arabic{mysubsubsection}%
+            \fi%
+          \fi%
+        \fi%
+      \fi%
+    \fi%
+  \fi%
+}
+\renewcommand{\themyannex}{%
+  \Alph{myannex}%
+}%
+\NewDocumentCommand{\mypartbox}{O{l} m}{%
+  \setcounter{myparttemp}{\value{mypart}}%
+  \setcounter{mypart}{9}%
+  \sbox0{#2}%
+  \makebox[\wd0][#1]{#2}%
+  \setcounter{mypart}{\value{myparttemp}}%
+}
+\NewDocumentCommand{\mychapterbox}{O{l} m}{%
+  \setcounter{myparttemp}{\value{mypart}}%
+  \setcounter{mychaptertemp}{\value{mychapter}}%
+  \setcounter{mypart}{9}%
+  \setcounter{mychapter}{9}%
+  \sbox0{#2}%
+  \makebox[\wd0][#1]{#2}%
+  \setcounter{mypart}{\value{myparttemp}}%
+  \setcounter{mychapter}{\value{mychaptertemp}}%
+}
+\NewDocumentCommand{\mysectionbox}{O{l} m}{%
+  \setcounter{myparttemp}{\value{mypart}}%
+  \setcounter{mychaptertemp}{\value{mychapter}}%
+  \setcounter{mysectiontemp}{\value{mysection}}%
+  \setcounter{mypart}{9}%
+  \setcounter{mychapter}{9}%
+  \setcounter{mysection}{9}%
+  \sbox0{#2}%
+  \makebox[\wd0][#1]{#2}%
+  \setcounter{mypart}{\value{myparttemp}}%
+  \setcounter{mychapter}{\value{mychaptertemp}}%
+  \setcounter{mysection}{\value{mysectiontemp}}%
+}
+\NewDocumentCommand{\mysubsectionbox}{O{l} m}{%
+  \setcounter{myparttemp}{\value{mypart}}%
+  \setcounter{mychaptertemp}{\value{mychapter}}%
+  \setcounter{mysectiontemp}{\value{mysection}}%
+  \setcounter{mysubsectiontemp}{\value{mysubsection}}%
+  \setcounter{mypart}{9}%
+  \setcounter{mychapter}{9}%
+  \setcounter{mysection}{9}%
+  \setcounter{mysubsection}{9}%
+  \sbox0{#2}%
+  \makebox[\wd0][#1]{#2}%
+  \setcounter{mypart}{\value{myparttemp}}%
+  \setcounter{mychapter}{\value{mychaptertemp}}%
+  \setcounter{mysection}{\value{mysectiontemp}}%
+  \setcounter{mysubsection}{\value{mysubsectiontemp}}%
+}
+\NewDocumentCommand{\mysubsubsectionbox}{O{l} m}{%
+  \setcounter{myparttemp}{\value{mypart}}%
+  \setcounter{mychaptertemp}{\value{mychapter}}%
+  \setcounter{mysectiontemp}{\value{mysection}}%
+  \setcounter{mysubsectiontemp}{\value{mysubsection}}%
+  \setcounter{mysubsubsectiontemp}{\value{mysubsubsection}}%
+  \setcounter{mypart}{9}%
+  \setcounter{mychapter}{9}%
+  \setcounter{mysection}{9}%
+  \setcounter{mysubsection}{9}%
+  \setcounter{mysubsubsection}{9}%
+  \sbox0{#2}%
+  \makebox[\wd0][#1]{#2}%
+  \setcounter{mypart}{\value{myparttemp}}%
+  \setcounter{mychapter}{\value{mychaptertemp}}%
+  \setcounter{mysection}{\value{mysectiontemp}}%
+  \setcounter{mysubsection}{\value{mysubsectiontemp}}%
+  \setcounter{mysubsubsection}{\value{mysubsubsectiontemp}}%
+}
+\ExplSyntaxOn
+  \tl_new:N{\l_myinclude_height_tl}
+  \tl_new:N{\l_myinclude_width_tl}
+  \bool_new:N{\l_myinclude_heightUsed_bool}
+  \bool_new:N{\l_myinclude_widthUsed_bool}
+  \keys_define:nn{myinclude}{%
+    height.code:n = {%
+      \bool_set_true:N{\l_myinclude_heightUsed_bool}%
+      \tl_set:Nn{\l_myinclude_height_tl}{#1}%
+    },%
+    width.code:n = {%
+      \bool_set_true:N{\l_myinclude_widthUsed_bool}%
+      \tl_set:Nn{\l_myinclude_width_tl}{#1}%
+    },%
+  }
+  \NewDocumentCommand{\myinclude}{O{height=0.2} m}{%
+    \bool_set_false:N{\l_myinclude_heightUsed_bool}%
+    \bool_set_false:N{\l_myinclude_widthUsed_bool}%
+    \clist_clear:N{\l_tmpa_clist}%
+    \keys_set:nn{myinclude}{#1}%
+    \bool_if:NT{\l_myinclude_heightUsed_bool}{%
+      \clist_put_right:Nx{\l_tmpa_clist}{height=\l_myinclude_height_tl\textheight}%
+    }%
+    \bool_if:NT{\l_myinclude_widthUsed_bool}{%
+      \clist_put_right:Nx{\l_tmpa_clist}{width=\l_myinclude_width_tl\textwidth}%
+    }%
+    \filename@parse{#2}%
+    \IfStrEq{\filename@ext}{svg}{%
+      \use:x{%
+        \exp_not:N\includesvg[\clist_use:Nn \l_tmpa_clist {,}]{\mypackage@paths@images \exp_not:n {#2}}%
+      }%
+    }{%
+      \use:x{%
+        \exp_not:N\includegraphics[\clist_use:Nn \l_tmpa_clist {,}]{\mypackage@paths@images \exp_not:n {#2}}%
+      }%
+    }%
+  }
+\ExplSyntaxOff
+\NewDocumentCommand{\myfigure}{s O{height=0.2} m O{#5} +m O{\mypackage@pos@figure}}{%
+  \filename@parse{#3}%
+  \mybeginfloat{figure}{#6}%
+    \centering%
+    \sbox0{\myinclude[#2]{#3}}%
+    \begin{minipage}{\mylenmax{\wd0}{0.75\linewidth}}%
+      \centering%
+      \stepcounter{myfigure}%
+      \myhyperanchor{myfigure}%
+      \mylabel{myfigure}{fig:\filename@base}%
+      \usebox0%
+      \caption*{\textbf{\myfigurename\space\themyfigure:}\hspace{0.75em}#5}%
+      \IfBooleanF{#1}{%
+        \addcontentsline{mylof}{myfigure}{\makebox[3.5em][l]{\themyfigure}\mycleanfirstline{#4}}%
+      }%
+    \end{minipage}%
+  \end{figure}%
+}
+\NewDocumentEnvironment{mysub}{m O{#3} +m O{\mypackage@pos@figure}}{%
+  \def\mysubfigurelabel{#1}%
+  \mybeginfloat{figure}{#4}%
+    \centering%
+    \stepcounter{myfigure}%
+    \myhyperanchor{myfigure}%
+    \mylabel{myfigure}{fig:#1}%
+}{%
+    \caption*{\textbf{\myfigurename\space\themyfigure:}\hspace{0.75em}#3}%
+    \addcontentsline{mylof}{myfigure}{\makebox[3.5em][l]{\themyfigure}\mycleanfirstline{#2}}%
+  \end{figure}%
+  \def\mysubfigurelabel{-NoValue-}%
+}
+\NewDocumentEnvironment{mysub*}{m +m O{\mypackage@pos@figure}}{%
+  \def\mysubfigurelabel{#1}%
+  \mybeginfloat{figure}{#3}%
+    \centering%
+    \stepcounter{myfigure}%
+    \myhyperanchor{myfigure}%
+    \mylabel{myfigure}{fig:#1}%
+}{%
+    \caption*{\textbf{\myfigurename\space\themyfigure:}\hspace{0.75em}#2}%
+  \end{figure}%
+  \def\mysubfigurelabel{-NoValue-}%
+}
+\NewDocumentCommand{\mysubfigure}{O{width=1} m +o m O{T}}{%
+  \begin{subfigure}[#5]{#4\textwidth}%
+    \centering%
+    \sbox0{\myinclude[#1]{#2}}%
+    \begin{minipage}{\wd0}%
+      \stepcounter{mysubfigure}%
+      \myhyperanchor{mysubfigure}%
+      \mylabel{mysubfigure}{fig:\mysubfigurelabel:\alph{mysubfigure}}%
+      \usebox0%
+      \IfNoValueF{#3}{%
+        \caption*{\textbf{(\alph{mysubfigure})}\hspace{0.75em}#3}%
+      }%
+    \end{minipage}%
+  \end{subfigure}%
+}
+\newtcbinputlisting{\mytcbincludeprogram}[7][]{%
+  before skip=7pt,%
+  breakable,%
+  enhanced,%
+  listing only,%
+  listing file={\mypackage@paths@code #2},%
+  minted language=#3,%
+  colback=#4,%
+  colframe=#5,%
+  left=#6 - 1mm,%
+  overlay={%
+    \begin{tcbclipinterior}%
+      \fill[#7] (frame.south west) rectangle ([xshift=#6]frame.north west);%
+    \end{tcbclipinterior}%
+  },%
+  minted options={%
+      fontsize=\normalsize,%
+      linenos=true,%
+      numbersep=1mm,%
+      breaklines=true,%
+      breakautoindent=true,%
+      mathescape=true,%
+      autogobble=true,%
+      #1%
+  },%
+}
+\ExplSyntaxOn
+  \tl_new:N{\l_myincludeprogram_bgcol_tl}
+  \tl_new:N{\l_myincludeprogram_framcol_tl}
+  \tl_new:N{\l_myincludeprogram_numcol_tl}
+  \tl_new:N{\l_myincludeprogram_numbgcol_tl}
+  \tl_new:N{\l_myincludeprogram_numwidth_tl}
+  \tl_new:N{\l_myincludeprogram_minted_tl}
+  \int_new:N{\l_myincludeprogram_lastline_int}
+  \int_new:N{\l_myincludeprogram_linecount_int}
+  \int_new:N{\l_myincludeprogram_digitcount_int}
+  \keys_define:nn{myincludeprogram}{%
+    bgcol.tl_set:N = \l_myincludeprogram_bgcol_tl,%
+    bgcol.initial:n = bg,%
+    framecol.tl_set:N = \l_myincludeprogram_framcol_tl,%
+    framecol.initial:n = black!70,%
+    numcol.tl_set:N = \l_myincludeprogram_numcol_tl,%
+    numcol.initial:n = linecol,%
+    numbgcol.tl_set:N = \l_myincludeprogram_numbgcol_tl,%
+    numbgcol.initial:n = linebg,%
+    numwidth.tl_set:N = \l_myincludeprogram_numwidth_tl,%
+    numwidth.initial:n = auto,%
+    minted.tl_set:N = \l_myincludeprogram_minted_tl,%
+    minted.initial:n = {},%
+  }
+  \keys_define:nn{myincludeprogram/minted}{%
+    lastline.int_set:N = \l_myincludeprogram_lastline_int,%
+    unknown.code:n = {},%
+  }
+  \cs_new:Nn{\myincludeprogram_count_lines:n}{%
+    \int_zero:N{\l_myincludeprogram_linecount_int}%
+    \ior_open:Nn{\g_tmpa_ior}{#1}%
+    \ior_map_inline:Nn{\g_tmpa_ior}{%
+      \int_incr:N{\l_myincludeprogram_linecount_int}%
+    }%
+    \ior_close:N{\g_tmpa_ior}%
+  }
+  \cs_new:Nn \myincludeprogram_count_digits:n {%
+    \int_eval:n{\tl_count:e{\int_eval:n{#1}}}%
+  }
+  \NewDocumentCommand{\myincludeprogram}{O{} m m}{%
+    \keys_set:nn{myincludeprogram}{#1}%
+    \int_set:Nn{\l_myincludeprogram_lastline_int}{-1}%
+    \keys_set:nV{myincludeprogram/minted}\l_myincludeprogram_minted_tl%
+    \tl_if_eq:NnT{\l_myincludeprogram_numwidth_tl}{auto}{%
+      \int_compare:nNnTF{\l_myincludeprogram_lastline_int}{<}{0}{%
+        \myincludeprogram_count_lines:n{#2}%
+        \int_set:Nn{\l_myincludeprogram_digitcount_int}{%
+          \myincludeprogram_count_digits:n{\l_myincludeprogram_linecount_int}%
+        }%
+      }{%
+        \int_set:Nn{\l_myincludeprogram_digitcount_int}{%
+          \myincludeprogram_count_digits:n{\l_myincludeprogram_lastline_int}%
+        }%
+      }%
+      \tl_set:Nx{\l_myincludeprogram_numwidth_tl}{%
+        \int_eval:n{2 * \l_myincludeprogram_digitcount_int}mm%
+      }%
+    }%
+    \let\themyFancyVerbLine\theFancyVerbLine%
+    \renewcommand{\theFancyVerbLine}{%
+      \ttfamily\textcolor{\l_myincludeprogram_numcol_tl}{\small{\arabic{FancyVerbLine}}}%
+    }%
+    \use:x{%
+      \exp_not:N\mytcbincludeprogram[%
+        \exp_not:V\l_myincludeprogram_minted_tl%
+      ]{%
+        \exp_not:n{#2}%
+      }{%
+        \exp_not:n{#3}%
+      }{%
+        \exp_not:V\l_myincludeprogram_bgcol_tl%
+      }{%
+        \exp_not:V\l_myincludeprogram_framcol_tl%
+      }{%
+        \exp_not:V\l_myincludeprogram_numwidth_tl + 1mm%
+      }{%
+        \exp_not:V\l_myincludeprogram_numbgcol_tl%
+      }%
+    }%
+    \let\theFancyVerbLine\themyFancyVerbLine%
+  }
+\ExplSyntaxOff
+\NewDocumentCommand{\myprogram}{s O{} m m m O{#7} +m O{\mypackage@pos@program}}{%
+  \begingroup%
+    \filename@parse{#4}%
+    \sbox0{%
+      \begin{minipage}{\textwidth}%
+        \myincludeprogram[#2]{#4}{#5}%
+        \captionof*{listing}{\textbf{\myprogramname\space\themyprogram:}\hspace{0.75em}#7}%
+      \end{minipage}%
+    }%
+    \newif\iffits
+    \ifdim\dimexpr\ht0\relax<\dimexpr(\pagegoal-1cm)/2\relax%
+      \fitstrue%
+    \else%
+      \fitsfalse%
+    \fi%
+    \centering%
+    \sbox0{\myincludeprogram[#2]{#4}{#5}}%
+    \stepcounter{myprogram}%
+    \myhyperanchor{myprogram}%
+    \mylabel{myprogram}{code:\filename@ext:#3}%
+    \iffits%
+      \mybeginfloat{listing}{#8}%
+      \begin{minipage}{\wd0}%
+      \usebox0%
+    \else%
+      \begingroup%
+      \myincludeprogram[#2]{#4}{#5}%
+    \fi%
+      \captionof*{listing}{\textbf{\myprogramname\space\themyprogram:}\hspace{0.75em}#7}%
+      \IfBooleanF{#1}{%
+        \addcontentsline{mylop}{myprogram}{\makebox[3.5em][l]{\themyprogram}\mycleanfirstline{#6}}%
+      }%
+    \iffits%
+      \end{minipage}%
+      \end{listing}%
+    \else%
+      \endgroup%
+    \fi%
+  \endgroup%
+}
+\NewDocumentEnvironment{myequation}{o m}{%
+  \begin{equation*}%
+    \IfNoValueF{#1}{%
+      \stepcounter{myequation}%
+      \myhyperanchor{myequation}%
+      \mylabel{myequation}{eq:#1}%
+    }%
+    \begin{aligned}%
+}{%
+    \end{aligned}%
+    \IfNoValueF{#1}{%
+      \tag{\themyequation}%
+    }%
+    \addcontentsline{myloe}{myequation}{\makebox[3.5em][l]{\themyequation}\mycleanfirstline{#2}}%
+  \end{equation*}%
+}
+\NewDocumentEnvironment{myequation*}{o}{%
+  \begin{equation*}%
+    \IfNoValueF{#1}{%
+      \stepcounter{myequation}%
+      \myhyperanchor{myequation}%
+      \mylabel{myequation}{eq:#1}%
+    }%
+    \begin{aligned}%
+}{%
+    \end{aligned}%
+    \IfNoValueF{#1}{%
+      \tag{\themyequation}%
+    }%
+  \end{equation*}%
+}
+\ExplSyntaxOn
+  \tl_new:N{\l_mytable_firstrow_tl}
+  \tl_new:N{\l_mytable_contrastcol_tl}
+  \tl_new:N{\l_mytable_defaultcol_tl}
+  \tl_new:N{\l_mytable_oddcol_tl}
+  \tl_new:N{\l_mytable_evencol_tl}
+  \keys_define:nn{mytable}{%
+    firstrow.tl_set:N = \l_mytable_firstrow_tl,%
+    firstrow.initial:n = 1,%
+    contrastcol.tl_set:N = \l_mytable_contrastcol_tl,%
+    contrastcol.initial:n = gray!25,%
+    defaultcol.tl_set:N = \l_mytable_defaultcol_tl,%
+    defaultcol.initial:n = {},%
+    oddcol.tl_set:N = \l_mytable_oddcol_tl,%
+    oddcol.initial:n = {},%
+    evencol.tl_set:N = \l_mytable_evencol_tl,%
+    evencol.initial:n = {},%
+  }
+  \NewDocumentEnvironment{mytable}{O{} m m O{#5} +m O{\mypackage@pos@table}}{%
+    \keys_set:nn{mytable}{#1}%
+    \tl_if_empty:NTF{\l_mytable_oddcol_tl}{%
+      \tl_if_empty:NTF{\l_mytable_evencol_tl}{%
+        \int_if_odd:nTF{\l_mytable_firstrow_tl}{%
+          \tl_set_eq:NN{\l_mytable_oddcol_tl}{\l_mytable_contrastcol_tl}%
+          \tl_set_eq:NN{\l_mytable_evencol_tl}{\l_mytable_defaultcol_tl}%
+        }{%
+          \tl_set_eq:NN{\l_mytable_oddcol_tl}{\l_mytable_defaultcol_tl}%
+          \tl_set_eq:NN{\l_mytable_evencol_tl}{\l_mytable_contrastcol_tl}%
+        }%
+      }{%
+        \int_if_odd:nTF{\l_mytable_firstrow_tl}{%
+          \tl_set_eq:NN{\l_mytable_oddcol_tl}{\l_mytable_contrastcol_tl}%
+        }{%
+          \tl_set_eq:NN{\l_mytable_oddcol_tl}{\l_mytable_defaultcol_tl}%
+        }%
+      }%
+    }{%
+      \tl_if_empty:NT{\l_mytable_evencol_tl}{%
+        \int_if_odd:nTF{\l_mytable_firstrow_tl}{%
+          \tl_set_eq:NN{\l_mytable_evencol_tl}{\l_mytable_defaultcol_tl}%
+        }{%
+          \tl_set_eq:NN{\l_mytable_evencol_tl}{\l_mytable_contrastcol_tl}%
+        }%
+      }%
+    }%
+    \let\temp\arraystretch%
+    \renewcommand{\arraystretch}{1.2}%
+    \mybeginfloat{table}{#6}%
+      \stepcounter{mytable}%
+      \myhyperanchor{mytable}%
+      \mylabel{mytable}{tab:#3}%
+      \begin{center}%
+        \begingroup%
+          \tl_if_empty:NTF{\l_mytable_evencol_tl}{%
+            \tl_if_empty:NTF{\l_mytable_oddcol_tl}{%
+              \rowcolors{\l_mytable_firstrow_tl}{}{}
+            }{%
+              \rowcolors{\l_mytable_firstrow_tl}{\l_mytable_oddcol_tl}{}%
+            }%
+          }{%
+            \tl_if_empty:NTF{\l_mytable_oddcol_tl}{%
+              \rowcolors{\l_mytable_firstrow_tl}{}{\l_mytable_evencol_tl}%
+            }{%
+              \rowcolors{\l_mytable_firstrow_tl}{\l_mytable_oddcol_tl}{\l_mytable_evencol_tl}%
+            }%
+          }%
+          \begin{tabular}{#2}%
+  }{
+          \end{tabular}%
+        \endgroup%
+      \end{center}%
+      \caption*{\textbf{\mytablename\c_space_tl\themytable\c_colon_str}\hspace{0.75em}#5}%
+      \addcontentsline{mylot}{mytable}{\makebox[3.5em][l]{\themytable}\mycleanfirstline{#4}}%
+    \end{table}%
+    \let\arraystretch\temp%
+  }
+  \NewDocumentEnvironment{mytable*}{O{} m m +m O{\mypackage@pos@table}}{%
+    \keys_set:nn{mytable}{#1}%
+    \tl_if_empty:NTF{\l_mytable_oddcol_tl}{%
+      \tl_if_empty:NTF{\l_mytable_evencol_tl}{%
+        \int_if_odd:nTF{\l_mytable_firstrow_tl}{%
+          \tl_set_eq:NN{\l_mytable_oddcol_tl}{\l_mytable_contrastcol_tl}%
+          \tl_set_eq:NN{\l_mytable_evencol_tl}{\l_mytable_defaultcol_tl}%
+        }{%
+          \tl_set_eq:NN{\l_mytable_oddcol_tl}{\l_mytable_defaultcol_tl}%
+          \tl_set_eq:NN{\l_mytable_evencol_tl}{\l_mytable_contrastcol_tl}%
+        }%
+      }{%
+        \int_if_odd:nTF{\l_mytable_firstrow_tl}{%
+          \tl_set_eq:NN{\l_mytable_oddcol_tl}{\l_mytable_contrastcol_tl}%
+        }{%
+          \tl_set_eq:NN{\l_mytable_oddcol_tl}{\l_mytable_defaultcol_tl}%
+        }%
+      }%
+    }{%
+      \tl_if_empty:NT{\l_mytable_evencol_tl}{%
+        \int_if_odd:nTF{\l_mytable_firstrow_tl}{%
+          \tl_set_eq:NN{\l_mytable_evencol_tl}{\l_mytable_defaultcol_tl}%
+        }{%
+          \tl_set_eq:NN{\l_mytable_evencol_tl}{\l_mytable_contrastcol_tl}%
+        }%
+      }%
+    }%
+    \let\temp\arraystretch%
+    \renewcommand{\arraystretch}{1.2}%
+    \mybeginfloat{table}{#5}%
+      \stepcounter{mytable}%
+      \myhyperanchor{mytable}%
+      \mylabel{mytable}{tab:#3}%
+      \begin{center}%
+        \begingroup%
+          \tl_if_empty:NTF{\l_mytable_evencol_tl}{%
+            \tl_if_empty:NTF{\l_mytable_oddcol_tl}{%
+              \rowcolors{\l_mytable_firstrow_tl}{}{}
+            }{%
+              \rowcolors{\l_mytable_firstrow_tl}{\l_mytable_oddcol_tl}{}%
+            }%
+          }{%
+            \tl_if_empty:NTF{\l_mytable_oddcol_tl}{%
+              \rowcolors{\l_mytable_firstrow_tl}{}{\l_mytable_evencol_tl}%
+            }{%
+              \rowcolors{\l_mytable_firstrow_tl}{\l_mytable_oddcol_tl}{\l_mytable_evencol_tl}%
+            }%
+          }%
+          \begin{tabular}{#2}%
+  }{
+          \end{tabular}%
+        \endgroup%
+      \end{center}%
+      \caption*{\textbf{\mytablename\c_space_tl\themytable\c_colon_str}\hspace{0.75em}#4}%
+    \end{table}%
+    \let\arraystretch\temp%
+  }
+\ExplSyntaxOff
+\NewDocumentEnvironment{mypseudocode}{m O{#3} +m O{\mypackage@pos@pseudocode}}{%
+  \mybeginfloat{figure}{#4}%
+    \stepcounter{myprogram}%
+    \myhyperanchor{myprogram}%
+    \mylabel{myprogram}{code:pseudo:#1}%
+    \begin{codebox}%
+  }{
+    \end{codebox}%
+    \caption*{\textbf{\myprogramname\space\themyprogram:}\hspace{0.75em}#3}%
+    \addcontentsline{mylop}{myprogram}{\makebox[3.5em][l]{\themyprogram}\mycleanfirstline{#2}}%
+  \end{figure}%
+}
+\NewDocumentEnvironment{mypseudocode*}{m +m O{\mypackage@pos@pseudocode}}{%
+  \mybeginfloat{figure}{#3}%
+    \stepcounter{myprogram}%
+    \myhyperanchor{myprogram}%
+    \mylabel{myprogram}{code:pseudo:#1}%
+    \begin{codebox}%
+  }{
+    \end{codebox}%
+    \caption*{\textbf{\myprogramname\space\themyprogram:}\hspace{0.75em}#2}%
+  \end{figure}%
+}
+\NewDocumentEnvironment{myannex}{}{%
+  \MyannexUsedtrue%
+  \setcounter{myparttemp}{\value{mypart}}%
+  \setcounter{mychaptertemp}{\value{mychapter}}%
+  \setcounter{mysectiontemp}{\value{mysection}}%
+  \setcounter{mysubsectiontemp}{\value{mysubsection}}%
+  \setcounter{mysubsubsectiontemp}{\value{mysubsubsection}}%
+  \setcounter{\myhighestsec}{\value{myannex}}%
+}{%
+  \setcounter{myannex}{\value{\myhighestsec}}%
+  \setcounter{mysubsubsection}{\value{mysubsubsectiontemp}}%
+  \setcounter{mysubsection}{\value{mysubsectiontemp}}%
+  \setcounter{mysection}{\value{mysectiontemp}}%
+  \setcounter{mychapter}{\value{mychaptertemp}}%
+  \setcounter{mypart}{\value{myparttemp}}%
+  \MyannexUsedfalse%
+}
+\NewDocumentCommand{\myhyperanchor}{s m}{%
+  \IfBooleanTF{#1}{%
+    \protected@edef\@currentHref{#2}%
+    \hypertarget{#2}{}%
+  }{%
+    \protected@edef\@currentHref{#2.\csname the#2\endcsname}%
+    \hypertarget{#2.\csname the#2\endcsname}{}%
+  }%
+}
+\NewDocumentCommand{\mylabel}{s m m}{%
+  \IfBooleanTF{#1}{%
+    \protected@edef\@currentlabel{\csname #2name\endcsname}%
+  }{%
+    \protected@edef\@currentlabel{\csname the#2\endcsname}%
+  }%
+  \label{#3}%
+}
+\NewDocumentCommand{\myref}{O{} m}{%
+  \StrPosition{#2}{:}[\strpos]%
+  \setcounter{pos}{\strpos}%
+  \addtocounter{pos}{-1}%
+  \StrLeft{#2}{\value{pos}}[\strtype]%
+  \IfBeginWith{\strtype}{fig}{%
+    \hyperref[#2]{%
+      #1\myfigurename\space\ref*{#2}%
+    }%
+  }{\IfBeginWith{\strtype}{eq}{%
+    \hyperref[#2]{%
+      #1\myequationname\space\ref*{#2}%
+    }%
+  }{\IfBeginWith{\strtype}{tab}{%
+    \hyperref[#2]{%
+      #1\mytablename\space\ref*{#2}%
+    }%
+  }{\IfBeginWith{\strtype}{abst}{%
+    \hyperref[#2]{%
+      #1\myabstractname}%
+  }{\IfBeginWith{\strtype}{intro}{%
+    \hyperref[#2]{%
+      #1\myintroductionname}%
+  }{\IfBeginWith{\strtype}{part}{%
+    \hyperref[#2]{%
+      #1\mypartname\space\ref*{#2}%
+    }%
+  }{\IfBeginWith{\strtype}{chap}{%
+    \hyperref[#2]{%
+      #1\mychaptername\space\ref*{#2}%
+    }%
+  }{\IfBeginWith{\strtype}{sec}{%
+    \hyperref[#2]{%
+      #1\mysectionname\space\ref*{#2}%
+    }%
+  }{\IfBeginWith{\strtype}{subsec}{%
+    \hyperref[#2]{%
+      #1\mysubsectionname\space\ref*{#2}%
+    }%
+  }{\IfBeginWith{\strtype}{subsubsec}{%
+    \hyperref[#2]{%
+      #1\mysubsubsectionname\space\ref*{#2}%
+    }%
+  }{\IfBeginWith{\strtype}{code}{%
+    \hyperref[#2]{%
+      #1\myprogramname\space\ref*{#2}%
+    }%
+  }{\IfBeginWith{\strtype}{ann}{%
+    \hyperref[#2]{%
+      #1\myannexname\space\ref*{#2}%
+    }%
+  }{%
+    \hyperref[#2]{%
+      #1\ref*{#2}%
+    }%
+  }}}}}}}}}}}}%
+}
+\NewDocumentCommand{\myseeref}{O{} m}{%
+  \myref[#1\seename\space]{#2}%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

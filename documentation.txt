@@ -1,0 +1,534 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% DOCUMENTATION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \myabstract[<label>]                                                              %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates an abstract on a new blank page.                                      %
+%     Adds a line in the table of contents.                                         %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \myabstract*[<label>]                                                             %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates an abstract on a new blank page.                                      %
+%     Does not add a line in the table of contents.                                 %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \myintroduction[<label>]                                                          %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates an introduction on a new blank page.                                  %
+%     Adds a line in the table of contents.                                         %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \myintroduction*[<label>]                                                         %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates an introduction on a new blank page.                                  %
+%     Does not add a line in the table of contents.                                 %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \mypart{<title>}[<label>]                                                         %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a part title on a new blank page.                                     %
+%     Adds a line in the table of contents.                                         %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <title>: text containing the title.                                         %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \mypart*{<title>}[<label>]                                                        %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a part title on a new blank page.                                     %
+%     Does not add a line in the table of contents.                                 %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <title>: text containing the title.                                         %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \mychapter{<title>}[<label>]                                                      %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a chapter title on a new blank page.                                  %
+%     Adds a line in the table of contents.                                         %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <title>: text containing the title.                                         %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \mychapter*{<title>}[<label>]                                                     %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a chapter title on a new blank page.                                  %
+%     Does not add a line in the table of contents.                                 %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <title>: text containing the title.                                         %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \mysection{<title>}[<label>]                                                      %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a section title on the same page as before.                           %
+%     Adds a line in the table of contents.                                         %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <title>: text containing the title.                                         %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \mysection*{<title>}[<label>]                                                     %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a section title on the same page as before.                           %
+%     Does not add a line in the table of contents.                                 %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <title>: text containing the title.                                         %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \mysubsection{<title>}[<label>]                                                   %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a subsection title on the same page as before.                        %
+%     Adds a line in the table of contents.                                         %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <title>: text containing the title.                                         %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \mysubsection*{<title>}[<label>]                                                  %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a subsection title on the same page as before.                        %
+%     Does not add a line in the table of contents.                                 %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <title>: text containing the title.                                         %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \mysubsubsection{<title>}[<label>]                                                %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a subsubsection title on the same page as before.                     %
+%     Adds a line in the table of contents.                                         %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <title>: text containing the title.                                         %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \mysubsubsection*{<title>}[<label>]                                               %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a subsubsection title on the same page as before.                     %
+%     Does not add a line in the table of contents.                                 %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <title>: text containing the title.                                         %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \myannex[<label>]                                                                 %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates an annex on a new blank page.                                         %
+%     Adds a line in the table of contents.                                         %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \myannex*[<label>]                                                                %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates an annex on a new blank page.                                         %
+%     Does not add a line in the table of contents.                                 %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \mytableofcontents[<label>]                                                       %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a table of contents on a new blank page.                              %
+%     Adds a line in the table of contents.                                         %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \mytableofcontents*[<label>]                                                      %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a table of contents on a new blank page.                              %
+%     Does not add a line in the table of contents.                                 %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \mylistoffigures[<label>]                                                         %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a list of figures on a new blank page.                                %
+%     Adds a line in the table of contents.                                         %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \mylistoffigures*[<label>]                                                        %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a list of figures on a new blank page.                                %
+%     Does not add a line in the table of contents.                                 %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \mylistoftables[<label>]                                                          %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a list of tables on a new blank page.                                 %
+%     Adds a line in the table of contents.                                         %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \mylistoftables*[<label>]                                                         %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a list of tables on a new blank page.                                 %
+%     Does not add a line in the table of contents.                                 %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \mylistofprograms[<label>]                                                        %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a list of programs on a new blank page.                               %
+%     Adds a line in the table of contents.                                         %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \mylistofprograms*[<label>]                                                       %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a list of programs on a new blank page.                               %
+%     Does not add a line in the table of contents.                                 %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \mylistofequations[<label>]                                                       %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a list of equations on a new blank page.                              %
+%     Adds a line in the table of contents.                                         %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \mylistofequations*[<label>]                                                      %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a list of equations on a new blank page.                              %
+%     Does not add a line in the table of contents.                                 %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \mybibliography[<label>]                                                          %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a bibliography on a new blank page.                                   %
+%     Adds a line in the table of contents.                                         %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \mybibliography*[<label>]                                                         %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a bibliography on a new blank page.                                   %
+%     Has subtitles for the following categories (in order):                        %
+%       - articles                                                                  %
+%       - books                                                                     %
+%       - collections                                                               %
+%       - manuals                                                                   %
+%       - theses                                                                    %
+%       - references                                                                %
+%       - reports                                                                   %
+%       - websites                                                                  %
+%       - patents                                                                   %
+%     Does not add a line in the table of contents.                                 %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <label> (optional): label to be able to reference.                          %
+%                                                                                   %
+% \myfigure[<options>]{<file>}[<short>]{<caption>}[<positon>]                       %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a figure that can be referenced with an image and a caption.          %
+%     Adds a line in the list of figures.                                           %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <options> (optional): can have 'height=' and/or 'width=' to a percentage    %
+%                             of the page height/width respectively.                %
+%                             By default, 'height=0.2'.                             %
+%     - <file>: name of the image with the extension (.svg, .png, .jpeg, ...).      %
+%               File must be located in the folder set by the class option          %
+%               'images'.                                                           %
+%               The file name (without the extension) is used as the label.         %
+%     - <short> (optional): name used in the list of figures.                       %
+%                           By default, it is equal to <caption>.                   %
+%     - <caption>: the caption of the figure, shown underneath it.                  %
+%     - <position> (optional): the position of the figure.                          %
+%                              Can be 'h', 'H', 't', 'b' or a combination of them.  %
+%                              By default, 'h' is used.                             %
+%                                                                                   %
+% \myfigure*[<options>]{<file>}{<caption>}[<positon>]                               %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a figure that can be referenced with an image and a caption.          %
+%     Does not add a line in the list of figures.                                   %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <options> (optional): can have 'height=' and/or 'width=' to a percentage    %
+%                             of the page height/width respectively.                %
+%                             By default, 'height=0.2'.                             %
+%     - <file>: name of the image with the extension (.svg, .png, .jpeg, ...).      %
+%               File must be located in the folder set by the class option          %
+%               'images'.                                                           %
+%               The file name (without the extension) is used as the label.         %
+%     - <caption>: the caption of the figure, shown underneath it.                  %
+%     - <position> (optional): the position of the figure.                          %
+%                              Can be 'h', 'H', 't', 'b' or a combination of them.  %
+%                              By default, 'h' is used.                             %
+%                                                                                   %
+% \begin{mysub}{<label>}[<short>]{<caption>}[<position>]                            %
+% \end{mysub}                                                                       %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a subfigure environment that can be referenced with a caption.        %
+%     Adds a line in the list of figures.                                           %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <label>: label to be able to reference. Also used as subfigure reference.   %
+%     - <short> (optional): name used in the list of figures.                       %
+%                           By default, it is equal to <caption>.                   %
+%     - <caption>: the caption of the figure, shown underneath it.                  %
+%     - <position> (optional): the position of the figure.                          %
+%                              Can be 'h', 'H', 't', 'b' or a combination of them.  %
+%                              By default, 'h' is used.                             %
+%                                                                                   %
+% \begin{mysub*}{<label>}{<caption>}[<position>]                                    %
+% \end{mysub*}                                                                      %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a subfigure environment that can be referenced with a caption.        %
+%     Does not add a line in the list of figures.                                   %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <label>: label to be able to reference. Also used as subfigure reference.   %
+%     - <caption>: the caption of the figure, shown underneath it.                  %
+%     - <position> (optional): the position of the figure.                          %
+%                              Can be 'h', 'H', 't', 'b' or a combination of them.  %
+%                              By default, 'h' is used.                             %
+%                                                                                   %
+% \mysubfigure[<options>]{<file>}[<caption>]{<width>}[<positon>]                    %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a subfigure that can be referenced with an image and a subcaption.    %
+%     Does not add a line in the list of figures.                                   %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <options> (optional): can have 'height=' and/or 'width=' to a percentage    %
+%                             of the subpage height/width respectively.             %
+%                             By default, 'width=1'.                                %
+%     - <file>: name of the image with the extension (.svg, .png, .jpeg, ...).      %
+%               File must be located in the folder set by the class option          %
+%               'images'.                                                           %
+%     - <caption> (optional): the subcaption of the subfigure, shown underneath it. %
+%     - <width>: the width of the subfigure environment as a percentage             %
+%                of the page width.                                                 %
+%     - <position> (optional): the position of the subfigure.                       %
+%                              Can be 'c', 't', 'T', 'b', 'B' or a                  %
+%                              combination of them.                                 %
+%                              By default, 'T' is used.                             %
+%                                                                                   %
+% \myprogram[<options>]{<label>}{<file>}{<lang>}[<short>]{<caption>}[<position>]    %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a figure of the program that can be referenced.                       %
+%     Adds a line in the list of programs.                                          %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <options> (optional): can be 'bgcol=', 'framecol=', 'numcol=', 'numbgcol=', %
+%                             'numwidth=', or 'minted={<minted options>}'.          %
+%                              /!\ Ask for more info on options and command /!\     %
+%     - <label>: label to be able to reference.                                     %
+%     - <file>: name of the file with the extension (.c, .py, .java, ...).          %
+%               File must be located in the folder set by the class option          %
+%               'code'.                                                             %
+%     - <lang>: the program's language (c, python, java, ...).                      %
+%     - <short> (optional): name used in the list of programs.                      %
+%                           By default, it is equal to <caption>.                   %
+%     - <caption>: the caption of the program, shown underneath it.                 %
+%     - <position> (optional): the position of the figure.                          %
+%                              Can be 'h', 'H', 't', 'b' or a combination of them.  %
+%                              By default, 'h' is used.                             %
+%                                                                                   %
+% \myprogram*[<options>]{<label>}{<file>}{<lang>}{<caption>}[<position>]            %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a figure of the program that can be referenced.                       %
+%     Does not add a line in the list of programs.                                  %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <options> (optional): can be 'bgcol=', 'framecol=', 'numcol=', 'numbgcol=', %
+%                             'numwidth=', or 'minted={<minted options>}'.          %
+%                              /!\ Ask for more info on options and command /!\     %
+%     - <label>: label to be able to reference.                                     %
+%     - <file>: name of the file with the extension (.c, .py, .java, ...).          %
+%               File must be located in the folder set by the class option          %
+%               'code'.                                                             %
+%     - <lang>: the program's language (c, python, java, ...).                      %
+%     - <caption>: the caption of the program, shown underneath it.                 %
+%     - <position> (optional): the position of the figure.                          %
+%                              Can be 'h', 'H', 't', 'b' or a combination of them.  %
+%                              By default, 'h' is used.                             %
+%                                                                                   %
+% \begin{myequation}[<label>]{<name>}                                               %
+% \end{myequation}                                                                  %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates an environment to write math equations.                              %
+%     You can also align equations with the '&' symbol.                             %
+%     Adds a line in the list of equations.                                         %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <label> (optional): label to be able to reference which adds a number       %
+%                           on the right of the equation.                           %
+%     - <name>: name of the equation to be showned in the list of equations .       %
+%                                                                                   %
+% \begin{myequation*}[<label>]                                                      %
+% \end{myequation*}                                                                 %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates an environment to write math equations.                              %
+%     You can also align equations with the '&' symbol.                             %
+%     Does not add a line in the list of equations.                                 %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <label> (optional): label to be able to reference which adds a number       %
+%                           on the right of the equation.                           %
+%                                                                                   %
+% \begin{mytable}[<options>]{<columns>}{<label>}[<short>]{<caption>}[<positon>]     %
+% \end{mytable}                                                                     %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a table that can be referenced and have alternating colored rows.     %
+%     Adds a line in the list of tables.                                            %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <options> (optional): can have 'firstrow=', 'contrastcol=',                 %
+%                             or 'defaultcol='.                                     %
+%                             'firstrow', when the row colors start.                %
+%                             'contrastcol=', the color of the contrast rows.       %
+%                             'defaultcol=', the table's default color.             %
+%                             By default, 'firstrow=1' and 'contrastcol=gray!25'.   %
+%     - <columns>: The number and type of columns.                                  %
+%                  Can be 'c' (centered), 'l' (left-justified),                     %
+%                  'r' (right-justified), 'p{<width>}' (top),                       %
+%                  'm{<width>}' {middle, vertically} or 'b{<width>}' (bottom).      %
+%                  Can also have '|' for a border or '||' for a double border.      %
+%                  Can also add '>{\center\arraybackslash}',                        %
+%                  '>{\raggedright\arraybackslash}' or                              %
+%                  '>{\raggedleft\arraybackslash}' before one of the column types   %
+%                  to align in the center, left or right respectively.              %
+%     - <label>: label to be able to reference the table.                           %
+%     - <short> (optional): name used in the list of tables.                        %
+%                           By default, it is equal to <caption>.                   %
+%     - <caption>: the caption of the table, shown underneath it.                   %
+%     - <position> (optional): the position of the figure.                          %
+%                              Can be 'h', 'H', 't', 'b' or a combination of them.  %
+%                              By default, 'h' is used.                             %
+%                                                                                   %
+% \begin{mytable*}[<options>]{<columns>}{<label>}{<caption>}[<positon>]             %
+% \end{mytable*}                                                                    %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Creates a table that can be referenced and have alternating colored rows.     %
+%     Does note add a line in the list of tables.                                   %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <options> (optional): can have 'firstrow=', 'contrastcol=',                 %
+%                             or 'defaultcol='.                                     %
+%                             'firstrow', when the row colors start.                %
+%                             'contrastcol=', the color of the contrast rows.       %
+%                             'defaultcol=', the table's default color.             %
+%                             By default, 'firstrow=1' and 'contrastcol=gray!25'.   %
+%     - <columns>: The number and type of columns.                                  %
+%                  Can be 'c' (centered), 'l' (left-justified),                     %
+%                  'r' (right-justified), 'p{<width>}' (top),                       %
+%                  'm{<width>}' {middle, vertically} or 'b{<width>}' (bottom).      %
+%                  Can also have '|' for a border or '||' for a double border.      %
+%                  Can also add '>{\center\arraybackslash}',                        %
+%                  '>{\raggedright\arraybackslash}' or                              %
+%                  '>{\raggedleft\arraybackslash}' before one of the column types   %
+%                  to align in the center, left or right respectively.              %
+%     - <label>: label to be able to reference the table.                           %
+%     - <caption>: the caption of the table, shown underneath it.                   %
+%     - <position> (optional): the position of the figure.                          %
+%                              Can be 'h', 'H', 't', 'b' or a combination of them.  %
+%                              By default, 'h' is used.                             %
+%                                                                                   %
+% \myref[]{<label>}                                                                 %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Reference a label and adds the type of label as text before the number.       %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <prefix> (optional): text to add to the begin of the reference.             %
+%                            By default, prefix is ''.                              %
+%     - <label>: the label with a prefix.                                           %
+%                The prefixes can be 'abst:' for the abstract,                      %
+%                'intro:' for the introduction, 'part:' for a part,                 %
+%                'chap:' for a chapter, 'sec:' for a section,                       %
+%                'subsec:' for a subsection, 'subsubsection:' for a subsubsection,  %
+%                'ann:' for an annex, 'toc:' for the table of contents,             %
+%                'lof:' for the list of figures, 'lot' for the list of tables,      %
+%                'lop:' for the list of programs, 'loe:' for the list of equations, %
+%                'fig:' for figures, 'tab:' for tables, 'code:' for programs,       %
+%                or 'eq:' for equations.                                            %
+%                                                                                   %
+% \myseeref{<label>}                                                                %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Reference a label and adds 'see' as well as the type of label                 %
+%     as text before the number.                                                    %
+%   Parameters:                                                                     %
+%   -----------                                                                     %
+%     - <label>: the label with a prefix.                                           %
+%                The prefixes can be 'abst:' for the abstract,                      %
+%                'intro:' for the introduction, 'part:' for a part,                 %
+%                'chap:' for a chapter, 'sec:' for a section,                       %
+%                'subsec:' for a subsection, 'subsubsection:' for a subsubsection,  %
+%                'ann:' for an annex, 'toc:' for the table of contents,             %
+%                'lof:' for the list of figures, 'lot' for the list of tables,      %
+%                'lop:' for the list of programs, 'loe:' for the list of equations, %
+%                'fig:' for figures, 'tab:' for tables, 'code:' for programs,       %
+%                or 'eq:' for equations.                                            %
+%                                                                                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

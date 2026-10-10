@@ -1,0 +1,156 @@
+MyPackage:
+----------
+# V0.6:
+  @ V0.6.5:
+    - Create a test suite:
+      ° Create a l3build regression test
+      ° Create several .lvt tests for every command to test every case
+      ° Create a demo document for every command
+      ° Test package compatibility
+    - Create a changelog
+# V0.7
+  @ V0.7.0:
+    - Refactoring:
+      ° Make code more reusable
+      ° Reduce redundant code by creating new functions
+      ° Make code faster to compile
+      ° Reduce number of runs needed for final compile
+      ° Differentiate between public and private commands
+  @ V0.7.5:
+    - Better and more consistent size controls:
+      ° Make the default size of commands be a package option (text, none, a dimension, etc.)
+      ° Make all sizes be a percentage of \textwidth for the width or \textheight for the height for commands (figures, subfigures, tables, etc.)
+      ° Make the size base of a command an option in the clist to override package default
+      ° Make it so that commands with multiple sizes (subfigures, tables, etc.) have the sum of their sizes be equal to 100%, make it be a percentage of usable space after padding, if the size's base is text
+    - Make commands consistent:
+      ° Make command have an optional first argument that is a clist
+      ° Make label an argument of the clist 
+      ° Make place of mandatory and optional arguments consistent across all commands
+      ° Add the possibility of * for no toc/lof/lot/lol to all relevant commands
+    - Package options:
+      ° Make it possible to change every package's default options using [package_name]={[clist_options]}
+    - Improve robustness:
+      ° Add error and warning messages
+      ° Make every command key be validated and return an error or warning
+    - Hooks:
+      ° Add hooks for override or other ways
+# V0.8:
+  @ V0.8.0
+    - Improve tables to try and make the user interface more readable and easier to create tables:
+      ° Better column type that always take a percentage of width
+      ° Make it possible and simpler to center p/m/b types of column using >{\centering\arraybackslash} by adding l/c/r as prefixes
+      ° Make it possible to have the X type of column that evenly distributes space between them
+      ° Make better color controls for the table
+      ° Make the firstrow option more consistent with multicolumns and multirows so that the number always represents the real row number and so that multirows still follow the correct pattern
+      ° Make it easier to have different types of lines between rows and columns such as dotted lines, dashed lines, etc.
+      ° Use tabularray, tabularx, array, arydshln, etc. to achieve everything above
+      ° Improve overfull rows warning messages to make it easier to correct
+    - Make a way to split a page into two columns with the possibility of a figure, text, etc. on either side:
+      ° Environment that splits a page (no page overflow -> no page break)
+      ° Everything should natively behave correctly inside of this environment (with the exception of footnotes)
+      ° Floats stay inside and in their respective column
+      ° Make it split into 2 columns and have the possibility of nesting the environment or make it so that it has an option for splitting into several columns (with sizing)
+      ° Replace mysub environment and mysubfigures by making myfigure work inside this 
+    - Improve bibliography:
+      ° Remove empty bib warnings
+      ° Make it easier to create new custom reference types
+      ° Make it easier to create new custom reference categories (a group of types that are printed together)
+    - Add glossary/acronym functionnality:
+      ° Add environment that has a sub element per entry 
+  @ V0.8.5
+    - Documentation:
+      ° Add the .ins and .dtx
+      ° Update .cwl
+    - Better metadata:
+      ° Add engine support list
+      ° Tag PDF
+      ° Add accessibility (PDF/UA-2)
+# V1.0:
+  @ V1.0.0
+    - Publish to CTAN:
+      ° Find better naming that would pass CTAN
+      ° Add licence
+      ° Add README
+
+MyReport:
+---------
+# V0.6:
+  @ V0.6.5:
+    - Create a test suite:
+      ° Create a l3build regression test
+      ° Create several .lvt tests for every command to test every case
+      ° Create a demo document for every command
+      ° Test package compatibility
+    - Create a changelog
+# V0.7:
+  @ V0.7.0:
+    - Refactoring:
+      ° Make code more reusable
+      ° Reduce redundant code by creating new functions
+      ° Make code faster to compile
+      ° Reduce number of runs needed for final compile
+      ° Differentiate between public and private commands
+  @ V0.7.5:
+    - Make commands consistent:
+      ° Make command have an optional first argument that is a clist
+      ° Make label an argument of the clist 
+      ° Make place of mandatory and optional arguments consistent across all commands
+      ° Add the possibility of * for no toc/lof/lot/lol to all relevant commands
+    - Class options:
+      ° Make it possible to change every package's default options using [package_name]={[clist_options]}
+      ° Make sectioning for annex be able to be further specified for parts, chapters, sections, subsections, and subsubsections (sectioning={..., annex={part=...,...},...})
+    - Add layout options:
+      ° Interline spacing (default, double, or a dimension)
+      ° Paper size
+      ° Margins
+      ° One-sided or two-sided layout
+      ° Print or screen mode
+    - Improve robustness:
+      ° Add error and warning messages
+      ° Make every command key be validated and return an error or warning
+    - Hooks:
+      ° Add hooks for override or other ways
+# V0.8:
+  @ V0.8.0:
+    - Improve listofs:
+      ° Add spacing, names or nothing (package option) to separate parts/chapters/...
+    - Improve title page:
+      ° Add to first optional clist argument options for custom names (to replace professor, assistant, ...), for gender (male, female, ...), etc.
+      ° Add background image option to title page with options for size (as a separate command such as \bgimage{})
+    - Improve localisation:
+      ° Make indentation change with supported language
+      ° Make decimal separator change with supported language
+      ° Make SI unit defaults change with supported language
+      ° etc.
+    - Improve global presentation:
+      ° Add main and secondary color options that change colors in the whole document (with the defaults making it look as it is currently)
+      ° Add the possibility to add a header for every page
+      ° Add the possibility to add a footer for every page
+      ° Create command for header and footer that can show chapter and/or part name/number, page number, etc.
+  @ V0.8.5
+    - Documentation:
+      ° Add the .ins and .dtx
+      ° Update .cwl
+    - Better metadata:
+      ° Add engine support list
+      ° Tag PDF
+      ° Add accessibility (PDF/UA-2)
+# V1.0:
+  @ V1.0.0
+    - Publish to CTAN:
+      ° Find better naming that would pass CTAN
+      ° Add licence
+      ° Add README
+  
+
+Supported languages:
+--------------------
+- british english
+- us english
+- german
+- french
+- dutch
+- spanish
+- italian
+- portuguese
+- russian
