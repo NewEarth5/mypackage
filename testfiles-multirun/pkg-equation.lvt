@@ -1,0 +1,29 @@
+% pkg-equation: myequation / myequation*: numbered only with a label,
+% aligned with &, listed in the list of equations.
+\input{regression-test}
+\documentclass{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\SHOWLIST{myloe}
+\mylistofequations
+\mychapter{Equations}
+\begin{myequation}[first]{First equation}
+  E = mc^2
+\end{myequation}
+\begin{myequation}{Equation without label. Second sentence.}
+  a = b
+\end{myequation}
+\begin{myequation}[aligned]{Aligned equation}
+  x &= 1 \\
+  y &= 2
+\end{myequation}
+\begin{myequation*}[star]
+  c = d
+\end{myequation*}
+\begin{myequation*}
+  e = f
+\end{myequation*}
+\SHOWCOUNTERS
+\SHOWREF{eq:first}\SHOWREF{eq:aligned}\SHOWREF{eq:star}
+\end{document}

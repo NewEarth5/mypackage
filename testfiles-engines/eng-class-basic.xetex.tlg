@@ -1,0 +1,90 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+engine: XeTeX
+font encoding: T1; family: lmr
+Package hyperref Info: Option `pageanchor' set `false' on input line ....
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: xetex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(28.45274pt, 540.60239pt, 28.45274pt)
+* v-part:(T,H,B)=(28.45274pt, 788.14136pt, 28.45274pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=540.60239pt
+* \textheight=788.14136pt
+* \oddsidemargin=-43.81725pt
+* \evensidemargin=-43.81725pt
+* \topmargin=-80.81725pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=57.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+(../umsa.fd) (../umsb.fd) [1
+]
+Package hyperref Info: Option `pageanchor' set `true' on input line ....
+(eng-class-basic.mytoc)
+\tf@mytoc=\write...
+Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
+[1
+]
+Missing character: There is no œ ("153) in font ec-lmr10!
+File: images/wide.png Graphic file (type bmp)
+<images/wide.png>
+Package hyperref Info: bookmark level for unknown myfigure defaults to 0 on input line ....
+Package svg Info: Last page of `./svg-inkscape/plot_svg-tex.pdf' is 1 on input line ....
+(svg-inkscape/plot_svg-tex.pdf_tex
+File: ./svg-inkscape/plot_svg-tex.pdf Graphic file (type pdf)
+<use ./svg-inkscape/plot_svg-tex.pdf, page 1>
+)
+Package hyperref Info: bookmark level for unknown mytable defaults to 0 on input line ....
+Package hyperref Info: bookmark level for unknown myequation defaults to 0 on input line ....
+(_minted-eng-class-basic/lightbulb.pygstyle) (_minted-eng-class-basic/35CFCE743D78E7A57FE0B96FBA3B4D08A199B6D406C344B82E4CE320D8AC51A2.pygtex
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line ....
+LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line ....
+Package hyperref Info: bookmark level for unknown myprogram defaults to 0 on input line ....
+REF chap:c: number=[1] page=[1] anchor=[mychapter.1]
+REF fig:wide: number=[1.1] page=[1] anchor=[myfigure.1.1]
+REF fig:plot: number=[1.2] page=[1] anchor=[myfigure.1.2]
+REF tab:t: number=[1.1] page=[1] anchor=[mytable.1.1]
+REF eq:e: number=[{1.1}] page=[1] anchor=[AMS.4]
+REF code:py:hello: number=[1.1] page=[1] anchor=[myprogram.1.1]
+============================================================
+TEST 1: Typeset text
+============================================================
+Missing character: There is no œ ("153) in font ec-lmr10!
+> \box...=
+\hbox(6.88875+0.0)x39.4443
+.\T1/lmr/m/n/10 ^^e9
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\T1/lmr/m/n/10 ^^e0
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\T1/lmr/m/n/10 ^^fc
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\T1/lmr/m/n/10 ^^df
+.\glue 3.33333 plus 1.66666 minus 1.11111
+! OK.
+\SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
+l. ...\TEST{Typeset text}{\SHOWTEXT{^^e9 ^^e0 ^^fc ^^df œ}}
+============================================================
+LaTeX Warning: `h' float specifier changed to `ht'.
+[1
+] [2] (eng-class-basic.aux)
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+Package rerunfilecheck Info: File `eng-class-basic.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+Package logreq Info: Writing requests to 'eng-class-basic.run.xml'.

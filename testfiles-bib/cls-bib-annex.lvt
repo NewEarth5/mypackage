@@ -1,0 +1,19 @@
+% cls-bib-annex: bibliography after the annexes (the order used by
+% report.tex): page numbering and TOC entries.
+\input{regression-test}
+\documentclass[sectioning={annex=nobreak, bib=nobreak}]{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\SHOWLIST{mytoc}
+\mytableofcontents
+\mypart{Main}
+\cite{art1}
+\begin{myannex}
+\mypart{Annex}
+Text.
+\end{myannex}
+\SHOWCOUNTERS
+\mybibliography
+\SHOWCOUNTERS
+\end{document}

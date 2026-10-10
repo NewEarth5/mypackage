@@ -1,0 +1,16 @@
+% pkg-options-position-keys: position={figure=..., table=...}; keys that
+% are not given keep their default (h).
+\input{regression-test}
+\documentclass{article}
+\usepackage[position={figure=H, table=t}]{mypackage}
+\input{mytest-helpers}
+\makeatletter
+\begin{document}
+\START
+\TEST{Keyed position values}{%
+  \SHOWOPT\mypackage@pos@figure
+  \SHOWOPT\mypackage@pos@table
+  \SHOWOPT\mypackage@pos@program
+  \SHOWOPT\mypackage@pos@pseudocode
+}
+\end{document}

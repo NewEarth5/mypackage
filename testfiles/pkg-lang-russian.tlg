@@ -1,0 +1,68 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+============================================================
+TEST 1: Language and words
+============================================================
+language=russian
+NAMES-1: contents=[{\cyrillictext \CYRO \cyrg \cyrl \cyra \cyrv \cyrl \cyre \cyrn \cyri \cyre }] lof=[{\cyrillictext \CYRS \cyrp \cyri \cyrs \cyro \cyrk \ \cyri \cyrl \cyrl \cyryu \cyrs \cyrt \cyrr \cyra \cyrc \cyri \cyrishrt }] lot=[{\cyrillictext \CYRS \cyrp \cyri \cyrs \cyro \cyrk \ \cyrt \cyra \cyrb \cyrl \cyri \cyrc }] bib=[^^d0^^a1^^d0^^bf^^d0^^b8^^d1^^81^^d0^^be^^d0^^ba ^^d0^^bb^^d0^^b8^^d1^^82^^d0^^b5^^d1^^80^^d0^^b0^^d1^^82^^d1^^83^^d1^^80^^d1^^8b] abstract=[{\cyrillictext \CYRA \cyrn \cyrn \cyro \cyrt \cyra \cyrc \cyri \cyrya }] chapter=[{\cyrillictext \CYRG \cyrl \cyra \cyrv \cyra }] part=[^^d0^^a7^^d0^^b0^^d1^^81^^d1^^82^^d1^^8c] figure=[{\cyrillictext \CYRR \cyri \cyrs .}] table=[{\cyrillictext \CYRT \cyra \cyrb \cyrl \cyri \cyrc \cyra }]
+NAMES-2: equation=[^^d0^^a3^^d1^^80^^d0^^b0^^d0^^b2^^d0^^bd^^d0^^b5^^d0^^bd^^d0^^b8^^d0^^b5] acyear=[^^d0^^a3^^d1^^87^^d0^^b5^^d0^^b1^^d0^^bd^^d1^^8b^^d0^^b9 ^^d0^^b3^^d0^^be^^d0^^b4] books=[^^d0^^9a^^d0^^bd^^d0^^b8^^d0^^b3^^d0^^b8] articles=[^^d0^^a1^^d1^^82^^d0^^b0^^d1^^82^^d1^^8c^^d0^^b8] collections=[^^d0^^a1^^d0^^b1^^d0^^be^^d1^^80^^d0^^bd^^d0^^b8^^d0^^ba^^d0^^b8] manuals=[^^d0^^a0^^d1^^83^^d0^^ba^^d0^^be^^d0^^b2^^d0^^be^^d0^^b4^^d1^^81^^d1^^82^^d0^^b2^^d0^^b0] theses=[^^d0^^94^^d0^^b8^^d1^^81^^d1^^81^^d0^^b5^^d1^^80^^d1^^82^^d0^^b0^^d1^^86^^d0^^b8^^d0^^b8] references=[^^d0^^a1^^d1^^81^^d1^^8b^^d0^^bb^^d0^^ba^^d0^^b8] reports=[^^d0^^9e^^d1^^82^^d1^^87^^d1^^91^^d1^^82^^d1^^8b] websites=[^^d0^^92^^d0^^b5^^d0^^b1-^^d1^^81^^d0^^b0^^d0^^b9^^d1^^82^^d1^^8b] patents=[^^d0^^9f^^d0^^b0^^d1^^82^^d0^^b5^^d0^^bd^^d1^^82^^d1^^8b]
+NAMES-3: program=[^^d0^^9f^^d1^^80^^d0^^be^^d0^^b3^^d1^^80^^d0^^b0^^d0^^bc^^d0^^bc^^d0^^b0] lop=[^^d0^^a1^^d0^^bf^^d0^^b8^^d1^^81^^d0^^be^^d0^^ba ^^d0^^bf^^d1^^80^^d0^^be^^d0^^b3^^d1^^80^^d0^^b0^^d0^^bc^^d0^^bc] loe=[^^d0^^a1^^d0^^bf^^d0^^b8^^d1^^81^^d0^^be^^d0^^ba ^^d1^^83^^d1^^80^^d0^^b0^^d0^^b2^^d0^^bd^^d0^^b5^^d0^^bd^^d0^^b8^^d0^^b9] introduction=[^^d0^^92^^d0^^b2^^d0^^b5^^d0^^b4^^d0^^b5^^d0^^bd^^d0^^b8^^d0^^b5] section=[^^d0^^a0^^d0^^b0^^d0^^b7^^d0^^b4^^d0^^b5^^d0^^bb] subsection=[^^d0^^9f^^d0^^be^^d0^^b4^^d1^^80^^d0^^b0^^d0^^b7^^d0^^b4^^d0^^b5^^d0^^bb] subsubsection=[^^d0^^9f^^d0^^be^^d0^^b4^^d0^^bf^^d0^^be^^d0^^b4^^d1^^80^^d0^^b0^^d0^^b7^^d0^^b4^^d0^^b5^^d0^^bb] annex=[^^d0^^9f^^d1^^80^^d0^^b8^^d0^^bb^^d0^^be^^d0^^b6^^d0^^b5^^d0^^bd^^d0^^b8^^d0^^b5] see=[{\cyrillictext \cyrs \cyrm .}]
+NAMES-4: professor=[^^d0^^9f^^d1^^80^^d0^^be^^d1^^84^^d0^^b5^^d1^^81^^d1^^81^^d0^^be^^d1^^80|^^d0^^9f^^d1^^80^^d0^^be^^d1^^84^^d0^^b5^^d1^^81^^d1^^81^^d0^^be^^d1^^80^^d1^^88^^d0^^b0|^^d0^^9f^^d1^^80^^d0^^be^^d1^^84^^d0^^b5^^d1^^81^^d1^^81^^d0^^be^^d1^^80^^d0^^b0|^^d0^^9f^^d1^^80^^d0^^be^^d1^^84^^d0^^b5^^d1^^81^^d1^^81^^d0^^be^^d1^^80^^d1^^88^^d0^^b8] assistant=[^^d0^^90^^d1^^81^^d1^^81^^d0^^b8^^d1^^81^^d1^^82^^d0^^b5^^d0^^bd^^d1^^82|^^d0^^90^^d1^^81^^d1^^81^^d0^^b8^^d1^^81^^d1^^82^^d0^^b5^^d0^^bd^^d1^^82^^d0^^ba^^d0^^b0|^^d0^^90^^d1^^81^^d1^^81^^d0^^b8^^d1^^81^^d1^^82^^d0^^b5^^d0^^bd^^d1^^82^^d1^^8b|^^d0^^90^^d1^^81^^d1^^81^^d0^^b8^^d1^^81^^d1^^82^^d0^^b5^^d0^^bd^^d1^^82^^d0^^ba^^d0^^b8] author=[^^d0^^90^^d0^^b2^^d1^^82^^d0^^be^^d1^^80|^^d0^^90^^d0^^b2^^d1^^82^^d0^^be^^d1^^80^^d0^^ba^^d0^^b0|^^d0^^90^^d0^^b2^^d1^^82^^d0^^be^^d1^^80^^d1^^8b|^^d0^^90^^d0^^b2^^d1^^82^^d0^^be^^d1^^80^^d0^^ba^^d0^^b8]
+============================================================
+============================================================
+TEST 2: Typeset words (glyphs and font encoding)
+============================================================
+> \box...=
+\hbox(6.94275+1.94397)x173.42987
+.\T2A/cmr/m/n/10 ^^d0
+.\T2A/cmr/m/n/10 ^^e8
+.\T2A/cmr/m/n/10 ^^f1
+.\T2A/cmr/m/n/10 .
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T2A/cmr/m/n/10 ^^d2
+.\kern-0.83313
+.\T2A/cmr/m/n/10 ^^e0
+.\T2A/cmr/m/n/10 ^^e1
+.\T2A/cmr/m/n/10 ^^eb
+.\T2A/cmr/m/n/10 ^^e8
+.\T2A/cmr/m/n/10 ^^f6
+.\T2A/cmr/m/n/10 ^^e0
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T2A/cmr/m/n/10 ^^d3
+.\T2A/cmr/m/n/10 ^^f0
+.\T2A/cmr/m/n/10 ^^e0
+.\T2A/cmr/m/n/10 ^^e2
+.\T2A/cmr/m/n/10 ^^ed
+.\T2A/cmr/m/n/10 ^^e5
+.\T2A/cmr/m/n/10 ^^ed
+.\T2A/cmr/m/n/10 ^^e8
+.\T2A/cmr/m/n/10 ^^e5
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T2A/cmr/m/n/10 ^^cf
+.\T2A/cmr/m/n/10 ^^f0
+.\T2A/cmr/m/n/10 ^^e8
+.\T2A/cmr/m/n/10 ^^eb
+.\T2A/cmr/m/n/10 ^^ee
+.\kern-0.27771
+.\T2A/cmr/m/n/10 ^^e6
+.\kern-0.27771
+.\T2A/cmr/m/n/10 ^^e5
+.\T2A/cmr/m/n/10 ^^ed
+.\T2A/cmr/m/n/10 ^^e8
+.\T2A/cmr/m/n/10 ^^e5
+! OK.
+\SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
+l. ...}
+============================================================
+(pkg-lang-russian.aux)
+LaTeX Warning: There were undefined references.
+Package rerunfilecheck Warning: File `pkg-lang-russian.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+Package rerunfilecheck Info: Checksums for `pkg-lang-russian.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                pkg-lang-russian
+(biblatex)                and rerun LaTeX afterwards.
+Package logreq Info: Writing requests to 'pkg-lang-russian.run.xml'.

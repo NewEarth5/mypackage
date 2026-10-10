@@ -1,0 +1,67 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+============================================================
+TEST 1: Language and words
+============================================================
+language=italian
+NAMES-1: contents=[Indice] lof=[Elenco delle figure] lot=[Elenco delle tabelle] bib=[Bibliografia] abstract=[Sommario] chapter=[Capitolo] part=[Parte] figure=[Figura] table=[Tabella]
+NAMES-2: equation=[Equazione] acyear=[Anno accademico] books=[Libri] articles=[Articoli] collections=[Collezioni] manuals=[Manuali] theses=[Tesi] references=[Riferimenti] reports=[Rapporti] websites=[Siti Web] patents=[Brevetti]
+NAMES-3: program=[Programma] lop=[Elenco dei programmi] loe=[Elenco di equazioni] introduction=[Introduzione] section=[Sezione] subsection=[Sottosezione] subsubsection=[Sottosottosezione] annex=[Allegato] see=[vedi]
+NAMES-4: professor=[Professore|Professoressa|Professori|Professoresse] assistant=[Assistente|Assistente|Assistenti|Assistenti] author=[Autore|Autrice|Autori|Autrici]
+============================================================
+============================================================
+TEST 2: Typeset words (glyphs and font encoding)
+============================================================
+> \box...=
+\hbox(6.8872+1.94397)x152.21283
+.\T1/cmr/m/n/10 F
+.\T1/cmr/m/n/10 i
+.\T1/cmr/m/n/10 g
+.\T1/cmr/m/n/10 u
+.\T1/cmr/m/n/10 r
+.\T1/cmr/m/n/10 a
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T1/cmr/m/n/10 T
+.\kern-0.83313
+.\T1/cmr/m/n/10 a
+.\T1/cmr/m/n/10 b
+.\kern0.27771
+.\T1/cmr/m/n/10 e
+.\T1/cmr/m/n/10 l
+.\T1/cmr/m/n/10 l
+.\T1/cmr/m/n/10 a
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T1/cmr/m/n/10 E
+.\T1/cmr/m/n/10 q
+.\T1/cmr/m/n/10 u
+.\T1/cmr/m/n/10 a
+.\T1/cmr/m/n/10 z
+.\T1/cmr/m/n/10 i
+.\T1/cmr/m/n/10 o
+.\T1/cmr/m/n/10 n
+.\T1/cmr/m/n/10 e
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T1/cmr/m/n/10 A
+.\T1/cmr/m/n/10 l
+.\T1/cmr/m/n/10 l
+.\T1/cmr/m/n/10 e
+.\T1/cmr/m/n/10 g
+.\T1/cmr/m/n/10 a
+.\T1/cmr/m/n/10 t
+.\T1/cmr/m/n/10 o
+! OK.
+\SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
+l. ...}
+============================================================
+(pkg-lang-italian.aux)
+LaTeX Warning: There were undefined references.
+Package rerunfilecheck Warning: File `pkg-lang-italian.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+Package rerunfilecheck Info: Checksums for `pkg-lang-italian.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                pkg-lang-italian
+(biblatex)                and rerun LaTeX afterwards.
+Package logreq Info: Writing requests to 'pkg-lang-italian.run.xml'.

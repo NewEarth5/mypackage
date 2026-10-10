@@ -1,0 +1,60 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+============================================================
+TEST 1: Language and words
+============================================================
+language=spanish
+NAMES-1: contents=[\'{I}ndice general] lof=[\'{I}ndice de figuras] lot=[\'{I}ndice de cuadros] bib=[Bibliograf\'{\i }a] abstract=[Resumen] chapter=[Cap\'{\i }tulo] part=[Parte] figure=[Figura] table=[Cuadro]
+NAMES-2: equation=[Ecuaci^^c3^^b3n] acyear=[A^^c3^^b1o acad^^c3^^a9mico] books=[Libros] articles=[Art^^c3^^adculos] collections=[Colecciones] manuals=[Manuales] theses=[Tesis] references=[Referencias] reports=[Informes] websites=[Sitios web] patents=[Patentes]
+NAMES-3: program=[Programa] lop=[Lista de programas] loe=[Lista de ecuaciones] introduction=[Introducci^^c3^^b3n] section=[Secci^^c3^^b3n] subsection=[Subsecci^^c3^^b3n] subsubsection=[Subsubsecci^^c3^^b3n] annex=[Anexo] see=[v\'{e}ase]
+NAMES-4: professor=[Profesor|Profesora|Profesores|Profesoras] assistant=[Ayudante|Ayudante|Ayudantes|Ayudantes] author=[Autor|Autora|Autores|Autoras]
+============================================================
+============================================================
+TEST 2: Typeset words (glyphs and font encoding)
+============================================================
+> \box...=
+\hbox(6.8872+1.94397)x138.3551
+.\T1/cmr/m/n/10 F
+.\T1/cmr/m/n/10 i
+.\T1/cmr/m/n/10 g
+.\T1/cmr/m/n/10 u
+.\T1/cmr/m/n/10 r
+.\T1/cmr/m/n/10 a
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T1/cmr/m/n/10 C
+.\T1/cmr/m/n/10 u
+.\T1/cmr/m/n/10 a
+.\T1/cmr/m/n/10 d
+.\T1/cmr/m/n/10 r
+.\T1/cmr/m/n/10 o
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T1/cmr/m/n/10 E
+.\T1/cmr/m/n/10 c
+.\T1/cmr/m/n/10 u
+.\T1/cmr/m/n/10 a
+.\T1/cmr/m/n/10 c
+.\T1/cmr/m/n/10 i
+.\T1/cmr/m/n/10 ^^f3
+.\T1/cmr/m/n/10 n
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T1/cmr/m/n/10 A
+.\T1/cmr/m/n/10 n
+.\T1/cmr/m/n/10 e
+.\T1/cmr/m/n/10 x
+.\T1/cmr/m/n/10 o
+! OK.
+\SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
+l. ...}
+============================================================
+(pkg-lang-spanish.aux)
+LaTeX Warning: There were undefined references.
+Package rerunfilecheck Warning: File `pkg-lang-spanish.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+Package rerunfilecheck Info: Checksums for `pkg-lang-spanish.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                pkg-lang-spanish
+(biblatex)                and rerun LaTeX afterwards.
+Package logreq Info: Writing requests to 'pkg-lang-spanish.run.xml'.

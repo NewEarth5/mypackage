@@ -1,0 +1,18 @@
+% cls-options-text: text={fontsize, fontfamily, lang}.
+\input{regression-test}
+\documentclass[text={fontsize=12pt, fontfamily=lmr, lang=french}]{myreport}
+\input{mytest-helpers}
+\makeatletter
+\begin{document}
+\START
+\TEST{Sub-option values}{%
+  \SHOWOPT\myreport@text@fontsize
+  \SHOWOPT\myreport@text@fontfamily
+  \SHOWOPT\myreport@text@lang
+  \SHOWOPT\mypackage@lang
+}
+\TEST{Effect}{%
+  \TYPE{size: \f@size pt; family: \f@family; language: \languagename}%
+  \SHOWNAMES
+}
+\end{document}

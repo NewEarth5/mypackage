@@ -1,0 +1,29 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+============================================================
+TEST 1: Font family
+============================================================
+body: qag
+normalfont: qag
+footnotesize: qag
+familydefault: qag; rmdefault: cmr; sfdefault: qag; ttdefault: cmtt
+> \box...=
+\hbox(7.525+0.0)x14.22
+.\T1/qag/m/n/10 A
+.\T1/qag/m/n/10 b
+! OK.
+\SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
+l. ...}
+============================================================
+(cls-font-qag.aux)
+LaTeX Warning: There were undefined references.
+Package rerunfilecheck Warning: File `cls-font-qag.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+Package rerunfilecheck Info: Checksums for `cls-font-qag.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                cls-font-qag
+(biblatex)                and rerun LaTeX afterwards.
+Package logreq Info: Writing requests to 'cls-font-qag.run.xml'.

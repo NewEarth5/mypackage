@@ -1,0 +1,28 @@
+% pkg-subfigure: the mysub / mysub* environments and \mysubfigure.
+\input{regression-test}
+\documentclass{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\SHOWLIST{mylof}
+\mylistoffigures
+\mychapter{Subfigures}
+\begin{mysub}{two}{Two subfigures.}
+  \mysubfigure{wide.png}[First]{0.48}
+  \mysubfigure[height=0.1]{tall.png}[Second]{0.48}
+\end{mysub}
+\SHOWCOUNTERS
+\begin{mysub}{three}[Short]{Three subfigures, the last without caption.}[t]
+  \mysubfigure{wide.png}[A]{0.32}
+  \mysubfigure{square.jpg}[B]{0.32}[b]
+  \mysubfigure{tall.png}{0.32}
+\end{mysub}
+\begin{mysub*}{star}{Starred group.}
+  \mysubfigure{wide.png}[Only]{0.5}
+\end{mysub*}
+\myfigure{sig.jpg}{A normal figure after the groups.}
+\SHOWCOUNTERS
+\SHOWREF{fig:two}\SHOWREF{fig:two:a}\SHOWREF{fig:two:b}
+\SHOWREF{fig:three}\SHOWREF{fig:three:a}\SHOWREF{fig:three:b}\SHOWREF{fig:three:c}
+\SHOWREF{fig:star}\SHOWREF{fig:star:a}\SHOWREF{fig:sig}
+\end{document}

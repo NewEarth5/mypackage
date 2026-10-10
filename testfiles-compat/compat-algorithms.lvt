@@ -1,0 +1,22 @@
+% compat-algorithms: algorithm + algpseudocode.  They cannot be combined
+% with clrscode3e (both define \For, \If, ...), so mypseudocode is not
+% available here; the program counter must still work.
+\input{regression-test}
+\documentclass[paths={code=code/}]{myreport}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\input{mytest-helpers}
+\begin{document}
+\START
+\mychapter{Algorithms}
+\begin{algorithm}[h]
+\caption{Euclid}
+\begin{algorithmic}
+\Procedure{Euclid}{$a,b$}
+  \State \Return $b$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+\myprogram{hello}{hello.py}{python}{Program.}
+\SHOWREF{code:py:hello}
+\end{document}

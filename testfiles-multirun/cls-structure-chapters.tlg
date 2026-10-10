@@ -1,0 +1,60 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+-------- cls-structure-chapters.mytoc (start) ---------
+(cls-structure-chapters.mytoc) \contentsline {mychapter}{Contents}{I}{mycontents}%^^M
+\contentsline {mychapter}{\mychapterbox [l]{1}\hspace {1em}Alpha}{1}{mychapter.1}%^^M
+\contentsline {mysection}{\mysectionbox [l]{1.1}\hspace {1em}Alpha one}{1}{mysection.1.1}%^^M
+\contentsline {mysubsection}{\mysubsectionbox [l]{1.1.1}\hspace {1em}Alpha one one}{1}{mysubsection.1.1.1}%^^M
+\contentsline {mysubsubsection}{\mysubsubsectionbox [l]{1.1.1.1}\hspace {1em}Alpha one one one}{1}{mysubsubsection.1.1.1.1}%^^M
+\contentsline {mychapter}{\mychapterbox [l]{2}\hspace {1em}Beta}{2}{mychapter.2}%^^M
+\contentsline {mysection}{\mysectionbox [l]{2.1}\hspace {1em}Beta one}{2}{mysection.2.1}%^^M
+-------- cls-structure-chapters.mytoc (end) -----------
+(cls-structure-chapters.mytoc
+LaTeX Font Info:    Trying to load font information for U+msa on input line ....
+LaTeX Font Info:    Trying to load font information for U+msb on input line ....
+\tf@mytoc=\write...
+Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
+[1
+Non-PDF special ignored!
+<special> header=psfrag.pro
+]
+Package hyperref Info: bookmark level for unknown mysection defaults to 0 on input line ....
+Package hyperref Info: bookmark level for unknown mysubsection defaults to 0 on input line ....
+Package hyperref Info: bookmark level for unknown mysubsubsection defaults to 0 on input line ....
+<images/wide.png, id=28, 301.125pt x 100.375pt>
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+Package pdftex.def Info: images/wide.png  used on input line ....
+(pdftex.def)             Requested size: 421.72374pt x 140.55446pt.
+Package hyperref Info: bookmark level for unknown myfigure defaults to 0 on input line ....
+<images/tall.png, id=29, 100.375pt x 401.5pt>
+File: images/tall.png Graphic file (type png)
+<use images/tall.png>
+Package pdftex.def Info: images/tall.png  used on input line ....
+(pdftex.def)             Requested size: 35.13942pt x 140.55446pt.
+Package hyperref Info: bookmark level for unknown mytable defaults to 0 on input line ....
+THE: part=[] chapter=[1] section=[1.1] subsection=[1.1.1] subsubsection=[1.1.1.1] figure=[1.2] subfigure=[1.2.] table=[1.1] program=[1.0] equation=[1.0]
+[1
+ <./images/wide.png (PNG copy)> <./images/tall.png (PNG copy)>]
+COUNTERS: part=0, chapter=2, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=2 (2)
+<images/square.jpg, id=42, 200.75pt x 200.75pt>
+File: images/square.jpg Graphic file (type jpg)
+<use images/square.jpg>
+Package pdftex.def Info: images/square.jpg  used on input line ....
+(pdftex.def)             Requested size: 140.56384pt x 140.55446pt.
+FLAGS: part=F, chapter=T, section=T, subsection=T, subsubsection=T, annex=F, bib=F, highest=mychapter
+REF chap:a: number=[1] page=[1] anchor=[mychapter.1]
+REF sec:a1: number=[1.1] page=[1] anchor=[mysection.1.1]
+REF subsec:a11: number=[1.1.1] page=[1] anchor=[mysubsection.1.1.1]
+REF subsubsec:a111: number=[1.1.1.1] page=[1] anchor=[mysubsubsection.1.1.1.1]
+REF chap:b: number=[2] page=[2] anchor=[mychapter.2]
+REF sec:b1: number=[2.1] page=[2] anchor=[mysection.2.1]
+REF fig:wide: number=[1.1] page=[1] anchor=[myfigure.1.1]
+REF fig:tall: number=[1.2] page=[1] anchor=[myfigure.1.2]
+REF fig:square: number=[2.1] page=[2] anchor=[myfigure.2.1]
+REF tab:t1: number=[1.1] page=[1] anchor=[mytable.1.1]
+[2
+ <./images/square.jpg>] (cls-structure-chapters.aux)
+Package rerunfilecheck Info: File `cls-structure-chapters.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+Package logreq Info: Writing requests to 'cls-structure-chapters.run.xml'.

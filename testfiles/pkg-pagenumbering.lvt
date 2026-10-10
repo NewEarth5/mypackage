@@ -1,0 +1,37 @@
+% pkg-pagenumbering: \IfIs<style>TF must recognise the *current page
+% numbering style*.  The page numbers below were chosen because their
+% representation is ambiguous when one looks at the characters only:
+% "c", "d", "i", "l", "m", "v", "x" are both roman numerals and letters,
+% "C", "D", "I", ... likewise for the upper-case styles.
+\input{regression-test}
+\documentclass{article}
+\usepackage{mypackage}
+\input{mytest-helpers}
+\makeatletter
+% The \IfIs... commands are not expandable: record each answer first.
+\newcommand\CHECKSTYLES{%
+  \IfIsRomanTF {\def\rR{T}}{\def\rR{F}}%
+  \IfIsromanTF {\def\rr{T}}{\def\rr{F}}%
+  \IfIsarabicTF{\def\ra{T}}{\def\ra{F}}%
+  \IfIsAlphTF  {\def\rA{T}}{\def\rA{F}}%
+  \IfIsalphTF  {\def\rl{T}}{\def\rl{F}}%
+  \TYPE{\thepage: Roman=\rR\space roman=\rr\space arabic=\ra\space
+    Alph=\rA\space alph=\rl}}
+\newcommand\CHECKPAGES[2]{% #1 = style, #2 = list of page numbers
+  \pagenumbering{#1}%
+  \@for\@tempa:=#2\do{\c@page=\@tempa\relax\CHECKSTYLES}}
+\begin{document}
+\START
+\TEST{arabic}{\CHECKPAGES{arabic}{1,9,10,24}}
+\TEST{roman}{\CHECKPAGES{roman}{1,4,9,10,40}}
+\TEST{Roman}{\CHECKPAGES{Roman}{1,4,9,10,40}}
+\TEST{alph}{\CHECKPAGES{alph}{1,3,4,9,12,13,22,24}}
+\TEST{Alph}{\CHECKPAGES{Alph}{1,3,4,9,12,13,22,24}}
+\TEST{The macros are usable inside the T/F branches}{%
+  \pagenumbering{arabic}%
+  \IfIsarabicTF{\TYPE{arabic branch}}{\TYPE{other branch}}%
+  \IfIsarabicT{\TYPE{T only}}%
+  \IfIsarabicF{\TYPE{F only (wrong)}}%
+  \IfIsRomanF{\TYPE{not Roman}}%
+}
+\end{document}

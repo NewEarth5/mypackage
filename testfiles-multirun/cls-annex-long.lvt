@@ -1,0 +1,20 @@
+% cls-annex-long: an annex longer than 26 pages.  Annex pages are numbered
+% with letters, which must not overflow after "z".
+\input{regression-test}
+\documentclass{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\mychapter{Main}
+\begin{myannex}
+\mychapter{Long annex}[label=long]
+\SHOWCOUNTERS
+\count255=0
+\loop\advance\count255 by 1
+  Page \the\count255.\newpage
+\ifnum\count255<30 \repeat
+\SHOWCOUNTERS
+\mychapter{After the long annex}[label=after]
+\end{myannex}
+\SHOWREF{ann:chap:long}\SHOWREF{ann:chap:after}
+\end{document}

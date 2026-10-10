@@ -1,0 +1,20 @@
+% pkg-program: \myprogram / \myprogram*.  A short listing is put in a
+% listing float; one taller than half a page is typeset in the text flow
+% (it can break across pages).  Labels are code:<extension>:<label>.
+\input{regression-test}
+\documentclass[paths={code=code/}]{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\SHOWLIST{mylop}
+\mylistofprograms
+\mychapter{Programs}
+\myprogram{hello}{hello.py}{python}{A short Python program.}
+\myprogram[bgcol=white, numbgcol=gray!20]{short}{short.c}{c}[Short.]{Options and short caption. Second sentence.}
+\myprogram{long}{long.c}{c}{A long program, typeset in the text flow.}
+\myprogram*{star}{short.c}{c}{Starred: not in the list.}
+\myprogram[minted={firstline=3, lastline=5}]{part}{long.c}{c}{Lines 3 to 5.}
+\SHOWCOUNTERS
+\SHOWREF{code:py:hello}\SHOWREF{code:c:short}\SHOWREF{code:c:long}
+\SHOWREF{code:c:star}\SHOWREF{code:c:part}
+\end{document}

@@ -1,0 +1,69 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+-------- cls-bib-sections.mytoc (start) ---------
+(cls-bib-sections.mytoc) \contentsline {mysection}{Contents}{I}{mycontents}%^^M
+\contentsline {mysection}{\mysectionbox [l]{1}\hspace {1em}Section}{1}{mysection.1}%^^M
+\contentsline {mysection}{Bibliography}{i}{Bibliography}%^^M
+\contentsline {mysubsection}{Articles}{i}{Articles}%^^M
+\contentsline {mysubsection}{Books}{i}{Books}%^^M
+\contentsline {mysubsection}{Collections}{i}{Collections}%^^M
+\contentsline {mysubsection}{Manuals}{i}{Manuals}%^^M
+\contentsline {mysubsection}{Theses}{i}{Theses}%^^M
+\contentsline {mysubsection}{References}{i}{References}%^^M
+\contentsline {mysubsection}{Reports}{i}{Reports}%^^M
+\contentsline {mysubsection}{Websites}{i}{Websites}%^^M
+\contentsline {mysubsection}{Patents}{i}{Patents}%^^M
+-------- cls-bib-sections.mytoc (end) -----------
+(cls-bib-sections.mytoc
+LaTeX Font Info:    Trying to load font information for U+msa on input line ....
+LaTeX Font Info:    Trying to load font information for U+msb on input line ....
+\tf@mytoc=\write...
+Package hyperref Info: bookmark level for unknown mysection defaults to 0 on input line ....
+[1
+Non-PDF special ignored!
+<special> header=psfrag.pro
+]
+COUNTERS: part=0, chapter=0, section=1, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=1 (1)
+[1
+]
+Package hyperref Info: bookmark level for unknown mysubsection defaults to 0 on input line ....
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line ....
+COUNTERS: part=0, chapter=0, section=1, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=1 (i)
+FLAGS: part=F, chapter=F, section=T, subsection=F, subsubsection=F, annex=F, bib=F, highest=mysection
+REF bib:bib: number=[Bibliography] page=[i] anchor=[mybibliography]
+============================================================
+TEST 1: Citation numbers
+============================================================
+> \box...=
+\hbox(7.49817+2.49939)x36.65771
+.\T1/cmr/m/n/10 [
+.\pdfstartlink(*+*)x* attr{/Border[0 0 0]/H/I/C[0 1 0]} action goto name{cite.0@art1}
+.\pdfcolorstack 0 push {0 g 0 G}
+.\T1/cmr/m/n/10 3
+.\pdfcolorstack 0 pop
+.\pdfendlink
+.\T1/cmr/m/n/10 ]
+.\T1/cmr/m/n/10 [
+.\pdfstartlink(*+*)x* attr{/Border[0 0 0]/H/I/C[0 1 0]} action goto name{cite.0@misc1}
+.\pdfcolorstack 0 push {0 g 0 G}
+.\T1/cmr/m/n/10 1
+.\pdfcolorstack 0 pop
+.\pdfendlink
+.\T1/cmr/m/n/10 ]
+.\T1/cmr/m/n/10 [
+.\pdfstartlink(*+*)x* attr{/Border[0 0 0]/H/I/C[0 1 0]} action goto name{cite.0@pat1}
+.\pdfcolorstack 0 push {0 g 0 G}
+.\T1/cmr/m/n/10 1
+.\T1/cmr/m/n/10 1
+.\pdfcolorstack 0 pop
+.\pdfendlink
+.\T1/cmr/m/n/10 ]
+! OK.
+\SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
+l. ...}
+============================================================
+[1
+] (cls-bib-sections.aux)
+Package rerunfilecheck Info: File `cls-bib-sections.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+Package logreq Info: Writing requests to 'cls-bib-sections.run.xml'.

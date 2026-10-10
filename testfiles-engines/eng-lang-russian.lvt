@@ -1,0 +1,9 @@
+% eng-lang-russian: Cyrillic words with a Unicode engine.
+\input{regression-test}
+\documentclass[text={lang=russian}]{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\SHOWNAMES
+\TEST{Typeset words}{\SHOWTEXT{\myfigurename\ \myequationname}}
+\end{document}

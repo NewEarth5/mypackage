@@ -1,0 +1,51 @@
+% pkg-utils: small utility commands of the package.
+\input{regression-test}
+\documentclass{article}
+\usepackage{mypackage}
+\input{mytest-helpers}
+\makeatletter
+\begin{document}
+\START
+\TEST{\mylenmax and \mylenmin}{%
+  \TYPE{max(1pt,2pt)=\mylenmax{1pt}{2pt}; max(3cm,2pt)=\mylenmax{3cm}{2pt};
+    max(-1pt,-2pt)=\mylenmax{-1pt}{-2pt}; max(5pt,5pt)=\mylenmax{5pt}{5pt}}%
+  \TYPE{min(1pt,2pt)=\mylenmin{1pt}{2pt}; min(3cm,2pt)=\mylenmin{3cm}{2pt};
+    min(-1pt,-2pt)=\mylenmin{-1pt}{-2pt}; min(5pt,5pt)=\mylenmin{5pt}{5pt}}%
+  \TYPE{max(0.75\string\linewidth,100pt)=\mylenmax{0.75\linewidth}{100pt}}%
+}
+\TEST{\mycleantext: trims spaces}{%
+  \SHOWTEXT{[\mycleantext{  Some text.  }]}%
+}
+\TEST{\mycleanline: trims spaces and trailing punctuation}{%
+  \SHOWSTRING[ 1]{\mycleanline{Caption.}}%
+  \SHOWTEXT{[\mycleanline{  Caption ends with dots...  }]}%
+  \SHOWTEXT{[\mycleanline{Question?!}]}%
+  \SHOWTEXT{[\mycleanline{No punctuation}]}%
+}
+\TEST{\mycleanfirstline: first sentence without its final punctuation}{%
+  \SHOWTEXT{[\mycleanfirstline{First sentence. Second sentence.}]}%
+  \SHOWTEXT{[\mycleanfirstline{Only one sentence.}]}%
+  \SHOWTEXT{[\mycleanfirstline{No final punctuation}]}%
+  \SHOWTEXT{[\mycleanfirstline{Is it? Yes it is.}]}%
+  \SHOWTEXT{[\mycleanfirstline{Value 3.5 m/s here. More.}]}%
+}
+\TEST{\currentacyear for every month}{%
+  \TYPE{date of the test run: \the\year-\the\month-\the\day}%
+  \count@=\month
+  \@tempcnta=\@ne
+  \loop
+    \month=\@tempcnta
+    \TYPE{month \the\month: \currentacyear}%
+    \advance\@tempcnta\@ne
+  \ifnum\@tempcnta<13 \repeat
+  \month=\count@
+}
+\TEST{\myhighestsec for each combination of used levels}{%
+  \TYPE{none: \myhighestsec}%
+  \GlobalMysubsubsectionUsedtrue \TYPE{subsubsection: \myhighestsec}%
+  \GlobalMysubsectionUsedtrue    \TYPE{+subsection: \myhighestsec}%
+  \GlobalMysectionUsedtrue       \TYPE{+section: \myhighestsec}%
+  \GlobalMychapterUsedtrue       \TYPE{+chapter: \myhighestsec}%
+  \GlobalMypartUsedtrue          \TYPE{+part: \myhighestsec}%
+}
+\end{document}

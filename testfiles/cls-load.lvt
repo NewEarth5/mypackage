@@ -1,0 +1,47 @@
+% cls-load: the class loads with all options at their default value.
+\input{regression-test}
+\documentclass{myreport}
+\input{mytest-helpers}
+\makeatletter
+\begin{document}
+\START
+\TEST{Class option values (defaults)}{%
+  \SHOWOPT\myreport@text@fontsize
+  \SHOWOPT\myreport@text@fontfamily
+  \SHOWOPT\myreport@text@lang
+  \SHOWOPT\myreport@position
+  \SHOWOPT\myreport@sect@part
+  \SHOWOPT\myreport@sect@chapter
+  \SHOWOPT\myreport@sect@section
+  \SHOWOPT\myreport@sect@subsection
+  \SHOWOPT\myreport@sect@subsubsection
+  \SHOWOPT\myreport@sect@annex
+  \SHOWOPT\myreport@sect@bib
+}
+\TEST{Values received by mypackage}{%
+  \SHOWOPT\mypackage@lang
+  \SHOWOPT\mypackage@paths@images
+  \SHOWOPT\mypackage@paths@code
+  \SHOWOPT\mypackage@paths@sources
+  \SHOWOPT\mypackage@pos@figure
+  \SHOWOPT\mypackage@pos@table
+  \SHOWOPT\mypackage@toc@depth
+  \SHOWOPT\mypackage@toc@annexdepth
+  \SHOWOPT\mypackage@toc@bibdepth
+}
+\TEST{Base class, size, fonts}{%
+  \TYPE{report class: \@ifclassloaded{report}{yes}{no}}%
+  \TYPE{size: \f@size pt, baselineskip \the\baselineskip}%
+  \TYPE{family: \f@family, familydefault: \familydefault,
+    encoding: \f@encoding}%
+  \TYPE{paper: \the\paperwidth\space x \the\paperheight}%
+  \@for\@tempa:=amsmath,amsfonts,amssymb,mypackage\do{%
+    \@ifpackageloaded\@tempa
+      {\TYPE{\@tempa: loaded}}{\TYPE{\@tempa: MISSING}}}%
+}
+\TEST{Words}{\SHOWNAMES}
+\TEST{Title-page defaults}{%
+  \SHOWOPT\mycourseval \SHOWOPT\mytitleval \SHOWOPT\mydateval
+  \SHOWOPT\myacademicyearval \SHOWOPT\myauthorval \SHOWOPT\myprofessorval
+}
+\end{document}

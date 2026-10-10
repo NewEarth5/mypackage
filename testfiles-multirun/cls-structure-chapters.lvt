@@ -1,0 +1,29 @@
+% cls-structure-chapters: chapters are the highest level.  Floats are
+% numbered <chapter>.<n> and restart with each chapter.
+\input{regression-test}
+\documentclass[toc={depth=3}]{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\SHOWLIST{mytoc}
+\mytableofcontents
+\mychapter{Alpha}[label=a]
+\mysection{Alpha one}[label=a1]
+\mysubsection{Alpha one one}[label=a11]
+\mysubsubsection{Alpha one one one}[label=a111]
+\myfigure{wide.png}{First.}
+\myfigure{tall.png}{Second.}
+\begin{mytable}{cc}{t1}{A table.}
+  a & b \\
+\end{mytable}
+\SHOWTHE
+\mychapter{Beta}[label=b]
+\SHOWCOUNTERS
+\myfigure{square.jpg}{Third.}
+\mysection*{Beta star}
+\mysection{Beta one}[label=b1]
+\SHOWFLAGS
+\SHOWREF{chap:a}\SHOWREF{sec:a1}\SHOWREF{subsec:a11}\SHOWREF{subsubsec:a111}
+\SHOWREF{chap:b}\SHOWREF{sec:b1}
+\SHOWREF{fig:wide}\SHOWREF{fig:tall}\SHOWREF{fig:square}\SHOWREF{tab:t1}
+\end{document}

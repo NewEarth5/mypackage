@@ -1,0 +1,113 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+============================================================
+TEST 1: Option values (defaults)
+============================================================
+OPT \mypackage@lang=[british]
+OPT \mypackage@paths@images=[images/]
+OPT \mypackage@paths@code=[../code/]
+OPT \mypackage@paths@sources=[sources/sources.bib]
+OPT \mypackage@pos@figure=[h]
+OPT \mypackage@pos@table=[h]
+OPT \mypackage@pos@program=[h]
+OPT \mypackage@pos@pseudocode=[h]
+OPT \mypackage@toc@depth=[2]
+OPT \mypackage@toc@annexdepth=[0]
+OPT \mypackage@toc@bibdepth=[1]
+============================================================
+============================================================
+TEST 2: Depth counters
+============================================================
+toc=2, annex=0, bib=1, part=-1, chapter=0, section=1, subsection=2, subsubsection=3
+============================================================
+============================================================
+TEST 3: Required packages are loaded
+============================================================
+adjustbox: loaded
+babel: loaded
+bbm: loaded
+biblatex: loaded
+caption: loaded
+chemmacros: loaded
+enumitem: loaded
+geometry: loaded
+graphicx: loaded
+hyperref: loaded
+mhchem: loaded
+multirow: loaded
+subcaption: loaded
+svg: loaded
+tabularx: loaded
+tcolorbox: loaded
+upgreek: loaded
+xurl: loaded
+xcolor: loaded
+xstring: loaded
+kvoptions: loaded
+kvsetkeys: loaded
+minted: loaded
+============================================================
+============================================================
+TEST 4: Public commands and environments are defined
+============================================================
+myinclude: ok
+myfigure: ok
+mysubfigure: ok
+myincludeprogram: ok
+myprogram: ok
+myref: ok
+myseeref: ok
+currentacyear: ok
+mycleantext: ok
+mycleanline: ok
+mycleanfirstline: ok
+mylenmax: ok
+mylenmin: ok
+myhighestsec: ok
+myaddtotoc: ok
+myhyperanchor: ok
+mylabel: ok
+IfIsRomanTF: ok
+IfIsromanTF: ok
+IfIsarabicTF: ok
+IfIsAlphTF: ok
+IfIsalphTF: ok
+mypartbox: ok
+mychapterbox: ok
+mysectionbox: ok
+mysubsectionbox: ok
+mysubsubsectionbox: ok
+mysub: ok
+mysub*: ok
+myequation: ok
+myequation*: ok
+mytable: ok
+mytable*: ok
+mypseudocode: ok
+mypseudocode*: ok
+myannex: ok
+============================================================
+============================================================
+TEST 5: Initial state
+============================================================
+COUNTERS: part=0, chapter=0, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=1 (1)
+FLAGS: part=F, chapter=F, section=F, subsection=F, subsubsection=F, annex=F, bib=F, highest=mysubsubsection
+THE: part=[] chapter=[] section=[] subsection=[] subsubsection=[] figure=[0] subfigure=[0.] table=[0] program=[0] equation=[0]
+============================================================
+============================================================
+TEST 6: Font encoding and page geometry
+============================================================
+encoding=T1, paper=597.50787pt x 845.04684pt, textwidth=455.24411pt, textheight=702.78308pt, oddsidemargin=-1.1381pt, topmargin=-38.1381pt
+============================================================
+(pkg-load.aux)
+LaTeX Warning: There were undefined references.
+Package rerunfilecheck Warning: File `pkg-load.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+Package rerunfilecheck Info: Checksums for `pkg-load.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                pkg-load
+(biblatex)                and rerun LaTeX afterwards.
+Package logreq Info: Writing requests to 'pkg-load.run.xml'.

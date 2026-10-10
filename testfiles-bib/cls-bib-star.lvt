@@ -1,0 +1,14 @@
+% cls-bib-star: \mybibliography* -- the bibliography and its category
+% headings are not added to the table of contents.
+\input{regression-test}
+\documentclass[sectioning={bib=nobreak}]{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\SHOWLIST{mytoc}
+\mytableofcontents
+\mychapter{Chapter}
+\cite{art1,web1}
+\mybibliography*
+\SHOWCOUNTERS
+\end{document}

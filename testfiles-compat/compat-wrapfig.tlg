@@ -1,0 +1,24 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
+<images/square.jpg, id=6, 200.75pt x 200.75pt>
+File: images/square.jpg Graphic file (type jpg)
+<use images/square.jpg>
+Package pdftex.def Info: images/square.jpg  used on input line ....
+(pdftex.def)             Requested size: 113.81102pt x 113.81297pt.
+<images/wide.png, id=7, 301.125pt x 100.375pt>
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+Package pdftex.def Info: images/wide.png  used on input line ....
+(pdftex.def)             Requested size: 421.72374pt x 140.55446pt.
+Package hyperref Info: bookmark level for unknown myfigure defaults to 0 on input line ....
+LaTeX Font Info:    Trying to load font information for U+msa on input line ....
+LaTeX Font Info:    Trying to load font information for U+msb on input line ....
+REF fig:wide: number=[1.1] page=[1] anchor=[myfigure.1.1]
+[1
+Non-PDF special ignored!
+<special> header=psfrag.pro
+ <./images/square.jpg> <./images/wide.png (PNG copy)>] (compat-wrapfig.aux)
+Package rerunfilecheck Info: File `compat-wrapfig.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+Package logreq Info: Writing requests to 'compat-wrapfig.run.xml'.

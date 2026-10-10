@@ -1,0 +1,55 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+-------- cls-frontmatter-subsections.mytoc (start) ---------
+(cls-frontmatter-subsections.mytoc) \contentsline {mysubsection}{Abstract}{I}{myabstract}%^^M
+\contentsline {mysubsection}{Contents}{II}{mycontents}%^^M
+\contentsline {mysubsection}{\mysubsectionbox [l]{0}\hspace {1em}Introduction}{1}{myintroduction}%^^M
+\contentsline {mysubsection}{\mysubsectionbox [l]{1}\hspace {1em}Main subsection}{1}{mysubsection.1}%^^M
+\contentsline {mysubsection}{\mysubsectionbox [l]{9}\hspace {1em}Introduction}{1}{myintroduction}%^^M
+-------- cls-frontmatter-subsections.mytoc (end) -----------
+COUNTERS: part=0, chapter=0, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=1 (1)
+Package hyperref Info: bookmark level for unknown mysubsection defaults to 0 on input line ....
+COUNTERS: part=0, chapter=0, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=1 (I)
+[1
+Non-PDF special ignored!
+<special> header=psfrag.pro
+] (cls-frontmatter-subsections.mytoc
+LaTeX Font Info:    Trying to load font information for U+msa on input line ....
+LaTeX Font Info:    Trying to load font information for U+msb on input line ....
+\tf@mytoc=\write...
+[2
+]
+COUNTERS: part=0, chapter=0, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=3 (III)
+COUNTERS: part=0, chapter=0, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=1 (1)
+THE: part=[] chapter=[] section=[] subsection=[0] subsubsection=[0] figure=[0.0] subfigure=[0.0.] table=[0.0] program=[0.0] equation=[0.0]
+COUNTERS: part=0, chapter=0, section=0, subsection=1, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=1 (1)
+COUNTERS: part=0, chapter=0, section=0, subsection=9, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=1 (1)
+[1
+pdfTeX warning (ext4): destination with the same identifier (name{myintroduction}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l. ...\SHOWREF
+             {abst:abs}\SHOWREF{intro:intro}\SHOWREF{intro:intro9}
+pdfTeX warning (ext4): destination with the same identifier (name{myintroduction}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l. ...\SHOWREF
+             {abst:abs}\SHOWREF{intro:intro}\SHOWREF{intro:intro9}]
+pdfTeX warning (ext4): destination with the same identifier (name{myabstract}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l. ...\SHOWREF
+             {abst:abs}\SHOWREF{intro:intro}\SHOWREF{intro:intro9}
+REF abst:abs: number=[Abstract] page=[I] anchor=[myabstract]
+REF intro:intro: number=[Introduction] page=[1] anchor=[myintroduction]
+REF intro:intro9: number=[Introduction] page=[1] anchor=[myintroduction]
+REF toc:x: number=[Contents] page=[II] anchor=[mycontents]
+FLAGS: part=F, chapter=F, section=F, subsection=T, subsubsection=F, annex=F, bib=F, highest=mysubsection
+pdfTeX warning (ext4): destination with the same identifier (name{page.I}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l. ...\end{document}
+[1] (cls-frontmatter-subsections.aux)
+Package rerunfilecheck Info: File `cls-frontmatter-subsections.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+Package logreq Info: Writing requests to 'cls-frontmatter-subsections.run.xml'.

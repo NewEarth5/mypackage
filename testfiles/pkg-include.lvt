@@ -1,0 +1,42 @@
+% pkg-include: \myinclude[options]{file} -- sizes are fractions of the
+% text height/width, files are looked up in the "images" path, .svg files
+% go through the svg package.
+\input{regression-test}
+\documentclass{article}
+\usepackage{mypackage}
+\input{mytest-helpers}
+% \SIZE{file}: default options; \SIZEOPT{options}{file}.
+\newcommand\SIZE[1]{%
+  \setbox0\hbox{\myinclude{#1}}%
+  \TYPE{{#1}: \the\wd0\space x \the\ht0}}
+\newcommand\SIZEOPT[2]{%
+  \setbox0\hbox{\myinclude[#1]{#2}}%
+  \TYPE{[#1]{#2}: \the\wd0\space x \the\ht0}}
+\begin{document}
+\START
+\TEST{Reference lengths}{%
+  \TYPE{textwidth=\the\textwidth, textheight=\the\textheight}%
+  \TYPE{0.2 textheight=\the\dimexpr0.2\textheight\relax}%
+}
+\TEST{Default size: height=0.2}{%
+  \SIZE{wide.png}
+  \SIZE{tall.png}
+  \SIZE{square.jpg}
+}
+\TEST{height= and width=}{%
+  \SIZEOPT{height=0.1}{wide.png}
+  \SIZEOPT{width=0.5}{wide.png}
+  \SIZEOPT{width=0.5}{tall.png}
+  \SIZEOPT{width=1}{square.jpg}
+}
+\TEST{Both height= and width=}{%
+  \SIZEOPT{height=0.1, width=0.5}{square.jpg}
+}
+\TEST{Empty option list (natural size)}{%
+  \SIZEOPT{}{square.jpg}
+}
+\TEST{SVG files}{%
+  \SIZE{plot.svg}
+  \SIZEOPT{width=0.5}{plot.svg}
+}
+\end{document}

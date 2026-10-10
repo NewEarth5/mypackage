@@ -1,0 +1,26 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+family: TeXGyrePagella(0); encoding: TU
+Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
+File: images/wide.png Graphic file (type bmp)
+<images/wide.png>
+Package hyperref Info: bookmark level for unknown myfigure defaults to 0 on input line ....
+LaTeX Font Info:    Trying to load font information for U+msa on input line ....
+LaTeX Font Info:    Trying to load font information for U+msb on input line ....
+============================================================
+TEST 1: Typeset text
+============================================================
+> \box...=
+\hbox(6.92+0.19998)x25.68
+.\TU/TeXGyrePagella(0)/m/n/10 Text
+.\glue 2.5 plus 1.25 minus 0.83333
+.\TU/TeXGyrePagella(0)/m/n/10 ^^e9
+! OK.
+\SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
+l. ...\TEST{Typeset text}{\SHOWTEXT{Text ^^e9}}
+============================================================
+[1
+] (eng-fontspec.aux)
+Package rerunfilecheck Info: File `eng-fontspec.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+Package logreq Info: Writing requests to 'eng-fontspec.run.xml'.

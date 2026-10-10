@@ -1,0 +1,18 @@
+% compat-geometry: the user changes the layout after the class
+% (\geometry, \newgeometry/\restoregeometry); the title page restores the
+% user's geometry.
+\input{regression-test}
+\documentclass{myreport}
+\geometry{margin=2cm}
+\input{mytest-helpers}
+\mytitle{Title}
+\begin{document}
+\START
+\TYPE{textwidth after \string\geometry: \the\textwidth}
+\mymaketitle
+\TYPE{textwidth after \string\mymaketitle: \the\textwidth}
+\newgeometry{margin=4cm}
+\TYPE{textwidth after \string\newgeometry: \the\textwidth}
+\restoregeometry
+\TYPE{textwidth after \string\restoregeometry: \the\textwidth}
+\end{document}

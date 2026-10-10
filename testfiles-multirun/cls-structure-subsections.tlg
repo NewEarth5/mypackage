@@ -1,0 +1,41 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+-------- cls-structure-subsections.mytoc (start) ---------
+(cls-structure-subsections.mytoc) \contentsline {mysubsection}{Contents}{I}{mycontents}%^^M
+\contentsline {mysubsection}{\mysubsectionbox [l]{1}\hspace {1em}First}{1}{mysubsection.1}%^^M
+\contentsline {mysubsubsection}{\mysubsubsectionbox [l]{1.1}\hspace {1em}First a}{1}{mysubsubsection.1.1}%^^M
+\contentsline {mysubsection}{\mysubsectionbox [l]{2}\hspace {1em}Second}{1}{mysubsection.2}%^^M
+-------- cls-structure-subsections.mytoc (end) -----------
+(cls-structure-subsections.mytoc
+LaTeX Font Info:    Trying to load font information for U+msa on input line ....
+LaTeX Font Info:    Trying to load font information for U+msb on input line ....
+\tf@mytoc=\write...
+Package hyperref Info: bookmark level for unknown mysubsection defaults to 0 on input line ....
+[1
+Non-PDF special ignored!
+<special> header=psfrag.pro
+]
+Package hyperref Info: bookmark level for unknown mysubsubsection defaults to 0 on input line ....
+<images/wide.png, id=21, 301.125pt x 100.375pt>
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+Package pdftex.def Info: images/wide.png  used on input line ....
+(pdftex.def)             Requested size: 421.72374pt x 140.55446pt.
+Package hyperref Info: bookmark level for unknown myfigure defaults to 0 on input line ....
+<images/tall.png, id=22, 100.375pt x 401.5pt>
+File: images/tall.png Graphic file (type png)
+<use images/tall.png>
+Package pdftex.def Info: images/tall.png  used on input line ....
+(pdftex.def)             Requested size: 35.13942pt x 140.55446pt.
+THE: part=[] chapter=[] section=[] subsection=[2] subsubsection=[2.0] figure=[2.1] subfigure=[2.1.] table=[2.0] program=[2.0] equation=[2.0]
+FLAGS: part=F, chapter=F, section=F, subsection=T, subsubsection=T, annex=F, bib=F, highest=mysubsection
+REF subsec:f: number=[1] page=[1] anchor=[mysubsection.1]
+REF subsubsec:fa: number=[1.1] page=[1] anchor=[mysubsubsection.1.1]
+REF subsec:s: number=[2] page=[1] anchor=[mysubsection.2]
+REF fig:wide: number=[1.1] page=[1] anchor=[myfigure.1.1]
+REF fig:tall: number=[2.1] page=[1] anchor=[myfigure.2.1]
+[1
+ <./images/wide.png (PNG copy)> <./images/tall.png (PNG copy)>] (cls-structure-subsections.aux)
+Package rerunfilecheck Info: File `cls-structure-subsections.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+Package logreq Info: Writing requests to 'cls-structure-subsections.run.xml'.

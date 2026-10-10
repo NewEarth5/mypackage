@@ -1,0 +1,254 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+============================================================
+TEST 1: \mylenmax and \mylenmin 
+============================================================
+max(1pt,2pt)=2.0pt; max(3cm,2pt)=85.35826pt; max(-1pt,-2pt)=-1.0pt; max(5pt,5pt)=5.0pt
+min(1pt,2pt)=1.0pt; min(3cm,2pt)=2.0pt; min(-1pt,-2pt)=-2.0pt; min(5pt,5pt)=5.0pt
+max(0.75\linewidth,100pt)=341.43307pt
+============================================================
+============================================================
+TEST 2: \mycleantext : trims spaces
+============================================================
+> \box...=
+\hbox(7.49817+2.49939)x52.48718
+.\T1/cmr/m/n/10 [
+.\T1/cmr/m/n/10 S
+.\T1/cmr/m/n/10 o
+.\T1/cmr/m/n/10 m
+.\T1/cmr/m/n/10 e
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T1/cmr/m/n/10 t
+.\T1/cmr/m/n/10 e
+.\T1/cmr/m/n/10 x
+.\T1/cmr/m/n/10 t
+.\T1/cmr/m/n/10 .
+.\T1/cmr/m/n/10 ]
+! OK.
+\SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
+l. ...}
+============================================================
+============================================================
+TEST 3: \mycleanline : trims spaces and trailing punctuation
+============================================================
+STRING 1: macro:->\mycleanline {Caption.}
+> \box...=
+\hbox(7.49817+2.49939)x107.86255
+.\T1/cmr/m/n/10 [
+.\T1/cmr/m/n/10 C
+.\T1/cmr/m/n/10 a
+.\T1/cmr/m/n/10 p
+.\T1/cmr/m/n/10 t
+.\T1/cmr/m/n/10 i
+.\T1/cmr/m/n/10 o
+.\T1/cmr/m/n/10 n
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T1/cmr/m/n/10 e
+.\T1/cmr/m/n/10 n
+.\T1/cmr/m/n/10 d
+.\T1/cmr/m/n/10 s
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T1/cmr/m/n/10 w
+.\T1/cmr/m/n/10 i
+.\T1/cmr/m/n/10 t
+.\T1/cmr/m/n/10 h
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T1/cmr/m/n/10 d
+.\T1/cmr/m/n/10 o
+.\T1/cmr/m/n/10 t
+.\T1/cmr/m/n/10 s
+.\T1/cmr/m/n/10 ]
+! OK.
+\SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
+l. ...}
+> \box...=
+\hbox(7.49817+2.49939)x44.48914
+.\T1/cmr/m/n/10 [
+.\T1/cmr/m/n/10 Q
+.\T1/cmr/m/n/10 u
+.\T1/cmr/m/n/10 e
+.\T1/cmr/m/n/10 s
+.\T1/cmr/m/n/10 t
+.\T1/cmr/m/n/10 i
+.\T1/cmr/m/n/10 o
+.\T1/cmr/m/n/10 n
+.\T1/cmr/m/n/10 ]
+! OK.
+\SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
+l. ...}
+> \box...=
+\hbox(7.49817+2.49939)x74.14856
+.\T1/cmr/m/n/10 [
+.\T1/cmr/m/n/10 N
+.\T1/cmr/m/n/10 o
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T1/cmr/m/n/10 p
+.\T1/cmr/m/n/10 u
+.\T1/cmr/m/n/10 n
+.\T1/cmr/m/n/10 c
+.\T1/cmr/m/n/10 t
+.\T1/cmr/m/n/10 u
+.\T1/cmr/m/n/10 a
+.\T1/cmr/m/n/10 t
+.\T1/cmr/m/n/10 i
+.\T1/cmr/m/n/10 o
+.\T1/cmr/m/n/10 n
+.\T1/cmr/m/n/10 ]
+! OK.
+\SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
+l. ...}
+============================================================
+============================================================
+TEST 4: \mycleanfirstline : first sentence without its final punctuation
+============================================================
+> \box...=
+\hbox(7.49817+2.49939)x66.37268
+.\T1/cmr/m/n/10 [
+.\T1/cmr/m/n/10 F
+.\T1/cmr/m/n/10 i
+.\T1/cmr/m/n/10 r
+.\T1/cmr/m/n/10 s
+.\T1/cmr/m/n/10 t
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T1/cmr/m/n/10 s
+.\T1/cmr/m/n/10 e
+.\T1/cmr/m/n/10 n
+.\kern-0.27771
+.\T1/cmr/m/n/10 t
+.\T1/cmr/m/n/10 e
+.\T1/cmr/m/n/10 n
+.\T1/cmr/m/n/10 c
+.\T1/cmr/m/n/10 e
+.\T1/cmr/m/n/10 ]
+! OK.
+\SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
+l. ...}
+> \box...=
+\hbox(7.49817+2.49939)x85.03479
+.\T1/cmr/m/n/10 [
+.\T1/cmr/m/n/10 O
+.\T1/cmr/m/n/10 n
+.\T1/cmr/m/n/10 l
+.\T1/cmr/m/n/10 y
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T1/cmr/m/n/10 o
+.\T1/cmr/m/n/10 n
+.\T1/cmr/m/n/10 e
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T1/cmr/m/n/10 s
+.\T1/cmr/m/n/10 e
+.\T1/cmr/m/n/10 n
+.\kern-0.27771
+.\T1/cmr/m/n/10 t
+.\T1/cmr/m/n/10 e
+.\T1/cmr/m/n/10 n
+.\T1/cmr/m/n/10 c
+.\T1/cmr/m/n/10 e
+.\T1/cmr/m/n/10 ]
+! OK.
+\SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
+l. ...}
+> \box...=
+\hbox(7.49817+2.49939)x96.36536
+.\T1/cmr/m/n/10 [
+.\T1/cmr/m/n/10 N
+.\T1/cmr/m/n/10 o
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T1/cmr/m/n/10 ^^\ (ligature fi)
+.\T1/cmr/m/n/10 n
+.\T1/cmr/m/n/10 a
+.\T1/cmr/m/n/10 l
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T1/cmr/m/n/10 p
+.\T1/cmr/m/n/10 u
+.\T1/cmr/m/n/10 n
+.\T1/cmr/m/n/10 c
+.\T1/cmr/m/n/10 t
+.\T1/cmr/m/n/10 u
+.\T1/cmr/m/n/10 a
+.\T1/cmr/m/n/10 t
+.\T1/cmr/m/n/10 i
+.\T1/cmr/m/n/10 o
+.\T1/cmr/m/n/10 n
+.\T1/cmr/m/n/10 ]
+! OK.
+\SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
+l. ...}
+> \box...=
+\hbox(7.49817+2.49939)x23.10547
+.\T1/cmr/m/n/10 [
+.\T1/cmr/m/n/10 I
+.\T1/cmr/m/n/10 s
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T1/cmr/m/n/10 i
+.\T1/cmr/m/n/10 t
+.\T1/cmr/m/n/10 ]
+! OK.
+\SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
+l. ...}
+> \box...=
+\hbox(7.49817+2.49939)x88.39508
+.\T1/cmr/m/n/10 [
+.\T1/cmr/m/n/10 V
+.\kern-0.83313
+.\T1/cmr/m/n/10 a
+.\T1/cmr/m/n/10 l
+.\T1/cmr/m/n/10 u
+.\T1/cmr/m/n/10 e
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T1/cmr/m/n/10 3
+.\T1/cmr/m/n/10 .
+.\T1/cmr/m/n/10 5
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T1/cmr/m/n/10 m
+.\T1/cmr/m/n/10 /
+.\T1/cmr/m/n/10 s
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T1/cmr/m/n/10 h
+.\T1/cmr/m/n/10 e
+.\T1/cmr/m/n/10 r
+.\T1/cmr/m/n/10 e
+.\T1/cmr/m/n/10 ]
+! OK.
+\SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
+l. ...}
+============================================================
+============================================================
+TEST 5: \currentacyear for every month
+============================================================
+date of the test run: ....-..-..
+month 1: \currentacyear 
+month 2: \currentacyear 
+month 3: \currentacyear 
+month 4: \currentacyear 
+month 5: \currentacyear 
+month 6: \currentacyear 
+month 7: \currentacyear 
+month 8: \currentacyear 
+month 9: \currentacyear 
+month 10: \currentacyear 
+month 11: \currentacyear 
+month 12: \currentacyear 
+============================================================
+============================================================
+TEST 6: \myhighestsec for each combination of used levels
+============================================================
+none: mysubsubsection
+subsubsection: mysubsubsection
++subsection: mysubsection
++section: mysection
++chapter: mychapter
++part: mypart
+============================================================
+(pkg-utils.aux)
+LaTeX Warning: There were undefined references.
+Package rerunfilecheck Warning: File `pkg-utils.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+Package rerunfilecheck Info: Checksums for `pkg-utils.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                pkg-utils
+(biblatex)                and rerun LaTeX afterwards.
+Package logreq Info: Writing requests to 'pkg-utils.run.xml'.

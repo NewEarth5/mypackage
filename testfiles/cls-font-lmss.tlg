@@ -1,0 +1,29 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+============================================================
+TEST 1: Font family
+============================================================
+body: lmss
+normalfont: lmss
+footnotesize: lmss
+familydefault: lmss; rmdefault: lmr; sfdefault: lmss; ttdefault: lmtt
+> \box...=
+\hbox(6.9445+0.0)x11.83366
+.\T1/lmss/m/n/10 A
+.\T1/lmss/m/n/10 b
+! OK.
+\SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
+l. ...}
+============================================================
+(cls-font-lmss.aux)
+LaTeX Warning: There were undefined references.
+Package rerunfilecheck Warning: File `cls-font-lmss.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+Package rerunfilecheck Info: Checksums for `cls-font-lmss.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                cls-font-lmss
+(biblatex)                and rerun LaTeX afterwards.
+Package logreq Info: Writing requests to 'cls-font-lmss.run.xml'.

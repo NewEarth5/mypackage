@@ -1,0 +1,29 @@
+% cls-frontmatter-subsections: \myabstract and \myintroduction when the highest
+% level of the document is the subsections level.  The front matter is numbered
+% with Roman numerals, the introduction starts the arabic numbering.
+\input{regression-test}
+\documentclass{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\SHOWLIST{mytoc}
+\SHOWCOUNTERS
+\myabstract[abs]
+Abstract text.
+\SHOWCOUNTERS
+\mytableofcontents[x]
+\SHOWCOUNTERS
+\myintroduction[label=intro]
+Introduction text.
+\SHOWCOUNTERS
+\SHOWTHE
+\mysubsection{Main subsection}[label=main]
+\SHOWCOUNTERS
+\myintroduction*
+\myintroduction[number=9, label=intro9]
+\SHOWCOUNTERS
+\myabstract*
+\SHOWREF{abst:abs}\SHOWREF{intro:intro}\SHOWREF{intro:intro9}
+\SHOWREF{toc:x}
+\SHOWFLAGS
+\end{document}

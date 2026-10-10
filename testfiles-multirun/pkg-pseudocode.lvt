@@ -1,0 +1,31 @@
+% pkg-pseudocode: mypseudocode / mypseudocode* (needs the codebox
+% environment of clrscode3e, loaded by the user).  Shares the program
+% counter and list with \myprogram.
+\input{regression-test}
+\documentclass[paths={code=code/}]{myreport}
+\usepackage{clrscode3e}
+\input{mytest-helpers}
+\begin{document}
+\START
+\SHOWLIST{mylop}
+\mylistofprograms
+\mychapter{Pseudocode}
+\begin{mypseudocode}{insertion}{Insertion sort. Second sentence.}
+\proc{Insertion-Sort}(A)
+\li \For $j \gets 2$ \To $\attrib{A}{length}$
+\li   \Do $\id{key} \gets A[j]$
+    \End
+\end{mypseudocode}
+\begin{mypseudocode}{short}[Short caption]{Long caption.}[t]
+\proc{F}(x)
+\li \Return $x$
+\end{mypseudocode}
+\begin{mypseudocode*}{star}{Starred.}
+\proc{G}(x)
+\li \Return $x$
+\end{mypseudocode*}
+\myprogram{hello}{hello.py}{python}{A program after the pseudocode.}
+\SHOWCOUNTERS
+\SHOWREF{code:pseudo:insertion}\SHOWREF{code:pseudo:short}
+\SHOWREF{code:pseudo:star}\SHOWREF{code:py:hello}
+\end{document}

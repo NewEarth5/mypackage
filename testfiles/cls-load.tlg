@@ -1,0 +1,72 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+============================================================
+TEST 1: Class option values (defaults)
+============================================================
+OPT \myreport@text@fontsize=[10pt]
+OPT \myreport@text@fontfamily=[cmr]
+OPT \myreport@text@lang=[british]
+OPT \myreport@position=[h]
+OPT \myreport@sect@part=[break]
+OPT \myreport@sect@chapter=[break]
+OPT \myreport@sect@section=[nobreak]
+OPT \myreport@sect@subsection=[nobreak]
+OPT \myreport@sect@subsubsection=[nobreak]
+OPT \myreport@sect@annex=[break]
+OPT \myreport@sect@bib=[break]
+============================================================
+============================================================
+TEST 2: Values received by mypackage
+============================================================
+OPT \mypackage@lang=[british]
+OPT \mypackage@paths@images=[images/]
+OPT \mypackage@paths@code=[../code/]
+OPT \mypackage@paths@sources=[sources/sources.bib]
+OPT \mypackage@pos@figure=[h]
+OPT \mypackage@pos@table=[h]
+OPT \mypackage@toc@depth=[2]
+OPT \mypackage@toc@annexdepth=[0]
+OPT \mypackage@toc@bibdepth=[1]
+============================================================
+============================================================
+TEST 3: Base class, size, fonts
+============================================================
+report class: yes
+size: 10pt, baselineskip 12.0pt
+family: cmr, familydefault: cmr, encoding: T1
+paper: 597.50787pt x 845.04684pt
+amsmath: loaded
+amsfonts: loaded
+amssymb: loaded
+mypackage: loaded
+============================================================
+============================================================
+TEST 4: Words
+============================================================
+NAMES-1: contents=[Contents] lof=[List of Figures] lot=[List of Tables] bib=[Bibliography] abstract=[Abstract] chapter=[Chapter] part=[Part] figure=[Figure] table=[Table]
+NAMES-2: equation=[Equation] acyear=[Academic year] books=[Books] articles=[Articles] collections=[Collections] manuals=[Manuals] theses=[Theses] references=[References] reports=[Reports] websites=[Websites] patents=[Patents]
+NAMES-3: program=[Program] lop=[List of Programs] loe=[List of Equations] introduction=[Introduction] section=[Section] subsection=[Subsection] subsubsection=[Subsubsection] annex=[Annex] see=[see]
+NAMES-4: professor=[Professor|Professor|Professors|Professors] assistant=[Assistant|Assistant|Assistants|Assistants] author=[Author|Author|Authors|Authors]
+============================================================
+============================================================
+TEST 5: Title-page defaults
+============================================================
+OPT \mycourseval=[-NoValue-]
+OPT \mytitleval=[-NoValue-]
+OPT \mydateval=[10th~October 2026]
+OPT \myacademicyearval=[\currentacyear ]
+OPT \myauthorval=[-NoValue-]
+OPT \myprofessorval=[-NoValue-]
+============================================================
+(cls-load.aux)
+LaTeX Warning: There were undefined references.
+Package rerunfilecheck Warning: File `cls-load.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+Package rerunfilecheck Info: Checksums for `cls-load.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                cls-load
+(biblatex)                and rerun LaTeX afterwards.
+Package logreq Info: Writing requests to 'cls-load.run.xml'.

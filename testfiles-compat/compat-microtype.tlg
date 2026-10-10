@@ -1,0 +1,29 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+(compat-microtype.mytoc (../mt-eur.cfg
+File: mt-eur.cfg ....-..-.. v... microtype config. file: AMS Euler Roman (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msa on input line ....
+File: mt-msa.cfg ....-..-.. v... microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line ....
+File: mt-msb.cfg ....-..-.. v... microtype config. file: AMS symbols (b) (RS)
+))
+\tf@mytoc=\write...
+Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
+[1
+Non-PDF special ignored!
+<special> header=psfrag.pro
+]
+<images/wide.png, id=18, 301.125pt x 100.375pt>
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+Package pdftex.def Info: images/wide.png  used on input line ....
+(pdftex.def)             Requested size: 421.72374pt x 140.55446pt.
+Package hyperref Info: bookmark level for unknown myfigure defaults to 0 on input line ....
+microtype loaded: yes
+[1
+ <./images/wide.png (PNG copy)>] (compat-microtype.aux)
+Package rerunfilecheck Info: File `compat-microtype.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+Package logreq Info: Writing requests to 'compat-microtype.run.xml'.

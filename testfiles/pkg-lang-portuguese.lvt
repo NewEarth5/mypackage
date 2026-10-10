@@ -1,0 +1,15 @@
+% pkg-lang-portuguese: the localised words used by the package with lang=portuguese.
+\input{regression-test}
+\documentclass{report}
+\usepackage[lang=portuguese]{mypackage}
+\input{mytest-helpers}
+\begin{document}
+\START
+\TEST{Language and words}{%
+  \TYPE{language=\languagename}%
+  \SHOWNAMES
+}
+\TEST{Typeset words (glyphs and font encoding)}{%
+  \SHOWTEXT{\myfigurename\ \mytablename\ \myequationname\ \myannexname}%
+}
+\end{document}

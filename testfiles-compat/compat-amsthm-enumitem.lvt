@@ -1,0 +1,20 @@
+% compat-amsthm-enumitem: theorem environments and enumitem lists.
+\input{regression-test}
+\documentclass{myreport}
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}
+\input{mytest-helpers}
+\begin{document}
+\START
+\mychapter{Maths}
+\begin{theorem}\label{thm}
+  A theorem with an equation:
+  \begin{myequation*}[th]
+    a = b
+  \end{myequation*}
+\end{theorem}
+\begin{enumerate}[label=(\alph*)]
+  \item One \item Two
+\end{enumerate}
+\SHOWREF{thm}\SHOWREF{eq:th}
+\end{document}

@@ -1,0 +1,23 @@
+% compat-preloaded: packages that mypackage loads with options (xcolor,
+% hyperref, geometry, caption) are already loaded by the user, without
+% those options.  This must not cause an option clash.
+\input{regression-test}
+\documentclass{article}
+\usepackage{xcolor}
+\usepackage{geometry}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{mypackage}
+\input{mytest-helpers}
+\begin{document}
+\START
+\myfigure{wide.png}{A figure.}
+\begin{mytable}{cc}{t}{Row colours need xcolor's table option.}
+  a & b \\ c & d \\
+\end{mytable}
+\makeatletter
+\TYPE{rowcolors defined: \ifdefined\rowcolors yes\else no\fi;
+  DarkOrchid defined: \@ifundefinedcolor{DarkOrchid}{no}{yes}}
+\makeatother
+\SHOWREF{fig:wide}
+\end{document}

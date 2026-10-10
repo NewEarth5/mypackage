@@ -1,0 +1,15 @@
+% pkg-lang-french: the localised words used by the package with lang=french.
+\input{regression-test}
+\documentclass{report}
+\usepackage[lang=french]{mypackage}
+\input{mytest-helpers}
+\begin{document}
+\START
+\TEST{Language and words}{%
+  \TYPE{language=\languagename}%
+  \SHOWNAMES
+}
+\TEST{Typeset words (glyphs and font encoding)}{%
+  \SHOWTEXT{\myfigurename\ \mytablename\ \myequationname\ \myannexname}%
+}
+\end{document}

@@ -1,0 +1,22 @@
+% compat-cleveref: cleveref loaded after the class.  The package's labels
+% are created with \label after setting \@currentlabel by hand, so
+% cleveref does not know their type.
+\input{regression-test}
+\documentclass{myreport}
+\usepackage{cleveref}
+\input{mytest-helpers}
+\begin{document}
+\START
+\mychapter{Chapter}[label=c]
+\myfigure{wide.png}{Figure.}
+\begin{mytable}{c}{t}{Table.}
+  x \\
+\end{mytable}
+\TEST{\cref on package labels}{%
+  \SHOWTEXT{\cref{fig:wide}}%
+  \SHOWTEXT{\cref{chap:c}}%
+}
+\TEST{\myref still works}{%
+  \SHOWTEXT{\myref{fig:wide}}%
+}
+\end{document}

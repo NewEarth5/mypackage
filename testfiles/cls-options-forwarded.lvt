@@ -1,0 +1,22 @@
+% cls-options-forwarded: paths, position and toc are passed on to mypackage.
+\input{regression-test}
+\documentclass[
+  paths={images=img/, code=src/, sources=refs.bib},
+  position={figure=t, program=b},
+  toc={depth=3, annexdepth=1, bibdepth=0},
+]{myreport}
+\input{mytest-helpers}
+\makeatletter
+\begin{document}
+\START
+\TEST{Forwarded values}{%
+  \SHOWOPT\mypackage@paths@images \SHOWOPT\mypackage@paths@code
+  \SHOWOPT\mypackage@paths@sources
+  \SHOWOPT\mypackage@pos@figure \SHOWOPT\mypackage@pos@table
+  \SHOWOPT\mypackage@pos@program \SHOWOPT\mypackage@pos@pseudocode
+  \SHOWOPT\mypackage@toc@depth \SHOWOPT\mypackage@toc@annexdepth
+  \SHOWOPT\mypackage@toc@bibdepth
+  \TYPE{counters: toc=\the\c@mytocdepth, annex=\the\c@myannexdepth,
+    bib=\the\c@mybibdepth}%
+}
+\end{document}

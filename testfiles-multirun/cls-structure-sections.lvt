@@ -1,0 +1,24 @@
+% cls-structure-sections: sections are the highest level (no \mychapter).
+% Floats are numbered <section>.<n> and restart with each section.
+\input{regression-test}
+\documentclass[toc={depth=3}]{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\SHOWLIST{mytoc}
+\mytableofcontents
+\mysection{One}[label=one]
+\mysubsection{One A}[label=oneA]
+\myfigure{wide.png}{In section one.}
+\begin{myequation}[e1]{An equation}
+  a = b
+\end{myequation}
+\mysection{Two}[label=two]
+\myfigure{tall.png}{In section two.}
+\mysubsection{Two A}
+\mysubsubsection{Two A i}[label=twoAi]
+\SHOWTHE
+\SHOWFLAGS
+\SHOWREF{sec:one}\SHOWREF{subsec:oneA}\SHOWREF{sec:two}\SHOWREF{subsubsec:twoAi}
+\SHOWREF{fig:wide}\SHOWREF{fig:tall}\SHOWREF{eq:e1}
+\end{document}

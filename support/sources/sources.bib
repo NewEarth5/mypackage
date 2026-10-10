@@ -1,0 +1,89 @@
+% Test bibliography: at least one entry per category printed by
+% \mybibliography (articles, books, collections, manuals, theses, references,
+% reports, websites, patents) plus "other" types that end up in the
+% unnamed first block (filter=not).
+
+@article{art1,
+  author  = {Doe, Jane and Roe, Richard},
+  title   = {An article about vortex shedding},
+  journal = {Journal of Tests},
+  volume  = {12},
+  number  = {3},
+  pages   = {45--67},
+  year    = {2020},
+}
+
+@book{book1,
+  author    = {Smith, John},
+  title     = {Fluid Mechanics},
+  publisher = {Test Press},
+  location  = {Liège},
+  year      = {2018},
+}
+
+@incollection{coll1,
+  author    = {Martin, Anne},
+  title     = {A chapter in a collection},
+  booktitle = {Collected Works on CFD},
+  editor    = {Brown, Bob},
+  publisher = {Test Press},
+  pages     = {1--20},
+  year      = {2019},
+}
+
+@manual{man1,
+  title        = {Simcenter STAR-CCM+ User Guide},
+  organization = {Siemens},
+  year         = {2025},
+}
+
+@thesis{thesis1,
+  author      = {Lindsey, Alexandre},
+  title       = {A thesis on wind screens},
+  type        = {Master's thesis},
+  institution = {Université de Liège},
+  year        = {2026},
+}
+
+@inreference{ref1,
+  title     = {Reynolds number},
+  booktitle = {Encyclopedia of Physics},
+  year      = {2010},
+}
+
+@report{rep1,
+  author      = {Maskell, E. C.},
+  title       = {A theory of the blockage effects on bluff bodies},
+  type        = {Reports and Memoranda},
+  number      = {3400},
+  institution = {Aeronautical Research Council},
+  year        = {1963},
+}
+
+@online{web1,
+  author  = {{Windfinder}},
+  title   = {Wind statistics},
+  url     = {https://example.org/wind},
+  urldate = {2026-10-01},
+  year    = {2026},
+}
+
+@patent{pat1,
+  author = {Delvoie, Roméo},
+  title  = {Adjustable wind screen},
+  number = {BE123456},
+  year   = {2025},
+}
+
+@misc{misc1,
+  author = {Anonymous},
+  title  = {Course notes (misc entry, goes to the unnamed block)},
+  year   = {2024},
+}
+
+@inproceedings{proc1,
+  author    = {Kármán, Theodore von},
+  title     = {A conference paper},
+  booktitle = {Proceedings of a Test Conference},
+  year      = {1911},
+}

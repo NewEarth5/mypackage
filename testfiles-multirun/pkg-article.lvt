@@ -1,0 +1,28 @@
+% pkg-article: the package used on its own with the article class: no
+% sectioning commands of the class, so floats are numbered 1, 2, ...
+\input{regression-test}
+\documentclass{article}
+\usepackage{mypackage}
+\input{mytest-helpers}
+\begin{document}
+\START
+\section{A standard section}
+\myfigure{wide.png}{A figure.}
+\begin{mytable}{c}{t}{A table.}
+  x \\
+\end{mytable}
+\begin{myequation}[e]{An equation}
+  a = b
+\end{myequation}
+\begin{mysub}{grp}{Group.}
+  \mysubfigure{wide.png}[A]{0.4}
+  \mysubfigure{tall.png}[B]{0.4}
+\end{mysub}
+\SHOWTHE
+\SHOWFLAGS
+\SHOWREF{fig:wide}\SHOWREF{tab:t}\SHOWREF{eq:e}\SHOWREF{fig:grp:b}
+\TEST{References}{%
+  \SHOWTEXT{\myref{fig:wide}}%
+  \SHOWTEXT{\myseeref{tab:t}}%
+}
+\end{document}

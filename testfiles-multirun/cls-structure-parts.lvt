@@ -1,0 +1,42 @@
+% cls-structure-parts: full hierarchy part > chapter > section > subsection
+% > subsubsection, with the keys number=, name=, label= and the starred
+% (unnumbered, not in the TOC) forms.  Checks numbering, labels, anchors
+% and the TOC file.
+\input{regression-test}
+\documentclass[toc={depth=4}]{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\SHOWLIST{mytoc}
+\mytableofcontents
+\mypart{First part}[label=p1]
+\mychapter{First chapter}[label=c1]
+\mysection{First section}[label=s1]
+\mysubsection{First subsection}[label=ss1]
+\mysubsubsection{First subsubsection}[label=sss1]
+\SHOWCOUNTERS
+\SHOWTHE
+\myfigure{wide.png}{A figure.}
+\mysubsubsection*{Unnumbered subsubsection}
+\mysubsubsection{Second subsubsection}
+\mysubsection{Second subsection}
+\SHOWTHE
+\mysection{Second section}
+\mysection*{Unnumbered section}
+\mychapter{Second chapter}[label=c2]
+\SHOWTHE
+\myfigure{tall.png}{Figure numbering restarts in each chapter.}
+\mychapter{Forced number}[number=7, label=c7]
+\mychapter*{Unnumbered chapter}
+\mypart{Second part}[name=Book, label=p2]
+\mychapter{Chapter of the second part}[label=c21]
+\SHOWTHE
+\mypart*{Unnumbered part}
+\mypart{Forced part number}[number=5, label=p5]
+\SHOWFLAGS
+\SHOWCOUNTERS
+\SHOWREF{part:p1}\SHOWREF{chap:c1}\SHOWREF{sec:s1}\SHOWREF{subsec:ss1}
+\SHOWREF{subsubsec:sss1}\SHOWREF{chap:c2}\SHOWREF{chap:c7}
+\SHOWREF{part:p2}\SHOWREF{chap:c21}\SHOWREF{part:p5}
+\SHOWREF{fig:wide}\SHOWREF{fig:tall}
+\end{document}

@@ -1,0 +1,46 @@
+% pkg-includeprogram: argument handling of \myincludeprogram.  The tcolorbox
+% listing command it delegates to is replaced by a spy that logs the
+% arguments it receives, so the test does not depend on Pygments' output.
+% A last test typesets real listings (minted) to check that nothing breaks.
+\input{regression-test}
+\documentclass{article}
+\usepackage[paths={code=code/}]{mypackage}
+\input{mytest-helpers}
+\makeatletter
+\let\REALtcb\mytcbincludeprogram
+\NewDocumentCommand\SPYtcb{O{} m m m m m m}{%
+  \TYPE{listing: file=#2, lang=#3, bg=#4, frame=#5, numwidth=#6,
+    numbg=#7, minted=[\detokenize{#1}]}}
+\begin{document}
+\START
+\TEST{Defaults, 8-line file (1 digit) and 121-line file (3 digits)}{%
+  \let\mytcbincludeprogram\SPYtcb
+  \myincludeprogram{hello.py}{python}%
+  \myincludeprogram{long.c}{c}%
+}
+\TEST{Colour keys}{%
+  \let\mytcbincludeprogram\SPYtcb
+  \myincludeprogram[bgcol=white, framecol=blue, numcol=red, numbgcol=gray]%
+    {short.c}{c}%
+}
+\TEST{Options do not leak into the next call}{%
+  \let\mytcbincludeprogram\SPYtcb
+  \myincludeprogram[bgcol=white, numwidth=9mm]{short.c}{c}%
+  \myincludeprogram{short.c}{c}%
+}
+\TEST{Explicit numwidth}{%
+  \let\mytcbincludeprogram\SPYtcb
+  \myincludeprogram[numwidth=1cm]{long.c}{c}%
+}
+\TEST{minted options; lastline sets the digit count}{%
+  \let\mytcbincludeprogram\SPYtcb
+  \myincludeprogram[minted={firstline=2, lastline=9}]{long.c}{c}%
+  \myincludeprogram[minted={firstline=1, lastline=120}]{long.c}{c}%
+}
+\TEST{Real listings are typeset without errors}{%
+  \setbox0\vbox{\hsize=\textwidth
+    \myincludeprogram{hello.py}{python}%
+    \myincludeprogram[minted={lastline=3}]{short.c}{c}}%
+  \TYPE{box height > 0: \ifdim\ht0>0pt yes\else no\fi}%
+}
+\end{document}

@@ -1,0 +1,14 @@
+% pkg-options-paths: the paths={...} sub-options.
+\input{regression-test}
+\documentclass{article}
+\usepackage[paths={images=img/, code=src/code/, sources=refs/main.bib}]{mypackage}
+\input{mytest-helpers}
+\makeatletter
+\begin{document}
+\START
+\TEST{Paths given as keys}{%
+  \SHOWOPT\mypackage@paths@images
+  \SHOWOPT\mypackage@paths@code
+  \SHOWOPT\mypackage@paths@sources
+}
+\end{document}

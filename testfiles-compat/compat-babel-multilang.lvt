@@ -1,0 +1,17 @@
+% compat-babel-multilang: several languages through the class option
+% (the last one is the main language) and switching inside the document.
+% The package words must follow \selectlanguage.
+\input{regression-test}
+\documentclass[text={lang={english,ngerman,french}}]{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\TEST{Main language (last given)}{\TYPE{\languagename}\SHOWNAMES}
+\TEST{Switch to English}{\selectlanguage{english}\TYPE{\languagename}\SHOWNAMES}
+\TEST{Switch to German}{\selectlanguage{ngerman}\TYPE{\languagename}\SHOWNAMES}
+\TEST{otherlanguage environment}{%
+  \begin{otherlanguage}{english}\TYPE{\languagename: \myequationname,
+    \myfigurename}\end{otherlanguage}%
+  \TYPE{\languagename: \myequationname, \myfigurename}%
+}
+\end{document}

@@ -1,0 +1,31 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+============================================================
+TEST 1: Sub-option values
+============================================================
+OPT \myreport@text@fontsize=[12pt]
+OPT \myreport@text@fontfamily=[lmr]
+OPT \myreport@text@lang=[french]
+OPT \mypackage@lang=[french]
+============================================================
+============================================================
+TEST 2: Effect
+============================================================
+size: 12pt; family: lmr; language: french
+NAMES-1: contents=[Table des mati\`eres] lof=[Liste des figures] lot=[Liste des tables] bib=[Bibliographie] abstract=[R\'esum\'e] chapter=[Chapitre] part=[Partie] figure=[Figure] table=[Table]
+NAMES-2: equation=[^^c3^^89quation] acyear=[Ann^^c3^^a9e acad^^c3^^a9mique] books=[Livres] articles=[Articles] collections=[Collections] manuals=[Manuels] theses=[Th^^c3^^a8ses] references=[R^^c3^^a9f^^c3^^a9rences] reports=[Rapports] websites=[Sites Web] patents=[Brevets]
+NAMES-3: program=[Programme] lop=[Liste des programmes] loe=[Liste d'^^c3^^a9quations] introduction=[Introduction] section=[Section] subsection=[Sous-section] subsubsection=[Sous-sous-section] annex=[Annexe] see=[voir]
+NAMES-4: professor=[Professeur|Professeure|Professeurs|Professeures] assistant=[Assistant|Assistante|Assistants|Assistantes] author=[Auteur|Autrice|Auteurs|Autrices]
+============================================================
+(cls-options-text.aux)
+LaTeX Warning: There were undefined references.
+Package rerunfilecheck Warning: File `cls-options-text.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+Package rerunfilecheck Info: Checksums for `cls-options-text.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                cls-options-text
+(biblatex)                and rerun LaTeX afterwards.
+Package logreq Info: Writing requests to 'cls-options-text.run.xml'.

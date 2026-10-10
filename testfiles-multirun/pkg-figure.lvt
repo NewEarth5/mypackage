@@ -1,0 +1,19 @@
+% pkg-figure: \myfigure and \myfigure* -- sizes, short captions, placement,
+% automatic label fig:<file name>, list of figures.
+\input{regression-test}
+\documentclass{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\SHOWLIST{mylof}
+\mylistoffigures
+\mychapter{Figures}
+\myfigure{wide.png}{Default size (height=0.2).}
+\myfigure[width=0.5]{tall.png}[Short caption.]{Long caption, with a comma. And a second sentence.}
+\myfigure[height=0.1, width=0.3]{square.jpg}{Both sizes given.}[t]
+\myfigure*{plot.svg}{Starred: not in the list of figures.}
+\myfigure{sig.jpg}{Caption with \textbf{bold} and math $x^2$. Second sentence.}
+\SHOWCOUNTERS
+\SHOWREF{fig:wide}\SHOWREF{fig:tall}\SHOWREF{fig:square}\SHOWREF{fig:plot}
+\SHOWREF{fig:sig}
+\end{document}

@@ -1,0 +1,27 @@
+% eng-class-basic: a small but complete document (structure, floats,
+% program, references, title page) with LuaLaTeX and XeLaTeX.
+\input{regression-test}
+\documentclass[paths={code=code/}]{myreport}
+\input{mytest-helpers}
+\mytitle{Title}\myaddauthor{Author}{Name}[id]
+\begin{document}
+\START
+\TYPE{engine: \ifdefined\directlua LuaTeX\else\ifdefined\XeTeXversion XeTeX\else pdfTeX\fi\fi}
+\makeatletter\TYPE{font encoding: \f@encoding; family: \f@family}\makeatother
+\mymaketitle
+\mytableofcontents
+\mychapter{Chapter}[label=c]
+Text with accents: é à ü ß œ.
+\myfigure{wide.png}{Figure.}
+\myfigure{plot.svg}{SVG figure.}
+\begin{mytable}{cc}{t}{Table.}
+  a & b \\
+\end{mytable}
+\begin{myequation}[e]{Equation}
+  a = b
+\end{myequation}
+\myprogram{hello}{hello.py}{python}{Program.}
+\SHOWREF{chap:c}\SHOWREF{fig:wide}\SHOWREF{fig:plot}\SHOWREF{tab:t}
+\SHOWREF{eq:e}\SHOWREF{code:py:hello}
+\TEST{Typeset text}{\SHOWTEXT{é à ü ß œ}}
+\end{document}

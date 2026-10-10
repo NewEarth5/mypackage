@@ -1,0 +1,19 @@
+% cls-annex-chapters: annexes when chapters are the highest level.
+\input{regression-test}
+\documentclass[toc={depth=1, annexdepth=0}]{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\SHOWLIST{mytoc}
+\mytableofcontents
+\mychapter{Main}[label=m]
+\mysection{Main section}
+\begin{myannex}
+\mychapter{Annex one}[label=a1]
+\mysection{Annex section, not in the TOC (annexdepth=0)}[label=as]
+\SHOWTHE
+\mychapter{Annex two}[label=a2]
+\SHOWTHE
+\end{myannex}
+\SHOWREF{chap:m}\SHOWREF{ann:chap:a1}\SHOWREF{ann:sec:as}\SHOWREF{ann:chap:a2}
+\end{document}

@@ -1,0 +1,483 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+Package hyperref Info: bookmark level for unknown mypart defaults to 0 on input line ....
+Completed box being shipped out [1]
+\vbox(731.64497+0.0)x454.106
+.\hbox(0.0+0.0)x0.0
+.\hbox(0.0+0.0)x0.0
+..\kern -72.26999
+..\vbox(0.0+0.0)x0.0, glue set 72.26999fil
+...\kern -72.26999
+...\hbox(0.0+0.0)x0.0
+....\hbox(0.0+0.0)x0.0, glue set 72.26999fil, shifted 72.26999
+.....\kern -72.26999
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+....\glue 0.0 plus 1.0fil minus 1.0fil
+...\glue 0.0 plus 1.0fil minus 1.0fil
+.\vbox(0.0+0.0)x0.0, glue set 39.14185fil
+..\kern 0.0
+..\kern -38.1381
+..\kern -1.00374
+..\hbox(0.0+0.0)x0.0, glue set 2.14185fil
+...\kern 0.0
+...\kern -1.1381
+...\kern -1.00374
+...\pdfdest name{page.1} xyz
+...\penalty 10000
+...\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\glue(\lineskip) 0.0
+.\vbox(731.64497+0.0)x454.106
+..\glue -38.1381
+..\vbox(769.78308+0.0)x455.24411, shifted -1.1381
+...\vbox(12.0+0.0)x455.24411, glue set 12.0fil
+....\glue 0.0 plus 1.0fil
+....\hbox(0.0+0.0)x455.24411
+.....\pdfcolorstack 0 push {0 g 0 G}
+.....\hbox(0.0+0.0)x455.24411
+.....\pdfcolorstack 0 pop
+...\glue 25.0
+...\glue(\lineskip) 0.0
+...\vbox(702.78308+0.0)x455.24411, glue set 583.84283fil
+....\write-{}
+....\write1{\noexpand \providecommand \noexpand \oddpage@label [2]{}}
+....\pdfcolorstack 0 push {0 g 0 G}
+....\write1{\babel@aux{british}{}}
+....\pdfdest name{Doc-Start} xyz
+....\write-{}
+....\glue(\topskip) 0.0
+....\hbox(16.5626+0.0)x455.24411, glue set 189.40227fil
+.....\glue(\leftskip) 0.0 plus 1.0fil
+.....\hbox(0.0+0.0)x0.0
+.....\T1/cmr/bx/it/24.88 P
+.....\T1/cmr/bx/it/24.88 a
+.....\T1/cmr/bx/it/24.88 r
+.....\T1/cmr/bx/it/24.88 t
+.....\glue 9.70598 plus 4.13148 minus 2.75432
+.....\T1/cmr/bx/it/24.88 1
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0
+.....\glue(\rightskip) 0.0 plus 1.0fil
+....\glue 0.0 plus -1.0
+....\glue -13.83748
+....\glue 0.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\glue(\baselineskip) 29.0
+....\hbox(1.0+0.0)x455.24411
+.....\glue(\leftskip) 0.0 plus 1.0fil
+.....\hbox(0.0+0.0)x0.0
+.....\hbox(1.0+0.0)x455.24411
+......\rule(1.0+0.0)x455.24411
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0
+.....\glue(\rightskip) 0.0 plus 1.0fil
+....\glue 0.0 plus -1.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\glue(\baselineskip) 13.4374
+....\hbox(16.5626+0.0)x455.24411, glue set 173.43321fil
+.....\glue(\leftskip) 0.0 plus 1.0fil
+.....\hbox(0.0+0.0)x0.0
+.....\T1/cmr/bx/it/24.88 P
+.....\T1/cmr/bx/it/24.88 a
+.....\T1/cmr/bx/it/24.88 r
+.....\T1/cmr/bx/it/24.88 t
+.....\glue 9.70598 plus 4.13148 minus 2.75432
+.....\T1/cmr/bx/it/24.88 t
+.....\T1/cmr/bx/it/24.88 i
+.....\T1/cmr/bx/it/24.88 t
+.....\T1/cmr/bx/it/24.88 l
+.....\T1/cmr/bx/it/24.88 e
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0
+.....\glue(\rightskip) 0.0 plus 1.0fil
+....\glue 0.0 plus -1.0
+....\glue -13.83748
+....\glue 0.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\glue(\baselineskip) 29.7
+....\hbox(0.3+0.0)x455.24411
+.....\glue(\leftskip) 0.0 plus 1.0fil
+.....\hbox(0.0+0.0)x0.0
+.....\hbox(0.3+0.0)x455.24411
+......\rule(0.3+0.0)x455.24411
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0
+.....\glue(\rightskip) 0.0 plus 1.0fil
+....\glue 0.0
+....\glue 0.0
+....\pdfdest name{mypart.1} xyz
+....\penalty 10000
+....\write1{\@writefile{mytoc}{\protect \contentsline {mypart}{\mypartbox [l]{Part 1}\protect \hspace  {1em}Part title}{\thepage }{mypart.1}\protected@file@percent }}
+....\glue 39.99023
+....\glue 0.0
+....\glue 0.0 plus 1.0fil
+....\glue 0.0
+....\glue 0.0 plus 0.0001fil
+...\glue(\baselineskip) 23.5849
+...\hbox(6.4151+0.0)x455.24411
+....\pdfcolorstack 0 push {0 g 0 G}
+....\hbox(6.4151+0.0)x455.24411, glue set 225.12267fil
+.....\glue 0.0 plus 1.0fil
+.....\T1/cmr/m/n/10 1
+.....\glue 0.0 plus 1.0fil
+....\pdfcolorstack 0 pop
+.\kern 0.0
+.\kern 0.0
+Non-PDF special ignored!
+<special> header=psfrag.pro
+Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
+Package hyperref Info: bookmark level for unknown mysection defaults to 0 on input line ....
+Completed box being shipped out [2]
+\vbox(731.64497+0.0)x454.106
+.\hbox(0.0+0.0)x0.0
+..\kern -72.26999
+..\vbox(0.0+0.0)x0.0, glue set 72.26999fil
+...\kern -72.26999
+...\hbox(0.0+0.0)x0.0
+....\hbox(0.0+0.0)x0.0, glue set 72.26999fil, shifted 72.26999
+.....\kern -72.26999
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+....\glue 0.0 plus 1.0fil minus 1.0fil
+...\glue 0.0 plus 1.0fil minus 1.0fil
+.\vbox(0.0+0.0)x0.0, glue set 39.14185fil
+..\kern 0.0
+..\kern -38.1381
+..\kern -1.00374
+..\hbox(0.0+0.0)x0.0, glue set 2.14185fil
+...\kern 0.0
+...\kern -1.1381
+...\kern -1.00374
+...\pdfdest name{page.2} xyz
+...\penalty 10000
+...\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\glue(\lineskip) 0.0
+.\vbox(731.64497+0.0)x454.106
+..\glue -38.1381
+..\vbox(769.78308+0.0)x455.24411, shifted -1.1381
+...\vbox(12.0+0.0)x455.24411, glue set 12.0fil
+....\glue 0.0 plus 1.0fil
+....\hbox(0.0+0.0)x455.24411
+.....\pdfcolorstack 0 push {0 g 0 G}
+.....\hbox(0.0+0.0)x455.24411
+.....\pdfcolorstack 0 pop
+...\glue 25.0
+...\glue(\lineskip) 0.0
+...\vbox(702.78308+0.0)x455.24411, glue set 510.80132fil
+....\write-{}
+....\glue(\topskip) 0.0
+....\hbox(11.92508+3.35919)x455.24411, glue set 306.52655fil
+.....\hbox(0.0+0.0)x0.0
+.....\T1/cmr/bx/n/17.28 1
+.....\T1/cmr/bx/n/17.28 .
+.....\T1/cmr/bx/n/17.28 1
+.....\glue 18.64352
+.....\T1/cmr/bx/n/17.28 C
+.....\T1/cmr/bx/n/17.28 h
+.....\T1/cmr/bx/n/17.28 a
+.....\T1/cmr/bx/n/17.28 p
+.....\T1/cmr/bx/n/17.28 t
+.....\T1/cmr/bx/n/17.28 e
+.....\T1/cmr/bx/n/17.28 r
+.....\glue 6.21451 plus 3.10725 minus 2.0715
+.....\T1/cmr/bx/n/17.28 t
+.....\T1/cmr/bx/n/17.28 i
+.....\T1/cmr/bx/n/17.28 t
+.....\T1/cmr/bx/n/17.28 l
+.....\T1/cmr/bx/n/17.28 e
+.....\penalty 10000
+.....\glue 0.0 plus 1.0fil
+.....\penalty -10000
+.....\glue(\rightskip) 0.0
+....\penalty 300
+....\glue(\baselineskip) 18.64081
+....\hbox(0.0+0.0)x455.24411, glue set 455.24411fil
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\glue -9.32176
+....\glue 0.0
+....\pdfdest name{mychapter.1.1} xyz
+....\penalty 10000
+....\write1{\@writefile{mytoc}{\protect \contentsline {mychapter}{\mychapterbox [l]{1.1}\protect \hspace  {1em}Chapter title}{\thepage }{mychapter.1.1}\protected@file@percent }}
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\glue(\baselineskip) 5.1128
+....\hbox(6.8872+0.0)x455.24411, glue set 413.02853fil
+.....\hbox(0.0+0.0)x15.0
+.....\T1/cmr/m/n/10 T
+.....\kern-0.83313
+.....\T1/cmr/m/n/10 e
+.....\T1/cmr/m/n/10 x
+.....\T1/cmr/m/n/10 t
+.....\T1/cmr/m/n/10 .
+.....\glue 4.44336 plus 4.99878 minus 0.37027
+.....\penalty 10000
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\glue 39.99023
+....\glue 0.0
+....\glue -29.99268
+....\glue 0.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\glue(\baselineskip) 8.06242
+....\hbox(9.93758+0.0)x455.24411, glue set 322.95125fil
+.....\hbox(0.0+0.0)x0.0
+.....\T1/cmr/bx/n/14.4 1
+.....\T1/cmr/bx/n/14.4 .
+.....\T1/cmr/bx/n/14.4 1
+.....\T1/cmr/bx/n/14.4 .
+.....\T1/cmr/bx/n/14.4 1
+.....\glue 15.83623
+.....\T1/cmr/bx/n/14.4 S
+.....\T1/cmr/bx/n/14.4 e
+.....\T1/cmr/bx/n/14.4 c
+.....\T1/cmr/bx/n/14.4 t
+.....\T1/cmr/bx/n/14.4 i
+.....\T1/cmr/bx/n/14.4 o
+.....\T1/cmr/bx/n/14.4 n
+.....\glue 5.27875 plus 2.63936 minus 1.75958
+.....\T1/cmr/bx/n/14.4 t
+.....\T1/cmr/bx/n/14.4 i
+.....\T1/cmr/bx/n/14.4 t
+.....\T1/cmr/bx/n/14.4 l
+.....\T1/cmr/bx/n/14.4 e
+.....\penalty 10000
+.....\glue 0.0 plus 1.0fil
+.....\penalty -10000
+.....\glue(\rightskip) 0.0
+....\penalty 300
+....\glue(\baselineskip) 18.0
+....\hbox(0.0+0.0)x455.24411, glue set 455.24411fil
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\glue -15.83623
+....\glue 0.0
+....\pdfdest name{mysection.1.1.1} xyz
+....\penalty 10000
+....\write1{\@writefile{mytoc}{\protect \contentsline {mysection}{\mysectionbox [l]{1.1.1}\protect \hspace  {1em}Section title}{\thepage }{mysection.1.1.1}\protected@file@percent }}
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\glue(\baselineskip) 5.1128
+....\hbox(6.8872+0.0)x455.24411, glue set 413.02853fil
+.....\hbox(0.0+0.0)x15.0
+.....\T1/cmr/m/n/10 T
+.....\kern-0.83313
+.....\T1/cmr/m/n/10 e
+.....\T1/cmr/m/n/10 x
+.....\T1/cmr/m/n/10 t
+.....\T1/cmr/m/n/10 .
+.....\glue 4.44336 plus 4.99878 minus 0.37027
+.....\penalty 10000
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\glue 39.99023
+....\glue 0.0
+....\glue -29.99268
+....\glue 0.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\glue(\baselineskip) 5.71869
+....\hbox(8.28131+0.0)x455.24411, glue set 311.63477fil
+.....\hbox(0.0+0.0)x0.0
+.....\T1/cmr/bx/n/12 1
+.....\T1/cmr/bx/n/12 .
+.....\T1/cmr/bx/n/12 1
+.....\T1/cmr/bx/n/12 .
+.....\T1/cmr/bx/n/12 1
+.....\T1/cmr/bx/n/12 .
+.....\T1/cmr/bx/n/12 1
+.....\glue 13.4967
+.....\T1/cmr/bx/n/12 S
+.....\T1/cmr/bx/n/12 u
+.....\T1/cmr/bx/n/12 b
+.....\T1/cmr/bx/n/12 s
+.....\T1/cmr/bx/n/12 e
+.....\T1/cmr/bx/n/12 c
+.....\T1/cmr/bx/n/12 t
+.....\T1/cmr/bx/n/12 i
+.....\T1/cmr/bx/n/12 o
+.....\T1/cmr/bx/n/12 n
+.....\glue 4.4989 plus 2.24945 minus 1.49963
+.....\T1/cmr/bx/n/12 t
+.....\T1/cmr/bx/n/12 i
+.....\T1/cmr/bx/n/12 t
+.....\T1/cmr/bx/n/12 l
+.....\T1/cmr/bx/n/12 e
+.....\penalty 10000
+.....\glue 0.0 plus 1.0fil
+.....\penalty -10000
+.....\glue(\rightskip) 0.0
+....\penalty 300
+....\glue(\baselineskip) 14.0
+....\hbox(0.0+0.0)x455.24411, glue set 455.24411fil
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\glue -13.4967
+....\glue 0.0
+....\pdfdest name{mysubsection.1.1.1.1} xyz
+....\penalty 10000
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\glue(\baselineskip) 5.1128
+....\hbox(6.8872+0.0)x455.24411, glue set 413.02853fil
+.....\hbox(0.0+0.0)x15.0
+.....\T1/cmr/m/n/10 T
+.....\kern-0.83313
+.....\T1/cmr/m/n/10 e
+.....\T1/cmr/m/n/10 x
+.....\T1/cmr/m/n/10 t
+.....\T1/cmr/m/n/10 .
+.....\glue 4.44336 plus 4.99878 minus 0.37027
+.....\penalty 10000
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\glue 39.99023
+....\glue 0.0
+....\glue -29.99268
+....\glue 0.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\glue(\baselineskip) 5.0989
+....\hbox(6.9011+0.0)x455.24411, glue set 306.61096fil
+.....\hbox(0.0+0.0)x0.0
+.....\T1/cmr/bx/n/10 1
+.....\T1/cmr/bx/n/10 .
+.....\T1/cmr/bx/n/10 1
+.....\T1/cmr/bx/n/10 .
+.....\T1/cmr/bx/n/10 1
+.....\T1/cmr/bx/n/10 .
+.....\T1/cmr/bx/n/10 1
+.....\T1/cmr/bx/n/10 .
+.....\T1/cmr/bx/n/10 1
+.....\glue 11.4972
+.....\T1/cmr/bx/n/10 S
+.....\T1/cmr/bx/n/10 u
+.....\T1/cmr/bx/n/10 b
+.....\T1/cmr/bx/n/10 s
+.....\T1/cmr/bx/n/10 u
+.....\T1/cmr/bx/n/10 b
+.....\T1/cmr/bx/n/10 s
+.....\T1/cmr/bx/n/10 e
+.....\T1/cmr/bx/n/10 c
+.....\T1/cmr/bx/n/10 t
+.....\T1/cmr/bx/n/10 i
+.....\T1/cmr/bx/n/10 o
+.....\T1/cmr/bx/n/10 n
+.....\glue 3.8324 plus 1.9162 minus 1.27747
+.....\T1/cmr/bx/n/10 t
+.....\T1/cmr/bx/n/10 i
+.....\T1/cmr/bx/n/10 t
+.....\T1/cmr/bx/n/10 l
+.....\T1/cmr/bx/n/10 e
+.....\penalty 10000
+.....\glue 0.0 plus 1.0fil
+.....\penalty -10000
+.....\glue(\rightskip) 0.0
+....\penalty 300
+....\glue(\baselineskip) 12.0
+....\hbox(0.0+0.0)x455.24411, glue set 455.24411fil
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\glue -11.4972
+....\glue 0.0
+....\pdfdest name{mysubsubsection.1.1.1.1.1} xyz
+....\penalty 10000
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\glue(\baselineskip) 5.1128
+....\hbox(6.8872+0.0)x455.24411, glue set 413.02853fil
+.....\hbox(0.0+0.0)x15.0
+.....\T1/cmr/m/n/10 T
+.....\kern-0.83313
+.....\T1/cmr/m/n/10 e
+.....\T1/cmr/m/n/10 x
+.....\T1/cmr/m/n/10 t
+.....\T1/cmr/m/n/10 .
+.....\glue 4.44336 plus 4.99878 minus 0.37027
+.....\penalty 10000
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\glue 39.99023
+....\glue 0.0
+....\glue -29.99268
+....\glue 0.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\glue(\baselineskip) 8.06242
+....\hbox(9.93758+0.0)x455.24411, glue set 350.47884fil
+.....\hbox(0.0+0.0)x0.0
+.....\T1/cmr/bx/n/14.4 S
+.....\T1/cmr/bx/n/14.4 t
+.....\T1/cmr/bx/n/14.4 a
+.....\T1/cmr/bx/n/14.4 r
+.....\T1/cmr/bx/n/14.4 r
+.....\T1/cmr/bx/n/14.4 e
+.....\T1/cmr/bx/n/14.4 d
+.....\glue 5.27875 plus 2.63936 minus 1.75958
+.....\T1/cmr/bx/n/14.4 s
+.....\T1/cmr/bx/n/14.4 e
+.....\T1/cmr/bx/n/14.4 c
+.....\T1/cmr/bx/n/14.4 t
+.....\T1/cmr/bx/n/14.4 i
+.....\T1/cmr/bx/n/14.4 o
+.....\T1/cmr/bx/n/14.4 n
+.....\penalty 10000
+.....\glue 0.0 plus 1.0fil
+.....\penalty -10000
+.....\glue(\rightskip) 0.0
+....\penalty 300
+....\glue(\baselineskip) 18.0
+....\hbox(0.0+0.0)x455.24411, glue set 455.24411fil
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\glue -15.83623
+....\glue 0.0
+....\pdfdest name{mysection.1.1.1} xyz
+....\penalty 10000
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\glue(\baselineskip) 5.1128
+....\hbox(6.8872+0.0)x455.24411, glue set 417.4719fil
+.....\hbox(0.0+0.0)x15.0
+.....\T1/cmr/m/n/10 T
+.....\kern-0.83313
+.....\T1/cmr/m/n/10 e
+.....\T1/cmr/m/n/10 x
+.....\T1/cmr/m/n/10 t
+.....\T1/cmr/m/n/10 .
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\glue 0.0 plus 1.0fil
+....\glue 0.0
+....\glue 0.0 plus 0.0001fil
+...\glue(\baselineskip) 23.5849
+...\hbox(6.4151+0.0)x455.24411
+....\pdfcolorstack 0 push {0 g 0 G}
+....\hbox(6.4151+0.0)x455.24411, glue set 225.12267fil
+.....\glue 0.0 plus 1.0fil
+.....\T1/cmr/m/n/10 2
+.....\glue 0.0 plus 1.0fil
+....\pdfcolorstack 0 pop
+.\kern 0.0
+pdfTeX warning (ext4): destination with the same identifier (name{mysection.1.1.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l. ...\end{document}
+(cls-rendering-headings.aux)
+Package rerunfilecheck Info: File `cls-rendering-headings.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+Package logreq Info: Writing requests to 'cls-rendering-headings.run.xml'.

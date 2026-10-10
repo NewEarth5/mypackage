@@ -1,0 +1,39 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+============================================================
+TEST 1: Main language (last given)
+============================================================
+french
+NAMES-1: contents=[Table des mati\`eres] lof=[Liste des figures] lot=[Liste des tables] bib=[Bibliographie] abstract=[R\'esum\'e] chapter=[Chapitre] part=[Partie] figure=[Figure] table=[Table]
+NAMES-2: equation=[^^c3^^89quation] acyear=[Ann^^c3^^a9e acad^^c3^^a9mique] books=[Livres] articles=[Articles] collections=[Collections] manuals=[Manuels] theses=[Th^^c3^^a8ses] references=[R^^c3^^a9f^^c3^^a9rences] reports=[Rapports] websites=[Sites Web] patents=[Brevets]
+NAMES-3: program=[Programme] lop=[Liste des programmes] loe=[Liste d'^^c3^^a9quations] introduction=[Introduction] section=[Section] subsection=[Sous-section] subsubsection=[Sous-sous-section] annex=[Annexe] see=[voir]
+NAMES-4: professor=[Professeur|Professeure|Professeurs|Professeures] assistant=[Assistant|Assistante|Assistants|Assistantes] author=[Auteur|Autrice|Auteurs|Autrices]
+============================================================
+============================================================
+TEST 2: Switch to English
+============================================================
+english
+NAMES-1: contents=[Contents] lof=[List of Figures] lot=[List of Tables] bib=[Bibliography] abstract=[Abstract] chapter=[Chapter] part=[Part] figure=[Figure] table=[Table]
+NAMES-2: equation=[Equation] acyear=[Academic year] books=[Books] articles=[Articles] collections=[Collections] manuals=[Manuals] theses=[Theses] references=[References] reports=[Reports] websites=[Websites] patents=[Patents]
+NAMES-3: program=[Program] lop=[List of Programs] loe=[List of Equations] introduction=[Introduction] section=[Section] subsection=[Subsection] subsubsection=[Subsubsection] annex=[Annex] see=[see]
+NAMES-4: professor=[Professor|Professor|Professors|Professors] assistant=[Assistant|Assistant|Assistants|Assistants] author=[Author|Author|Authors|Authors]
+============================================================
+============================================================
+TEST 3: Switch to German
+============================================================
+ngerman
+NAMES-1: contents=[Inhaltsverzeichnis] lof=[Abbildungsverzeichnis] lot=[Tabellenverzeichnis] bib=[Literatur] abstract=[Zusammenfassung] chapter=[Kapitel] part=[Teil] figure=[Abbildung] table=[Tabelle]
+NAMES-2: equation=[Gleichung] acyear=[Akademisches Jahr] books=[B^^c3^^bccher] articles=[Artikel] collections=[Sammlungen] manuals=[Handb^^c3^^bccher] theses=[Abschlussarbeiten] references=[Referenzen] reports=[Berichte] websites=[Webseiten] patents=[Patente]
+NAMES-3: program=[Programm] lop=[Programmliste] loe=[Gleichungsverzeichnis] introduction=[Einleitung] section=[Abschnitt] subsection=[Unterabschnitt] subsubsection=[Unterunterabschnitt] annex=[Anhang] see=[siehe]
+NAMES-4: professor=[Professor|Professorin|Professoren|Professorinnen] assistant=[Assistent|Assistentin|Assistenten|Assistentinnen] author=[Autor|Autorin|Autoren|Autorinnen]
+============================================================
+============================================================
+TEST 4: otherlanguage environment
+============================================================
+english: Equation, Figure
+french: ^^c3^^89quation, Figure
+============================================================
+(compat-babel-multilang.aux)
+Package rerunfilecheck Info: File `compat-babel-multilang.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+Package logreq Info: Writing requests to 'compat-babel-multilang.run.xml'.

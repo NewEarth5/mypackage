@@ -1,0 +1,14 @@
+% compat-bookmark: the bookmark package (recommended by hyperref's
+% rerunfilecheck) with the class headings.
+\input{regression-test}
+\documentclass{myreport}
+\usepackage{bookmark}
+\input{mytest-helpers}
+\begin{document}
+\START
+\mytableofcontents
+\mypart{Part}
+\mychapter{Chapter}
+\mysection{Section}
+\makeatletter\TYPE{bookmark loaded: \ifdefined\bookmarksetup yes\else no\fi}\makeatother
+\end{document}

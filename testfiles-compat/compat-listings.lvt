@@ -1,0 +1,14 @@
+% compat-listings: listings next to minted (\myprogram).
+\input{regression-test}
+\documentclass[paths={code=code/}]{myreport}
+\usepackage{listings}
+\input{mytest-helpers}
+\begin{document}
+\START
+\mychapter{Code}
+\begin{lstlisting}[language=C]
+int main(void) { return 0; }
+\end{lstlisting}
+\myprogram{hello}{hello.py}{python}{Program.}
+\SHOWREF{code:py:hello}
+\end{document}

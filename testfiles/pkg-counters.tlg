@@ -1,0 +1,100 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+============================================================
+TEST 1: No level used
+============================================================
+THE: part=[] chapter=[] section=[] subsection=[] subsubsection=[] figure=[7] subfigure=[7.b] table=[8] program=[9] equation=[10]
+============================================================
+============================================================
+TEST 2: Only subsubsections
+============================================================
+THE: part=[] chapter=[] section=[] subsection=[] subsubsection=[6] figure=[6.7] subfigure=[6.7.b] table=[6.8] program=[6.9] equation=[6.10]
+============================================================
+============================================================
+TEST 3: Subsections and below
+============================================================
+THE: part=[] chapter=[] section=[] subsection=[5] subsubsection=[5.6] figure=[5.7] subfigure=[5.7.b] table=[5.8] program=[5.9] equation=[5.10]
+============================================================
+============================================================
+TEST 4: Sections and below
+============================================================
+THE: part=[] chapter=[] section=[4] subsection=[4.5] subsubsection=[4.5.6] figure=[4.7] subfigure=[4.7.b] table=[4.8] program=[4.9] equation=[4.10]
+============================================================
+============================================================
+TEST 5: Chapters and below
+============================================================
+THE: part=[] chapter=[3] section=[3.4] subsection=[3.4.5] subsubsection=[3.4.5.6] figure=[3.7] subfigure=[3.7.b] table=[3.8] program=[3.9] equation=[3.10]
+============================================================
+============================================================
+TEST 6: Parts and below
+============================================================
+THE: part=[2] chapter=[2.3] section=[2.3.4] subsection=[2.3.4.5] subsubsection=[2.3.4.5.6] figure=[2.3.7] subfigure=[2.3.7.b] table=[2.3.8] program=[2.3.9] equation=[2.3.10]
+============================================================
+============================================================
+TEST 7: Parts and chapters only
+============================================================
+THE: part=[2] chapter=[2.3] section=[2.3] subsection=[2.3] subsubsection=[2.3] figure=[2.3.7] subfigure=[2.3.7.b] table=[2.3.8] program=[2.3.9] equation=[2.3.10]
+============================================================
+============================================================
+TEST 8: Chapters only
+============================================================
+THE: part=[] chapter=[3] section=[3] subsection=[3] subsubsection=[3] figure=[3.7] subfigure=[3.7.b] table=[3.8] program=[3.9] equation=[3.10]
+============================================================
+============================================================
+TEST 9: Annex mode, parts used
+============================================================
+THE: part=[B] chapter=[B.3] section=[B.3] subsection=[B.3] subsubsection=[B.3] figure=[B.3.7] subfigure=[B.3.7.b] table=[B.3.8] program=[B.3.9] equation=[B.3.10]
+============================================================
+============================================================
+TEST 10: Annex mode, chapters used
+============================================================
+THE: part=[] chapter=[C] section=[C.4] subsection=[C.4] subsubsection=[C.4] figure=[C.7] subfigure=[C.7.b] table=[C.8] program=[C.9] equation=[C.10]
+============================================================
+============================================================
+TEST 11: Annex mode, sections used
+============================================================
+THE: part=[] chapter=[] section=[D] subsection=[D] subsubsection=[D] figure=[D.7] subfigure=[D.7.b] table=[D.8] program=[D.9] equation=[D.10]
+============================================================
+============================================================
+TEST 12: Counter resets
+============================================================
+COUNTERS: part=3, chapter=0, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=1 (1)
+COUNTERS: part=2, chapter=4, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=1 (1)
+COUNTERS: part=2, chapter=3, section=5, subsection=0, subsubsection=0, figure=7, subfigure=2, table=8, program=9, equation=10, annex=0, page=1 (1)
+COUNTERS: part=2, chapter=3, section=4, subsection=6, subsubsection=0, figure=7, subfigure=2, table=8, program=9, equation=10, annex=0, page=1 (1)
+COUNTERS: part=2, chapter=3, section=4, subsection=5, subsubsection=6, figure=8, subfigure=0, table=8, program=9, equation=10, annex=0, page=1 (1)
+============================================================
+============================================================
+TEST 13: myannex environment saves and restores the counters
+============================================================
+COUNTERS: part=2, chapter=3, section=4, subsection=5, subsubsection=6, figure=7, subfigure=2, table=8, program=9, equation=10, annex=0, page=1 (1)
+FLAGS: part=T, chapter=T, section=F, subsection=F, subsubsection=F, annex=T, bib=F, highest=mypart
+COUNTERS: part=0, chapter=3, section=4, subsection=5, subsubsection=6, figure=7, subfigure=2, table=8, program=9, equation=10, annex=0, page=1 (1)
+THE: part=[A] chapter=[A.0] section=[A.0] subsection=[A.0] subsubsection=[A.0] figure=[A.0.0] subfigure=[A.0.0.] table=[A.0.0] program=[A.0.0] equation=[A.0.0]
+FLAGS: part=T, chapter=T, section=F, subsection=F, subsubsection=F, annex=F, bib=F, highest=mypart
+COUNTERS: part=2, chapter=3, section=4, subsection=5, subsubsection=6, figure=0, subfigure=0, table=0, program=0, equation=0, annex=1, page=1 (1)
+second annex block continues at: A
+THE: part=[B] chapter=[B.0] section=[B.0] subsection=[B.0] subsubsection=[B.0] figure=[B.0.0] subfigure=[B.0.0.] table=[B.0.0] program=[B.0.0] equation=[B.0.0]
+============================================================
+============================================================
+TEST 14: Width boxes (\mypartbox and co.)
+============================================================
+part box: 4.99878pt
+chapter box: 12.77466pt
+section box: 20.55054pt
+subsection box: 28.32642pt
+subsubsection box: 36.1023pt
+counters unchanged: 1.1.1.1.1
+============================================================
+(pkg-counters.aux)
+LaTeX Warning: There were undefined references.
+Package rerunfilecheck Warning: File `pkg-counters.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+Package rerunfilecheck Info: Checksums for `pkg-counters.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                pkg-counters
+(biblatex)                and rerun LaTeX afterwards.
+Package logreq Info: Writing requests to 'pkg-counters.run.xml'.

@@ -1,0 +1,15 @@
+% cls-options-sectioning: the shorthand sectioning=<value> sets every level,
+% including the annex and the bibliography.
+\input{regression-test}
+\documentclass[sectioning=nobreak]{myreport}
+\input{mytest-helpers}
+\makeatletter
+\begin{document}
+\START
+\TEST{Shorthand}{%
+  \SHOWOPT\myreport@sect@part \SHOWOPT\myreport@sect@chapter
+  \SHOWOPT\myreport@sect@section \SHOWOPT\myreport@sect@subsection
+  \SHOWOPT\myreport@sect@subsubsection \SHOWOPT\myreport@sect@annex
+  \SHOWOPT\myreport@sect@bib
+}
+\end{document}

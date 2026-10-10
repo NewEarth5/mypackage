@@ -1,0 +1,18 @@
+% cls-structure-subsections: only subsections and subsubsections.
+\input{regression-test}
+\documentclass[toc={depth=3}]{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\SHOWLIST{mytoc}
+\mytableofcontents
+\mysubsection{First}[label=f]
+\mysubsubsection{First a}[label=fa]
+\myfigure{wide.png}{A figure.}
+\mysubsection{Second}[label=s]
+\myfigure{tall.png}{Another figure.}
+\SHOWTHE
+\SHOWFLAGS
+\SHOWREF{subsec:f}\SHOWREF{subsubsec:fa}\SHOWREF{subsec:s}
+\SHOWREF{fig:wide}\SHOWREF{fig:tall}
+\end{document}

@@ -1,0 +1,15 @@
+% compat-glossaries: glossaries (must be loaded after hyperref, which the
+% class loads).
+\input{regression-test}
+\documentclass{myreport}
+\usepackage[acronym]{glossaries}
+\makeglossaries
+\newacronym{cfd}{CFD}{computational fluid dynamics}
+\input{mytest-helpers}
+\begin{document}
+\START
+\mychapter{Acronyms}
+First use: \gls{cfd}. Second use: \gls{cfd}.
+\myfigure{wide.png}{A \gls{cfd} figure.}
+\SHOWREF{fig:wide}
+\end{document}

@@ -1,0 +1,33 @@
+% compat-reporttex: the preamble of report.tex (parskip, footmisc,
+% siunitx with French locale, csquotes, hhline and its \hhl helper).
+\input{regression-test}
+\documentclass[text={fontsize=11pt, lang=french},
+  position={figure=H, table=H, program=H, pseudocode=H}]{myreport}
+\usepackage[skip=5pt, indent=0pt]{parskip}
+\usepackage[bottom, hang]{footmisc}
+\usepackage[locale=FR, group-separator={}, retain-explicit-plus]{siunitx}
+\usepackage{csquotes}
+\usepackage{hhline}
+\newcommand{\hhl}[1]{\hhline{#1}\noalign{\global\advance\rownum by -2 }\the\everycr}
+\setlist[itemize, 1]{label=\textbullet}
+\sisetup{per-mode=symbol}
+\input{mytest-helpers}
+\begin{document}
+\START
+\mytableofcontents
+\mychapter{Chapitre}[label=c]
+Texte\footnote{Une note.} avec \enquote{guillemets} et \qty{14.4}{\meter\per\second}.
+\begin{itemize}\item Un \item Deux\end{itemize}
+\myfigure{wide.png}{Vitesse de \qty{0.1}{\meter\per\second}.}
+\begin{mytable}[firstrow=2]{|c|c|}{t}{Tableau avec \texttt{\string\hhl}.}
+  \hline A & B \\ \hhl{|=|=|} 1 & 2 \\ \hline 3 & 4 \\ \hline
+\end{mytable}
+\begin{myequation*}[re]
+  Re = \frac{\rho U L}{\mu} \approx \num{6316}
+\end{myequation*}
+\TEST{References in French}{%
+  \SHOWTEXT{\myseeref{fig:wide}}%
+  \SHOWTEXT{\myref{eq:re}}%
+}
+\SHOWREF{fig:wide}\SHOWREF{tab:t}\SHOWREF{eq:re}
+\end{document}

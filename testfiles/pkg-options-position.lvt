@@ -1,0 +1,15 @@
+% pkg-options-position: position=<value> applies to every float type.
+\input{regression-test}
+\documentclass{article}
+\usepackage[position=tbp]{mypackage}
+\input{mytest-helpers}
+\makeatletter
+\begin{document}
+\START
+\TEST{Shorthand position value}{%
+  \SHOWOPT\mypackage@pos@figure
+  \SHOWOPT\mypackage@pos@table
+  \SHOWOPT\mypackage@pos@program
+  \SHOWOPT\mypackage@pos@pseudocode
+}
+\end{document}

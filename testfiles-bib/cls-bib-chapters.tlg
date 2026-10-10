@@ -1,0 +1,70 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+-------- cls-bib-chapters.mytoc (start) ---------
+(cls-bib-chapters.mytoc) \contentsline {mychapter}{Contents}{I}{mycontents}%^^M
+\contentsline {mychapter}{\mychapterbox [l]{1}\hspace {1em}Chapter}{1}{mychapter.1}%^^M
+\contentsline {mysection}{\mysectionbox [l]{1.1}\hspace {1em}Section}{1}{mysection.1.1}%^^M
+\contentsline {mychapter}{Bibliography}{i}{Bibliography}%^^M
+\contentsline {mysection}{Articles}{i}{Articles}%^^M
+\contentsline {mysection}{Books}{i}{Books}%^^M
+\contentsline {mysection}{Collections}{i}{Collections}%^^M
+\contentsline {mysection}{Manuals}{i}{Manuals}%^^M
+\contentsline {mysection}{Theses}{i}{Theses}%^^M
+\contentsline {mysection}{References}{i}{References}%^^M
+\contentsline {mysection}{Reports}{i}{Reports}%^^M
+\contentsline {mysection}{Websites}{i}{Websites}%^^M
+\contentsline {mysection}{Patents}{i}{Patents}%^^M
+-------- cls-bib-chapters.mytoc (end) -----------
+(cls-bib-chapters.mytoc
+LaTeX Font Info:    Trying to load font information for U+msa on input line ....
+LaTeX Font Info:    Trying to load font information for U+msb on input line ....
+\tf@mytoc=\write...
+Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
+[1
+Non-PDF special ignored!
+<special> header=psfrag.pro
+]
+Package hyperref Info: bookmark level for unknown mysection defaults to 0 on input line ....
+COUNTERS: part=0, chapter=1, section=1, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=1 (1)
+[1
+]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line ....
+COUNTERS: part=0, chapter=1, section=1, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=1 (i)
+FLAGS: part=F, chapter=T, section=T, subsection=F, subsubsection=F, annex=F, bib=F, highest=mychapter
+REF bib:bib: number=[Bibliography] page=[i] anchor=[mybibliography]
+============================================================
+TEST 1: Citation numbers
+============================================================
+> \box...=
+\hbox(7.49817+2.49939)x36.65771
+.\T1/cmr/m/n/10 [
+.\pdfstartlink(*+*)x* attr{/Border[0 0 0]/H/I/C[0 1 0]} action goto name{cite.0@art1}
+.\pdfcolorstack 0 push {0 g 0 G}
+.\T1/cmr/m/n/10 3
+.\pdfcolorstack 0 pop
+.\pdfendlink
+.\T1/cmr/m/n/10 ]
+.\T1/cmr/m/n/10 [
+.\pdfstartlink(*+*)x* attr{/Border[0 0 0]/H/I/C[0 1 0]} action goto name{cite.0@misc1}
+.\pdfcolorstack 0 push {0 g 0 G}
+.\T1/cmr/m/n/10 1
+.\pdfcolorstack 0 pop
+.\pdfendlink
+.\T1/cmr/m/n/10 ]
+.\T1/cmr/m/n/10 [
+.\pdfstartlink(*+*)x* attr{/Border[0 0 0]/H/I/C[0 1 0]} action goto name{cite.0@pat1}
+.\pdfcolorstack 0 push {0 g 0 G}
+.\T1/cmr/m/n/10 1
+.\T1/cmr/m/n/10 1
+.\pdfcolorstack 0 pop
+.\pdfendlink
+.\T1/cmr/m/n/10 ]
+! OK.
+\SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
+l. ...}
+============================================================
+[1
+] (cls-bib-chapters.aux)
+Package rerunfilecheck Info: File `cls-bib-chapters.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+Package logreq Info: Writing requests to 'cls-bib-chapters.run.xml'.

@@ -1,0 +1,68 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+============================================================
+TEST 1: Language and words
+============================================================
+language=dutch
+NAMES-1: contents=[Inhoudsopgave] lof=[L\ij st van figuren] lot=[L\ij st van tabellen] bib=[Bibliografie] abstract=[Samenvatting] chapter=[Hoofdstuk] part=[Deel] figure=[Figuur] table=[Tabel]
+NAMES-2: equation=[Vergelijking] acyear=[Academiejaar] books=[Boeken] articles=[Artikelen] collections=[Verzamelwerken] manuals=[Handleidingen] theses=[Scripties] references=[Naslagwerken] reports=[Rapporten] websites=[Websites] patents=[Octrooien]
+NAMES-3: program=[Programma] lop=[Lijst van programma's] loe=[Lijst van vergelijkingen] introduction=[Inleiding] section=[Sectie] subsection=[Subsectie] subsubsection=[Subsubsectie] annex=[Bijlage] see=[zie]
+NAMES-4: professor=[Professor|Professor|Professoren|Professoren] assistant=[Assistent|Assistente|Assistenten|Assistentes] author=[Auteur|Auteur|Auteurs|Auteurs]
+============================================================
+============================================================
+TEST 2: Typeset words (glyphs and font encoding)
+============================================================
+> \box...=
+\hbox(6.8872+1.94397)x145.57556
+.\T1/cmr/m/n/10 F
+.\T1/cmr/m/n/10 i
+.\T1/cmr/m/n/10 g
+.\T1/cmr/m/n/10 u
+.\T1/cmr/m/n/10 u
+.\T1/cmr/m/n/10 r
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T1/cmr/m/n/10 T
+.\kern-0.83313
+.\T1/cmr/m/n/10 a
+.\T1/cmr/m/n/10 b
+.\kern0.27771
+.\T1/cmr/m/n/10 e
+.\T1/cmr/m/n/10 l
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T1/cmr/m/n/10 V
+.\kern-0.83313
+.\T1/cmr/m/n/10 e
+.\T1/cmr/m/n/10 r
+.\T1/cmr/m/n/10 g
+.\T1/cmr/m/n/10 e
+.\T1/cmr/m/n/10 l
+.\T1/cmr/m/n/10 i
+.\T1/cmr/m/n/10 j
+.\T1/cmr/m/n/10 k
+.\T1/cmr/m/n/10 i
+.\T1/cmr/m/n/10 n
+.\T1/cmr/m/n/10 g
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T1/cmr/m/n/10 B
+.\T1/cmr/m/n/10 i
+.\T1/cmr/m/n/10 j
+.\T1/cmr/m/n/10 l
+.\T1/cmr/m/n/10 a
+.\T1/cmr/m/n/10 g
+.\T1/cmr/m/n/10 e
+! OK.
+\SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
+l. ...}
+============================================================
+(pkg-lang-dutch.aux)
+LaTeX Warning: There were undefined references.
+Package rerunfilecheck Warning: File `pkg-lang-dutch.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+Package rerunfilecheck Info: Checksums for `pkg-lang-dutch.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                pkg-lang-dutch
+(biblatex)                and rerun LaTeX afterwards.
+Package logreq Info: Writing requests to 'pkg-lang-dutch.run.xml'.

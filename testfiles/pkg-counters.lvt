@@ -1,0 +1,70 @@
+% pkg-counters: the \themy... representations depend on which sectioning
+% levels the document uses (flags normally set through the .aux file) and
+% on the annex mode.  Here the flags are set by hand.
+\input{regression-test}
+\documentclass{article}
+\usepackage{mypackage}
+\input{mytest-helpers}
+\makeatletter
+\newcommand\SETALL{%
+  \setcounter{mypart}{2}\setcounter{mychapter}{3}\setcounter{mysection}{4}%
+  \setcounter{mysubsection}{5}\setcounter{mysubsubsection}{6}%
+  \setcounter{myfigure}{7}\setcounter{mysubfigure}{2}%
+  \setcounter{mytable}{8}\setcounter{myprogram}{9}\setcounter{myequation}{10}}
+\begin{document}
+\START
+\TEST{No level used}{\SETALL\SHOWTHE}
+\TEST{Only subsubsections}{\GlobalMysubsubsectionUsedtrue\SETALL\SHOWTHE}
+\TEST{Subsections and below}{\GlobalMysubsubsectionUsedtrue
+  \GlobalMysubsectionUsedtrue\SETALL\SHOWTHE}
+\TEST{Sections and below}{\GlobalMysubsubsectionUsedtrue
+  \GlobalMysubsectionUsedtrue\GlobalMysectionUsedtrue\SETALL\SHOWTHE}
+\TEST{Chapters and below}{\GlobalMysubsubsectionUsedtrue
+  \GlobalMysubsectionUsedtrue\GlobalMysectionUsedtrue
+  \GlobalMychapterUsedtrue\SETALL\SHOWTHE}
+\TEST{Parts and below}{\GlobalMysubsubsectionUsedtrue
+  \GlobalMysubsectionUsedtrue\GlobalMysectionUsedtrue
+  \GlobalMychapterUsedtrue\GlobalMypartUsedtrue\SETALL\SHOWTHE}
+\TEST{Parts and chapters only}{%
+  \GlobalMychapterUsedtrue\GlobalMypartUsedtrue\SETALL\SHOWTHE}
+\TEST{Chapters only}{\GlobalMychapterUsedtrue\SETALL\SHOWTHE}
+\TEST{Annex mode, parts used}{\GlobalMychapterUsedtrue\GlobalMypartUsedtrue
+  \MyannexUsedtrue\SETALL\SHOWTHE}
+\TEST{Annex mode, chapters used}{\GlobalMychapterUsedtrue
+  \GlobalMysectionUsedtrue\MyannexUsedtrue\SETALL\SHOWTHE}
+\TEST{Annex mode, sections used}{\GlobalMysectionUsedtrue
+  \MyannexUsedtrue\SETALL\SHOWTHE}
+\TEST{Counter resets}{%
+  \SETALL\stepcounter{mypart}\SHOWCOUNTERS
+  \SETALL\stepcounter{mychapter}\SHOWCOUNTERS
+  \SETALL\stepcounter{mysection}\SHOWCOUNTERS
+  \SETALL\stepcounter{mysubsection}\SHOWCOUNTERS
+  \SETALL\stepcounter{myfigure}\SHOWCOUNTERS
+}
+\TEST{myannex environment saves and restores the counters}{%
+  \GlobalMypartUsedtrue\GlobalMychapterUsedtrue
+  \SETALL\SHOWCOUNTERS
+  \begin{myannex}%
+    \SHOWFLAGS\SHOWCOUNTERS
+    \stepcounter{mypart}\SHOWTHE
+  \end{myannex}%
+  \SHOWFLAGS\SHOWCOUNTERS
+  \begin{myannex}%
+    \TYPE{second annex block continues at: \themypart}%
+    \stepcounter{mypart}\SHOWTHE
+  \end{myannex}%
+}
+\TEST{Width boxes (\mypartbox and co.)}{%
+  \GlobalMypartUsedtrue\GlobalMychapterUsedtrue\GlobalMysectionUsedtrue
+  \GlobalMysubsectionUsedtrue\GlobalMysubsubsectionUsedtrue
+  \setcounter{mypart}{1}\setcounter{mychapter}{1}\setcounter{mysection}{1}%
+  \setcounter{mysubsection}{1}\setcounter{mysubsubsection}{1}%
+  \setbox0\hbox{\mypartbox{\themypart}}\TYPE{part box: \the\wd0}%
+  \setbox0\hbox{\mychapterbox{\themychapter}}\TYPE{chapter box: \the\wd0}%
+  \setbox0\hbox{\mysectionbox{\themysection}}\TYPE{section box: \the\wd0}%
+  \setbox0\hbox{\mysubsectionbox{\themysubsection}}\TYPE{subsection box: \the\wd0}%
+  \setbox0\hbox{\mysubsubsectionbox{\themysubsubsection}}%
+    \TYPE{subsubsection box: \the\wd0}%
+  \TYPE{counters unchanged: \themysubsubsection}%
+}
+\end{document}

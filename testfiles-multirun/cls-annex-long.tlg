@@ -1,0 +1,18 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
+[1
+Non-PDF special ignored!
+<special> header=psfrag.pro
+]
+COUNTERS: part=0, chapter=1, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=1 (a)
+[1
+] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22] [23] [24] [25] [26] [27] [28] [29] [30]
+COUNTERS: part=0, chapter=1, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=31 (ae)
+REF ann:chap:long: number=[A] page=[a] anchor=[mychapter.A]
+REF ann:chap:after: number=[B] page=[ae] anchor=[mychapter.B]
+[31
+] (cls-annex-long.aux)
+Package rerunfilecheck Info: File `cls-annex-long.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+Package logreq Info: Writing requests to 'cls-annex-long.run.xml'.

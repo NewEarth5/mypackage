@@ -9,8 +9,8 @@
 \ProvidesClass{%                                   % Class information              %
   myreport%                                        % - Name                         %
 }[%                                                %                                %
-  2026/09/25 V0.6%                                 % - Description                  %
-  Custom Report Class by Alexandre Lindsey%        %                                %
+  2026/10/10 V0.6.5 %                              % - Version (the space before %  %
+  Custom Report Class by Alexandre Lindsey%        %   ends the version number)     %
 ]                                                  %                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% ESSENTIAL PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%%%
@@ -240,10 +240,11 @@
     }
   }
 \ExplSyntaxOff
-\AtBeginDocument{%
-  \fontfamily{\myreport@text@fontfamily}%
-  \selectfont%
-}
+\IfStrEq{\myreport@text@fontfamily}{cmr}{}{%       % Default family of the document %
+  \renewcommand{\familydefault}{%                  % (used by \normalfont, so also  %
+    \myreport@text@fontfamily%                     % in captions, footnotes, ...);  %
+  }%                                               % left alone for cmr, so that    %
+}                                                  % fontspec's main font works     %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% CUSTOM COMMANDS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -345,12 +346,12 @@
 \ExplSyntaxOn
   \NewDocumentCommand{\myaddprofessor}{s m m}{%
     \str_if_eq:VnTF\myprofessorval{-NoValue-}{%
-      \def\myprofessorval{\textsc{#2}\space#3}%
-      \def\myprofessortabval{\textsc{#2}\space#3}%
+      \gdef\myprofessorval{\textsc{#2}\space#3}%
+      \gdef\myprofessortabval{\textsc{#2}\space#3}%
       \IfBooleanTF{#1}{%
-        \def\myprofessorgenderval{f}%
+        \gdef\myprofessorgenderval{f}%
       }{%
-        \def\myprofessorgenderval{m}%
+        \gdef\myprofessorgenderval{m}%
       }%
     }{%
       \g@addto@macro\myprofessorval{\space\&\space\textsc{#2}\space#3}%
@@ -366,12 +367,12 @@
 \ExplSyntaxOn
   \NewDocumentCommand{\myaddassistant}{s m m}{%
     \str_if_eq:VnTF\myassistantval{-NoValue-}{%
-      \def\myassistantval{\textsc{#2}\space#3}%
-      \def\myassistanttabval{\textsc{#2}\space#3}%
+      \gdef\myassistantval{\textsc{#2}\space#3}%
+      \gdef\myassistanttabval{\textsc{#2}\space#3}%
       \IfBooleanTF{#1}{%
-        \def\myassistantgenderval{f}%
+        \gdef\myassistantgenderval{f}%
       }{%
-        \def\myassistantgenderval{m}%
+        \gdef\myassistantgenderval{m}%
       }%
     }{%
       \g@addto@macro\myassistantval{\space\&\space\textsc{#2}\space#3}%
@@ -410,14 +411,14 @@
 \ExplSyntaxOn
   \NewDocumentCommand{\myaddauthor}{s m m O{}}{%
     \str_if_eq:VnTF\myauthorval{-NoValue-}{%
-      \def\myauthorval{\textsc{#2}\space#3}%
-      \def\myauthortabval{\textsc{#2}\space#3}%
-      \def\myauthoridval{#4}%
-      \def\myauthoridtabval{#4}%
+      \gdef\myauthorval{\textsc{#2}\space#3}%
+      \gdef\myauthortabval{\textsc{#2}\space#3}%
+      \gdef\myauthoridval{#4}%
+      \gdef\myauthoridtabval{#4}%
       \IfBooleanTF{#1}{%
-        \def\myauthorgenderval{f}%
+        \gdef\myauthorgenderval{f}%
       }{%
-        \def\myauthorgenderval{m}%
+        \gdef\myauthorgenderval{m}%
       }%
     }{%
       \g@addto@macro\myauthorval{\space\&\space\textsc{#2}\space#3}%
@@ -433,6 +434,9 @@
   }
 \ExplSyntaxOff
 \ExplSyntaxOn
+  \seq_new:N{\l_mymaketitle_authname_seq}
+  \seq_new:N{\l_mymaketitle_authid_seq}
+  \seq_new:N{\l_mymaketitle_auth_seq}
   \NewDocumentCommand{\mymaketitle}{s O{1}}{%
     \hypersetup{pageanchor=false}%
     \IfBooleanF{#1}{%
@@ -628,17 +632,17 @@
           \par%
           \seq_set_split:NnV{\l_tmpa_seq}{&}{\myprofessortabval}%
           \seq_set_split:NnV{\l_tmpb_seq}{&}{\myassistanttabval}%
-          \seq_set_split:NnV{\l_tmpc_seq}{&}{\myauthortabval}%
-          \seq_set_split:NnV{\l_tmpd_seq}{&}{\myauthoridtabval}%
-          \seq_new:N{\l_auth_seq}%
-          \int_step_inline:nnn{1}{\int_eval:n{\seq_count:N{\l_tmpc_seq}}}{%
-            \tl_if_blank:eTF{\seq_item:Nn{\l_tmpd_seq}{##1}}{%
-              \seq_put_right:Nn{\l_auth_seq}{%
-                \seq_item:Nn{\l_tmpc_seq}{##1}%
+          \seq_set_split:NnV{\l_mymaketitle_authname_seq}{&}{\myauthortabval}%
+          \seq_set_split:NnV{\l_mymaketitle_authid_seq}{&}{\myauthoridtabval}%
+          \seq_clear:N{\l_mymaketitle_auth_seq}%
+          \int_step_inline:nnn{1}{\int_eval:n{\seq_count:N{\l_mymaketitle_authname_seq}}}{%
+            \tl_if_blank:eTF{\seq_item:Nn{\l_mymaketitle_authid_seq}{##1}}{%
+              \seq_put_right:Nn{\l_mymaketitle_auth_seq}{%
+                \seq_item:Nn{\l_mymaketitle_authname_seq}{##1}%
               }%
             }{%
-              \seq_put_right:Nn{\l_auth_seq}{%
-                \seq_item:Nn{\l_tmpc_seq}{##1}\space(\seq_item:Nn{\l_tmpd_seq}{##1})%
+              \seq_put_right:Nn{\l_mymaketitle_auth_seq}{%
+                \seq_item:Nn{\l_mymaketitle_authname_seq}{##1}\space(\seq_item:Nn{\l_mymaketitle_authid_seq}{##1})%
               }%
             }%
           }%
@@ -702,7 +706,7 @@
                 }%
               }%
               \str_if_eq:VnF{\myauthorval}{-NoValue-}{%
-                &\seq_use:Nn{\l_auth_seq}{\\&}%
+                &\seq_use:Nn{\l_mymaketitle_auth_seq}{\\&}%
               }%
             \end{tabular}%
           }%
@@ -888,9 +892,6 @@
       \bfseries\large%
       \addvspace{5pt}%
       \noindent%
-      \IfBooleanF{#1}{%
-        \addvspace{20pt}%
-      }%
       \setlength{\rightskip}{2em}%
       \setlength{\parfillskip}{-2em}%
       \hyperlink{\Hy@tocdestname}{%
@@ -922,9 +923,6 @@
       \bfseries\normalsize%
       \addvspace{5pt}%
       \noindent%
-      \IfBooleanF{#1}{%
-        \addvspace{10pt}%
-      }%
       \setlength{\rightskip}{2em}%
       \setlength{\parfillskip}{-2em}%
       \hyperlink{\Hy@tocdestname}{%
@@ -1226,7 +1224,7 @@
     }%
     \RegisterStructureUsage{Mypart}%
     \ifMyannexUsed%
-      \IfIsalphF{\newpage\pagenumbering{alph}}%
+      \IfIsalphF{\newpage\pagenumbering{myalph}}%
       \let\myheadingname\myannexname%
     \else%
       \IfIsarabicF{\newpage\pagenumbering{arabic}}%
@@ -1281,7 +1279,7 @@
     }%
     \RegisterStructureUsage{Mychapter}%
     \ifMyannexUsed%
-      \IfIsalphF{\newpage\pagenumbering{alph}}%
+      \IfIsalphF{\newpage\pagenumbering{myalph}}%
     \else%
       \IfIsarabicF{\newpage\pagenumbering{arabic}}%
     \fi%
@@ -1331,7 +1329,7 @@
     }%
     \RegisterStructureUsage{Mysection}%
     \ifMyannexUsed%
-      \IfIsalphF{\newpage\pagenumbering{alph}}%
+      \IfIsalphF{\newpage\pagenumbering{myalph}}%
     \else%
       \IfIsarabicF{\newpage\pagenumbering{arabic}}%
     \fi%
@@ -1391,7 +1389,7 @@
     }%
     \RegisterStructureUsage{Mysubsection}%
     \ifMyannexUsed%
-      \IfIsalphF{\newpage\pagenumbering{alph}}%
+      \IfIsalphF{\newpage\pagenumbering{myalph}}%
     \else%
       \IfIsarabicF{\newpage\pagenumbering{arabic}}%
     \fi%
@@ -1454,7 +1452,7 @@
     }%
     \RegisterStructureUsage{Mysubsubsection}%
     \ifMyannexUsed%
-      \IfIsalphF{\newpage\pagenumbering{alph}}%
+      \IfIsalphF{\newpage\pagenumbering{myalph}}%
     \else%
       \IfIsarabicF{\newpage\pagenumbering{arabic}}%
     \fi%
@@ -1689,6 +1687,7 @@
   \MybibUsedtrue%
   \clearpage%
   \IfIsRomanF{\newpage\pagenumbering{roman}}%
+  \myhyperanchor*{mybibliography}%
   \IfNoValueF{#2}{%
     \mylabel*{mybib}{bib:#2}%
   }%

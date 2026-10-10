@@ -1,0 +1,13 @@
+% cls-bib-bibdepth: toc={bibdepth=0}: the bibliography heading is in the
+% TOC, the category headings are not.
+\input{regression-test}
+\documentclass[toc={bibdepth=0}]{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\SHOWLIST{mytoc}
+\mytableofcontents
+\mychapter{Chapter}
+\cite{art1,book1,web1}
+\mybibliography
+\end{document}

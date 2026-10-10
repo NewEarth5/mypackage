@@ -1,0 +1,20 @@
+% cls-rendering-headings: the shipped pages for every heading level
+% (layout regression test).
+\input{regression-test}
+\documentclass{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\showoutput
+\mypart{Part title}
+\mychapter{Chapter title}
+Text.
+\mysection{Section title}
+Text.
+\mysubsection{Subsection title}
+Text.
+\mysubsubsection{Subsubsection title}
+Text.
+\mysection*{Starred section}
+Text.
+\end{document}

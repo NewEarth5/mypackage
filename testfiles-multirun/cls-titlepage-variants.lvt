@@ -1,0 +1,62 @@
+% cls-titlepage-variants: the values stored by the title-page commands,
+% the defaults of an empty title page, \mymaketitle* (keeps the
+% geometry), and calling \mymaketitle more than once.  The title-page
+% commands are used at top level (not inside \TEST groups), as in a
+% real document.
+\input{regression-test}
+\documentclass{myreport}
+\input{mytest-helpers}
+\makeatletter
+\begin{document}
+\START
+\TEST{Defaults}{%
+  \SHOWOPT\mycourseval \SHOWOPT\mycourseidval \SHOWOPT\mycoursestarval
+  \SHOWOPT\myacademicyearval \SHOWOPT\mydateval \SHOWOPT\mytitlestarval
+}
+\SEPARATOR
+\TYPE{Empty title page, both styles, twice each}
+\SEPARATOR
+\mymaketitle
+\mymaketitle[2]
+\mymaketitle[2]
+\mymaketitle
+\TYPE{done}
+\SEPARATOR
+\TYPE{Stored values}
+\SEPARATOR
+\mycourse{Course}[ID]
+\myaddprofessor*{Prof}{One}
+\myaddprofessor*{Prof}{Two}
+\myaddassistant{Assist}{One}
+\myaddassistant*{Assist}{Two}
+\myaddauthor{Author}{One}[id1]
+\myaddauthor{Author}{Two}
+\mytitle{Title}
+\mysubtitle{Subtitle}
+\mydate{Today}
+\myacademicyear{2000-2001}
+\SHOWOPT\mycourseval \SHOWOPT\mycourseidval \SHOWOPT\mycoursestarval
+\SHOWOPT\myprofessorval \SHOWOPT\myprofessortabval
+\SHOWOPT\myprofessorgenderval
+\SHOWOPT\myassistantval \SHOWOPT\myassistantgenderval
+\SHOWOPT\myauthorval \SHOWOPT\myauthortabval \SHOWOPT\myauthoridval
+\SHOWOPT\myauthoridtabval \SHOWOPT\myauthorgenderval
+\SHOWOPT\mytitleval \SHOWOPT\mytitlestarval \SHOWOPT\mysubtitleval
+\SHOWOPT\mydateval \SHOWOPT\myacademicyearval
+\SEPARATOR
+\TYPE{Geometry kept by \string\mymaketitle* and restored by \string\mymaketitle}
+\SEPARATOR
+\TYPE{before: \the\textwidth}
+\mymaketitle*
+\TYPE{after starred: \the\textwidth}
+\mymaketitle
+\TYPE{after unstarred: \the\textwidth}
+\SEPARATOR
+\TYPE{Filled title page, both styles, twice each}
+\SEPARATOR
+\mymaketitle
+\mymaketitle[2]
+\mymaketitle[2]
+\mymaketitle
+\TYPE{done}
+\end{document}

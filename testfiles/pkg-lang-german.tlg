@@ -1,0 +1,70 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+============================================================
+TEST 1: Language and words
+============================================================
+language=german
+NAMES-1: contents=[Inhaltsverzeichnis] lof=[Abbildungsverzeichnis] lot=[Tabellenverzeichnis] bib=[Literatur] abstract=[Zusammenfassung] chapter=[Kapitel] part=[Teil] figure=[Abbildung] table=[Tabelle]
+NAMES-2: equation=[Gleichung] acyear=[Akademisches Jahr] books=[B^^c3^^bccher] articles=[Artikel] collections=[Sammlungen] manuals=[Handb^^c3^^bccher] theses=[Abschlussarbeiten] references=[Referenzen] reports=[Berichte] websites=[Webseiten] patents=[Patente]
+NAMES-3: program=[Programm] lop=[Programmliste] loe=[Gleichungsverzeichnis] introduction=[Einleitung] section=[Abschnitt] subsection=[Unterabschnitt] subsubsection=[Unterunterabschnitt] annex=[Anhang] see=[siehe]
+NAMES-4: professor=[Professor|Professorin|Professoren|Professorinnen] assistant=[Assistent|Assistentin|Assistenten|Assistentinnen] author=[Autor|Autorin|Autoren|Autorinnen]
+============================================================
+============================================================
+TEST 2: Typeset words (glyphs and font encoding)
+============================================================
+> \box...=
+\hbox(6.8872+1.94397)x165.02914
+.\T1/cmr/m/n/10 A
+.\T1/cmr/m/n/10 b
+.\T1/cmr/m/n/10 b
+.\T1/cmr/m/n/10 i
+.\T1/cmr/m/n/10 l
+.\T1/cmr/m/n/10 d
+.\T1/cmr/m/n/10 u
+.\T1/cmr/m/n/10 n
+.\T1/cmr/m/n/10 g
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T1/cmr/m/n/10 T
+.\kern-0.83313
+.\T1/cmr/m/n/10 a
+.\T1/cmr/m/n/10 b
+.\kern0.27771
+.\T1/cmr/m/n/10 e
+.\T1/cmr/m/n/10 l
+.\T1/cmr/m/n/10 l
+.\T1/cmr/m/n/10 e
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T1/cmr/m/n/10 G
+.\T1/cmr/m/n/10 l
+.\T1/cmr/m/n/10 e
+.\T1/cmr/m/n/10 i
+.\T1/cmr/m/n/10 c
+.\kern-0.27771
+.\T1/cmr/m/n/10 h
+.\kern-0.27771
+.\T1/cmr/m/n/10 u
+.\T1/cmr/m/n/10 n
+.\T1/cmr/m/n/10 g
+.\glue 3.33252 plus 1.66626 minus 1.11084
+.\T1/cmr/m/n/10 A
+.\T1/cmr/m/n/10 n
+.\T1/cmr/m/n/10 h
+.\T1/cmr/m/n/10 a
+.\T1/cmr/m/n/10 n
+.\T1/cmr/m/n/10 g
+! OK.
+\SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
+l. ...}
+============================================================
+(pkg-lang-german.aux)
+LaTeX Warning: There were undefined references.
+Package rerunfilecheck Warning: File `pkg-lang-german.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+Package rerunfilecheck Info: Checksums for `pkg-lang-german.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                pkg-lang-german
+(biblatex)                and rerun LaTeX afterwards.
+Package logreq Info: Writing requests to 'pkg-lang-german.run.xml'.

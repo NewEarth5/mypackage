@@ -1,0 +1,16 @@
+% compat-wrapfig: \myinclude inside wrapfigure, next to package floats.
+\input{regression-test}
+\documentclass{myreport}
+\usepackage{wrapfig}
+\input{mytest-helpers}
+\begin{document}
+\START
+\mychapter{Wrapped}
+\begin{wrapfigure}{r}{0.3\textwidth}
+  \centering\myinclude[width=0.25]{square.jpg}
+\end{wrapfigure}
+Some text that flows around the wrapped figure. Some text that flows around
+the wrapped figure. Some text that flows around the wrapped figure.
+\myfigure{wide.png}{Package figure.}
+\SHOWREF{fig:wide}
+\end{document}

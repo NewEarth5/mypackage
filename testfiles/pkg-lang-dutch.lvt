@@ -1,0 +1,15 @@
+% pkg-lang-dutch: the localised words used by the package with lang=dutch.
+\input{regression-test}
+\documentclass{report}
+\usepackage[lang=dutch]{mypackage}
+\input{mytest-helpers}
+\begin{document}
+\START
+\TEST{Language and words}{%
+  \TYPE{language=\languagename}%
+  \SHOWNAMES
+}
+\TEST{Typeset words (glyphs and font encoding)}{%
+  \SHOWTEXT{\myfigurename\ \mytablename\ \myequationname\ \myannexname}%
+}
+\end{document}

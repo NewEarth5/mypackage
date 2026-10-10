@@ -1,0 +1,95 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+-------- cls-structure-parts.mytoc (start) ---------
+(cls-structure-parts.mytoc) \contentsline {mypart}{Contents}{I}{mycontents}%^^M
+\contentsline {mypart}{\mypartbox [l]{Part 1}\hspace {1em}First part}{1}{mypart.1}%^^M
+\contentsline {mychapter}{\mychapterbox [l]{1.1}\hspace {1em}First chapter}{2}{mychapter.1.1}%^^M
+\contentsline {mysection}{\mysectionbox [l]{1.1.1}\hspace {1em}First section}{2}{mysection.1.1.1}%^^M
+\contentsline {mysubsection}{\mysubsectionbox [l]{1.1.1.1}\hspace {1em}First subsection}{2}{mysubsection.1.1.1.1}%^^M
+\contentsline {mysubsubsection}{\mysubsubsectionbox [l]{1.1.1.1.1}\hspace {1em}First subsubsection}{2}{mysubsubsection.1.1.1.1.1}%^^M
+\contentsline {mysubsubsection}{\mysubsubsectionbox [l]{1.1.1.1.2}\hspace {1em}Second subsubsection}{2}{mysubsubsection.1.1.1.1.2}%^^M
+\contentsline {mysubsection}{\mysubsectionbox [l]{1.1.1.2}\hspace {1em}Second subsection}{2}{mysubsection.1.1.1.2}%^^M
+\contentsline {mysection}{\mysectionbox [l]{1.1.2}\hspace {1em}Second section}{2}{mysection.1.1.2}%^^M
+\contentsline {mychapter}{\mychapterbox [l]{1.2}\hspace {1em}Second chapter}{3}{mychapter.1.2}%^^M
+\contentsline {mychapter}{\mychapterbox [l]{1.7}\hspace {1em}Forced number}{4}{mychapter.1.7}%^^M
+\contentsline {mypart}{\mypartbox [l]{Book 2}\hspace {1em}Second part}{6}{mypart.2}%^^M
+\contentsline {mychapter}{\mychapterbox [l]{2.1}\hspace {1em}Chapter of the second part}{7}{mychapter.2.1}%^^M
+\contentsline {mypart}{\mypartbox [l]{Part 5}\hspace {1em}Forced part number}{9}{mypart.5}%^^M
+-------- cls-structure-parts.mytoc (end) -----------
+(cls-structure-parts.mytoc
+LaTeX Font Info:    Trying to load font information for U+msa on input line ....
+LaTeX Font Info:    Trying to load font information for U+msb on input line ....
+\tf@mytoc=\write...
+Package hyperref Info: bookmark level for unknown mypart defaults to 0 on input line ....
+[1
+Non-PDF special ignored!
+<special> header=psfrag.pro
+] [1
+]
+Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
+Package hyperref Info: bookmark level for unknown mysection defaults to 0 on input line ....
+Package hyperref Info: bookmark level for unknown mysubsection defaults to 0 on input line ....
+Package hyperref Info: bookmark level for unknown mysubsubsection defaults to 0 on input line ....
+COUNTERS: part=1, chapter=1, section=1, subsection=1, subsubsection=1, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=2 (2)
+THE: part=[1] chapter=[1.1] section=[1.1.1] subsection=[1.1.1.1] subsubsection=[1.1.1.1.1] figure=[1.1.0] subfigure=[1.1.0.] table=[1.1.0] program=[1.1.0] equation=[1.1.0]
+<images/wide.png, id=47, 301.125pt x 100.375pt>
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+Package pdftex.def Info: images/wide.png  used on input line ....
+(pdftex.def)             Requested size: 421.72374pt x 140.55446pt.
+Package hyperref Info: bookmark level for unknown myfigure defaults to 0 on input line ....
+THE: part=[1] chapter=[1.1] section=[1.1.1] subsection=[1.1.1.2] subsubsection=[1.1.1.2.0] figure=[1.1.1] subfigure=[1.1.1.] table=[1.1.0] program=[1.1.0] equation=[1.1.0]
+[2
+pdfTeX warning (ext4): destination with the same identifier (name{mysubsubsection.1.1.1.1.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l. ...\mychapter{Second chapter}[label=c2]
+pdfTeX warning (ext4): destination with the same identifier (name{mysection.1.1.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l. ...\mychapter{Second chapter}[label=c2]
+                                          <./images/wide.png (PNG copy)>]
+THE: part=[1] chapter=[1.2] section=[1.2.0] subsection=[1.2.0.0] subsubsection=[1.2.0.0.0] figure=[1.2.0] subfigure=[1.2.0.] table=[1.2.0] program=[1.2.0] equation=[1.2.0]
+<images/tall.png, id=56, 100.375pt x 401.5pt>
+File: images/tall.png Graphic file (type png)
+<use images/tall.png>
+Package pdftex.def Info: images/tall.png  used on input line ....
+(pdftex.def)             Requested size: 35.13942pt x 140.55446pt.
+[3
+ <./images/tall.png (PNG copy)>] [4
+]
+pdfTeX warning (ext4): destination with the same identifier (name{mychapter.1.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l. ...\mypart
+            {Second part}[name=Book, label=p2] [5
+] [6
+]
+THE: part=[2] chapter=[2.1] section=[2.1.0] subsection=[2.1.0.0] subsubsection=[2.1.0.0.0] figure=[2.1.0] subfigure=[2.1.0.] table=[2.1.0] program=[2.1.0] equation=[2.1.0]
+[7
+]
+pdfTeX warning (ext4): destination with the same identifier (name{mypart.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l. ...\mypart
+            {Forced part number}[number=5, label=p5] [8
+]
+FLAGS: part=T, chapter=T, section=T, subsection=T, subsubsection=T, annex=F, bib=F, highest=mypart
+COUNTERS: part=5, chapter=1, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=9 (9)
+REF part:p1: number=[1] page=[1] anchor=[mypart.1]
+REF chap:c1: number=[1.1] page=[2] anchor=[mychapter.1.1]
+REF sec:s1: number=[1.1.1] page=[2] anchor=[mysection.1.1.1]
+REF subsec:ss1: number=[1.1.1.1] page=[2] anchor=[mysubsection.1.1.1.1]
+REF subsubsec:sss1: number=[1.1.1.1.1] page=[2] anchor=[mysubsubsection.1.1.1.1.1]
+REF chap:c2: number=[1.2] page=[3] anchor=[mychapter.1.2]
+REF chap:c7: number=[1.7] page=[4] anchor=[mychapter.1.7]
+REF part:p2: number=[2] page=[6] anchor=[mypart.2]
+REF chap:c21: number=[2.1] page=[7] anchor=[mychapter.2.1]
+REF part:p5: number=[5] page=[9] anchor=[mypart.5]
+REF fig:wide: number=[1.1.1] page=[2] anchor=[myfigure.1.1.1]
+REF fig:tall: number=[1.2.1] page=[3] anchor=[myfigure.1.2.1]
+[9
+] (cls-structure-parts.aux)
+Package rerunfilecheck Info: File `cls-structure-parts.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+Package logreq Info: Writing requests to 'cls-structure-parts.run.xml'.

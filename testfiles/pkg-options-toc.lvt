@@ -1,0 +1,16 @@
+% pkg-options-toc: toc={depth, annexdepth, bibdepth}.
+\input{regression-test}
+\documentclass{article}
+\usepackage[toc={depth=4, annexdepth=1, bibdepth=2}]{mypackage}
+\input{mytest-helpers}
+\makeatletter
+\begin{document}
+\START
+\TEST{TOC depth options}{%
+  \SHOWOPT\mypackage@toc@depth
+  \SHOWOPT\mypackage@toc@annexdepth
+  \SHOWOPT\mypackage@toc@bibdepth
+  \TYPE{counters: toc=\the\c@mytocdepth, annex=\the\c@myannexdepth,
+    bib=\the\c@mybibdepth}%
+}
+\end{document}

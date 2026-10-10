@@ -1,0 +1,30 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+============================================================
+TEST 1: Font family
+============================================================
+body: put
+normalfont: put
+footnotesize: put
+familydefault: put; rmdefault: put; sfdefault: cmss; ttdefault: cmtt
+> \box...=
+\hbox(7.5149+0.05505)x12.20993
+.\T1/put/m/n/10 A
+.\kern-0.12001
+.\T1/put/m/n/10 b
+! OK.
+\SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
+l. ...}
+============================================================
+(cls-font-put.aux)
+LaTeX Warning: There were undefined references.
+Package rerunfilecheck Warning: File `cls-font-put.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+Package rerunfilecheck Info: Checksums for `cls-font-put.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                cls-font-put
+(biblatex)                and rerun LaTeX afterwards.
+Package logreq Info: Writing requests to 'cls-font-put.run.xml'.

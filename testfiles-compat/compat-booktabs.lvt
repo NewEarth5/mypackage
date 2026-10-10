@@ -1,0 +1,20 @@
+% compat-booktabs: mytable with booktabs rules, multirow and multicolumn
+% (row colours interact with \multirow).
+\input{regression-test}
+\documentclass{myreport}
+\usepackage{booktabs}
+\input{mytest-helpers}
+\begin{document}
+\START
+\mychapter{Tables}
+\begin{mytable}[firstrow=2]{lcc}{bt}{Booktabs table.}
+  \toprule
+  Name & \multicolumn{2}{c}{Values} \\
+  \midrule
+  \multirow{2}{*}{Pair} & 1 & 2 \\
+                        & 3 & 4 \\
+  Single & 5 & 6 \\
+  \bottomrule
+\end{mytable}
+\SHOWREF{tab:bt}
+\end{document}

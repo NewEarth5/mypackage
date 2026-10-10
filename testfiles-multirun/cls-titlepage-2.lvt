@@ -1,0 +1,23 @@
+% cls-titlepage-2: \mymaketitle[2] with every field filled in, two
+% professors (mixed genders), two assistants, three authors.
+\input{regression-test}
+\documentclass{myreport}
+\input{mytest-helpers}
+\mycourse*{Fluid mechanics}[MECA0025]
+\myaddprofessor{Delhez}{Eric}
+\myaddprofessor*{Smith}{Anna}
+\myaddassistant{Doe}{John}
+\myaddassistant{Roe}{Rick}
+\myacademicyear{2025-2026}
+\mytitle*{Project: fluid simulation}
+\mysubtitle{Flow around a windscreen}
+\mylogo[height=0.05]{square.jpg}
+\mydate{1 January 2026}
+\myaddauthor{Delvoie}{Romeo}[s111111]
+\myaddauthor{Lindsey}{Alexandre}[s222222]
+\myaddauthor*{Third}{Author}
+\begin{document}
+\START
+\showoutput
+\mymaketitle[2]
+\end{document}

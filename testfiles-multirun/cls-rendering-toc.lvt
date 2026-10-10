@@ -1,0 +1,15 @@
+% cls-rendering-toc: the shipped TOC page (indentation, leaders, links).
+\input{regression-test}
+\documentclass[toc={depth=4}]{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\showoutput
+\mytableofcontents
+\tracingoutput=0
+\mypart{P}
+\mychapter{C}
+\mysection{S}
+\mysubsection{SS}
+\mysubsubsection{SSS}
+\end{document}

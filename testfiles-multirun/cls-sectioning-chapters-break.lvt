@@ -1,0 +1,15 @@
+% cls-sectioning-chapters-break: without parts, chapter=break starts each
+% chapter on a new page, sections stay on the same page (nobreak).
+\input{regression-test}
+\documentclass[sectioning={chapter=break, section=nobreak}]{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\mychapter{C1}[label=c1]
+Text.
+\mysection{S1}[label=s1]
+Text.
+\mysection{S2}[label=s2]
+\mychapter{C2}[label=c2]
+\SHOWREF{chap:c1}\SHOWREF{sec:s1}\SHOWREF{sec:s2}\SHOWREF{chap:c2}
+\end{document}

@@ -1,0 +1,71 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+============================================================
+TEST 1: arabic
+============================================================
+1: Roman=F roman=F arabic=T Alph=F alph=F
+9: Roman=F roman=F arabic=T Alph=F alph=F
+10: Roman=F roman=F arabic=T Alph=F alph=F
+24: Roman=F roman=F arabic=T Alph=F alph=F
+============================================================
+============================================================
+TEST 2: roman
+============================================================
+i: Roman=F roman=T arabic=F Alph=F alph=F
+iv: Roman=F roman=T arabic=F Alph=F alph=F
+ix: Roman=F roman=T arabic=F Alph=F alph=F
+x: Roman=F roman=T arabic=F Alph=F alph=F
+xl: Roman=F roman=T arabic=F Alph=F alph=F
+============================================================
+============================================================
+TEST 3: Roman
+============================================================
+I: Roman=T roman=F arabic=F Alph=F alph=F
+IV: Roman=T roman=F arabic=F Alph=F alph=F
+IX: Roman=T roman=F arabic=F Alph=F alph=F
+X: Roman=T roman=F arabic=F Alph=F alph=F
+XL: Roman=T roman=F arabic=F Alph=F alph=F
+============================================================
+============================================================
+TEST 4: alph
+============================================================
+a: Roman=F roman=F arabic=F Alph=F alph=T
+c: Roman=F roman=F arabic=F Alph=F alph=T
+d: Roman=F roman=F arabic=F Alph=F alph=T
+i: Roman=F roman=F arabic=F Alph=F alph=T
+l: Roman=F roman=F arabic=F Alph=F alph=T
+m: Roman=F roman=F arabic=F Alph=F alph=T
+v: Roman=F roman=F arabic=F Alph=F alph=T
+x: Roman=F roman=F arabic=F Alph=F alph=T
+============================================================
+============================================================
+TEST 5: Alph
+============================================================
+A: Roman=F roman=F arabic=F Alph=T alph=F
+C: Roman=F roman=F arabic=F Alph=T alph=F
+D: Roman=F roman=F arabic=F Alph=T alph=F
+I: Roman=F roman=F arabic=F Alph=T alph=F
+L: Roman=F roman=F arabic=F Alph=T alph=F
+M: Roman=F roman=F arabic=F Alph=T alph=F
+V: Roman=F roman=F arabic=F Alph=T alph=F
+X: Roman=F roman=F arabic=F Alph=T alph=F
+============================================================
+============================================================
+TEST 6: The macros are usable inside the T/F branches
+============================================================
+arabic branch
+T only
+not Roman
+============================================================
+(pkg-pagenumbering.aux)
+LaTeX Warning: There were undefined references.
+Package rerunfilecheck Warning: File `pkg-pagenumbering.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+Package rerunfilecheck Info: Checksums for `pkg-pagenumbering.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                pkg-pagenumbering
+(biblatex)                and rerun LaTeX afterwards.
+Package logreq Info: Writing requests to 'pkg-pagenumbering.run.xml'.

@@ -1,0 +1,44 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+-------- pkg-table.mylot (start) ---------
+(pkg-table.mylot) \contentsline {mytable}{\makebox [3.5em][l]{1.1}\mycleanfirstline {Default keys.}}{1}{mytable.1.1}%^^M
+\contentsline {mytable}{\makebox [3.5em][l]{1.2}\mycleanfirstline {Short.}}{1}{mytable.1.2}%^^M
+\contentsline {mytable}{\makebox [3.5em][l]{1.3}\mycleanfirstline {contrastcol.}}{1}{mytable.1.3}%^^M
+\contentsline {mytable}{\makebox [3.5em][l]{1.4}\mycleanfirstline {defaultcol, firstrow=3.}}{2}{mytable.1.4}%^^M
+\contentsline {mytable}{\makebox [3.5em][l]{1.5}\mycleanfirstline {oddcol only.}}{2}{mytable.1.5}%^^M
+\contentsline {mytable}{\makebox [3.5em][l]{1.6}\mycleanfirstline {evencol only.}}{2}{mytable.1.6}%^^M
+\contentsline {mytable}{\makebox [3.5em][l]{1.7}\mycleanfirstline {Both.}}{2}{mytable.1.7}%^^M
+-------- pkg-table.mylot (end) -----------
+(pkg-table.mylot
+LaTeX Font Info:    Trying to load font information for U+msa on input line ....
+LaTeX Font Info:    Trying to load font information for U+msb on input line ....
+\tf@mylot=\write...
+Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
+[1
+Non-PDF special ignored!
+<special> header=psfrag.pro
+]
+rowcolors: first=1 odd=[gray!25] even=[]
+Package hyperref Info: bookmark level for unknown mytable defaults to 0 on input line ....
+rowcolors: first=2 odd=[] even=[gray!25]
+rowcolors: first=1 odd=[blue!10] even=[]
+rowcolors: first=3 odd=[gray!25] even=[yellow]
+LaTeX Warning: `h' float specifier changed to `ht'.
+rowcolors: first=1 odd=[red] even=[]
+LaTeX Warning: `h' float specifier changed to `ht'.
+rowcolors: first=1 odd=[gray!25] even=[green]
+LaTeX Warning: `h' float specifier changed to `ht'.
+rowcolors: first=2 odd=[red] even=[green]
+rowcolors: first=2 odd=[] even=[gray!25]
+LaTeX Warning: `h' float specifier changed to `ht'.
+arraystretch after the tables: 1
+COUNTERS: part=0, chapter=1, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=8, program=0, equation=0, annex=0, page=1 (1)
+REF tab:default: number=[1.1] page=[1] anchor=[mytable.1.1]
+REF tab:first2: number=[1.2] page=[1] anchor=[mytable.1.2]
+REF tab:both: number=[1.7] page=[2] anchor=[mytable.1.7]
+REF tab:star: number=[1.8] page=[2] anchor=[mytable.1.8]
+[1
+] [2] (pkg-table.aux)
+Package rerunfilecheck Info: File `pkg-table.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+Package logreq Info: Writing requests to 'pkg-table.run.xml'.

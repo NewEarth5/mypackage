@@ -1,0 +1,39 @@
+% cls-annex-parts: annexes when parts are the highest level.  Inside the
+% myannex environment parts are lettered (A, B, ...), labels get the ann:
+% prefix, pages are numbered with letters, and the counters of the main
+% matter are restored afterwards.
+\input{regression-test}
+\documentclass[toc={depth=2, annexdepth=1}]{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\SHOWLIST{mytoc}
+\mytableofcontents
+\mypart{Main one}[label=m1]
+\mychapter{Main chapter}[label=mc]
+\mypart{Main two}[label=m2]
+\mychapter{Main two chapter}
+\SHOWCOUNTERS
+\begin{myannex}
+\SHOWFLAGS
+\mypart{First annex}[label=a1]
+\SHOWCOUNTERS
+\SHOWTHE
+\mychapter{Annex chapter}[label=ac]
+\mysection{Annex section}[label=as]
+\myfigure{wide.png}{Figure in an annex.}
+\mypart{Second annex}[label=a2]
+\SHOWTHE
+\end{myannex}
+\SHOWFLAGS
+\SHOWCOUNTERS
+\mypart{Back in the main matter}[label=m3]
+\SHOWTHE
+\begin{myannex}
+\mypart{Third annex}[label=a3]
+\SHOWTHE
+\end{myannex}
+\SHOWREF{part:m1}\SHOWREF{chap:mc}\SHOWREF{part:m2}\SHOWREF{part:m3}
+\SHOWREF{ann:part:a1}\SHOWREF{ann:chap:ac}\SHOWREF{ann:sec:as}
+\SHOWREF{ann:part:a2}\SHOWREF{ann:part:a3}\SHOWREF{fig:wide}
+\end{document}

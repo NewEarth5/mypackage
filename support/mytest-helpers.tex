@@ -1,0 +1,87 @@
+% mytest-helpers.tex -- helper macros shared by every regression test.
+%
+% Input it *after* \documentclass/\usepackage{mypackage}:
+%     \input{regression-test}
+%     \documentclass{myreport}
+%     \input{mytest-helpers}
+%
+% Every helper writes a single, stable line to the log so that the .tlg
+% files stay short and readable.  Helpers use \typeout (not \TYPE) because
+% \typeout handles robust/protected commands (babel strings, \textsc, ...).
+\makeatletter
+% ---------------------------------------------------------------- references
+% \SHOWREF{label}: number, page and hyperref anchor stored for a label.
+\newcommand\SHOWREF[1]{%
+  \typeout{REF #1: number=[\getrefbykeydefault{#1}{}{??}]
+    page=[\getrefbykeydefault{#1}{page}{??}]
+    anchor=[\getrefbykeydefault{#1}{anchor}{??}]}%
+}
+% \SHOWTEXT{material}: typeset material in an \hbox and show the box.
+\newcommand\SHOWTEXT[1]{\setbox\z@\hbox{#1}\showbox\z@}
+% \SHOWSTRING{material}: the *text* of a piece of typeset material,
+% obtained by expanding it with \protect = \string-like behaviour.
+\newcommand\SHOWSTRING[2][]{%
+  \begingroup\let\protect\@unexpandable@protect
+  \protected@edef\@tempa{#2}\typeout{STRING#1: \meaning\@tempa}\endgroup}
+% ---------------------------------------------------------------- counters
+\newcommand\SHOWCOUNTERS{%
+  \typeout{COUNTERS: part=\the\c@mypart, chapter=\the\c@mychapter,
+    section=\the\c@mysection, subsection=\the\c@mysubsection,
+    subsubsection=\the\c@mysubsubsection, figure=\the\c@myfigure,
+    subfigure=\the\c@mysubfigure, table=\the\c@mytable,
+    program=\the\c@myprogram, equation=\the\c@myequation,
+    annex=\the\c@myannex, page=\the\c@page\space(\thepage)}%
+}
+\newcommand\SHOWTHE{%
+  \typeout{THE: part=[\themypart] chapter=[\themychapter]
+    section=[\themysection] subsection=[\themysubsection]
+    subsubsection=[\themysubsubsection] figure=[\themyfigure]
+    subfigure=[\themysubfigure] table=[\themytable]
+    program=[\themyprogram] equation=[\themyequation]}%
+}
+\newcommand\SHOWFLAGS{%
+  \typeout{FLAGS: part=\ifGlobalMypartUsed T\else F\fi,
+    chapter=\ifGlobalMychapterUsed T\else F\fi,
+    section=\ifGlobalMysectionUsed T\else F\fi,
+    subsection=\ifGlobalMysubsectionUsed T\else F\fi,
+    subsubsection=\ifGlobalMysubsubsectionUsed T\else F\fi,
+    annex=\ifMyannexUsed T\else F\fi,
+    bib=\ifMybibUsed T\else F\fi,
+    highest=\myhighestsec}%
+}
+% ---------------------------------------------------------------- words
+\newcommand\SHOWNAMES{%
+  \typeout{NAMES-1: contents=[\mycontentsname] lof=[\mylistfigurename]
+    lot=[\mylisttablename] bib=[\mybibname] abstract=[\myabstractname]
+    chapter=[\mychaptername] part=[\mypartname] figure=[\myfigurename]
+    table=[\mytablename]}%
+  \typeout{NAMES-2: equation=[\myequationname] acyear=[\myacyearname]
+    books=[\mybooksname] articles=[\myarticlesname]
+    collections=[\mycollectionsname] manuals=[\mymanualsname]
+    theses=[\mythesesname] references=[\myreferencesname]
+    reports=[\myreportsname] websites=[\mywebsitesname]
+    patents=[\mypatentsname]}%
+  \typeout{NAMES-3: program=[\myprogramname] lop=[\mylistprogramname]
+    loe=[\mylistequationname] introduction=[\myintroductionname]
+    section=[\mysectionname] subsection=[\mysubsectionname]
+    subsubsection=[\mysubsubsectionname] annex=[\myannexname]
+    see=[\seename]}%
+  \typeout{NAMES-4: professor=[\myprofessormname|\myprofessorfname|%
+    \myprofessormpname|\myprofessorfpname]
+    assistant=[\myassistantmname|\myassistantfname|%
+    \myassistantmpname|\myassistantfpname]
+    author=[\myauthormname|\myauthorfname|%
+    \myauthormpname|\myauthorfpname]}%
+}
+% ---------------------------------------------------------------- files
+% \SHOWLIST{ext}: content of \jobname.ext as left by the *previous* run.
+% Must be used before the matching \mytableofcontents/\mylistof... call,
+% which truncates the file.
+\newcommand\SHOWLIST[1]{\SHOWFILE{\jobname.#1}}
+% ---------------------------------------------------------------- option values
+% \SHOWOPT\macro: the full expansion of an option macro.
+\newcommand\SHOWOPT[1]{%
+  \ifdefined#1\protected@edef\@tempa{#1}\else\def\@tempa{UNDEFINED}\fi
+  \typeout{OPT \string#1=[\detokenize\expandafter{\@tempa}]}}
+\makeatother
+\endinput

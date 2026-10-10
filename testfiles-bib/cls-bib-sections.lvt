@@ -1,0 +1,22 @@
+% cls-bib-sections: \mybibliography when the highest level is the sections level.
+% Entries are split by category, each category gets a heading one level
+% below the bibliography heading; category headings go to the TOC
+% according to toc={bibdepth} (default 1).
+\input{regression-test}
+\documentclass{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\SHOWLIST{mytoc}
+\mytableofcontents
+\mysection{Section}
+Citations: \cite{art1,book1,coll1,man1,thesis1,ref1,rep1,web1,pat1,misc1,proc1}.
+\SHOWCOUNTERS
+\mybibliography[bib]
+\SHOWCOUNTERS
+\SHOWFLAGS
+\SHOWREF{bib:bib}
+\TEST{Citation numbers}{%
+  \SHOWTEXT{\cite{art1}\cite{misc1}\cite{pat1}}%
+}
+\end{document}

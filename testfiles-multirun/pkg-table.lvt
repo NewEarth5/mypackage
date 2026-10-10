@@ -1,0 +1,44 @@
+% pkg-table: mytable / mytable*.  \rowcolors is spied on to check which
+% colours the keys firstrow, contrastcol, defaultcol, oddcol and evencol
+% produce; a last table is typeset with the real \rowcolors.
+\input{regression-test}
+\documentclass{myreport}
+\input{mytest-helpers}
+\makeatletter
+\let\REALrowcolors\rowcolors
+\newcommand\SPYrowcolors[4][]{\typeout{rowcolors: first=#2 odd=[#3] even=[#4]}%
+  \REALrowcolors[#1]{#2}{#3}{#4}}
+\let\rowcolors\SPYrowcolors
+\begin{document}
+\START
+\SHOWLIST{mylot}
+\mylistoftables
+\mychapter{Tables}
+\begin{mytable}{|c|c|}{default}{Default keys.}
+  a & b \\ c & d \\
+\end{mytable}
+\begin{mytable}[firstrow=2]{cc}{first2}[Short.]{firstrow=2. Second sentence.}
+  a & b \\
+\end{mytable}
+\begin{mytable}[contrastcol=blue!10]{cc}{contrast}{contrastcol.}
+  a & b \\
+\end{mytable}
+\begin{mytable}[defaultcol=yellow, firstrow=3]{cc}{default3}{defaultcol, firstrow=3.}
+  a & b \\
+\end{mytable}
+\begin{mytable}[oddcol=red]{cc}{odd}{oddcol only.}
+  a & b \\
+\end{mytable}
+\begin{mytable}[evencol=green]{cc}{even}{evencol only.}
+  a & b \\
+\end{mytable}
+\begin{mytable}[oddcol=red, evencol=green, firstrow=2]{cc}{both}{Both.}[t]
+  a & b \\
+\end{mytable}
+\begin{mytable*}[firstrow=2]{cc}{star}{Starred: not in the list.}
+  a & b \\
+\end{mytable*}
+\TYPE{arraystretch after the tables: \arraystretch}
+\SHOWCOUNTERS
+\SHOWREF{tab:default}\SHOWREF{tab:first2}\SHOWREF{tab:both}\SHOWREF{tab:star}
+\end{document}

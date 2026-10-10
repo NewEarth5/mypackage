@@ -1,0 +1,15 @@
+% cls-options-sectioning-keys: sectioning={level=value,...}; levels not
+% given keep their defaults.
+\input{regression-test}
+\documentclass[sectioning={chapter=nobreak, section=break, bib=nobreak}]{myreport}
+\input{mytest-helpers}
+\makeatletter
+\begin{document}
+\START
+\TEST{Keys}{%
+  \SHOWOPT\myreport@sect@part \SHOWOPT\myreport@sect@chapter
+  \SHOWOPT\myreport@sect@section \SHOWOPT\myreport@sect@subsection
+  \SHOWOPT\myreport@sect@subsubsection \SHOWOPT\myreport@sect@annex
+  \SHOWOPT\myreport@sect@bib
+}
+\end{document}

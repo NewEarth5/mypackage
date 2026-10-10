@@ -1,0 +1,38 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+NAMES-1: contents=[Оглавление] lof=[Список иллюстраций] lot=[Список таблиц] bib=[Список литературы] abstract=[Аннотация] chapter=[Глава] part=[Часть] figure=[Рис.] table=[Таблица]
+NAMES-2: equation=[Уравнение] acyear=[Учебный год] books=[Книги] articles=[Статьи] collections=[Сборники] manuals=[Руководства] theses=[Диссертации] references=[Ссылки] reports=[Отчёты] websites=[Веб-сайты] patents=[Патенты]
+NAMES-3: program=[Программа] lop=[Список программ] loe=[Список уравнений] introduction=[Введение] section=[Раздел] subsection=[Подраздел] subsubsection=[Подподраздел] annex=[Приложение] see=[см.]
+NAMES-4: professor=[Профессор|Профессорша|Профессора|Профессорши] assistant=[Ассистент|Ассистентка|Ассистенты|Ассистентки] author=[Автор|Авторка|Авторы|Авторки]
+============================================================
+TEST 1: Typeset words
+============================================================
+> \box...=
+\hbox(1.0553+0.0)x6.10962, direction TLT
+.\T2A/cmr/m/n/10 Р
+.\T2A/cmr/m/n/10 и
+.\T2A/cmr/m/n/10 с
+.\T2A/cmr/m/n/10 .
+.\glue(\spaceskip) 3.33252 plus 1.66626 minus 1.11084
+.\T2A/cmr/m/n/10 У
+.\T2A/cmr/m/n/10 р
+.\T2A/cmr/m/n/10 а
+.\T2A/cmr/m/n/10 в
+.\discretionary (penalty 50)
+..< \T2A/cmr/m/n/10 -
+.\T2A/cmr/m/n/10 н
+.\T2A/cmr/m/n/10 е
+.\discretionary (penalty 50)
+..< \T2A/cmr/m/n/10 -
+.\T2A/cmr/m/n/10 н
+.\T2A/cmr/m/n/10 и
+.\T2A/cmr/m/n/10 е
+! OK.
+\SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
+l. ......s}{\SHOWTEXT{\myfigurename\ \myequationname}}
+============================================================
+(eng-lang-russian.aux)
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+Package rerunfilecheck Info: File `eng-lang-russian.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+Package logreq Info: Writing requests to 'eng-lang-russian.run.xml'.

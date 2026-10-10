@@ -1,0 +1,20 @@
+% compat-tikz-pgfplots: TikZ/pgfplots pictures next to the package floats.
+\input{regression-test}
+\documentclass{myreport}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\input{mytest-helpers}
+\begin{document}
+\START
+\mychapter{Plots}
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[width=6cm, height=4cm]
+      \addplot {x^2};
+    \end{axis}
+  \end{tikzpicture}
+\end{figure}
+\myfigure{wide.png}{A package figure after a TikZ figure.}
+\SHOWREF{fig:wide}
+\end{document}

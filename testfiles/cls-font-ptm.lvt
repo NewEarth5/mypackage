@@ -1,0 +1,17 @@
+% cls-font-ptm: text={fontfamily=ptm} must load the matching font package and
+% make ptm the family of \normalfont everywhere (body, captions, footnotes).
+\input{regression-test}
+\documentclass[text={fontfamily=ptm}]{myreport}
+\input{mytest-helpers}
+\makeatletter
+\begin{document}
+\START
+\TEST{Font family}{%
+  \TYPE{body: \f@family}%
+  \begingroup\normalfont\TYPE{normalfont: \f@family}\endgroup
+  \begingroup\footnotesize\TYPE{footnotesize: \f@family}\endgroup
+  \TYPE{familydefault: \familydefault; rmdefault: \rmdefault;
+    sfdefault: \sfdefault; ttdefault: \ttdefault}%
+  \SHOWTEXT{Ab}%
+}
+\end{document}

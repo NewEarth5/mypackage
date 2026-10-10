@@ -1,0 +1,16 @@
+% compat-chemistry: chemmacros, mhchem and siunitx (all loaded or used by
+% the package) together.
+\input{regression-test}
+\documentclass{myreport}
+\usepackage{siunitx}
+\input{mytest-helpers}
+\begin{document}
+\START
+\mychapter{Chemistry}
+\ce{H2O + CO2 -> H2CO3}, \qty{25}{\celsius}, \texttt{\string\ch} defined: \ifdefined\ch yes\else no\fi,
+$\mathbbm{R}$, $\upmu$.
+\begin{myequation}[ch]{Chemistry}
+  \ce{A + B <=> C}
+\end{myequation}
+\SHOWREF{eq:ch}
+\end{document}

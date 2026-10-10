@@ -1,0 +1,14 @@
+% compat-microtype: microtype with the class fonts.
+\input{regression-test}
+\documentclass{myreport}
+\usepackage{microtype}
+\input{mytest-helpers}
+\begin{document}
+\START
+\mytableofcontents
+\mychapter{Chapter}
+Some text that is long enough to be justified with protrusion and expansion
+active, so that microtype has something to do on this line.
+\myfigure{wide.png}{Figure.}
+\TYPE{microtype loaded: \ifdefined\microtypesetup yes\else no\fi}
+\end{document}

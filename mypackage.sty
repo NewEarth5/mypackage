@@ -9,8 +9,8 @@
 \ProvidesPackage{%                                 % Package information            %
   mypackage%                                       % - Name                         %
 }[%                                                %                                %
-  2026/09/25 V0.6%                                 % - Description                  %
-  Custom Package by Alexandre Lindsey%             %                                %
+  2026/10/10 V0.6.5 %                              % - Version (the space before %  %
+  Custom Package by Alexandre Lindsey%             %   ends the version number)     %
 ]                                                  %                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% ESSENTIAL PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%%%
@@ -18,9 +18,6 @@
 \RequirePackage{xstring}                           % String manipulation tools      %
 \RequirePackage{kvoptions}                         % Better package/class options   %
 \RequirePackage{kvsetkeys}                         % Better suboptions              %
-\RequirePackage[%                                  % Set font output encoding       %
-  T1%                                              % - Encoding type                %
-]{fontenc}                                         %                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% PACKAGE OPTIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -164,6 +161,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% REQUIRED PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\IfSubStr{\mypackage@lang}{russian}{%              % Font output encoding:          %
+  \RequirePackage[T2A,T1]{fontenc}%                % - Cyrillic + Latin             %
+}{%                                                %                                %
+  \RequirePackage[T1]{fontenc}%                    % - Latin                        %
+}                                                  %                                %
 \RequirePackage{adjustbox}                         % Create custom boxes            %
 \RequirePackage[                                   % Multilingual text support      %
   \mypackage@lang,                                 % - Language option              %
@@ -232,17 +234,21 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% GLOBAL DEFINITIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\AddToHook{begindocument/end}{%                    % Run once everything is loaded  %
-  \let\mycontentsname\contentsname                 % Copy \contentsname             %
-  \let\mylistfigurename\listfigurename             % Copy \listfigurename           %
-  \let\mylisttablename\listtablename               % Copy \listtablename            %
-  \let\mybibname\bibname                           % Copy \bibname                  %
-  \let\myabstractname\abstractname                 % Copy \abstractname             %
-  \let\mychaptername\chaptername                   % Copy \chaptername              %
+                                                   % Words translated by babel:     %
+                                                   % they always follow the current %
+                                                   % language (\selectlanguage)     %
+\newcommand{\mypackage@babelwords}{%               % Use babel's own words          %
+  \def\mycontentsname{\contentsname}%              % - Contents                     %
+  \def\mylistfigurename{\listfigurename}%          % - List of Figures              %
+  \def\mylisttablename{\listtablename}%            % - List of Tables               %
+  \def\mybibname{\bibname}%                        % - Bibliography                 %
+  \def\myabstractname{\abstractname}%              % - Abstract                     %
+  \def\mychaptername{\chaptername}%                % - Chapter                      %
+  \def\mypartname{\partname}%                      % - Part                         %
+  \def\myfigurename{\figurename}%                  % - Figure                       %
+  \def\mytablename{\tablename}%                    % - Table                        %
 }                                                  %                                %
-\let\mypartname\partname                           % Copy \partname                 %
-\let\myfigurename\figurename                       % Copy \figurename               %
-\let\mytablename\tablename                         % Copy \tablename                %
+\mypackage@babelwords                              % Defaults for the preamble      %
 \def\mycourseval{-NoValue-}                        % Default: \mycourse             %
 \def\mycourseidval{-NoValue-}                      % Default: \mycourse option      %
 \def\mycoursestarval{-NoValue-}                    % Default: \mycourse star        %
@@ -390,792 +396,836 @@
 \newcommand{\myauthormpname}{Authors}%             % - Author (male plurial)        %
 \newcommand{\myauthorfpname}{Authors}%             % - Author (female plurial)      %
                                                    %                                %
-\addto{\captionsbritish}{%                         % Adds words to UK Englsih       %
+                                                   % Word lists: one macro per      %
+                                                   % language, then registered for  %
+                                                   % every babel name of it         %
+\newcommand{\mypackage@words@english}{%            % English words                  %
+  \mypackage@babelwords%                           % - Reset babel's words          %
   \renewcommand{\myequationname}{%                 %                                %
     Equation%                                      % - Equation                     %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myacyearname}{%                   %                                %
     Academic year%                                 % - Academic year                %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mybooksname}{%                    %                                %
     Books%                                         % - Books                        %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myarticlesname}{%                 %                                %
     Articles%                                      % - Articles                     %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mycollectionsname}{%              %                                %
     Collections%                                   % - Collections                  %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mymanualsname}{%                  %                                %
     Manuals%                                       % - Manuals                      %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mythesesname}{%                   %                                %
     Theses%                                        % - Theses                       %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myreferencesname}{%               %                                %
     References%                                    % - References                   %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myreportsname}{%                  %                                %
     Reports%                                       % - Reports                      %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mywebsitesname}{%                 %                                %
     Websites%                                      % - Websites                     %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mypatentsname}{%                  %                                %
     Patents%                                       % - Patents                      %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myprogramname}{%                  %                                %
     Program%                                       % - Program                      %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mylistprogramname}{%              %                                %
     List of Programs%                              % - List of Programs             %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mylistequationname}{%             %                                %
     List of Equations%                             % - List of Equations            %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myintroductionname}{%             %                                %
     Introduction%                                  % - Introduction                 %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mysectionname}{%                  %                                %
     Section%                                       % - Section                      %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mysubsectionname}{%               %                                %
     Subsection%                                    % - Subsection                   %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mysubsubsectionname}{%            %                                %
     Subsubsection%                                 % - Subsubsection                %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myannexname}{%                    %                                %
     Annex%                                         % - Annex                        %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myprofessormname}{%               %                                %
     Professor%                                     % - Professor (male)             %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myprofessorfname}{%               %                                %
     Professor%                                     % - Professor (female)           %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myprofessormpname}{%              %                                %
     Professors%                                    % - Professor (male plurial)     %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myprofessorfpname}{%              %                                %
     Professors%                                    % - Professor (female plurial)   %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myassistantmname}{%               %                                %
     Assistant%                                     % - Assistant (male)             %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myassistantfname}{%               %                                %
     Assistant%                                     % - Assistant (female)           %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myassistantmpname}{%              %                                %
     Assistants%                                    % - Assistant (male plurial)     %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myassistantfpname}{%              %                                %
     Assistants%                                    % - Assistant (female plurial)   %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myauthormname}{%                  %                                %
     Author%                                        % - Author (male)                %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myauthorfname}{%                  %                                %
     Author%                                        % - Author (female)              %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myauthormpname}{%                 %                                %
     Authors%                                       % - Author (male plurial)        %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myauthorfpname}{%                 %                                %
     Authors%                                       % - Author (female plurial)      %
-  }                                                %                                %
+  }%                                               %                                %
 }                                                  %                                %
-\addto{\captionsenglish}{%                         % Adds words to US Englsih       %
-  \renewcommand{\myequationname}{%                 %                                %
-    Equation%                                      % - Equation                     %
-  }                                                %                                %
-  \renewcommand{\myacyearname}{%                   %                                %
-    Academic year%                                 % - Academic year                %
-  }                                                %                                %
-  \renewcommand{\mybooksname}{%                    %                                %
-    Books%                                         % - Books                        %
-  }                                                %                                %
-  \renewcommand{\myarticlesname}{%                 %                                %
-    Articles%                                      % - Articles                     %
-  }                                                %                                %
-  \renewcommand{\mycollectionsname}{%              %                                %
-    Collections%                                   % - Collections                  %
-  }                                                %                                %
-  \renewcommand{\mymanualsname}{%                  %                                %
-    Manuals%                                       % - Manuals                      %
-  }                                                %                                %
-  \renewcommand{\mythesesname}{%                   %                                %
-    Theses%                                        % - Theses                       %
-  }                                                %                                %
-  \renewcommand{\myreferencesname}{%               %                                %
-    References%                                    % - References                   %
-  }                                                %                                %
-  \renewcommand{\myreportsname}{%                  %                                %
-    Reports%                                       % - Reports                      %
-  }                                                %                                %
-  \renewcommand{\mywebsitesname}{%                 %                                %
-    Websites%                                      % - Websites                     %
-  }                                                %                                %
-  \renewcommand{\mypatentsname}{%                  %                                %
-    Patents%                                       % - Patents                      %
-  }                                                %                                %
-  \renewcommand{\myprogramname}{%                  %                                %
-    Program%                                       % - Program                      %
-  }                                                %                                %
-  \renewcommand{\mylistprogramname}{%              %                                %
-    List of Programs%                              % - List of Programs             %
-  }                                                %                                %
-  \renewcommand{\mylistequationname}{%             %                                %
-    List of Equations%                             % - List of Equations            %
-  }                                                %                                %
-  \renewcommand{\myintroductionname}{%             %                                %
-    Introduction%                                  % - Introduction                 %
-  }                                                %                                %
-  \renewcommand{\mysectionname}{%                  %                                %
-    Section%                                       % - Section                      %
-  }                                                %                                %
-  \renewcommand{\mysubsectionname}{%               %                                %
-    Subsection%                                    % - Subsection                   %
-  }                                                %                                %
-  \renewcommand{\mysubsubsectionname}{%            %                                %
-    Subsubsection%                                 % - Subsubsection                %
-  }                                                %                                %
-  \renewcommand{\myannexname}{%                    %                                %
-    Annex%                                         % - Annex                        %
-  }                                                %                                %
-  \renewcommand{\myprofessormname}{%               %                                %
-    Professor%                                     % - Professor (male)             %
-  }                                                %                                %
-  \renewcommand{\myprofessorfname}{%               %                                %
-    Professor%                                     % - Professor (female)           %
-  }                                                %                                %
-  \renewcommand{\myprofessormpname}{%              %                                %
-    Professors%                                    % - Professor (male plurial)     %
-  }                                                %                                %
-  \renewcommand{\myprofessorfpname}{%              %                                %
-    Professors%                                    % - Professor (female plurial)   %
-  }                                                %                                %
-  \renewcommand{\myassistantmname}{%               %                                %
-    Assistant%                                     % - Assistant (male)             %
-  }                                                %                                %
-  \renewcommand{\myassistantfname}{%               %                                %
-    Assistant%                                     % - Assistant (female)           %
-  }                                                %                                %
-  \renewcommand{\myassistantmpname}{%              %                                %
-    Assistants%                                    % - Assistant (male plurial)     %
-  }                                                %                                %
-  \renewcommand{\myassistantfpname}{%              %                                %
-    Assistants%                                    % - Assistant (female plurial)   %
-  }                                                %                                %
-  \renewcommand{\myauthormname}{%                  %                                %
-    Author%                                        % - Author (male)                %
-  }                                                %                                %
-  \renewcommand{\myauthorfname}{%                  %                                %
-    Author%                                        % - Author (female)              %
-  }                                                %                                %
-  \renewcommand{\myauthormpname}{%                 %                                %
-    Authors%                                       % - Author (male plurial)        %
-  }                                                %                                %
-  \renewcommand{\myauthorfpname}{%                 %                                %
-    Authors%                                       % - Author (female plurial)      %
-  }                                                %                                %
-}                                                  %                                %
-\addto{\captionsngerman}{%                         % Adds words to German           %
+\newcommand{\mypackage@words@german}{%             % German words                   %
+  \mypackage@babelwords%                           % - Reset babel's words          %
   \renewcommand{\myequationname}{%                 %                                %
     Gleichung%                                     % - Equation                     %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myacyearname}{%                   %                                %
     Akademisches Jahr%                             % - Academic year                %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mypartname}{%                     %                                %
     Teil%                                          % - Part                         %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mybooksname}{%                    %                                %
     Bücher%                                        % - Books                        %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myarticlesname}{%                 %                                %
     Artikel%                                       % - Articles                     %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mycollectionsname}{%              %                                %
     Sammlungen%                                    % - Collections                  %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mymanualsname}{%                  %                                %
     Handbücher%                                    % - Manuals                      %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mythesesname}{%                   %                                %
-    Abhandlungen%                                  % - Theses                       %
-  }                                                %                                %
+    Abschlussarbeiten%                             % - Theses                       %
+  }%                                               %                                %
   \renewcommand{\myreferencesname}{%               %                                %
     Referenzen%                                    % - References                   %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myreportsname}{%                  %                                %
     Berichte%                                      % - Reports                      %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mywebsitesname}{%                 %                                %
     Webseiten%                                     % - Websites                     %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mypatentsname}{%                  %                                %
     Patente%                                       % - Patents                      %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myprogramname}{%                  %                                %
     Programm%                                      % - Program                      %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mylistprogramname}{%              %                                %
     Programmliste%                                 % - List of Programs             %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mylistequationname}{%             %                                %
     Gleichungsverzeichnis%                         % - List of Equations            %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myintroductionname}{%             %                                %
     Einleitung%                                    % - Introduction                 %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mysectionname}{%                  %                                %
     Abschnitt%                                     % - Section                      %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mysubsectionname}{%               %                                %
     Unterabschnitt%                                % - Subsection                   %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mysubsubsectionname}{%            %                                %
     Unterunterabschnitt%                           % - Subsubsection                %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myannexname}{%                    %                                %
-    Annektieren%                                   % - Annex                        %
-  }                                                %                                %
+    Anhang%                                        % - Annex                        %
+  }%                                               %                                %
   \renewcommand{\myprofessormname}{%               %                                %
     Professor%                                     % - Professor (male)             %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myprofessorfname}{%               %                                %
     Professorin%                                   % - Professor (female)           %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myprofessormpname}{%              %                                %
     Professoren%                                   % - Professor (male plurial)     %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myprofessorfpname}{%              %                                %
     Professorinnen%                                % - Professor (female plurial)   %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myassistantmname}{%               %                                %
     Assistent%                                     % - Assistant (male)             %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myassistantfname}{%               %                                %
     Assistentin%                                   % - Assistant (female)           %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myassistantmpname}{%              %                                %
     Assistenten%                                   % - Assistant (male plurial)     %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myassistantfpname}{%              %                                %
-    Assistenten%                                   % - Assistant (female plurial)   %
-  }                                                %                                %
+    Assistentinnen%                                % - Assistant (female plurial)   %
+  }%                                               %                                %
   \renewcommand{\myauthormname}{%                  %                                %
     Autor%                                         % - Author (male)                %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myauthorfname}{%                  %                                %
     Autorin%                                       % - Author (female)              %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myauthormpname}{%                 %                                %
     Autoren%                                       % - Author (male plurial)        %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myauthorfpname}{%                 %                                %
     Autorinnen%                                    % - Author (female plurial)      %
-  }                                                %                                %
+  }%                                               %                                %
 }                                                  %                                %
-\addto{\captionsfrench}{%                          % Adds words to French           %
+\newcommand{\mypackage@words@french}{%             % French words                   %
+  \mypackage@babelwords%                           % - Reset babel's words          %
   \renewcommand{\myequationname}{%                 %                                %
     Équation%                                      % - Equation                     %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myacyearname}{%                   %                                %
     Année académique%                              % - Academic year                %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mypartname}{%                     %                                %
     Partie%                                        % - Part                         %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mybooksname}{%                    %                                %
     Livres%                                        % - Books                        %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myarticlesname}{%                 %                                %
     Articles%                                      % - Articles                     %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mycollectionsname}{%              %                                %
     Collections%                                   % - Collections                  %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mymanualsname}{%                  %                                %
     Manuels%                                       % - Manuals                      %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mythesesname}{%                   %                                %
     Thèses%                                        % - Theses                       %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myreferencesname}{%               %                                %
     Références%                                    % - References                   %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myreportsname}{%                  %                                %
     Rapports%                                      % - Reports                      %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mywebsitesname}{%                 %                                %
     Sites Web%                                     % - Websites                     %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mypatentsname}{%                  %                                %
     Brevets%                                       % - Patents                      %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myprogramname}{%                  %                                %
     Programme%                                     % - Program                      %
-  }                                                %                                %
-  \AddToHook{begindocument/end}{%                  %                                %
-    \renewcommand{\mylistfigurename}{%             %                                %
-      Liste des figures%                           % - List of Figures              %
-    }                                              %                                %
-    \renewcommand{\mylisttablename}{%              %                                %
-      Liste des tables%                            % - List of Tables               %
-    }                                              %                                %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mylistprogramname}{%              %                                %
     Liste des programmes%                          % - List of Programs             %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mylistequationname}{%             %                                %
     Liste d'équations%                             % - List of Equations            %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myintroductionname}{%             %                                %
     Introduction%                                  % - Introduction                 %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mysectionname}{%                  %                                %
     Section%                                       % - Section                      %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mysubsectionname}{%               %                                %
     Sous-section%                                  % - Subsection                   %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mysubsubsectionname}{%            %                                %
     Sous-sous-section%                             % - Subsubsection                %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myannexname}{%                    %                                %
     Annexe%                                        % - Annex                        %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myprofessormname}{%               %                                %
     Professeur%                                    % - Professor (male)             %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myprofessorfname}{%               %                                %
     Professeure%                                   % - Professor (female)           %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myprofessormpname}{%              %                                %
     Professeurs%                                   % - Professor (male plurial)     %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myprofessorfpname}{%              %                                %
     Professeures%                                  % - Professor (female plurial)   %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myassistantmname}{%               %                                %
     Assistant%                                     % - Assistant (male)             %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myassistantfname}{%               %                                %
     Assistante%                                    % - Assistant (female)           %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myassistantmpname}{%              %                                %
     Assistants%                                    % - Assistant (male plurial)     %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myassistantfpname}{%              %                                %
     Assistantes%                                   % - Assistant (female plurial)   %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myauthormname}{%                  %                                %
     Auteur%                                        % - Author (male)                %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myauthorfname}{%                  %                                %
     Autrice%                                       % - Author (female)              %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myauthormpname}{%                 %                                %
     Auteurs%                                       % - Author (male plurial)        %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myauthorfpname}{%                 %                                %
     Autrices%                                      % - Author (female plurial)      %
-  }                                                %                                %
+  }%                                               %                                %
+  \renewcommand{\mylistfigurename}{%               %                                %
+    Liste des figures%                             % - List of Figures              %
+  }%                                               %                                %
+  \renewcommand{\mylisttablename}{%                %                                %
+    Liste des tables%                              % - List of Tables               %
+  }%                                               %                                %
 }                                                  %                                %
-\addto{\captionsspanish}{%                         % Adds words to Spanish          %
+\newcommand{\mypackage@words@dutch}{%              % Dutch words                    %
+  \mypackage@babelwords%                           % - Reset babel's words          %
   \renewcommand{\myequationname}{%                 %                                %
-    Ecuación%                                      % - Equation                     %
-  }                                                %                                %
+    Vergelijking%                                  % - Equation                     %
+  }%                                               %                                %
   \renewcommand{\myacyearname}{%                   %                                %
-    Año académico%                                 % - Academic year                %
-  }                                                %                                %
+    Academiejaar%                                  % - Academic year                %
+  }%                                               %                                %
   \renewcommand{\mypartname}{%                     %                                %
-    Parte%                                         % - Part                         %
-  }                                                %                                %
+    Deel%                                          % - Part                         %
+  }%                                               %                                %
   \renewcommand{\mybooksname}{%                    %                                %
-    Libros%                                        % - Books                        %
-  }                                                %                                %
+    Boeken%                                        % - Books                        %
+  }%                                               %                                %
   \renewcommand{\myarticlesname}{%                 %                                %
-    Artículos%                                     % - Articles                     %
-  }                                                %                                %
+    Artikelen%                                     % - Articles                     %
+  }%                                               %                                %
   \renewcommand{\mycollectionsname}{%              %                                %
-    Colecciones%                                   % - Collections                  %
-  }                                                %                                %
+    Verzamelwerken%                                % - Collections                  %
+  }%                                               %                                %
   \renewcommand{\mymanualsname}{%                  %                                %
-    Manuales%                                      % - Manuals                      %
-  }                                                %                                %
+    Handleidingen%                                 % - Manuals                      %
+  }%                                               %                                %
   \renewcommand{\mythesesname}{%                   %                                %
-    Tesis%                                         % - Theses                       %
-  }                                                %                                %
+    Scripties%                                     % - Theses                       %
+  }%                                               %                                %
   \renewcommand{\myreferencesname}{%               %                                %
-    Referencias%                                   % - References                   %
-  }                                                %                                %
+    Naslagwerken%                                  % - References                   %
+  }%                                               %                                %
   \renewcommand{\myreportsname}{%                  %                                %
-    Informes%                                      % - Reports                      %
-  }                                                %                                %
+    Rapporten%                                     % - Reports                      %
+  }%                                               %                                %
   \renewcommand{\mywebsitesname}{%                 %                                %
-    Sitios web%                                    % - Websites                     %
-  }                                                %                                %
+    Websites%                                      % - Websites                     %
+  }%                                               %                                %
   \renewcommand{\mypatentsname}{%                  %                                %
-    Patentes%                                      % - Patents                      %
-  }                                                %                                %
-  \renewcommand{\myprogramname}{%                  %                                %
-    Programa%                                      % - Program                      %
-  }                                                %                                %
-  \renewcommand{\mylistprogramname}{%              %                                %
-    Lista de programas%                            % - List of Programs             %
-  }                                                %                                %
-  \renewcommand{\mylistequationname}{%             %                                %
-    Lista de ecuaciones%                           % - List of Equations            %
-  }                                                %                                %
-  \renewcommand{\myintroductionname}{%             %                                %
-    Introducción%                                  % - Introduction                 %
-  }                                                %                                %
-  \renewcommand{\mysectionname}{%                  %                                %
-    Sección%                                       % - Section                      %
-  }                                                %                                %
-  \renewcommand{\mysubsectionname}{%               %                                %
-    Subsección%                                    % - Subsection                   %
-  }                                                %                                %
-  \renewcommand{\mysubsubsectionname}{%            %                                %
-    Subsubsección%                                 % - Subsubsection                %
-  }                                                %                                %
-  \renewcommand{\myannexname}{%                    %                                %
-    Anexo%                                         % - Annex                        %
-  }                                                %                                %
-  \renewcommand{\myprofessormname}{%               %                                %
-    Profesor%                                      % - Professor (male)             %
-  }                                                %                                %
-  \renewcommand{\myprofessorfname}{%               %                                %
-    Profesora%                                     % - Professor (female)           %
-  }                                                %                                %
-  \renewcommand{\myprofessormpname}{%              %                                %
-    Profesores%                                    % - Professor (male plurial)     %
-  }                                                %                                %
-  \renewcommand{\myprofessorfpname}{%              %                                %
-    Profesoras%                                    % - Professor (female plurial)   %
-  }                                                %                                %
-  \renewcommand{\myassistantmname}{%               %                                %
-    Ayudante%                                      % - Assistant (male)             %
-  }                                                %                                %
-  \renewcommand{\myassistantfname}{%               %                                %
-    Ayudante%                                      % - Assistant (female)           %
-  }                                                %                                %
-  \renewcommand{\myassistantmpname}{%              %                                %
-    Ayudantes%                                     % - Assistant (male plurial)     %
-  }                                                %                                %
-  \renewcommand{\myassistantfpname}{%              %                                %
-    Ayudantes%                                     % - Assistant (female plurial)   %
-  }                                                %                                %
-  \renewcommand{\myauthormname}{%                  %                                %
-    Autor%                                         % - Author (male)                %
-  }                                                %                                %
-  \renewcommand{\myauthorfname}{%                  %                                %
-    Autora%                                        % - Author (female)              %
-  }                                                %                                %
-  \renewcommand{\myauthormpname}{%                 %                                %
-    Autores%                                       % - Author (male plurial)        %
-  }                                                %                                %
-  \renewcommand{\myauthorfpname}{%                 %                                %
-    Autoras%                                       % - Author (female plurial)      %
-  }                                                %                                %
-}                                                  %                                %
-\addto{\captionsitalian}{%                         % Adds words to Italian          %
-  \renewcommand{\myequationname}{%                 %                                %
-    Equazione%                                     % - Equation                     %
-  }                                                %                                %
-  \renewcommand{\myacyearname}{%                   %                                %
-    Anno accademico%                               % - Academic year                %
-  }                                                %                                %
-  \renewcommand{\mypartname}{%                     %                                %
-    Parte%                                         % - Part                         %
-  }                                                %                                %
-  \renewcommand{\mybooksname}{%                    %                                %
-    Libri%                                         % - Books                        %
-  }                                                %                                %
-  \renewcommand{\myarticlesname}{%                 %                                %
-    Articoli%                                      % - Articles                     %
-  }                                                %                                %
-  \renewcommand{\mycollectionsname}{%              %                                %
-    Collezioni%                                    % - Collections                  %
-  }                                                %                                %
-  \renewcommand{\mymanualsname}{%                  %                                %
-    Manuali%                                       % - Manuals                      %
-  }                                                %                                %
-  \renewcommand{\mythesesname}{%                   %                                %
-    Tesi%                                          % - Theses                       %
-  }                                                %                                %
-  \renewcommand{\myreferencesname}{%               %                                %
-    Riferimenti%                                   % - References                   %
-  }                                                %                                %
-  \renewcommand{\myreportsname}{%                  %                                %
-    Rapporti%                                      % - Reports                      %
-  }                                                %                                %
-  \renewcommand{\mywebsitesname}{%                 %                                %
-    Siti Web%                                      % - Websites                     %
-  }                                                %                                %
-  \renewcommand{\mypatentsname}{%                  %                                %
-    Brevetti%                                      % - Patents                      %
-  }                                                %                                %
+    Octrooien%                                     % - Patents                      %
+  }%                                               %                                %
   \renewcommand{\myprogramname}{%                  %                                %
     Programma%                                     % - Program                      %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mylistprogramname}{%              %                                %
-    Elenco dei programmi%                          % - List of Programs             %
-  }                                                %                                %
+    Lijst van programma's%                         % - List of Programs             %
+  }%                                               %                                %
   \renewcommand{\mylistequationname}{%             %                                %
-    Elenco di equazioni%                           % - List of Equations            %
-  }                                                %                                %
+    Lijst van vergelijkingen%                      % - List of Equations            %
+  }%                                               %                                %
   \renewcommand{\myintroductionname}{%             %                                %
-    Introduzione%                                  % - Introduction                 %
-  }                                                %                                %
+    Inleiding%                                     % - Introduction                 %
+  }%                                               %                                %
   \renewcommand{\mysectionname}{%                  %                                %
-    Sezione%                                       % - Section                      %
-  }                                                %                                %
+    Sectie%                                        % - Section                      %
+  }%                                               %                                %
   \renewcommand{\mysubsectionname}{%               %                                %
-    Sottosezione%                                  % - Subsection                   %
-  }                                                %                                %
+    Subsectie%                                     % - Subsection                   %
+  }%                                               %                                %
   \renewcommand{\mysubsubsectionname}{%            %                                %
-    Sottosottosezione%                             % - Subsubsection                %
-  }                                                %                                %
+    Subsubsectie%                                  % - Subsubsection                %
+  }%                                               %                                %
   \renewcommand{\myannexname}{%                    %                                %
-    Allegato%                                      % - Annex                        %
-  }                                                %                                %
-  \renewcommand{\myprofessormname}{%               %                                %
-    Professore%                                    % - Professor (male)             %
-  }                                                %                                %
-  \renewcommand{\myprofessorfname}{%               %                                %
-    Professoressa%                                 % - Professor (female)           %
-  }                                                %                                %
-  \renewcommand{\myprofessormpname}{%              %                                %
-    Professori%                                    % - Professor (male plurial)     %
-  }                                                %                                %
-  \renewcommand{\myprofessorfpname}{%              %                                %
-    Professoresse%                                 % - Professor (female plurial)   %
-  }                                                %                                %
-  \renewcommand{\myassistantmname}{%               %                                %
-    Assistente%                                    % - Assistant (male)             %
-  }                                                %                                %
-  \renewcommand{\myassistantfname}{%               %                                %
-    Assistente%                                    % - Assistant (female)           %
-  }                                                %                                %
-  \renewcommand{\myassistantmpname}{%              %                                %
-    Assistenti%                                    % - Assistant (male plurial)     %
-  }                                                %                                %
-  \renewcommand{\myassistantfpname}{%              %                                %
-    Assistenti%                                    % - Assistant (female plurial)   %
-  }                                                %                                %
-  \renewcommand{\myauthormname}{%                  %                                %
-    Autore%                                        % - Author (male)                %
-  }                                                %                                %
-  \renewcommand{\myauthorfname}{%                  %                                %
-    Autrice%                                       % - Author (female)              %
-  }                                                %                                %
-  \renewcommand{\myauthormpname}{%                 %                                %
-    Autori%                                        % - Author (male plurial)        %
-  }                                                %                                %
-  \renewcommand{\myauthorfpname}{%                 %                                %
-    Autrici%                                       % - Author (female plurial)      %
-  }                                                %                                %
-}                                                  %                                %
-\addto{\captionsportuguese}{%                      % Adds words to Portuguese       %
-  \renewcommand{\myequationname}{%                 %                                %
-    Equação%                                       % - Equation                     %
-  }                                                %                                %
-  \renewcommand{\myacyearname}{%                   %                                %
-    Ano acadêmico%                                 % - Academic year                %
-  }                                                %                                %
-  \renewcommand{\mypartname}{%                     %                                %
-    Parte%                                         % - Part                         %
-  }                                                %                                %
-  \renewcommand{\mybooksname}{%                    %                                %
-    Livros%                                        % - Books                        %
-  }                                                %                                %
-  \renewcommand{\myarticlesname}{%                 %                                %
-    Artigos%                                       % - Articles                     %
-  }                                                %                                %
-  \renewcommand{\mycollectionsname}{%              %                                %
-    Coleções%                                      % - Collections                  %
-  }                                                %                                %
-  \renewcommand{\mymanualsname}{%                  %                                %
-    Manuais%                                       % - Manuals                      %
-  }                                                %                                %
-  \renewcommand{\mythesesname}{%                   %                                %
-    Teses%                                         % - Theses                       %
-  }                                                %                                %
-  \renewcommand{\myreferencesname}{%               %                                %
-    Referências%                                   % - References                   %
-  }                                                %                                %
-  \renewcommand{\myreportsname}{%                  %                                %
-    Relatórios%                                    % - Reports                      %
-  }                                                %                                %
-  \renewcommand{\mywebsitesname}{%                 %                                %
-    Sites Web%                                     % - Websites                     %
-  }                                                %                                %
-  \renewcommand{\mypatentsname}{%                  %                                %
-    Patentes%                                      % - Patents                      %
-  }                                                %                                %
-  \renewcommand{\myprogramname}{%                  %                                %
-    Programa%                                      % - Program                      %
-  }                                                %                                %
-  \renewcommand{\mylistprogramname}{%              %                                %
-    Lista de Programas%                            % - List of Programs             %
-  }                                                %                                %
-  \renewcommand{\mylistequationname}{%             %                                %
-    Lista de Equações%                             % - List of Equations            %
-  }                                                %                                %
-  \renewcommand{\myintroductionname}{%             %                                %
-    Introdução%                                    % - Introduction                 %
-  }                                                %                                %
-  \renewcommand{\mysectionname}{%                  %                                %
-    Seção%                                         % - Section                      %
-  }                                                %                                %
-  \renewcommand{\mysubsectionname}{%               %                                %
-    Subseção%                                      % - Subsection                   %
-  }                                                %                                %
-  \renewcommand{\mysubsubsectionname}{%            %                                %
-    Subsubseção%                                   % - Subsubsection                %
-  }                                                %                                %
-  \renewcommand{\myannexname}{%                    %                                %
-    Anexo%                                         % - Annex                        %
-  }                                                %                                %
+    Bijlage%                                       % - Annex                        %
+  }%                                               %                                %
   \renewcommand{\myprofessormname}{%               %                                %
     Professor%                                     % - Professor (male)             %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myprofessorfname}{%               %                                %
-    Professora%                                    % - Professor (female)           %
-  }                                                %                                %
+    Professor%                                     % - Professor (female)           %
+  }%                                               %                                %
   \renewcommand{\myprofessormpname}{%              %                                %
-    Professores%                                   % - Professor (male plurial)     %
-  }                                                %                                %
+    Professoren%                                   % - Professor (male plurial)     %
+  }%                                               %                                %
   \renewcommand{\myprofessorfpname}{%              %                                %
-    Professoras%                                   % - Professor (female plurial)   %
-  }                                                %                                %
+    Professoren%                                   % - Professor (female plurial)   %
+  }%                                               %                                %
   \renewcommand{\myassistantmname}{%               %                                %
-    Assistente%                                    % - Assistant (male)             %
-  }                                                %                                %
+    Assistent%                                     % - Assistant (male)             %
+  }%                                               %                                %
   \renewcommand{\myassistantfname}{%               %                                %
     Assistente%                                    % - Assistant (female)           %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myassistantmpname}{%              %                                %
-    Assistentes%                                   % - Assistant (male plurial)     %
-  }                                                %                                %
+    Assistenten%                                   % - Assistant (male plurial)     %
+  }%                                               %                                %
   \renewcommand{\myassistantfpname}{%              %                                %
     Assistentes%                                   % - Assistant (female plurial)   %
-  }                                                %                                %
+  }%                                               %                                %
+  \renewcommand{\myauthormname}{%                  %                                %
+    Auteur%                                        % - Author (male)                %
+  }%                                               %                                %
+  \renewcommand{\myauthorfname}{%                  %                                %
+    Auteur%                                        % - Author (female)              %
+  }%                                               %                                %
+  \renewcommand{\myauthormpname}{%                 %                                %
+    Auteurs%                                       % - Author (male plurial)        %
+  }%                                               %                                %
+  \renewcommand{\myauthorfpname}{%                 %                                %
+    Auteurs%                                       % - Author (female plurial)      %
+  }%                                               %                                %
+}                                                  %                                %
+\newcommand{\mypackage@words@spanish}{%            % Spanish words                  %
+  \mypackage@babelwords%                           % - Reset babel's words          %
+  \renewcommand{\myequationname}{%                 %                                %
+    Ecuación%                                      % - Equation                     %
+  }%                                               %                                %
+  \renewcommand{\myacyearname}{%                   %                                %
+    Año académico%                                 % - Academic year                %
+  }%                                               %                                %
+  \renewcommand{\mypartname}{%                     %                                %
+    Parte%                                         % - Part                         %
+  }%                                               %                                %
+  \renewcommand{\mybooksname}{%                    %                                %
+    Libros%                                        % - Books                        %
+  }%                                               %                                %
+  \renewcommand{\myarticlesname}{%                 %                                %
+    Artículos%                                     % - Articles                     %
+  }%                                               %                                %
+  \renewcommand{\mycollectionsname}{%              %                                %
+    Colecciones%                                   % - Collections                  %
+  }%                                               %                                %
+  \renewcommand{\mymanualsname}{%                  %                                %
+    Manuales%                                      % - Manuals                      %
+  }%                                               %                                %
+  \renewcommand{\mythesesname}{%                   %                                %
+    Tesis%                                         % - Theses                       %
+  }%                                               %                                %
+  \renewcommand{\myreferencesname}{%               %                                %
+    Referencias%                                   % - References                   %
+  }%                                               %                                %
+  \renewcommand{\myreportsname}{%                  %                                %
+    Informes%                                      % - Reports                      %
+  }%                                               %                                %
+  \renewcommand{\mywebsitesname}{%                 %                                %
+    Sitios web%                                    % - Websites                     %
+  }%                                               %                                %
+  \renewcommand{\mypatentsname}{%                  %                                %
+    Patentes%                                      % - Patents                      %
+  }%                                               %                                %
+  \renewcommand{\myprogramname}{%                  %                                %
+    Programa%                                      % - Program                      %
+  }%                                               %                                %
+  \renewcommand{\mylistprogramname}{%              %                                %
+    Lista de programas%                            % - List of Programs             %
+  }%                                               %                                %
+  \renewcommand{\mylistequationname}{%             %                                %
+    Lista de ecuaciones%                           % - List of Equations            %
+  }%                                               %                                %
+  \renewcommand{\myintroductionname}{%             %                                %
+    Introducción%                                  % - Introduction                 %
+  }%                                               %                                %
+  \renewcommand{\mysectionname}{%                  %                                %
+    Sección%                                       % - Section                      %
+  }%                                               %                                %
+  \renewcommand{\mysubsectionname}{%               %                                %
+    Subsección%                                    % - Subsection                   %
+  }%                                               %                                %
+  \renewcommand{\mysubsubsectionname}{%            %                                %
+    Subsubsección%                                 % - Subsubsection                %
+  }%                                               %                                %
+  \renewcommand{\myannexname}{%                    %                                %
+    Anexo%                                         % - Annex                        %
+  }%                                               %                                %
+  \renewcommand{\myprofessormname}{%               %                                %
+    Profesor%                                      % - Professor (male)             %
+  }%                                               %                                %
+  \renewcommand{\myprofessorfname}{%               %                                %
+    Profesora%                                     % - Professor (female)           %
+  }%                                               %                                %
+  \renewcommand{\myprofessormpname}{%              %                                %
+    Profesores%                                    % - Professor (male plurial)     %
+  }%                                               %                                %
+  \renewcommand{\myprofessorfpname}{%              %                                %
+    Profesoras%                                    % - Professor (female plurial)   %
+  }%                                               %                                %
+  \renewcommand{\myassistantmname}{%               %                                %
+    Ayudante%                                      % - Assistant (male)             %
+  }%                                               %                                %
+  \renewcommand{\myassistantfname}{%               %                                %
+    Ayudante%                                      % - Assistant (female)           %
+  }%                                               %                                %
+  \renewcommand{\myassistantmpname}{%              %                                %
+    Ayudantes%                                     % - Assistant (male plurial)     %
+  }%                                               %                                %
+  \renewcommand{\myassistantfpname}{%              %                                %
+    Ayudantes%                                     % - Assistant (female plurial)   %
+  }%                                               %                                %
   \renewcommand{\myauthormname}{%                  %                                %
     Autor%                                         % - Author (male)                %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myauthorfname}{%                  %                                %
     Autora%                                        % - Author (female)              %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myauthormpname}{%                 %                                %
     Autores%                                       % - Author (male plurial)        %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myauthorfpname}{%                 %                                %
     Autoras%                                       % - Author (female plurial)      %
-  }                                                %                                %
+  }%                                               %                                %
 }                                                  %                                %
-\addto{\captionsrussian}{%                         % Adds words to Russian          %
+\newcommand{\mypackage@words@italian}{%            % Italian words                  %
+  \mypackage@babelwords%                           % - Reset babel's words          %
+  \renewcommand{\myequationname}{%                 %                                %
+    Equazione%                                     % - Equation                     %
+  }%                                               %                                %
+  \renewcommand{\myacyearname}{%                   %                                %
+    Anno accademico%                               % - Academic year                %
+  }%                                               %                                %
+  \renewcommand{\mypartname}{%                     %                                %
+    Parte%                                         % - Part                         %
+  }%                                               %                                %
+  \renewcommand{\mybooksname}{%                    %                                %
+    Libri%                                         % - Books                        %
+  }%                                               %                                %
+  \renewcommand{\myarticlesname}{%                 %                                %
+    Articoli%                                      % - Articles                     %
+  }%                                               %                                %
+  \renewcommand{\mycollectionsname}{%              %                                %
+    Collezioni%                                    % - Collections                  %
+  }%                                               %                                %
+  \renewcommand{\mymanualsname}{%                  %                                %
+    Manuali%                                       % - Manuals                      %
+  }%                                               %                                %
+  \renewcommand{\mythesesname}{%                   %                                %
+    Tesi%                                          % - Theses                       %
+  }%                                               %                                %
+  \renewcommand{\myreferencesname}{%               %                                %
+    Riferimenti%                                   % - References                   %
+  }%                                               %                                %
+  \renewcommand{\myreportsname}{%                  %                                %
+    Rapporti%                                      % - Reports                      %
+  }%                                               %                                %
+  \renewcommand{\mywebsitesname}{%                 %                                %
+    Siti Web%                                      % - Websites                     %
+  }%                                               %                                %
+  \renewcommand{\mypatentsname}{%                  %                                %
+    Brevetti%                                      % - Patents                      %
+  }%                                               %                                %
+  \renewcommand{\myprogramname}{%                  %                                %
+    Programma%                                     % - Program                      %
+  }%                                               %                                %
+  \renewcommand{\mylistprogramname}{%              %                                %
+    Elenco dei programmi%                          % - List of Programs             %
+  }%                                               %                                %
+  \renewcommand{\mylistequationname}{%             %                                %
+    Elenco di equazioni%                           % - List of Equations            %
+  }%                                               %                                %
+  \renewcommand{\myintroductionname}{%             %                                %
+    Introduzione%                                  % - Introduction                 %
+  }%                                               %                                %
+  \renewcommand{\mysectionname}{%                  %                                %
+    Sezione%                                       % - Section                      %
+  }%                                               %                                %
+  \renewcommand{\mysubsectionname}{%               %                                %
+    Sottosezione%                                  % - Subsection                   %
+  }%                                               %                                %
+  \renewcommand{\mysubsubsectionname}{%            %                                %
+    Sottosottosezione%                             % - Subsubsection                %
+  }%                                               %                                %
+  \renewcommand{\myannexname}{%                    %                                %
+    Allegato%                                      % - Annex                        %
+  }%                                               %                                %
+  \renewcommand{\myprofessormname}{%               %                                %
+    Professore%                                    % - Professor (male)             %
+  }%                                               %                                %
+  \renewcommand{\myprofessorfname}{%               %                                %
+    Professoressa%                                 % - Professor (female)           %
+  }%                                               %                                %
+  \renewcommand{\myprofessormpname}{%              %                                %
+    Professori%                                    % - Professor (male plurial)     %
+  }%                                               %                                %
+  \renewcommand{\myprofessorfpname}{%              %                                %
+    Professoresse%                                 % - Professor (female plurial)   %
+  }%                                               %                                %
+  \renewcommand{\myassistantmname}{%               %                                %
+    Assistente%                                    % - Assistant (male)             %
+  }%                                               %                                %
+  \renewcommand{\myassistantfname}{%               %                                %
+    Assistente%                                    % - Assistant (female)           %
+  }%                                               %                                %
+  \renewcommand{\myassistantmpname}{%              %                                %
+    Assistenti%                                    % - Assistant (male plurial)     %
+  }%                                               %                                %
+  \renewcommand{\myassistantfpname}{%              %                                %
+    Assistenti%                                    % - Assistant (female plurial)   %
+  }%                                               %                                %
+  \renewcommand{\myauthormname}{%                  %                                %
+    Autore%                                        % - Author (male)                %
+  }%                                               %                                %
+  \renewcommand{\myauthorfname}{%                  %                                %
+    Autrice%                                       % - Author (female)              %
+  }%                                               %                                %
+  \renewcommand{\myauthormpname}{%                 %                                %
+    Autori%                                        % - Author (male plurial)        %
+  }%                                               %                                %
+  \renewcommand{\myauthorfpname}{%                 %                                %
+    Autrici%                                       % - Author (female plurial)      %
+  }%                                               %                                %
+}                                                  %                                %
+\newcommand{\mypackage@words@portuguese}{%         % Portuguese words               %
+  \mypackage@babelwords%                           % - Reset babel's words          %
+  \renewcommand{\myequationname}{%                 %                                %
+    Equação%                                       % - Equation                     %
+  }%                                               %                                %
+  \renewcommand{\myacyearname}{%                   %                                %
+    Ano acadêmico%                                 % - Academic year                %
+  }%                                               %                                %
+  \renewcommand{\mypartname}{%                     %                                %
+    Parte%                                         % - Part                         %
+  }%                                               %                                %
+  \renewcommand{\mybooksname}{%                    %                                %
+    Livros%                                        % - Books                        %
+  }%                                               %                                %
+  \renewcommand{\myarticlesname}{%                 %                                %
+    Artigos%                                       % - Articles                     %
+  }%                                               %                                %
+  \renewcommand{\mycollectionsname}{%              %                                %
+    Coleções%                                      % - Collections                  %
+  }%                                               %                                %
+  \renewcommand{\mymanualsname}{%                  %                                %
+    Manuais%                                       % - Manuals                      %
+  }%                                               %                                %
+  \renewcommand{\mythesesname}{%                   %                                %
+    Teses%                                         % - Theses                       %
+  }%                                               %                                %
+  \renewcommand{\myreferencesname}{%               %                                %
+    Referências%                                   % - References                   %
+  }%                                               %                                %
+  \renewcommand{\myreportsname}{%                  %                                %
+    Relatórios%                                    % - Reports                      %
+  }%                                               %                                %
+  \renewcommand{\mywebsitesname}{%                 %                                %
+    Sites Web%                                     % - Websites                     %
+  }%                                               %                                %
+  \renewcommand{\mypatentsname}{%                  %                                %
+    Patentes%                                      % - Patents                      %
+  }%                                               %                                %
+  \renewcommand{\myprogramname}{%                  %                                %
+    Programa%                                      % - Program                      %
+  }%                                               %                                %
+  \renewcommand{\mylistprogramname}{%              %                                %
+    Lista de Programas%                            % - List of Programs             %
+  }%                                               %                                %
+  \renewcommand{\mylistequationname}{%             %                                %
+    Lista de Equações%                             % - List of Equations            %
+  }%                                               %                                %
+  \renewcommand{\myintroductionname}{%             %                                %
+    Introdução%                                    % - Introduction                 %
+  }%                                               %                                %
+  \renewcommand{\mysectionname}{%                  %                                %
+    Seção%                                         % - Section                      %
+  }%                                               %                                %
+  \renewcommand{\mysubsectionname}{%               %                                %
+    Subseção%                                      % - Subsection                   %
+  }%                                               %                                %
+  \renewcommand{\mysubsubsectionname}{%            %                                %
+    Subsubseção%                                   % - Subsubsection                %
+  }%                                               %                                %
+  \renewcommand{\myannexname}{%                    %                                %
+    Anexo%                                         % - Annex                        %
+  }%                                               %                                %
+  \renewcommand{\myprofessormname}{%               %                                %
+    Professor%                                     % - Professor (male)             %
+  }%                                               %                                %
+  \renewcommand{\myprofessorfname}{%               %                                %
+    Professora%                                    % - Professor (female)           %
+  }%                                               %                                %
+  \renewcommand{\myprofessormpname}{%              %                                %
+    Professores%                                   % - Professor (male plurial)     %
+  }%                                               %                                %
+  \renewcommand{\myprofessorfpname}{%              %                                %
+    Professoras%                                   % - Professor (female plurial)   %
+  }%                                               %                                %
+  \renewcommand{\myassistantmname}{%               %                                %
+    Assistente%                                    % - Assistant (male)             %
+  }%                                               %                                %
+  \renewcommand{\myassistantfname}{%               %                                %
+    Assistente%                                    % - Assistant (female)           %
+  }%                                               %                                %
+  \renewcommand{\myassistantmpname}{%              %                                %
+    Assistentes%                                   % - Assistant (male plurial)     %
+  }%                                               %                                %
+  \renewcommand{\myassistantfpname}{%              %                                %
+    Assistentes%                                   % - Assistant (female plurial)   %
+  }%                                               %                                %
+  \renewcommand{\myauthormname}{%                  %                                %
+    Autor%                                         % - Author (male)                %
+  }%                                               %                                %
+  \renewcommand{\myauthorfname}{%                  %                                %
+    Autora%                                        % - Author (female)              %
+  }%                                               %                                %
+  \renewcommand{\myauthormpname}{%                 %                                %
+    Autores%                                       % - Author (male plurial)        %
+  }%                                               %                                %
+  \renewcommand{\myauthorfpname}{%                 %                                %
+    Autoras%                                       % - Author (female plurial)      %
+  }%                                               %                                %
+}                                                  %                                %
+\newcommand{\mypackage@words@russian}{%            % Russian words                  %
+  \mypackage@babelwords%                           % - Reset babel's words          %
   \renewcommand{\myequationname}{%                 %                                %
     Уравнение%                                     % - Equation                     %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myacyearname}{%                   %                                %
     Учебный год%                                   % - Academic year                %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mypartname}{%                     %                                %
     Часть%                                         % - Part                         %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mybooksname}{%                    %                                %
     Книги%                                         % - Books                        %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myarticlesname}{%                 %                                %
     Статьи%                                        % - Articles                     %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mycollectionsname}{%              %                                %
     Сборники%                                      % - Collections                  %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mymanualsname}{%                  %                                %
     Руководства%                                   % - Manuals                      %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mythesesname}{%                   %                                %
     Диссертации%                                   % - Theses                       %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myreferencesname}{%               %                                %
     Ссылки%                                        % - References                   %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myreportsname}{%                  %                                %
     Отчёты%                                        % - Reports                      %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mywebsitesname}{%                 %                                %
     Веб-сайты%                                     % - Websites                     %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mypatentsname}{%                  %                                %
     Патенты%                                       % - Patents                      %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myprogramname}{%                  %                                %
     Программа%                                     % - Program                      %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mylistprogramname}{%              %                                %
     Список программ%                               % - List of Programs             %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mylistequationname}{%             %                                %
     Список уравнений%                              % - List of Equations            %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myintroductionname}{%             %                                %
     Введение%                                      % - Introduction                 %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mysectionname}{%                  %                                %
     Раздел%                                        % - Section                      %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mysubsectionname}{%               %                                %
     Подраздел%                                     % - Subsection                   %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\mysubsubsectionname}{%            %                                %
     Подподраздел%                                  % - Subsubsection                %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myannexname}{%                    %                                %
     Приложение%                                    % - Annex                        %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myprofessormname}{%               %                                %
     Профессор%                                     % - Professor (male)             %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myprofessorfname}{%               %                                %
     Профессорша%                                   % - Professor (female)           %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myprofessormpname}{%              %                                %
     Профессора%                                    % - Professor (male plurial)     %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myprofessorfpname}{%              %                                %
     Профессорши%                                   % - Professor (female plurial)   %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myassistantmname}{%               %                                %
     Ассистент%                                     % - Assistant (male)             %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myassistantfname}{%               %                                %
     Ассистентка%                                   % - Assistant (female)           %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myassistantmpname}{%              %                                %
     Ассистенты%                                    % - Assistant (male plurial)     %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myassistantfpname}{%              %                                %
     Ассистентки%                                   % - Assistant (female plurial)   %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myauthormname}{%                  %                                %
     Автор%                                         % - Author (male)                %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myauthorfname}{%                  %                                %
     Авторка%                                       % - Author (female)              %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myauthormpname}{%                 %                                %
     Авторы%                                        % - Author (male plurial)        %
-  }                                                %                                %
+  }%                                               %                                %
   \renewcommand{\myauthorfpname}{%                 %                                %
     Авторки%                                       % - Author (female plurial)      %
-  }                                                %                                %
+  }%                                               %                                %
 }                                                  %                                %
+\newcommand{\mypackage@addwords}[2]{%              % Add words #2 to the captions   %
+  \@for\mypackage@tempa:=#1\do{%                   % of every language in list #1   %
+    \expandafter\addto                             %                                %
+    \csname captions\mypackage@tempa\endcsname{#2}%%                                %
+  }%                                               %                                %
+}                                                  %                                %
+\mypackage@addwords{%                              % Register English words         %
+  british,english,UKenglish,american,USenglish,%   %                                %
+  canadian,australian,newzealand%                  %                                %
+}{\mypackage@words@english}                        %                                %
+\mypackage@addwords{%                              % Register German words          %
+  ngerman,german,austrian,naustrian,%              %                                %
+  swissgerman,nswissgerman%                        %                                %
+}{\mypackage@words@german}                         %                                %
+\mypackage@addwords{%                              % Register French words          %
+  french,acadian%                                  %                                %
+}{\mypackage@words@french}                         %                                %
+\mypackage@addwords{%                              % Register Dutch words           %
+  dutch%                                           %                                %
+}{\mypackage@words@dutch}                          %                                %
+\mypackage@addwords{%                              % Register Spanish words         %
+  spanish%                                         %                                %
+}{\mypackage@words@spanish}                        %                                %
+\mypackage@addwords{%                              % Register Italian words         %
+  italian%                                         %                                %
+}{\mypackage@words@italian}                        %                                %
+\mypackage@addwords{%                              % Register Portuguese words      %
+  portuguese,portuges,brazilian,brazil%            %                                %
+}{\mypackage@words@portuguese}                     %                                %
+\mypackage@addwords{%                              % Register Russian words         %
+  russian%                                         %                                %
+}{\mypackage@words@russian}                        %                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% COUNTERS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1450,36 +1500,25 @@
     \fi%
   \fi%
 }
+% Page-numbering style tracking: \pagenumbering stores the name of the
+% style and the \IfIs<style>TF tests compare names, instead of looking at
+% the characters of \thepage ("c", "d", "i", ... are letters *and* roman
+% numerals, so the old character tests gave wrong answers).
+\gdef\mypackage@pagestyle{arabic}
+\let\mypackage@pagenumbering\pagenumbering
+\renewcommand*{\pagenumbering}[1]{%
+  \xdef\mypackage@pagestyle{#1}%
+  \mypackage@pagenumbering{#1}%
+}
+\ExplSyntaxOn
+  \cs_new:Npn \mypackage@IfPageNumberingTF #1#2#3
+    { \str_if_eq:VnTF \mypackage@pagestyle {#1} {#2} {#3} }
+  % "myalph" page numbering: a, ..., z, aa, ab, ... It never overflows,
+  % unlike LaTeX's "alph" (error "Counter too large" after page z).
+  \cs_new:Npn \@myalph #1 { \int_to_alph:n {#1} }
+\ExplSyntaxOff
 \NewDocumentCommand{\IfIsRomanTF}{m m}{%
-  \IfSubStr{\thepage}{I}{%
-    #1%
-  }{%
-    \IfSubStr{\thepage}{V}{%
-      #1%
-    }{%
-      \IfSubStr{\thepage}{X}{%
-        #1%
-      }{%
-        \IfSubStr{\thepage}{L}{%
-          #1%
-        }{%
-          \IfSubStr{\thepage}{C}{%
-            #1%
-          }{%
-            \IfSubStr{\thepage}{D}{%
-              #1%
-            }{%
-              \IfSubStr{\thepage}{M}{%
-                #1%
-              }{%
-                #2%
-              }%
-            }%
-          }%
-        }%
-      }%
-    }%
-  }%
+  \mypackage@IfPageNumberingTF{Roman}{#1}{#2}%
 }
 \NewDocumentCommand{\IfIsRomanT}{m}{%
   \IfIsRomanTF{#1}{}%
@@ -1488,35 +1527,7 @@
   \IfIsRomanTF{}{#1}%
 }
 \NewDocumentCommand{\IfIsromanTF}{m m}{%
-  \IfSubStr{\thepage}{i}{%
-    #1%
-  }{%
-    \IfSubStr{\thepage}{v}{%
-      #1%
-    }{%
-      \IfSubStr{\thepage}{x}{%
-        #1%
-      }{%
-        \IfSubStr{\thepage}{l}{%
-          #1%
-        }{%
-          \IfSubStr{\thepage}{c}{%
-            #1%
-          }{%
-            \IfSubStr{\thepage}{d}{%
-              #1%
-            }{%
-              \IfSubStr{\thepage}{m}{%
-                #1%
-              }{%
-                #2%
-              }%
-            }%
-          }%
-        }%
-      }%
-    }%
-  }%
+  \mypackage@IfPageNumberingTF{roman}{#1}{#2}%
 }
 \NewDocumentCommand{\IfIsromanT}{m}{%
   \IfIsromanTF{#1}{}%
@@ -1525,47 +1536,7 @@
   \IfIsromanTF{}{#1}%
 }
 \NewDocumentCommand{\IfIsarabicTF}{m m}{%
-  \IfSubStr{\thepage}{0}{%
-    #1%
-  }{%
-    \IfSubStr{\thepage}{1}{%
-      #1%
-    }{%
-      \IfSubStr{\thepage}{2}{%
-        #1%
-      }{%
-        \IfSubStr{\thepage}{3}{%
-          #1%
-        }{%
-          \IfSubStr{\thepage}{4}{%
-            #1%
-          }{%
-            \IfSubStr{\thepage}{5}{%
-              #1%
-            }{%
-              \IfSubStr{\thepage}{6}{%
-                #1%
-              }{%
-                \IfSubStr{\thepage}{7}{%
-                  #1%
-                }{%
-                  \IfSubStr{\thepage}{8}{%
-                    #1%
-                  }{%
-                    \IfSubStr{\thepage}{9}{%
-                      #1%
-                    }{%
-                      #2%
-                    }%
-                  }%
-                }%
-              }%
-            }%
-          }%
-        }%
-      }%
-    }%
-  }%
+  \mypackage@IfPageNumberingTF{arabic}{#1}{#2}%
 }
 \NewDocumentCommand{\IfIsarabicT}{m}{%
   \IfIsarabicTF{#1}{}%
@@ -1574,111 +1545,7 @@
   \IfIsarabicTF{}{#1}%
 }
 \NewDocumentCommand{\IfIsAlphTF}{m m}{%
-  \IfSubStr{\thepage}{A}{%
-    #1%
-  }{%
-    \IfSubStr{\thepage}{B}{%
-      #1%
-    }{%
-      \IfSubStr{\thepage}{C}{%
-        #1%
-      }{%
-        \IfSubStr{\thepage}{D}{%
-          #1%
-        }{%
-          \IfSubStr{\thepage}{E}{%
-            #1%
-          }{%
-            \IfSubStr{\thepage}{F}{%
-              #1%
-            }{%
-              \IfSubStr{\thepage}{G}{%
-                #1%
-              }{%
-                \IfSubStr{\thepage}{H}{%
-                  #1%
-                }{%
-                  \IfSubStr{\thepage}{I}{%
-                    #1%
-                  }{%
-                    \IfSubStr{\thepage}{J}{%
-                      #1%
-                    }{%
-                      \IfSubStr{\thepage}{K}{%
-                        #1%
-                      }{%
-                        \IfSubStr{\thepage}{L}{%
-                          #1%
-                        }{%
-                          \IfSubStr{\thepage}{M}{%
-                            #1%
-                          }{%
-                            \IfSubStr{\thepage}{N}{%
-                              #1%
-                            }{%
-                              \IfSubStr{\thepage}{O}{%
-                                #1%
-                              }{%
-                                \IfSubStr{\thepage}{P}{%
-                                  #1%
-                                }{%
-                                  \IfSubStr{\thepage}{Q}{%
-                                    #1%
-                                  }{%
-                                    \IfSubStr{\thepage}{R}{%
-                                      #1%
-                                    }{%
-                                      \IfSubStr{\thepage}{S}{%
-                                        #1%
-                                      }{%
-                                        \IfSubStr{\thepage}{T}{%
-                                          #1%
-                                        }{%
-                                          \IfSubStr{\thepage}{U}{%
-                                            #1%
-                                          }{%
-                                            \IfSubStr{\thepage}{V}{%
-                                              #1%
-                                            }{%
-                                              \IfSubStr{\thepage}{W}{%
-                                                #1%
-                                              }{%
-                                                \IfSubStr{\thepage}{X}{%
-                                                  #1%
-                                                }{%
-                                                  \IfSubStr{\thepage}{Y}{%
-                                                    #1%
-                                                  }{%
-                                                    \IfSubStr{\thepage}{Z}{%
-                                                      #1%
-                                                    }{%
-                                                      #2%
-                                                    }%
-                                                  }%
-                                                }%
-                                              }%
-                                            }%
-                                          }%
-                                        }%
-                                      }%
-                                    }%
-                                  }%
-                                }%
-                              }%
-                            }%
-                          }%
-                        }%
-                      }%
-                    }%
-                  }%
-                }%
-              }%
-            }%
-          }%
-        }%
-      }%
-    }%
-  }%
+  \mypackage@IfPageNumberingTF{Alph}{#1}{#2}%
 }
 \NewDocumentCommand{\IfIsAlphT}{m}{%
   \IfIsAlphTF{#1}{}%
@@ -1687,110 +1554,8 @@
   \IfIsAlphTF{}{#1}%
 }
 \NewDocumentCommand{\IfIsalphTF}{m m}{%
-  \IfSubStr{\thepage}{a}{%
-    #1%
-  }{%
-    \IfSubStr{\thepage}{b}{%
-      #1%
-    }{%
-      \IfSubStr{\thepage}{c}{%
-        #1%
-      }{%
-        \IfSubStr{\thepage}{d}{%
-          #1%
-        }{%
-          \IfSubStr{\thepage}{e}{%
-            #1%
-          }{%
-            \IfSubStr{\thepage}{f}{%
-              #1%
-            }{%
-              \IfSubStr{\thepage}{g}{%
-                #1%
-              }{%
-                \IfSubStr{\thepage}{h}{%
-                  #1%
-                }{%
-                  \IfSubStr{\thepage}{i}{%
-                    #1%
-                  }{%
-                    \IfSubStr{\thepage}{j}{%
-                      #1%
-                    }{%
-                      \IfSubStr{\thepage}{k}{%
-                        #1%
-                      }{%
-                        \IfSubStr{\thepage}{l}{%
-                          #1%
-                        }{%
-                          \IfSubStr{\thepage}{m}{%
-                            #1%
-                          }{%
-                            \IfSubStr{\thepage}{n}{%
-                              #1%
-                            }{%
-                              \IfSubStr{\thepage}{o}{%
-                                #1%
-                              }{%
-                                \IfSubStr{\thepage}{p}{%
-                                  #1%
-                                }{%
-                                  \IfSubStr{\thepage}{q}{%
-                                    #1%
-                                  }{%
-                                    \IfSubStr{\thepage}{r}{%
-                                      #1%
-                                    }{%
-                                      \IfSubStr{\thepage}{s}{%
-                                        #1%
-                                      }{%
-                                        \IfSubStr{\thepage}{t}{%
-                                          #1%
-                                        }{%
-                                          \IfSubStr{\thepage}{u}{%
-                                            #1%
-                                          }{%
-                                            \IfSubStr{\thepage}{v}{%
-                                              #1%
-                                            }{%
-                                              \IfSubStr{\thepage}{w}{%
-                                                #1%
-                                              }{%
-                                                \IfSubStr{\thepage}{x}{%
-                                                  #1%
-                                                }{%
-                                                  \IfSubStr{\thepage}{y}{%
-                                                    #1%
-                                                  }{%
-                                                    \IfSubStr{\thepage}{z}{%
-                                                      #1%
-                                                    }{%
-                                                      #2%
-                                                    }%
-                                                  }%
-                                                }%
-                                              }%
-                                            }%
-                                          }%
-                                        }%
-                                      }%
-                                    }%
-                                  }%
-                                }%
-                              }%
-                            }%
-                          }%
-                        }%
-                      }%
-                    }%
-                  }%
-                }%
-              }%
-            }%
-          }%
-        }%
-      }%
-    }%
+  \mypackage@IfPageNumberingTF{alph}{#1}{%
+    \mypackage@IfPageNumberingTF{myalph}{#1}{#2}%
   }%
 }
 \NewDocumentCommand{\IfIsalphT}{m}{%
@@ -2108,18 +1873,18 @@
     \clist_clear:N{\l_tmpa_clist}%
     \keys_set:nn{myinclude}{#1}%
     \bool_if:NT{\l_myinclude_heightUsed_bool}{%
-      \clist_put_right:Nx{\l_tmpa_clist}{height=\l_myinclude_height_tl\textheight}%
+      \clist_put_right:Ne{\l_tmpa_clist}{height=\l_myinclude_height_tl\textheight}%
     }%
     \bool_if:NT{\l_myinclude_widthUsed_bool}{%
-      \clist_put_right:Nx{\l_tmpa_clist}{width=\l_myinclude_width_tl\textwidth}%
+      \clist_put_right:Ne{\l_tmpa_clist}{width=\l_myinclude_width_tl\textwidth}%
     }%
     \filename@parse{#2}%
     \IfStrEq{\filename@ext}{svg}{%
-      \use:x{%
+      \use:e{%
         \exp_not:N\includesvg[\clist_use:Nn \l_tmpa_clist {,}]{\mypackage@paths@images \exp_not:n {#2}}%
       }%
     }{%
-      \use:x{%
+      \use:e{%
         \exp_not:N\includegraphics[\clist_use:Nn \l_tmpa_clist {,}]{\mypackage@paths@images \exp_not:n {#2}}%
       }%
     }%
@@ -2249,12 +2014,13 @@
     \int_eval:n{\tl_count:e{\int_eval:n{#1}}}%
   }
   \NewDocumentCommand{\myincludeprogram}{O{} m m}{%
+    \group_begin:%
     \keys_set:nn{myincludeprogram}{#1}%
     \int_set:Nn{\l_myincludeprogram_lastline_int}{-1}%
     \keys_set:nV{myincludeprogram/minted}\l_myincludeprogram_minted_tl%
     \tl_if_eq:NnT{\l_myincludeprogram_numwidth_tl}{auto}{%
       \int_compare:nNnTF{\l_myincludeprogram_lastline_int}{<}{0}{%
-        \myincludeprogram_count_lines:n{#2}%
+        \myincludeprogram_count_lines:n{\mypackage@paths@code #2}%
         \int_set:Nn{\l_myincludeprogram_digitcount_int}{%
           \myincludeprogram_count_digits:n{\l_myincludeprogram_linecount_int}%
         }%
@@ -2263,7 +2029,7 @@
           \myincludeprogram_count_digits:n{\l_myincludeprogram_lastline_int}%
         }%
       }%
-      \tl_set:Nx{\l_myincludeprogram_numwidth_tl}{%
+      \tl_set:Ne{\l_myincludeprogram_numwidth_tl}{%
         \int_eval:n{2 * \l_myincludeprogram_digitcount_int}mm%
       }%
     }%
@@ -2271,7 +2037,7 @@
     \renewcommand{\theFancyVerbLine}{%
       \ttfamily\textcolor{\l_myincludeprogram_numcol_tl}{\small{\arabic{FancyVerbLine}}}%
     }%
-    \use:x{%
+    \use:e{%
       \exp_not:N\mytcbincludeprogram[%
         \exp_not:V\l_myincludeprogram_minted_tl%
       ]{%
@@ -2289,6 +2055,7 @@
       }%
     }%
     \let\theFancyVerbLine\themyFancyVerbLine%
+    \group_end:%
   }
 \ExplSyntaxOff
 \NewDocumentCommand{\myprogram}{s O{} m m m O{#7} +m O{\mypackage@pos@program}}{%
@@ -2315,18 +2082,21 @@
       \mybeginfloat{listing}{#8}%
       \begin{minipage}{\wd0}%
       \usebox0%
-    \else%
-      \begingroup%
-      \myincludeprogram[#2]{#4}{#5}%
-    \fi%
       \captionof*{listing}{\textbf{\myprogramname\space\themyprogram:}\hspace{0.75em}#7}%
       \IfBooleanF{#1}{%
         \addcontentsline{mylop}{myprogram}{\makebox[3.5em][l]{\themyprogram}\mycleanfirstline{#6}}%
       }%
-    \iffits%
       \end{minipage}%
       \end{listing}%
     \else%
+      \begingroup%
+      % Not a float: the list entry is written *before* the listing, so that
+      % it shows the page where the program starts (it can span pages).
+      \IfBooleanF{#1}{%
+        \addcontentsline{mylop}{myprogram}{\makebox[3.5em][l]{\themyprogram}\mycleanfirstline{#6}}%
+      }%
+      \myincludeprogram[#2]{#4}{#5}%
+      \captionof*{listing}{\textbf{\myprogramname\space\themyprogram:}\hspace{0.75em}#7}%
       \endgroup%
     \fi%
   \endgroup%
@@ -2344,7 +2114,10 @@
     \IfNoValueF{#1}{%
       \tag{\themyequation}%
     }%
-    \addcontentsline{myloe}{myequation}{\makebox[3.5em][l]{\themyequation}\mycleanfirstline{#2}}%
+    \addcontentsline{myloe}{myequation}{%
+      \makebox[3.5em][l]{\IfNoValueF{#1}{\themyequation}}% no label: no number
+      \mycleanfirstline{#2}%
+    }%
   \end{equation*}%
 }
 \NewDocumentEnvironment{myequation*}{o}{%

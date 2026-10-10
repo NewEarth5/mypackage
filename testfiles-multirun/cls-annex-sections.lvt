@@ -1,0 +1,16 @@
+% cls-annex-sections: annexes when sections are the highest level.
+\input{regression-test}
+\documentclass{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\SHOWLIST{mytoc}
+\mytableofcontents
+\mysection{Main}[label=m]
+\begin{myannex}
+\mysection{Annex one}[label=a1]
+\mysubsection{Annex sub}[label=asub]
+\SHOWTHE
+\end{myannex}
+\SHOWREF{sec:m}\SHOWREF{ann:sec:a1}\SHOWREF{ann:subsec:asub}
+\end{document}

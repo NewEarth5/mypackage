@@ -1,0 +1,22 @@
+% cls-toc-depth: toc={depth} limits the levels written to the TOC; the
+% depth is relative to the highest level used (here parts: part=0,
+% chapter=1, section=2, ...).  annexdepth applies inside myannex.
+\input{regression-test}
+\documentclass[toc={depth=1, annexdepth=2}]{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\SHOWLIST{mytoc}
+\mytableofcontents
+\mypart{P}
+\mychapter{C (depth 1, listed)}
+\mysection{S (depth 2, not listed)}
+\mysubsection{SS (depth 3, not listed)}
+\begin{myannex}
+\mypart{AP}
+\mychapter{AC (depth 1, listed)}
+\mysection{AS (depth 2, listed: annexdepth=2)}
+\mysubsection{ASS (depth 3, not listed)}
+\mysubsubsection{ASSS (depth 4, not listed)}
+\end{myannex}
+\end{document}

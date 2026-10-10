@@ -1,0 +1,65 @@
+% pkg-load: the package loads with the standard article class, with all
+% options at their default values, and defines its public interface.
+\input{regression-test}
+\documentclass{article}
+\usepackage{mypackage}
+\input{mytest-helpers}
+\makeatletter
+\begin{document}
+\START
+
+\TEST{Option values (defaults)}{%
+  \SHOWOPT\mypackage@lang
+  \SHOWOPT\mypackage@paths@images
+  \SHOWOPT\mypackage@paths@code
+  \SHOWOPT\mypackage@paths@sources
+  \SHOWOPT\mypackage@pos@figure
+  \SHOWOPT\mypackage@pos@table
+  \SHOWOPT\mypackage@pos@program
+  \SHOWOPT\mypackage@pos@pseudocode
+  \SHOWOPT\mypackage@toc@depth
+  \SHOWOPT\mypackage@toc@annexdepth
+  \SHOWOPT\mypackage@toc@bibdepth
+}
+
+\TEST{Depth counters}{%
+  \TYPE{toc=\the\c@mytocdepth, annex=\the\c@myannexdepth,
+    bib=\the\c@mybibdepth, part=\the\c@mypartdepth,
+    chapter=\the\c@mychapterdepth, section=\the\c@mysectiondepth,
+    subsection=\the\c@mysubsectiondepth,
+    subsubsection=\the\c@mysubsubsectiondepth}%
+}
+
+\TEST{Required packages are loaded}{%
+  \@for\@tempa:=adjustbox,babel,bbm,biblatex,caption,chemmacros,enumitem,%
+    geometry,graphicx,hyperref,mhchem,multirow,subcaption,svg,tabularx,%
+    tcolorbox,upgreek,xurl,xcolor,xstring,kvoptions,kvsetkeys,%
+    minted\do{%
+      \@ifpackageloaded\@tempa
+        {\TYPE{\@tempa: loaded}}{\TYPE{\@tempa: MISSING}}}%
+}
+
+\TEST{Public commands and environments are defined}{%
+  \@for\@tempa:=myinclude,myfigure,mysubfigure,myincludeprogram,myprogram,%
+    myref,myseeref,currentacyear,mycleantext,mycleanline,mycleanfirstline,%
+    mylenmax,mylenmin,myhighestsec,myaddtotoc,myhyperanchor,mylabel,%
+    IfIsRomanTF,IfIsromanTF,IfIsarabicTF,IfIsAlphTF,IfIsalphTF,%
+    mypartbox,mychapterbox,mysectionbox,mysubsectionbox,mysubsubsectionbox,%
+    mysub,mysub*,myequation,myequation*,mytable,mytable*,mypseudocode,%
+    mypseudocode*,myannex\do{%
+      \@ifundefined\@tempa{\TYPE{\@tempa: UNDEFINED}}{\TYPE{\@tempa: ok}}}%
+}
+
+\TEST{Initial state}{%
+  \SHOWCOUNTERS
+  \SHOWFLAGS
+  \SHOWTHE
+}
+
+\TEST{Font encoding and page geometry}{%
+  \TYPE{encoding=\f@encoding, paper=\the\paperwidth\space x \the\paperheight,
+    textwidth=\the\textwidth, textheight=\the\textheight,
+    oddsidemargin=\the\oddsidemargin, topmargin=\the\topmargin}%
+}
+
+\end{document}

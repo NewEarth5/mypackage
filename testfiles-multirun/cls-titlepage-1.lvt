@@ -1,0 +1,21 @@
+% cls-titlepage-1: \mymaketitle (style 1) with every field filled in.
+% The shipped page is shown in full (\showoutput).
+\input{regression-test}
+\documentclass{myreport}
+\input{mytest-helpers}
+\mycourse*{Fluid mechanics}[MECA0025]
+\myaddprofessor{Delhez}{Eric}
+\myaddassistant*{Doe}{Jane}
+\myacademicyear{2025-2026}
+\mytitle{Project: fluid simulation}
+\mysubtitle{Flow around a windscreen}
+\myimage[width=0.4]{wide.png}
+\mylogo{square.jpg}
+\mydate{1 January 2026}
+\myaddauthor*{Delvoie}{Romy}[s111111]
+\myaddauthor*{Lindsey}{Alex}[s222222]
+\begin{document}
+\START
+\showoutput
+\mymaketitle
+\end{document}

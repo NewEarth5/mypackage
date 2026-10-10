@@ -1,0 +1,44 @@
+% pkg-ref-british: \myref and \myseeref for every label prefix (lang=british).
+\input{regression-test}
+\documentclass[text={lang=british}, paths={code=code/}]{myreport}
+\input{mytest-helpers}
+\makeatletter
+\begin{document}
+\START
+\myabstract[abs]
+\mytableofcontents[toc]
+\mylistoffigures[lof]
+\myintroduction[label=intro]
+\mypart{Part}[label=p]
+\mychapter{Chapter}[label=c]
+\mysection{Section}[label=s]
+\mysubsection{Subsection}[label=ss]
+\mysubsubsection{Subsubsection}[label=sss]
+\myfigure{wide.png}{Figure.}
+\begin{mytable}{c}{t}{Table.}
+  x \\
+\end{mytable}
+\begin{myequation}[e]{Equation}
+  a = b
+\end{myequation}
+\myprogram{prog}{hello.py}{python}{Program.}
+\begin{myannex}
+\mypart{Annex part}[label=ap]
+\mychapter{Annex chapter}[label=ac]
+\end{myannex}
+\TEST{Typeset references}{%
+  \SHOWTEXT{\myref{fig:wide}}%
+  \SHOWTEXT{\myseeref{fig:wide}}%
+  \SHOWTEXT{\myref[(]{eq:e})}%
+}
+\TEST{Text of every reference (\hyperref is spied on)}{%
+  \def\hyperref[#1]#2{\begingroup
+    \def\ref*##1{\getrefnumber{##1}}%
+    \protected@edef\x{#2}\TYPE{\detokenize\expandafter{\x}}\endgroup}%
+  \def\do#1{\TYPE{#1 ->}\myref{#1}\myseeref{#1}}%
+  \do{abst:abs}\do{toc:toc}\do{lof:lof}\do{intro:intro}\do{part:p}%
+  \do{chap:c}\do{sec:s}\do{subsec:ss}\do{subsubsec:sss}\do{fig:wide}%
+  \do{tab:t}\do{eq:e}\do{code:py:prog}\do{ann:part:ap}\do{ann:chap:ac}%
+  \myref[(prefix) ]{fig:wide}%
+}
+\end{document}

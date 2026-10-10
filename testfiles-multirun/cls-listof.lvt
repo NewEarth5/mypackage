@@ -1,0 +1,47 @@
+% cls-listof: the lists of figures, tables, programs and equations, their
+% starred forms (not in the TOC) and their labels.
+\input{regression-test}
+\documentclass[paths={code=code/}]{myreport}
+\usepackage{clrscode3e}
+\input{mytest-helpers}
+\begin{document}
+\START
+\SHOWLIST{mytoc}
+\SHOWLIST{mylof}
+\SHOWLIST{mylot}
+\SHOWLIST{mylop}
+\SHOWLIST{myloe}
+\mytableofcontents[toc]
+\mylistoffigures[lof]
+\mylistoftables*[lot]
+\mylistofprograms[lop]
+\mylistofequations*[loe]
+\SHOWCOUNTERS
+\mychapter{Content}
+\myfigure{wide.png}[Short figure caption.]{Long figure caption. It has two sentences.}
+\myfigure*{tall.png}{Starred figure: not in the list.}
+\begin{mysub}{grp}[Short group caption]{Group caption.}
+  \mysubfigure{wide.png}[Left]{0.45}
+  \mysubfigure{square.jpg}[Right]{0.45}
+\end{mysub}
+\begin{mytable}{ll}{t1}[Short table caption]{Table caption.}
+  a & b \\
+\end{mytable}
+\begin{mytable*}{ll}{t2}{Starred table.}
+  a & b \\
+\end{mytable*}
+\myprogram{hello}{hello.py}{python}{A Python program.}
+\myprogram*{short}{short.c}{c}{Starred program.}
+\begin{mypseudocode}{algo}{Pseudocode.}
+\proc{Test}(x)
+\li \Return x
+\end{mypseudocode}
+\begin{myequation}[e1]{Named equation}
+  E = mc^2
+\end{myequation}
+\begin{myequation*}[e2]
+  a^2 + b^2 = c^2
+\end{myequation*}
+\SHOWREF{toc:toc}\SHOWREF{lof:lof}\SHOWREF{lot:lot}\SHOWREF{lop:lop}
+\SHOWREF{loe:loe}
+\end{document}

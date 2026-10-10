@@ -1,0 +1,18 @@
+% cls-rendering-floats: the shipped page with a figure, a table and an
+% equation (caption layout).
+\input{regression-test}
+\documentclass{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\mychapter{Floats}
+\showoutput
+\myfigure[height=0.05]{wide.png}{A figure caption that is long enough to wrap onto a second line of text in the caption box.}
+\begin{mytable}{|c|c|}{t}{A table.}
+  \hline a & b \\ \hline
+\end{mytable}
+\begin{myequation}[e]{Equation}
+  a &= b
+\end{myequation}
+\clearpage
+\end{document}

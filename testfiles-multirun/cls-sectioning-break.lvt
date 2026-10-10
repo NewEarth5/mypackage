@@ -1,0 +1,32 @@
+% cls-sectioning-break: sectioning=break for every level.  The pages on which the
+% headings land show whether a page break was inserted.
+\input{regression-test}
+\documentclass[sectioning=break]{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\mytableofcontents
+\mypart{P1}[label=p1]
+Text.
+\mychapter{C1}[label=c1]
+Text.
+\mysection{S1}[label=s1]
+Text.
+\mysubsection{SS1}[label=ss1]
+Text.
+\mysubsubsection{SSS1}[label=sss1]
+Text.
+\mysection{S2}[label=s2]
+Text.
+\mychapter{C2}[label=c2]
+Text.
+\begin{myannex}
+\mypart{A}[label=a]
+Text.
+\mychapter{AC}[label=ac]
+Text.
+\end{myannex}
+\SHOWREF{part:p1}\SHOWREF{chap:c1}\SHOWREF{sec:s1}\SHOWREF{subsec:ss1}
+\SHOWREF{subsubsec:sss1}\SHOWREF{sec:s2}\SHOWREF{chap:c2}
+\SHOWREF{ann:part:a}\SHOWREF{ann:chap:ac}
+\end{document}

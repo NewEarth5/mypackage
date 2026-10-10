@@ -1,0 +1,47 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+-------- cls-structure-sections.mytoc (start) ---------
+(cls-structure-sections.mytoc) \contentsline {mysection}{Contents}{I}{mycontents}%^^M
+\contentsline {mysection}{\mysectionbox [l]{1}\hspace {1em}One}{1}{mysection.1}%^^M
+\contentsline {mysubsection}{\mysubsectionbox [l]{1.1}\hspace {1em}One A}{1}{mysubsection.1.1}%^^M
+\contentsline {mysection}{\mysectionbox [l]{2}\hspace {1em}Two}{1}{mysection.2}%^^M
+\contentsline {mysubsection}{\mysubsectionbox [l]{2.1}\hspace {1em}Two A}{1}{mysubsection.2.1}%^^M
+\contentsline {mysubsubsection}{\mysubsubsectionbox [l]{2.1.1}\hspace {1em}Two A i}{1}{mysubsubsection.2.1.1}%^^M
+-------- cls-structure-sections.mytoc (end) -----------
+(cls-structure-sections.mytoc
+LaTeX Font Info:    Trying to load font information for U+msa on input line ....
+LaTeX Font Info:    Trying to load font information for U+msb on input line ....
+\tf@mytoc=\write...
+Package hyperref Info: bookmark level for unknown mysection defaults to 0 on input line ....
+[1
+Non-PDF special ignored!
+<special> header=psfrag.pro
+]
+Package hyperref Info: bookmark level for unknown mysubsection defaults to 0 on input line ....
+<images/wide.png, id=25, 301.125pt x 100.375pt>
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+Package pdftex.def Info: images/wide.png  used on input line ....
+(pdftex.def)             Requested size: 421.72374pt x 140.55446pt.
+Package hyperref Info: bookmark level for unknown myfigure defaults to 0 on input line ....
+Package hyperref Info: bookmark level for unknown myequation defaults to 0 on input line ....
+<images/tall.png, id=26, 100.375pt x 401.5pt>
+File: images/tall.png Graphic file (type png)
+<use images/tall.png>
+Package pdftex.def Info: images/tall.png  used on input line ....
+(pdftex.def)             Requested size: 35.13942pt x 140.55446pt.
+Package hyperref Info: bookmark level for unknown mysubsubsection defaults to 0 on input line ....
+THE: part=[] chapter=[] section=[2] subsection=[2.1] subsubsection=[2.1.1] figure=[2.1] subfigure=[2.1.] table=[2.0] program=[2.0] equation=[2.0]
+FLAGS: part=F, chapter=F, section=T, subsection=T, subsubsection=T, annex=F, bib=F, highest=mysection
+REF sec:one: number=[1] page=[1] anchor=[mysection.1]
+REF subsec:oneA: number=[1.1] page=[1] anchor=[mysubsection.1.1]
+REF sec:two: number=[2] page=[1] anchor=[mysection.2]
+REF subsubsec:twoAi: number=[2.1.1] page=[1] anchor=[mysubsubsection.2.1.1]
+REF fig:wide: number=[1.1] page=[1] anchor=[myfigure.1.1]
+REF fig:tall: number=[2.1] page=[1] anchor=[myfigure.2.1]
+REF eq:e1: number=[{1.1}] page=[1] anchor=[AMS.2]
+[1
+ <./images/wide.png (PNG copy)> <./images/tall.png (PNG copy)>] (cls-structure-sections.aux)
+Package rerunfilecheck Info: File `cls-structure-sections.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+Package logreq Info: Writing requests to 'cls-structure-sections.run.xml'.

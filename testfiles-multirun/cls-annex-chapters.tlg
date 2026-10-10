@@ -1,0 +1,34 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+-------- cls-annex-chapters.mytoc (start) ---------
+(cls-annex-chapters.mytoc) \contentsline {mychapter}{Contents}{I}{mycontents}%^^M
+\contentsline {mychapter}{\mychapterbox [l]{1}\hspace {1em}Main}{1}{mychapter.1}%^^M
+\contentsline {mysection}{\mysectionbox [l]{1.1}\hspace {1em}Main section}{1}{mysection.1.1}%^^M
+\contentsline {mychapter}{\mychapterbox [l]{A}\hspace {1em}Annex one}{a}{mychapter.A}%^^M
+\contentsline {mychapter}{\mychapterbox [l]{B}\hspace {1em}Annex two}{b}{mychapter.B}%^^M
+-------- cls-annex-chapters.mytoc (end) -----------
+(cls-annex-chapters.mytoc
+LaTeX Font Info:    Trying to load font information for U+msa on input line ....
+LaTeX Font Info:    Trying to load font information for U+msb on input line ....
+\tf@mytoc=\write...
+Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
+[1
+Non-PDF special ignored!
+<special> header=psfrag.pro
+]
+Package hyperref Info: bookmark level for unknown mysection defaults to 0 on input line ....
+[1
+]
+THE: part=[] chapter=[A] section=[A.1] subsection=[A.1] subsubsection=[A.1] figure=[A.0] subfigure=[A.0.] table=[A.0] program=[A.0] equation=[A.0]
+[1
+]
+THE: part=[] chapter=[B] section=[B.0] subsection=[B.0] subsubsection=[B.0] figure=[B.0] subfigure=[B.0.] table=[B.0] program=[B.0] equation=[B.0]
+REF chap:m: number=[1] page=[1] anchor=[mychapter.1]
+REF ann:chap:a1: number=[A] page=[a] anchor=[mychapter.A]
+REF ann:sec:as: number=[A.1] page=[a] anchor=[mysection.A.1]
+REF ann:chap:a2: number=[B] page=[b] anchor=[mychapter.B]
+[2
+] (cls-annex-chapters.aux)
+Package rerunfilecheck Info: File `cls-annex-chapters.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+Package logreq Info: Writing requests to 'cls-annex-chapters.run.xml'.

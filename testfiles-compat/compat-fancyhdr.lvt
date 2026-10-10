@@ -1,0 +1,17 @@
+% compat-fancyhdr: fancyhdr page style with marks.  The class headings do
+% not set marks (only the bibliography headings do), so \leftmark is empty
+% in the main matter.
+\input{regression-test}
+\documentclass{myreport}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyfoot[C]{\thepage}
+\input{mytest-helpers}
+\begin{document}
+\START
+\mychapter{Chapter}
+Text.
+\TEST{Marks}{\TYPE{leftmark=[\leftmark] rightmark=[\rightmark]}}
+\end{document}

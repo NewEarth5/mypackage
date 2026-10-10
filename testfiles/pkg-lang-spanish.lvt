@@ -1,0 +1,15 @@
+% pkg-lang-spanish: the localised words used by the package with lang=spanish.
+\input{regression-test}
+\documentclass{report}
+\usepackage[lang=spanish]{mypackage}
+\input{mytest-helpers}
+\begin{document}
+\START
+\TEST{Language and words}{%
+  \TYPE{language=\languagename}%
+  \SHOWNAMES
+}
+\TEST{Typeset words (glyphs and font encoding)}{%
+  \SHOWTEXT{\myfigurename\ \mytablename\ \myequationname\ \myannexname}%
+}
+\end{document}
