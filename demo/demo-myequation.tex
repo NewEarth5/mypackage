@@ -1,0 +1,51 @@
+% demo-myequation.tex -- myequation / myequation*
+\documentclass[sectioning=nobreak]{myreport}
+\usepackage{mydemo}
+\begin{document}
+\demoheader{myequation}{A displayed equation (aligned with \&), numbered
+when it has a label, listed in the list of equations.}
+
+\mysection*{Syntax}
+\begin{demosyntax}
+\begin{myequation}[<label>]{<name in the list of equations>}
+  ... & = ... \\
+\end{myequation}
+\begin{myequation*}[<label>]      % not in the list of equations
+\end{demosyntax}
+\begin{itemize}
+  \item With a \texttt{<label>} the equation gets a number and the label
+    \texttt{eq:<label>}; without it, it is not numbered.
+  \item The body is set in an \texttt{aligned} environment: use \&
+    to align and \verb|\\| to break lines.
+\end{itemize}
+
+\mysection*{Examples}
+\begin{demo}
+\begin{myequation}[reynolds]{Reynolds number}
+  Re = \frac{\rho U L}{\mu}
+\end{myequation}
+\end{demo}
+\begin{demo}
+\begin{myequation}[cfl]{Courant number}
+  CFL &= \frac{U \Delta t}{\Delta x} \approx 1 \\
+  \Rightarrow \Delta t &= \frac{\Delta x}{U}
+\end{myequation}
+\end{demo}
+\begin{demo}
+\begin{myequation}{Listed but not numbered (no label)}
+  a^2 + b^2 = c^2
+\end{myequation}
+\end{demo}
+\begin{demo}
+\begin{myequation*}[energy]
+  E = mc^2
+\end{myequation*}
+\begin{myequation*}
+  1 + 1 = 2
+\end{myequation*}
+See \myref{eq:reynolds}, \myref{eq:cfl} and \myseeref{eq:energy}.
+\end{demo}
+
+\mysection*{List of equations}
+\mylistofequations*
+\end{document}

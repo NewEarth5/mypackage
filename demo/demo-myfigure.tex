@@ -1,0 +1,62 @@
+% demo-myfigure.tex -- \myfigure and \myfigure*
+\documentclass[sectioning=nobreak]{myreport}
+\usepackage{mydemo}
+\begin{document}
+\demoheader{\string\myfigure}{A numbered figure from an image file, with a
+caption, an automatic label and an entry in the list of figures.}
+
+\mysection*{Syntax}
+\begin{demosyntax}
+\myfigure[<options>]{<file>}[<short caption>]{<caption>}[<position>]
+\myfigure*[<options>]{<file>}{<caption>}[<position>]
+\end{demosyntax}
+\begin{itemize}
+  \item \texttt{<options>}: \texttt{height=} and/or \texttt{width=}, as a
+    fraction of \verb|\textheight| / \verb|\textwidth| (default
+    \texttt{height=0.2}).
+  \item \texttt{<file>}: image with its extension (\texttt{.png},
+    \texttt{.jpg}, \texttt{.pdf}, \texttt{.svg}, \dots), looked up in the
+    folder given by the \texttt{paths=\{images=...\}} option. The file name
+    without extension becomes the label: \texttt{fig:<name>}.
+  \item \texttt{<short caption>}: text for the list of figures (default: the
+    caption). Only its first sentence is kept, without the final full stop.
+  \item \texttt{<position>}: float placement (\texttt{h}, \texttt{t},
+    \texttt{b}, \texttt{p}, \texttt{H}); default from the
+    \texttt{position} option.
+  \item The starred form is not added to the list of figures.
+\end{itemize}
+
+\mysection*{List of figures of this demo}
+\mylistoffigures*
+
+\mychapter{Examples}
+
+\mysection{Default size}
+\begin{demo}
+\myfigure{wide.png}{A figure with the default height (20\% of the text
+height). See \myref{fig:wide}.}
+\end{demo}
+
+\mysection{Width, short caption and position}
+\begin{demo}
+\myfigure[width=0.4]{square.jpg}[Short caption for the list.]{A long caption,
+with several sentences. Only the short caption goes to the list.}[H]
+\end{demo}
+
+\mysection{SVG image}
+\begin{demo}
+\myfigure[height=0.12]{plot.svg}{An SVG file, converted with Inkscape by the
+\texttt{svg} package.}[H]
+\end{demo}
+
+\mysection{Starred form}
+\begin{demo}
+\myfigure*[height=0.08]{tall.png}{Not in the list of figures.}[H]
+\end{demo}
+
+\mysection{Referencing}
+\begin{demo}
+Plain: \myref{fig:wide}; with ``see'': \myseeref{fig:square};
+number only: \ref{fig:plot}; page: \pageref{fig:plot}.
+\end{demo}
+\end{document}

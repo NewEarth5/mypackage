@@ -1,0 +1,35 @@
+% demo-myannex.tex -- the myannex environment
+\documentclass[sectioning={chapter=nobreak, annex=nobreak}]{myreport}
+\usepackage{mydemo}
+\begin{document}
+\demoheader{myannex}{Annexes: inside the environment the highest
+sectioning level is lettered (A, B, ...), pages are numbered a, b, ...
+and labels take the prefix \texttt{ann:}.}
+
+\mysection*{Syntax}
+\begin{demosyntax}
+\begin{myannex}
+  \mychapter{<title>}[label=<label>]     % -> Annex A, label ann:chap:<label>
+  ...
+\end{myannex}
+\end{demosyntax}
+\demonote{The counters of the main matter are saved at the start of the
+environment and restored at the end; a second \texttt{myannex} block
+continues the lettering. Annex pages are numbered a, \dots, z, aa, ab,
+\dots\ (no limit). The class options \texttt{sectioning=\{annex=...\}}
+and \texttt{toc=\{annexdepth=...\}} control page breaks and TOC depth.}
+
+\mytableofcontents*
+\mychapter{Main matter}
+Main text.
+\begin{demo}
+\begin{myannex}
+\mychapter{First annex}[label=first]
+\mysection{A section of the annex}
+Annex text.
+\mychapter{Second annex}[label=second]
+Text.
+\end{myannex}
+Back in the main matter: \myref{ann:chap:first}, \myref{ann:chap:second}.
+\end{demo}
+\end{document}

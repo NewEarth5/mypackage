@@ -1,0 +1,71 @@
+% mydemo.sty -- helpers for the demo documents of mypackage / myreport.
+%
+% Not part of the distributed package: it only formats the demos.
+%
+%   \demoheader{<command>}{<one-line summary>}   title block of a demo
+%   \begin{demosyntax} ... \end{demosyntax}       verbatim syntax box
+%   \begin{demo}[<box options>] ... \end{demo}    code box, then the code
+%                                                 is executed below it
+%   \begin{democode} ... \end{democode}           code box only
+%   \demonote{<text>}                             highlighted remark
+\NeedsTeXFormat{LaTeX2e}[2022-06-01]
+\ProvidesPackage{mydemo}[2026/10/10 V0.6.5 Demo helpers for mypackage and myreport]
+\RequirePackage{tcolorbox}
+\tcbuselibrary{listings, skins, breakable}
+
+\tcbset{
+  demo/base/.style={
+    enhanced, breakable, listing only,
+    listing engine=listings,
+    listing options={
+      basicstyle=\ttfamily\small, columns=fullflexible, keepspaces=true,
+      breaklines=true, breakatwhitespace=false, upquote=true,
+      literate={é}{{\'e}}1 {è}{{\`e}}1 {à}{{\`a}}1 {É}{{\'E}}1
+               {ü}{{\"u}}1 {ö}{{\"o}}1 {ä}{{\"a}}1 {ß}{{\ss}}1,
+    },
+    colback=gray!4, colframe=gray!55, boxrule=0.5pt, arc=1mm,
+    left=2mm, right=2mm, top=1mm, bottom=1mm,
+    fonttitle=\bfseries\small, coltitle=black, colbacktitle=gray!18,
+    before skip=8pt, after skip=8pt,
+  },
+}
+
+% Code box followed by the result of the code (the listing file written by
+% tcolorbox is \input after the box).  The "after" code still runs with
+% the options of the demo box, which boxes created by the code (e.g. the
+% listings of \myprogram) would inherit -- including "after" itself, an
+% infinite loop -- hence the "reset".
+\NewTCBListing{demo}{ !O{} }{
+  demo/base, title={Code},
+  after={\par\noindent\textbf{\small Result:}\par\nobreak\smallskip
+         \begingroup\tcbset{reset}\input{\jobname.listing}\endgroup
+         \par\bigskip},
+  #1}
+% Code box only (when the code cannot be run inside a demo, e.g. options of
+% \documentclass).
+\NewTCBListing{democode}{ !O{} }{demo/base, title={Code}, #1}
+\NewTCBListing{demosyntax}{ !O{} }{demo/base, title={Syntax},
+  colback=blue!3, colframe=blue!40!black, colbacktitle=blue!10, #1}
+
+\newcommand\demoheader[2]{%
+  \begin{tcolorbox}[enhanced, colback=white, colframe=black, boxrule=1pt,
+    arc=0mm, left=3mm, right=3mm, top=2mm, bottom=2mm]
+    {\Large\bfseries\ttfamily #1}\par\smallskip
+    {\small #2}\par\smallskip
+    {\footnotesize\itshape Demo for mypackage/myreport \demoversion}
+  \end{tcolorbox}%
+}
+\makeatletter
+\newcommand\demoversion{%
+  \expandafter\expandafter\expandafter\demo@version
+    \csname ver@mypackage.sty\endcsname\relax}
+\def\demo@version#1 #2 #3\relax{#2}
+\makeatother
+\newcommand\demonote[1]{%
+  \begin{tcolorbox}[enhanced, colback=yellow!8, colframe=yellow!50!black,
+    boxrule=0.5pt, arc=1mm, left=2mm, right=2mm, top=1mm, bottom=1mm,
+    fontupper=\small]
+    \textbf{Note.} #1
+  \end{tcolorbox}%
+}
+\endinput

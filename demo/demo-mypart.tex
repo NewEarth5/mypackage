@@ -1,0 +1,24 @@
+% demo-mypart.tex -- \mypart
+\documentclass{myreport}
+\usepackage{mydemo}
+\begin{document}
+\demoheader{\string\mypart}{Part heading (new page by default). When
+parts are used, chapters are numbered within parts (1.1, 1.2, ...).}
+\mysection*{Syntax}
+\begin{demosyntax}
+\mypart{<title>}[number=<n>, name=<word>, label=<label>]   % label: part:<label>
+\mypart*{<title>}                                          % unnumbered, not in TOC
+\end{demosyntax}
+\mytableofcontents*
+\begin{demo}
+\mypart{First part}[label=one]
+\mychapter{A chapter of the first part}
+\end{demo}
+\begin{demo}
+\mypart{Second part}[name=Book, number=5, label=five]
+See \myref{part:one} and \myref{part:five}.
+\end{demo}
+\begin{demo}
+\mypart*{Unnumbered part}
+\end{demo}
+\end{document}

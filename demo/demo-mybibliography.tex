@@ -1,0 +1,28 @@
+% demo-mybibliography.tex -- \mybibliography
+\documentclass[sectioning={chapter=nobreak, bib=nobreak}]{myreport}
+\usepackage{csquotes}
+\usepackage{mydemo}
+\begin{document}
+\demoheader{\string\mybibliography}{Bibliography (biblatex + biber),
+split into categories: articles, books, collections, manuals, theses,
+references, reports, websites and patents; other entry types come first,
+without a heading.}
+\begin{demosyntax}
+\mybibliography[<label>]     % label: bib:<label>; in the TOC
+\mybibliography*[<label>]    % not in the TOC
+\end{demosyntax}
+\demonote{The \texttt{.bib} file is set with
+\texttt{paths=\{sources=...\}}. Compile with: pdflatex, biber, pdflatex,
+pdflatex. Categories without entries are not printed (biblatex reports
+an ``Empty bibliography'' warning for each of them).}
+\mytableofcontents*
+\mychapter{Text with citations}
+\begin{demo}
+An article \cite{art1}, a book \cite{book1}, a website \cite{web1}, a
+patent \cite{pat1}, a thesis \cite{thesis1}, a report \cite{rep1}, and
+the rest \cite{coll1,man1,ref1,misc1,proc1}.
+\end{demo}
+\begin{demo}
+\mybibliography[bib]
+\end{demo}
+\end{document}

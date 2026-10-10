@@ -1,0 +1,62 @@
+% demo-mytable.tex -- mytable / mytable*
+\documentclass[sectioning=nobreak]{myreport}
+\usepackage{mydemo}
+\begin{document}
+\demoheader{mytable}{A numbered, captioned table with alternating row
+colours, a label and an entry in the list of tables.}
+
+\mysection*{Syntax}
+\begin{demosyntax}
+\begin{mytable}[<options>]{<columns>}{<label>}[<short caption>]{<caption>}[<position>]
+  ... & ... \\
+\end{mytable}
+\begin{mytable*}[<options>]{<columns>}{<label>}{<caption>}[<position>]
+\end{demosyntax}
+\begin{itemize}
+  \item \texttt{<options>}: \texttt{firstrow=} (first coloured row,
+    default 1), \texttt{contrastcol=} (default \texttt{gray!25}),
+    \texttt{defaultcol=} (colour of the other rows, default none),
+    \texttt{oddcol=} / \texttt{evencol=} (explicit colours, override the
+    two previous keys).
+  \item \texttt{<columns>}: a normal \texttt{tabular} preamble.
+  \item \texttt{<label>}: the table is \texttt{tab:<label>}.
+\end{itemize}
+
+\mysection*{Examples}
+\begin{demo}
+\begin{mytable}{|l|c|r|}{basic}{Default colours.}[H]
+  \hline Left & Centre & Right \\ \hline
+  a & b & c \\ d & e & f \\ g & h & i \\ \hline
+\end{mytable}
+\end{demo}
+
+\begin{demo}
+\begin{mytable}[firstrow=2]{|l|c|}{header}[Header row]{The header (row 1)
+stays white: colours start at row 2.}[H]
+  \hline \textbf{Name} & \textbf{Value} \\ \hline
+  a & 1 \\ b & 2 \\ c & 3 \\ \hline
+\end{mytable}
+\end{demo}
+
+\begin{demo}
+\begin{mytable}[contrastcol=blue!10, defaultcol=yellow!10]{lc}{colours}{Two
+custom colours.}[H]
+  a & 1 \\ b & 2 \\ c & 3 \\ d & 4 \\
+\end{mytable}
+\end{demo}
+
+\begin{demo}
+\begin{mytable}[oddcol=red!10, evencol=green!10]{lc}{oddeven}{Explicit odd
+and even colours.}[H]
+  a & 1 \\ b & 2 \\ c & 3 \\
+\end{mytable}
+\end{demo}
+
+\begin{demo}
+\begin{mytable*}{p{4cm}|>{\centering\arraybackslash}p{3cm}}{star}{Starred:
+not in the list of tables. Centred p column.}[H]
+  A long text that wraps in the column & centred \\
+\end{mytable*}
+See \myref{tab:basic}, \myref{tab:star}.
+\end{demo}
+\end{document}

@@ -1,0 +1,51 @@
+% demo-languages.tex -- the words of every supported language
+% Several languages can be given to the class (the last one is the main
+% language); the package words follow \selectlanguage.
+\documentclass[sectioning=nobreak,
+  text={lang={russian,portuguese,italian,spanish,dutch,ngerman,french,english,british}}]{myreport}
+\usepackage{mydemo}
+% Each tabular cell is a group: switch the language inside every cell.
+\newcommand\inlang[2]{\begin{otherlanguage}{#1}#2\end{otherlanguage}}
+\newcommand\wordrow[1]{%
+  \texttt{#1} & \inlang{#1}{\myfigurename} & \inlang{#1}{\mytablename} &
+  \inlang{#1}{\myequationname} & \inlang{#1}{\myprogramname} &
+  \inlang{#1}{\myintroductionname} & \inlang{#1}{\myannexname} &
+  \inlang{#1}{\mypartname} \\}
+\newcommand\wordrowb[1]{%
+  \texttt{#1} & \inlang{#1}{\mysectionname} & \inlang{#1}{\myacyearname} &
+  \inlang{#1}{\mylistprogramname} & \inlang{#1}{\myprofessorfname} &
+  \inlang{#1}{\myauthormpname} \\}
+\begin{document}
+\demoheader{lang=}{Words used by the package for each supported
+language.}
+
+\mysection*{Selecting the language}
+\begin{democode}
+\documentclass[text={lang=french}]{myreport}       % one language
+\documentclass[text={lang={english,french}}]{myreport}  % main = last
+\usepackage[lang=ngerman]{mypackage}                % package alone
+\end{democode}
+Accepted babel names: \texttt{british}, \texttt{english},
+\texttt{american} (and other English variants), \texttt{ngerman},
+\texttt{german} (and Austrian/Swiss variants), \texttt{french},
+\texttt{dutch}, \texttt{spanish}, \texttt{italian}, \texttt{portuguese},
+\texttt{brazilian}, \texttt{russian}. Other babel languages work too, with
+the English words.
+
+\mysection*{Words}
+{\small
+\begin{mytable*}[firstrow=2]{lllllll l}{words}{Package words (1).}[H]
+  & Figure & Table & Equation & Program & Introduction & Annex & Part \\
+  \wordrow{british}\wordrow{english}\wordrow{french}\wordrow{ngerman}
+  \wordrow{dutch}\wordrow{spanish}\wordrow{italian}\wordrow{portuguese}
+  \wordrow{russian}
+\end{mytable*}
+\begin{mytable*}[firstrow=2]{llllll}{words2}{Package words (2).}[H]
+  & Section & Academic year & List of programs & Professor (f) & Authors \\
+  \wordrowb{british}\wordrowb{french}\wordrowb{ngerman}\wordrowb{dutch}
+  \wordrowb{spanish}\wordrowb{italian}\wordrowb{portuguese}\wordrowb{russian}
+\end{mytable*}}
+\demonote{To change a word, add to babel's captions:
+\texttt{\textbackslash addto\textbackslash captionsfrench\{\textbackslash
+renewcommand\{\textbackslash myannexname\}\{Appendice\}\}}.}
+\end{document}

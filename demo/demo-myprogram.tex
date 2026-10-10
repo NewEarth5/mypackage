@@ -1,0 +1,54 @@
+% demo-myprogram.tex -- \myprogram, \myprogram*, \myincludeprogram
+\documentclass[sectioning=nobreak, paths={code=code/}]{myreport}
+\usepackage{mydemo}
+\begin{document}
+\demoheader{\string\myprogram}{A source file typeset with syntax
+highlighting (minted), line numbers, a caption, a label and an entry in
+the list of programs.}
+
+\mysection*{Syntax}
+\begin{demosyntax}
+\myprogram[<options>]{<label>}{<file>}{<language>}[<short caption>]{<caption>}[<position>]
+\myprogram*[<options>]{<label>}{<file>}{<language>}{<caption>}[<position>]
+\myincludeprogram[<options>]{<file>}{<language>}      % listing only
+\end{demosyntax}
+\begin{itemize}
+  \item \texttt{<options>}: \texttt{bgcol=}, \texttt{framecol=},
+    \texttt{numcol=}, \texttt{numbgcol=} (colours), \texttt{numwidth=}
+    (width of the number column; \texttt{auto} = 2\,mm per digit of the
+    last line number), \texttt{minted=\{...\}} (options passed to minted,
+    e.g.\ \texttt{firstline}, \texttt{lastline}).
+  \item \texttt{<file>}: in the \texttt{code} folder
+    (\texttt{paths=\{code=...\}}); \texttt{<language>}: a Pygments lexer
+    name (\texttt{python}, \texttt{c}, \texttt{java}, \dots).
+  \item The label is \texttt{code:<file extension>:<label>}.
+  \item A listing shorter than half a page is a float (\texttt{listing}),
+    a longer one is typeset in the text and may break across pages.
+  \item Needs \texttt{-shell-escape} and Pygments.
+\end{itemize}
+
+\mysection*{Examples}
+\begin{demo}
+\myprogram{hello}{hello.py}{python}{A Python program.}[H]
+Reference: \myref{code:py:hello}.
+\end{demo}
+\begin{demo}
+\myprogram[bgcol=white, framecol=gray, numcol=black,
+  numbgcol=gray!15]{light}{short.c}{c}[Light colours]{The same mechanism
+with light colours.}[H]
+\end{demo}
+\begin{demo}
+\myprogram[minted={firstline=3, lastline=8}]{part}{long.c}{c}{Lines 3
+to 8 of a long file.}[H]
+\end{demo}
+\begin{demo}
+\myincludeprogram[numwidth=8mm]{short.c}{c}
+\end{demo}
+\begin{demo}
+\myprogram*{long}{long.c}{c}{A long program, not floated, not in the
+list.}
+\end{demo}
+
+\mysection*{List of programs}
+\mylistofprograms*
+\end{document}

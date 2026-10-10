@@ -1,0 +1,21 @@
+% demo-mymaketitle-2.tex -- title page, style 2
+\documentclass[sectioning=nobreak, text={lang=french}]{myreport}
+\usepackage{mydemo}
+\begin{document}
+\demoheader{\string\mymaketitle[2]}{Title page, style 2 (here in French,
+with two professors, two assistants and three authors).}
+\begin{demo}
+\mycourse*{Mécanique des fluides}[MECA0025]
+\myaddprofessor*{Dupont}{Anne}
+\myaddprofessor*{Martin}{Claire}
+\myaddassistant{Durand}{Paul}
+\myaddassistant*{Leroy}{Marie}
+\mytitle*{Projet : simulation de fluides}
+\mysubtitle{Étude d'écoulement sur un paravent}
+\mylogo{square.jpg}
+\myaddauthor{Delvoie}{Roméo}[s111111]
+\myaddauthor{Lindsey}{Alexandre}[s222222]
+\myaddauthor*{Troisième}{Autrice}
+\mymaketitle[2]
+\end{demo}
+\end{document}

@@ -1,0 +1,31 @@
+% demo-mylistof.tex -- \mylistoffigures, \mylistoftables,
+% \mylistofprograms, \mylistofequations
+\documentclass[paths={code=code/}]{myreport}
+\usepackage{mydemo}
+\begin{document}
+\demoheader{\string\mylistof...}{Lists of figures, tables, programs and
+equations.}
+\begin{demosyntax}
+\mylistoffigures[<label>]     % lof:<label>    starred forms (*) are not
+\mylistoftables[<label>]      % lot:<label>    listed in the TOC
+\mylistofprograms[<label>]    % lop:<label>
+\mylistofequations[<label>]   % loe:<label>
+\end{demosyntax}
+\begin{demo}
+\mytableofcontents
+\mylistoffigures
+\mylistoftables
+\mylistofprograms
+\mylistofequations
+\end{demo}
+\mychapter{Content}
+\myfigure[height=0.06]{wide.png}[A figure]{A figure. The list shows the
+short caption, first sentence only.}
+\begin{mytable}{cc}{t}{A table.}
+  a & b \\
+\end{mytable}
+\myprogram{hello}{hello.py}{python}{A program.}
+\begin{myequation}[e]{An equation}
+  a = b
+\end{myequation}
+\end{document}

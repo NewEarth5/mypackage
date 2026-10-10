@@ -1,0 +1,28 @@
+# l3build working directory (tests, demos, packaging)
+build/
+# LaTeX auxiliary files (when compiling demos or documents by hand)
+*.aux
+*.log
+*.out
+*.toc
+*.mytoc
+*.mylof
+*.mylot
+*.mylop
+*.myloe
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.listing
+*.pyg
+_minted*/
+svg-inkscape/
+# benchmark output
+perf/build/
+perf/report.tex
+# PDFs copied back by "l3build doc"
+demo/*.pdf

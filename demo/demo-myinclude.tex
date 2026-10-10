@@ -1,0 +1,39 @@
+% demo-myinclude.tex -- \myinclude
+\documentclass[sectioning=nobreak]{myreport}
+\usepackage{mydemo}
+\begin{document}
+\demoheader{\string\myinclude}{Includes an image (not a float, no caption),
+sized relative to the text block.  Used by \string\myfigure,
+\string\mysubfigure, \string\mylogo\ and \string\myimage.}
+
+\mysection*{Syntax}
+\begin{demosyntax}
+\myinclude[<options>]{<file>}
+\end{demosyntax}
+\begin{itemize}
+  \item \texttt{height=<f>}: height = $f\times$\verb|\textheight|;
+        \texttt{width=<f>}: width = $f\times$\verb|\textwidth|.
+        Default: \texttt{height=0.2}. With both keys the image is
+        stretched to exactly that size.
+  \item \texttt{<file>}: name with extension, in the \texttt{images}
+        folder. \texttt{.svg} files are converted with Inkscape
+        (\texttt{-shell-escape} needed).
+\end{itemize}
+
+\mysection*{Examples}
+\begin{demo}
+\myinclude{wide.png}
+\end{demo}
+\begin{demo}
+\myinclude[width=0.3]{wide.png}\hfill\myinclude[height=0.1]{tall.png}
+\end{demo}
+\begin{demo}
+\myinclude[height=0.05, width=0.5]{square.jpg} % stretched
+\end{demo}
+\begin{demo}
+In a sentence: \myinclude[height=0.02]{square.jpg} inline.
+\end{demo}
+\begin{demo}
+\myinclude[width=0.4]{plot.svg}
+\end{demo}
+\end{document}

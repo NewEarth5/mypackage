@@ -1,0 +1,25 @@
+% demo-mysection.tex -- \mysection, \mysubsection, \mysubsubsection
+\documentclass{myreport}
+\usepackage{mydemo}
+\begin{document}
+\demoheader{\string\mysection, \string\mysubsection,
+\string\mysubsubsection}{Lower sectioning levels. Numbering adapts to
+the highest level used (here: sections, so floats are numbered 1.1, 1.2,
+... within sections).}
+\begin{demosyntax}
+\mysection{<title>}[number=<n>, label=<label>]          % sec:<label>
+\mysubsection{<title>}[number=<n>, label=<label>]       % subsec:<label>
+\mysubsubsection{<title>}[number=<n>, label=<label>]    % subsubsec:<label>
+\mysection*{<title>}  \mysubsection*{<title>}  \mysubsubsection*{<title>}
+\end{demosyntax}
+\mytableofcontents*
+\begin{demo}
+\mysection{A section}[label=sec]
+\mysubsection{A subsection}[label=sub]
+\mysubsubsection{A subsubsection}[label=subsub]
+\mysubsection*{Unnumbered subsection}
+\mysection{Another section}[number=5]
+\myfigure[height=0.06]{wide.png}{Figure 5.1.}[H]
+\myref{sec:sec}, \myref{subsec:sub}, \myref{subsubsec:subsub}.
+\end{demo}
+\end{document}

@@ -1,0 +1,22 @@
+% demo-mychapter.tex -- \mychapter
+\documentclass[sectioning={chapter=nobreak}]{myreport}
+\usepackage{mydemo}
+\begin{document}
+\demoheader{\string\mychapter}{Chapter heading. Floats and equations are
+numbered within chapters when chapters are the highest level.}
+\mysection*{Syntax}
+\begin{demosyntax}
+\mychapter{<title>}[number=<n>, label=<label>]   % label: chap:<label>
+\mychapter*{<title>}                              % unnumbered, not in TOC
+\end{demosyntax}
+\mytableofcontents*
+\begin{demo}
+\mychapter{Numbered chapter}[label=first]
+\myfigure[height=0.06]{wide.png}{Figure numbered within the chapter.}[H]
+\end{demo}
+\begin{demo}
+\mychapter{Forced number}[number=7, label=seven]
+\mychapter*{Unnumbered chapter}
+See \myref{chap:first}, \myref{chap:seven}, \myref{fig:wide}.
+\end{demo}
+\end{document}

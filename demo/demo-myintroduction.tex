@@ -1,0 +1,23 @@
+% demo-myintroduction.tex -- \myintroduction
+\documentclass[sectioning={chapter=nobreak}]{myreport}
+\usepackage{mydemo}
+\begin{document}
+\demoheader{\string\myintroduction}{Introduction heading at the level of
+the highest heading, starting the arabic page numbering.}
+\mysection*{Syntax}
+\begin{demosyntax}
+\myintroduction[number=<n>, label=<label>]   % label: intro:<label>
+\myintroduction*                             % not numbered, not in the TOC
+\end{demosyntax}
+\demonote{The introduction does not advance the counter: without
+\texttt{number=} it shows the current value (0 at the start). Use
+\texttt{number=1} to number it like a first chapter; the next
+\texttt{\textbackslash mychapter} is then number 2.}
+\mytableofcontents
+\begin{demo}
+\myintroduction[number=1, label=intro]
+Introduction text, \myref{intro:intro}.
+\mychapter{The next chapter}
+Text.
+\end{demo}
+\end{document}

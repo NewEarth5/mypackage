@@ -1,0 +1,60 @@
+% demo-class-options.tex -- options of the myreport class
+\documentclass[
+  text={fontsize=11pt, fontfamily=lmr, lang=british},
+  paths={images=images/, code=code/, sources=sources/sources.bib},
+  position={figure=H, table=H, program=H, pseudocode=H},
+  sectioning={part=break, chapter=nobreak, section=nobreak,
+              subsection=nobreak, subsubsection=nobreak,
+              annex=nobreak, bib=nobreak},
+  toc={depth=1, annexdepth=0, bibdepth=0},
+]{myreport}
+\usepackage{mydemo}
+\makeatletter
+\newcommand\showopt[2]{\texttt{#1} & \texttt{\detokenize\expandafter{#2}} \\}
+\begin{document}
+\demoheader{\string\documentclass[...]\{myreport\}}{Class options. The
+class is based on \texttt{report} (A4) and loads mypackage, amsmath,
+amsfonts and amssymb.}
+
+\mysection*{Syntax}
+\begin{democode}
+\documentclass[
+  text={fontsize=<10pt|11pt|12pt>, fontfamily=<family>, lang=<language(s)>},
+  paths={images=<dir/>, code=<dir/>, sources=<file.bib>},
+  position=<placement>  or  position={figure=..., table=..., program=..., pseudocode=...},
+  sectioning=<break|nobreak>  or
+  sectioning={part=..., chapter=..., section=..., subsection=...,
+              subsubsection=..., annex=..., bib=...},
+  toc={depth=<n>, annexdepth=<n>, bibdepth=<n>},
+]{myreport}
+\end{democode}
+
+\mysection*{Font families (\texttt{fontfamily=})}
+Serif: \texttt{cmr} (default), \texttt{lmr}, \texttt{lmdh}, \texttt{qtm},
+\texttt{qpl}, \texttt{qbk}, \texttt{qcs}, \texttt{ptm}, \texttt{put},
+\texttt{ppl}, \texttt{pbk}, \texttt{bch}. Sans serif: \texttt{cmss},
+\texttt{lmss}, \texttt{qag}, \texttt{qhv}, \texttt{phv}. Monospace:
+\texttt{cmtt}, \texttt{lmtt}, \texttt{qcr}, \texttt{pcr}.
+\par\medskip
+{\fontfamily{qpl}\selectfont qpl: The quick brown fox.}\quad
+{\fontfamily{qhv}\selectfont qhv: The quick brown fox.}\quad
+{\fontfamily{bch}\selectfont bch: The quick brown fox.}
+
+\mysection*{Sectioning}
+\texttt{break}: the heading starts a new page; \texttt{nobreak}: it
+follows the text. \texttt{annex} and \texttt{bib} apply to the headings
+inside \texttt{myannex} and to the bibliography categories.
+
+\mysection*{Values in this document}
+\begin{mytable*}[firstrow=2]{ll}{values}{Values seen by the class.}
+  \textbf{Option} & \textbf{Value} \\
+  \showopt{text/fontsize}{\myreport@text@fontsize}
+  \showopt{text/fontfamily}{\myreport@text@fontfamily}
+  \showopt{text/lang}{\myreport@text@lang}
+  \showopt{sectioning/part}{\myreport@sect@part}
+  \showopt{sectioning/chapter}{\myreport@sect@chapter}
+  \showopt{sectioning/annex}{\myreport@sect@annex}
+  \showopt{sectioning/bib}{\myreport@sect@bib}
+  \showopt{toc/depth}{\mypackage@toc@depth}
+\end{mytable*}
+\end{document}

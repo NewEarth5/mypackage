@@ -1,0 +1,43 @@
+% demo-utilities.tex -- small helper commands of mypackage
+\documentclass[sectioning=nobreak]{myreport}
+\usepackage{mydemo}
+\begin{document}
+\demoheader{Utilities}{\string\currentacyear, \string\mycleantext,
+\string\mycleanline, \string\mycleanfirstline, \string\mylenmax,
+\string\mylenmin, \string\myhighestsec, \string\IfIsRomanTF\ and co.}
+
+\mysection*{\textbackslash currentacyear}
+\begin{demo}
+Academic year (switches on 1 September): \currentacyear
+\end{demo}
+
+\mysection*{Text cleaning}
+\begin{demo}
+[\mycleantext{  spaces around  }]
+[\mycleanline{A caption ending with dots...}]
+[\mycleanfirstline{First sentence. Second sentence.}]
+\end{demo}
+
+\mysection*{Lengths}
+\begin{demo}
+\mylenmax{2cm}{50pt}, \mylenmin{2cm}{50pt},
+\mylenmax{0.5\textwidth}{100pt}
+\end{demo}
+
+\mysection*{Structure}
+\begin{demo}
+Highest level used in this document: \myhighestsec.
+\end{demo}
+
+\mysection*{Page numbering style}
+\begin{demosyntax}
+\IfIsRomanTF{<true>}{<false>}   \IfIsRomanT{<true>}   \IfIsRomanF{<false>}
+\IfIsromanTF ... \IfIsarabicTF ... \IfIsAlphTF ... \IfIsalphTF ...
+\end{demosyntax}
+\begin{demo}
+\pagenumbering{roman}
+This page is numbered \thepage:
+\IfIsromanTF{roman}{not roman},
+\IfIsalphTF{alph}{not alph}.
+\end{demo}
+\end{document}

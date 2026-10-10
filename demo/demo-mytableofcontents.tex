@@ -1,0 +1,27 @@
+% demo-mytableofcontents.tex -- \mytableofcontents
+\documentclass[toc={depth=3}]{myreport}
+\usepackage{mydemo}
+\begin{document}
+\demoheader{\string\mytableofcontents}{Table of contents with leaders,
+indentation by level and hyperlinks.}
+\begin{demosyntax}
+\mytableofcontents[<label>]    % label: toc:<label>; lists itself in the TOC
+\mytableofcontents*[<label>]   % does not list itself
+\end{demosyntax}
+\demonote{The depth is set with the class option \texttt{toc=\{depth=<n>\}},
+counted from the highest level used in the document (0). Annexes and the
+bibliography have their own depths (\texttt{annexdepth}, \texttt{bibdepth}).}
+\begin{demo}
+\mytableofcontents[toc]
+\end{demo}
+\mypart{A part}
+\mychapter{A chapter}
+\mysection{A section}
+\mysubsection{A subsection}
+\mysubsubsection{Not listed (depth 4)}
+\mychapter{Another chapter}
+\begin{myannex}
+\mypart{An annex}
+\mychapter{Not listed (annexdepth=0)}
+\end{myannex}
+\end{document}

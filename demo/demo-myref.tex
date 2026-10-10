@@ -1,0 +1,47 @@
+% demo-myref.tex -- \myref and \myseeref
+\documentclass[sectioning=nobreak, paths={code=code/}]{myreport}
+\usepackage{mydemo}
+\begin{document}
+\demoheader{\string\myref, \string\myseeref}{References that write the
+kind of object (Figure, Table, Chapter, ...) in front of the number, in
+the document language, as a single hyperlink.}
+
+\mysection*{Syntax}
+\begin{demosyntax}
+\myref[<prefix text>]{<label>}
+\myseeref[<prefix text>]{<label>}     % "see Figure 1.2"
+\end{demosyntax}
+The kind is taken from the beginning of the label:
+\begin{mytable*}[firstrow=2]{ll}{prefixes}{Label prefixes.}[H]
+  \textbf{Prefix} & \textbf{Object} \\
+  \texttt{abst:} & abstract (\verb|\myabstract[<label>]|) \\
+  \texttt{intro:} & introduction \\
+  \texttt{part:}, \texttt{chap:}, \texttt{sec:}, \texttt{subsec:},
+  \texttt{subsubsec:} & sectioning levels (key \texttt{label=}) \\
+  \texttt{ann:} & anything inside \texttt{myannex} (\texttt{ann:chap:...}) \\
+  \texttt{toc:}, \texttt{lof:}, \texttt{lot:}, \texttt{lop:},
+  \texttt{loe:}, \texttt{bib:} & table of contents, lists, bibliography \\
+  \texttt{fig:} & figures (\texttt{fig:<file name>}), sub-figures
+  (\texttt{fig:<label>:a}) \\
+  \texttt{tab:}, \texttt{eq:} & tables, equations \\
+  \texttt{code:} & programs (\texttt{code:<ext>:<label>}) and pseudocode
+  (\texttt{code:pseudo:<label>}) \\
+\end{mytable*}
+
+\mychapter{A chapter}[label=demo]
+\mysection{A section}[label=demo]
+\myfigure[height=0.08]{wide.png}{A figure.}[H]
+\begin{mytable}{cc}{small}{A table.}[H]
+  a & b \\
+\end{mytable}
+\begin{myequation}[pythagoras]{Pythagoras}
+  a^2 + b^2 = c^2
+\end{myequation}
+
+\mysection{References}
+\begin{demo}
+\myref{chap:demo}, \myref{sec:demo}, \myref{fig:wide}, \myref{tab:small},
+\myref{eq:pythagoras}; \myseeref{fig:wide};
+\myref[the ]{tab:small}.
+\end{demo}
+\end{document}

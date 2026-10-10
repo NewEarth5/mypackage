@@ -1,0 +1,52 @@
+% demo-mysub.tex -- mysub / mysub* environments and \mysubfigure
+\documentclass[sectioning=nobreak]{myreport}
+\usepackage{mydemo}
+\begin{document}
+\demoheader{mysub, \string\mysubfigure}{A figure made of several
+sub-figures, each with an optional sub-caption (a), (b), ...}
+
+\mysection*{Syntax}
+\begin{demosyntax}
+\begin{mysub}{<label>}[<short caption>]{<caption>}[<position>]
+  \mysubfigure[<options>]{<file>}[<sub-caption>]{<width>}[<alignment>]
+  ...
+\end{mysub}
+\begin{mysub*}{<label>}{<caption>}[<position>]   % not in the list of figures
+\end{demosyntax}
+\begin{itemize}
+  \item \texttt{<label>}: the figure is \texttt{fig:<label>}, its
+    sub-figures \texttt{fig:<label>:a}, \texttt{fig:<label>:b}, \dots
+  \item \texttt{<width>} of \verb|\mysubfigure|: fraction of
+    \verb|\textwidth| given to the sub-figure; \texttt{<options>}
+    (\texttt{width=}, \texttt{height=}) are relative to that width
+    (default \texttt{width=1}).
+  \item \texttt{<alignment>}: vertical alignment of the sub-figure
+    (\texttt{T} by default, or \texttt{t}, \texttt{c}, \texttt{b},
+    \texttt{B}).
+\end{itemize}
+
+\mysection*{Examples}
+\begin{demo}
+\begin{mysub}{pair}{Two sub-figures side by side.}[H]
+  \mysubfigure{wide.png}[A wide image]{0.48}
+  \hfill
+  \mysubfigure[height=0.1]{tall.png}[A tall image]{0.48}
+\end{mysub}
+See \myref{fig:pair} and \myref{fig:pair:b}.
+\end{demo}
+
+\begin{demo}
+\begin{mysub}{three}[Three images]{Three sub-figures, the last one
+without sub-caption, bottom-aligned.}[H]
+  \mysubfigure{wide.png}[A]{0.3}[b]\hfill
+  \mysubfigure{square.jpg}[B]{0.3}[b]\hfill
+  \mysubfigure[width=0.5]{tall.png}{0.3}[b]
+\end{mysub}
+\end{demo}
+
+\begin{demo}
+\begin{mysub*}{hidden}{A starred group: not in the list of figures.}[H]
+  \mysubfigure{square.jpg}[Only one]{0.3}
+\end{mysub*}
+\end{demo}
+\end{document}

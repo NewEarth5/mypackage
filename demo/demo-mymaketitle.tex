@@ -1,0 +1,40 @@
+% demo-mymaketitle.tex -- title page, style 1, and the title-data commands
+\documentclass[sectioning=nobreak]{myreport}
+\usepackage{mydemo}
+\begin{document}
+\demoheader{\string\mymaketitle}{Title page (style 1) and the commands
+that fill it in.}
+
+\mysection*{Syntax}
+\begin{demosyntax}
+\mycourse[*]{<course name>}[<course ID>]  % no star: the ID is a \cite key
+\myaddprofessor[*]{<surname>}{<first name>}  % * = female; repeat for more
+\myaddassistant[*]{<surname>}{<first name>}
+\myaddauthor[*]{<surname>}{<first name>}[<student ID>]
+\myacademicyear{<text>}      % default: \currentacyear
+\mytitle[*]{<title>}         % * = not underlined
+\mysubtitle{<subtitle>}
+\myimage[<options>]{<file>}  % default width=1
+\mylogo[<options>]{<file>}   % default height=0.035
+\mydate{<date>}              % default: \today
+\mymaketitle[<style: 1 or 2>]
+\mymaketitle*[<style>]       % keep the current margins
+\end{demosyntax}
+\demonote{Labels are plural and gendered automatically: two female
+professors give ``Professors'' in English, ``Professeures'' in French.
+Style 1 shows the professors, not the assistants.}
+
+\begin{demo}
+\mycourse*{Fluid mechanics}[MECA0025]
+\myaddprofessor{Delhez}{Eric}
+\myacademicyear{2025-2026}
+\mytitle{Project: fluid simulation}
+\mysubtitle{Flow around a windscreen}
+\myimage[width=0.5]{wide.png}
+\mylogo{square.jpg}
+\mydate{10 October 2026}
+\myaddauthor{Delvoie}{Roméo}[s111111]
+\myaddauthor{Lindsey}{Alexandre}[s222222]
+\mymaketitle
+\end{demo}
+\end{document}

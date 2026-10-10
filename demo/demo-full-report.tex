@@ -1,0 +1,89 @@
+% demo-full-report.tex -- a complete report using every command of the class
+\documentclass[
+  text={fontsize=11pt, lang=british},
+  paths={code=code/},
+  position={figure=H, table=H, program=H, pseudocode=H},
+  sectioning={part=break, chapter=nobreak, annex=nobreak, bib=nobreak},
+  toc={depth=1, annexdepth=0, bibdepth=0},
+]{myreport}
+\usepackage{csquotes}
+\usepackage{clrscode3e}
+\usepackage[locale=UK]{siunitx}
+
+\mycourse*{Fluid mechanics}[MECA0025]
+\myaddprofessor{Professor}{Paul}
+\myaddassistant*{Assistant}{Alice}
+\mytitle{Demonstration report}
+\mysubtitle{Every command of myreport in one document}
+\mylogo{square.jpg}
+\myaddauthor{Author}{First}[s000001]
+\myaddauthor*{Author}{Second}[s000002]
+
+\begin{document}
+\mymaketitle[2]
+
+\myabstract[abstract]
+This document uses every command of the class once, so that a change in
+any of them is visible at a glance.
+
+\mytableofcontents
+\mylistoffigures
+\mylistoftables
+\mylistofprograms
+\mylistofequations
+
+\myintroduction[number=1, label=intro]
+The introduction is numbered as the first part; see \myref{part:theory}.
+
+\mypart{Theory}[label=theory]
+\mychapter{Definitions}[label=defs]
+\mysection{Dimensionless numbers}[label=numbers]
+\begin{myequation}[re]{Reynolds number}
+  Re = \frac{\rho U L}{\mu} = \frac{\num{1.2} \cdot \num{14.4} \cdot \num{2.41}}{\num{1.9e-5}}
+\end{myequation}
+\mysubsection{Courant number}[label=cfl]
+\begin{myequation}[cfl]{Courant number}
+  CFL &= \frac{U \Delta t}{\Delta x} \\
+  \Delta t &= \frac{CFL \cdot \Delta x}{U}
+\end{myequation}
+\mysubsubsection{Remark}
+See \myseeref{eq:re} and \myref{subsec:cfl}.
+
+\mypart{Simulations}[label=sims]
+\mychapter{Set-up}[label=setup]
+\myfigure{wide.png}[Domain]{The simulation domain. A second sentence that
+does not go to the list of figures.}
+\begin{mysub}{mesh}{The mesh and a zoom on it.}
+  \mysubfigure{wide.png}[Mesh]{0.55}\hfill
+  \mysubfigure{square.jpg}[Zoom]{0.35}
+\end{mysub}
+\begin{mytable}[firstrow=2]{|l|c|}{params}{Simulation parameters.}
+  \hline \textbf{Parameter} & \textbf{Value} \\ \hline
+  Velocity & \qty{14.4}{\meter\per\second} \\
+  CFL & \num{4} \\
+  Duration & \num{8} FTT \\ \hline
+\end{mytable}
+\mychapter{Code}[label=code]
+\myprogram{hello}{hello.py}{python}{A post-processing script.}
+\begin{mypseudocode}{search}{Searching for the optimal angle.}
+\proc{Optimise}($\theta_{min}, \theta_{max}$)
+\li \For $\theta \gets \theta_{min}$ \To $\theta_{max}$
+\li   \Do run a simulation
+    \End
+\li \Return the best angle
+\end{mypseudocode}
+Results: \myref{fig:wide}, \myref{fig:mesh:b}, \myref{tab:params},
+\myref{code:py:hello}, \myref{code:pseudo:search}, cited from
+\cite{art1,book1,web1}.
+
+\mypart{Conclusion}
+The conclusion. See also \myref{ann:part:details}.
+
+\begin{myannex}
+  \mypart{Details}[label=details]
+  \mychapter{Long derivation}
+  Text of the annex.
+\end{myannex}
+
+\mybibliography
+\end{document}

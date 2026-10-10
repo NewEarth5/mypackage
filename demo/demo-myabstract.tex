@@ -1,0 +1,21 @@
+% demo-myabstract.tex -- \myabstract
+\documentclass{myreport}
+\usepackage{mydemo}
+\begin{document}
+\demoheader{\string\myabstract}{Abstract heading on a new page, at the
+level of the highest heading of the document, unnumbered, page numbers in
+Roman numerals.}
+\mysection*{Syntax}
+\begin{demosyntax}
+\myabstract[<label>]      % label: abst:<label>; added to the TOC
+\myabstract*[<label>]     % not added to the TOC
+\end{demosyntax}
+\begin{demo}
+\myabstract[abs]
+This report studies the flow around a windscreen. \myref{abst:abs} is on
+page \pageref{abst:abs}.
+\end{demo}
+\mytableofcontents
+\mychapter{First chapter}
+Text.
+\end{document}

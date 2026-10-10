@@ -1,0 +1,38 @@
+% demo-mypseudocode.tex -- mypseudocode / mypseudocode*
+\documentclass[sectioning=nobreak]{myreport}
+\usepackage{clrscode3e}   % provides the codebox environment (required)
+\usepackage{mydemo}
+\begin{document}
+\demoheader{mypseudocode}{Pseudocode in the style of Cormen et al.
+(clrscode3e), numbered together with the programs.}
+
+\mysection*{Syntax}
+\begin{demosyntax}
+\usepackage{clrscode3e}   % in the preamble: required
+\begin{mypseudocode}{<label>}[<short caption>]{<caption>}[<position>]
+  ... clrscode3e commands ...
+\end{mypseudocode}
+\begin{mypseudocode*}{<label>}{<caption>}[<position>]
+\end{demosyntax}
+\demonote{The label is \texttt{code:pseudo:<label>}. The environment uses
+\texttt{codebox} from \texttt{clrscode3e}, which you must load yourself;
+it cannot be combined with \texttt{algpseudocode} (both define
+\texttt{\textbackslash For}, \texttt{\textbackslash If}, \dots).}
+
+\mysection*{Example}
+\begin{demo}
+\begin{mypseudocode}{isort}{Insertion sort.}[H]
+\proc{Insertion-Sort}(A)
+\li \For $j \gets 2$ \To $\attrib{A}{length}$
+\li   \Do $\id{key} \gets A[j]$
+\li       $i \gets j-1$
+\li       \While $i > 0$ and $A[i] > \id{key}$
+\li         \Do $A[i+1] \gets A[i]$
+\li             $i \gets i-1$
+            \End
+\li       $A[i+1] \gets \id{key}$
+      \End
+\end{mypseudocode}
+See \myref{code:pseudo:isort}.
+\end{demo}
+\end{document}

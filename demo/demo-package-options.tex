@@ -1,0 +1,51 @@
+% demo-package-options.tex -- options of mypackage
+\documentclass{article}
+\usepackage[
+  lang=british,
+  paths={images=images/, code=code/, sources=sources/sources.bib},
+  position={figure=H, table=H, program=h, pseudocode=h},
+  toc={depth=2, annexdepth=0, bibdepth=1},
+]{mypackage}
+\usepackage{mydemo}
+\makeatletter
+\newcommand\showopt[2]{\texttt{#1} & \texttt{\detokenize\expandafter{#2}} \\}
+\begin{document}
+\demoheader{\string\usepackage[...]\{mypackage\}}{Package options. With
+the myreport class, give the same options to \string\documentclass.}
+
+\section*{Syntax}
+\begin{democode}
+\usepackage[
+  lang=<babel language(s)>,                      % default: british
+  paths={images=<dir/>, code=<dir/>, sources=<file.bib>},
+  position=<placement>  or  position={figure=..., table=..., program=..., pseudocode=...},
+  toc={depth=<n>, annexdepth=<n>, bibdepth=<n>},
+]{mypackage}
+\end{democode}
+
+\section*{Values in this document}
+\begin{mytable*}[firstrow=2]{ll}{values}{Values seen by the package.}
+  \textbf{Option} & \textbf{Value} \\
+  \showopt{lang}{\mypackage@lang}
+  \showopt{paths/images}{\mypackage@paths@images}
+  \showopt{paths/code}{\mypackage@paths@code}
+  \showopt{paths/sources}{\mypackage@paths@sources}
+  \showopt{position/figure}{\mypackage@pos@figure}
+  \showopt{position/table}{\mypackage@pos@table}
+  \showopt{position/program}{\mypackage@pos@program}
+  \showopt{position/pseudocode}{\mypackage@pos@pseudocode}
+  \showopt{toc/depth}{\mypackage@toc@depth}
+  \showopt{toc/annexdepth}{\mypackage@toc@annexdepth}
+  \showopt{toc/bibdepth}{\mypackage@toc@bibdepth}
+\end{mytable*}
+
+\section*{Defaults}
+\texttt{lang=british}, \texttt{images=images/}, \texttt{code=../code/},
+\texttt{sources=sources/sources.bib}, all positions \texttt{h},
+\texttt{depth=2}, \texttt{annexdepth=0}, \texttt{bibdepth=1}.
+The TOC depths count from the highest level used in the document (0).
+
+\demonote{The package loads, among others, babel, biblatex (biber),
+hyperref, geometry (A4, 2.5\,cm margins), xcolor, tcolorbox and minted:
+compile with \texttt{-shell-escape}.}
+\end{document}
