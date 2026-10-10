@@ -1,0 +1,36 @@
+# Builds the demo documents and attaches them, with the .sty/.cls, to a
+# GitHub release whenever a version tag (v0.6.5, v0.7.0, ...) is pushed:
+#     git tag -a v0.6.5 -m "Version 0.6.5"
+#     git push origin v0.6.5
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write           # needed to create the release
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Typeset the demo documents
+        uses: xu-cheng/texlive-action@v2
+        with:
+          scheme: full
+          texlive_version: 2023
+          run: |
+            apk add --no-cache inkscape py3-pygments ttf-dejavu zip
+            l3build doc
+            mkdir -p dist
+            cp mypackage.sty myreport.cls mypackage.cwl myreport.cwl CHANGELOG.md dist/
+            zip -j dist/demos.zip build/doc/demo-*.pdf
+
+      - name: Publish the release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          body_path: CHANGELOG.md

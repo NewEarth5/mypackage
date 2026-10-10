@@ -1,13 +1,13 @@
 MyPackage:
 ----------
 # V0.6:
-  @ V0.6.5:
+  @ V0.6.5: (done 2026-10-10, see CHANGELOG.md)
     - Create a test suite:
-      ° Create a l3build regression test
-      ° Create several .lvt tests for every command to test every case
-      ° Create a demo document for every command
-      ° Test package compatibility
-    - Create a changelog
+      ° Create a l3build regression test                                 [done]
+      ° Create several .lvt tests for every command to test every case   [done]
+      ° Create a demo document for every command                         [done]
+      ° Test package compatibility                                       [done]
+    - Create a changelog                                                 [done]
 # V0.7
   @ V0.7.0:
     - Refactoring:
@@ -16,6 +16,8 @@ MyPackage:
       ° Make code faster to compile
       ° Reduce number of runs needed for final compile
       ° Differentiate between public and private commands
+      ° Write each structure flag to the .aux once (\RegisterStructureUsage) and reset unused ones (found in 0.6.5)
+      ° Typeset each \myprogram listing once instead of three times (found in 0.6.5)
   @ V0.7.5:
     - Better and more consistent size controls:
       ° Make the default size of commands be a package option (text, none, a dimension, etc.)
@@ -32,6 +34,9 @@ MyPackage:
     - Improve robustness:
       ° Add error and warning messages
       ° Make every command key be validated and return an error or warning
+      ° Error message when mypseudocode is used without clrscode3e (found in 0.6.5)
+      ° \myinclude with height and width: keep the aspect ratio (found in 0.6.5)
+      ° Labels compatible with cleveref (found in 0.6.5)
     - Hooks:
       ° Add hooks for override or other ways
 # V0.8:
@@ -75,13 +80,13 @@ MyPackage:
 MyReport:
 ---------
 # V0.6:
-  @ V0.6.5:
+  @ V0.6.5: (done 2026-10-10, see CHANGELOG.md)
     - Create a test suite:
-      ° Create a l3build regression test
-      ° Create several .lvt tests for every command to test every case
-      ° Create a demo document for every command
-      ° Test package compatibility
-    - Create a changelog
+      ° Create a l3build regression test                                 [done]
+      ° Create several .lvt tests for every command to test every case   [done]
+      ° Create a demo document for every command                         [done]
+      ° Test package compatibility                                       [done]
+    - Create a changelog                                                 [done]
 # V0.7:
   @ V0.7.0:
     - Refactoring:
@@ -99,6 +104,7 @@ MyReport:
     - Class options:
       ° Make it possible to change every package's default options using [package_name]={[clist_options]}
       ° Make sectioning for annex be able to be further specified for parts, chapters, sections, subsections, and subsubsections (sectioning={..., annex={part=...,...},...})
+      ° Decide the numbering of a \myintroduction without number= and of main-matter pages after an annex (found in 0.6.5)
     - Add layout options:
       ° Interline spacing (default, double, or a dimension)
       ° Paper size
@@ -127,6 +133,7 @@ MyReport:
       ° Add the possibility to add a header for every page
       ° Add the possibility to add a footer for every page
       ° Create command for header and footer that can show chapter and/or part name/number, page number, etc.
+      ° Set marks (\markboth) in the headings so that \leftmark/\rightmark work (found in 0.6.5)
   @ V0.8.5
     - Documentation:
       ° Add the .ins and .dtx

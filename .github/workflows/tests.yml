@@ -1,0 +1,46 @@
+# Runs the l3build regression tests on every push and pull request.
+#
+# Each l3build configuration is a separate job (they run in parallel and a
+# failure in one does not hide the others).  When a test fails, the .diff
+# files (expected log vs. obtained log) are uploaded as an artifact: open
+# the "Summary" page of the failed run to download them.
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:        # "Run workflow" button in the Actions tab
+
+jobs:
+  check:
+    name: l3build check (${{ matrix.config }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        config: [build, config-multirun, config-bib, config-compat, config-engines]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run the tests in a full TeX Live
+        uses: xu-cheng/texlive-action@v2
+        with:
+          scheme: full
+          # The .tlg files were generated with this TeX Live year.  Package
+          # updates change log messages, so keep this equal to the year you
+          # used for "l3build save" (see README, "Updating TeX Live").
+          texlive_version: 2023
+          run: |
+            apk add --no-cache inkscape py3-pygments ttf-dejavu
+            l3build check -c ${{ matrix.config }} --show-saves
+
+      - name: Upload the differences if a test failed
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: diffs-${{ matrix.config }}
+          path: |
+            build/test*/*.diff
+            build/test*/*.log
+          if-no-files-found: ignore
