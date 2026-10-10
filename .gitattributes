@@ -1,0 +1,6 @@
+# Keep LF line endings in the repository whatever the OS: l3build compares
+# logs line by line, and the .tlg files must not change on Windows.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.pdf binary
