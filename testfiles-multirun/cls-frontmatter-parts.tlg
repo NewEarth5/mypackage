@@ -1,12 +1,13 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 -------- cls-frontmatter-parts.mytoc (start) ---------
-(cls-frontmatter-parts.mytoc) \contentsline {mypart}{Abstract}{I}{myabstract}%^^M
-\contentsline {mypart}{Contents}{II}{mycontents}%^^M
-\contentsline {mypart}{\mypartbox [l]{Part 0}\hspace {1em}Introduction}{1}{myintroduction}%^^M
-\contentsline {mypart}{\mypartbox [l]{Part 1}\hspace {1em}Main part}{2}{mypart.1}%^^M
-\contentsline {mychapter}{\mychapterbox [l]{1.1}\hspace {1em}A chapter}{3}{mychapter.1.1}%^^M
-\contentsline {mypart}{\mypartbox [l]{Part 9}\hspace {1em}Introduction}{5}{myintroduction}%^^M
+(cls-frontmatter-parts.mytoc)
+\contentsline {mypart}{Abstract}{I}{myabstract}%[nl]
+\contentsline {mypart}{Contents}{II}{mycontents}%[nl]
+\contentsline {mypart}{\mypartbox [l]{Part 0}\hspace {1em}Introduction}{1}{myintroduction}%[nl]
+\contentsline {mypart}{\mypartbox [l]{Part 1}\hspace {1em}Main part}{2}{mypart.1}%[nl]
+\contentsline {mychapter}{\mychapterbox [l]{1.1}\hspace {1em}A chapter}{3}{mychapter.1.1}%[nl]
+\contentsline {mypart}{\mypartbox [l]{Part 9}\hspace {1em}Introduction}{5}{myintroduction}%[nl]
 -------- cls-frontmatter-parts.mytoc (end) -----------
 COUNTERS: part=0, chapter=0, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=1 (1)
 Package hyperref Info: bookmark level for unknown mypart defaults to 0 on input line ....
@@ -15,9 +16,6 @@ COUNTERS: part=0, chapter=0, section=0, subsection=0, subsubsection=0, figure=0,
 Non-PDF special ignored!
 <special> header=psfrag.pro
 ] (cls-frontmatter-parts.mytoc
-LaTeX Font Info:    Trying to load font information for U+msa on input line ....
-LaTeX Font Info:    Trying to load font information for U+msb on input line ....
-\tf@mytoc=\write...
 [2
 ]
 COUNTERS: part=0, chapter=0, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=3 (III)
@@ -58,7 +56,8 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.I}) has b
                    \relax 
 l. ...\end{document}
 [1
-] (cls-frontmatter-parts.aux)
+]
+(cls-frontmatter-parts.aux)
 Package rerunfilecheck Info: File `cls-frontmatter-parts.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 Package logreq Info: Writing requests to 'cls-frontmatter-parts.run.xml'.

@@ -1,21 +1,19 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 -------- cls-annex-parts.mytoc (start) ---------
-(cls-annex-parts.mytoc) \contentsline {mypart}{Contents}{I}{mycontents}%^^M
-\contentsline {mypart}{\mypartbox [l]{Part 1}\hspace {1em}Main one}{1}{mypart.1}%^^M
-\contentsline {mychapter}{\mychapterbox [l]{1.1}\hspace {1em}Main chapter}{2}{mychapter.1.1}%^^M
-\contentsline {mypart}{\mypartbox [l]{Part 2}\hspace {1em}Main two}{3}{mypart.2}%^^M
-\contentsline {mychapter}{\mychapterbox [l]{2.1}\hspace {1em}Main two chapter}{4}{mychapter.2.1}%^^M
-\contentsline {mypart}{\mypartbox [l]{Annex A}\hspace {1em}First annex}{a}{mypart.A}%^^M
-\contentsline {mychapter}{\mychapterbox [l]{A.1}\hspace {1em}Annex chapter}{b}{mychapter.A.1}%^^M
-\contentsline {mypart}{\mypartbox [l]{Annex B}\hspace {1em}Second annex}{c}{mypart.B}%^^M
-\contentsline {mypart}{\mypartbox [l]{Part 3}\hspace {1em}Back in the main matter}{1}{mypart.3}%^^M
-\contentsline {mypart}{\mypartbox [l]{Annex C}\hspace {1em}Third annex}{a}{mypart.C}%^^M
+(cls-annex-parts.mytoc)
+\contentsline {mypart}{Contents}{I}{mycontents}%[nl]
+\contentsline {mypart}{\mypartbox [l]{Part 1}\hspace {1em}Main one}{1}{mypart.1}%[nl]
+\contentsline {mychapter}{\mychapterbox [l]{1.1}\hspace {1em}Main chapter}{2}{mychapter.1.1}%[nl]
+\contentsline {mypart}{\mypartbox [l]{Part 2}\hspace {1em}Main two}{3}{mypart.2}%[nl]
+\contentsline {mychapter}{\mychapterbox [l]{2.1}\hspace {1em}Main two chapter}{4}{mychapter.2.1}%[nl]
+\contentsline {mypart}{\mypartbox [l]{Annex A}\hspace {1em}First annex}{a}{mypart.A}%[nl]
+\contentsline {mychapter}{\mychapterbox [l]{A.1}\hspace {1em}Annex chapter}{b}{mychapter.A.1}%[nl]
+\contentsline {mypart}{\mypartbox [l]{Annex B}\hspace {1em}Second annex}{c}{mypart.B}%[nl]
+\contentsline {mypart}{\mypartbox [l]{Part 3}\hspace {1em}Back in the main matter}{1}{mypart.3}%[nl]
+\contentsline {mypart}{\mypartbox [l]{Annex C}\hspace {1em}Third annex}{a}{mypart.C}%[nl]
 -------- cls-annex-parts.mytoc (end) -----------
 (cls-annex-parts.mytoc
-LaTeX Font Info:    Trying to load font information for U+msa on input line ....
-LaTeX Font Info:    Trying to load font information for U+msb on input line ....
-\tf@mytoc=\write...
 Package hyperref Info: bookmark level for unknown mypart defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
@@ -70,7 +68,8 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.a}) has b
                    \relax 
 l. ...\end{document}
 [1
-] (cls-annex-parts.aux)
+]
+(cls-annex-parts.aux)
 Package rerunfilecheck Info: File `cls-annex-parts.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 Package logreq Info: Writing requests to 'cls-annex-parts.run.xml'.

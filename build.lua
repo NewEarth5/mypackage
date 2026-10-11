@@ -4,8 +4,9 @@
   Main commands (run from the repository root):
     l3build check                 run every test configuration below
     l3build check -c build        only the single-run unit tests
-    l3build check pkg-figure      one test (searched in every config)
+    l3build check -c config-multirun pkg-figure     one test
     l3build save  -c <cfg> <name> (re)create the expected .tlg of a test
+    l3build saveall [-c <cfg>]    (re)create the .tlg of every test
     l3build doc                   typeset every demo document (demo/*.tex)
     l3build install               copy the .sty/.cls into your TEXMFHOME
     l3build clean                 remove the build/ directory
@@ -15,6 +16,10 @@
 --]]
 
 module = "mypackage"
+
+-- Normalisation of the logs for MiKTeX, Windows and external programs
+-- (see the comments in that file).
+dofile("l3build-normalise.lua")
 
 -- --------------------------------------------------------------- sources
 -- There is no .dtx/.ins yet (planned for v0.8.5): the .sty and .cls are
@@ -51,6 +56,41 @@ checkruns    = 1
 -- after August, so the academic year is 2026-2027.
 epoch           = 1791633600
 forcecheckepoch = true
+
+-- --------------------------------------------------------------- saveall
+-- Custom target "l3build saveall": runs "l3build save" for every test of
+-- every configuration (or only of the configurations given with -c).
+-- Works the same on Windows, macOS and Linux.  Always review the result
+-- (git diff testfiles*/) before committing it.
+local test_folders = {
+  ["build"]           = {dir = "testfiles"},
+  ["config-multirun"] = {dir = "testfiles-multirun"},
+  ["config-bib"]      = {dir = "testfiles-bib"},
+  ["config-compat"]   = {dir = "testfiles-compat"},
+  ["config-engines"]  = {dir = "testfiles-engines",
+                         engines = {"luatex", "xetex"}},
+}
+target_list.saveall = {
+  desc = "Saves the expected result (.tlg) of every test",
+  func = function()
+    for _, config in ipairs(options["config"] or checkconfigs) do
+      local info = test_folders[config]
+      if not info then
+        print("Unknown configuration: " .. config)
+        return 1
+      end
+      local names = {}
+      for _, file in ipairs(filelist(info.dir, "*.lvt")) do
+        names[#names + 1] = (file:gsub("%.lvt$", ""))
+      end
+      table.sort(names)
+      local errorlevel = call({"."}, "save",
+        {config = {config}, names = names, engine = info.engines})
+      if errorlevel ~= 0 then return errorlevel end
+    end
+    return 0
+  end,
+}
 
 -- --------------------------------------------------------------- demos
 -- "l3build doc" typesets the demo documents (one per command).

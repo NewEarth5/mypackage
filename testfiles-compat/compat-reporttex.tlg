@@ -1,9 +1,6 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 (compat-reporttex.mytoc
-LaTeX Font Info:    Trying to load font information for U+msa on input line ....
-LaTeX Font Info:    Trying to load font information for U+msb on input line ....
-\tf@mytoc=\write...
 Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
@@ -15,7 +12,6 @@ File: images/wide.png Graphic file (type png)
 Package pdftex.def Info: images/wide.png  used on input line ....
 (pdftex.def)             Requested size: 421.72374pt x 140.55446pt.
 Package hyperref Info: bookmark level for unknown myfigure defaults to 0 on input line ....
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line ....
 Package hyperref Info: bookmark level for unknown mytable defaults to 0 on input line ....
 ============================================================
 TEST 1: References in French
@@ -73,7 +69,8 @@ REF fig:wide: number=[1.1] page=[1] anchor=[myfigure.1.1]
 REF tab:t: number=[1.1] page=[1] anchor=[mytable.1.1]
 REF eq:re: number=[{1.1}] page=[1] anchor=[AMS.3]
 [1
- <./images/wide.png (PNG copy)>] (compat-reporttex.aux)
+ <./images/wide.png (PNG copy)>]
+(compat-reporttex.aux)
 Package rerunfilecheck Info: File `compat-reporttex.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 Package logreq Info: Writing requests to 'compat-reporttex.run.xml'.

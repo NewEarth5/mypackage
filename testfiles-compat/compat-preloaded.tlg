@@ -12,7 +12,8 @@ REF fig:wide: number=[1] page=[1] anchor=[myfigure.1]
 [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
- <./images/wide.png (PNG copy)>] (compat-preloaded.aux)
+ <./images/wide.png (PNG copy)>]
+(compat-preloaded.aux)
 Package rerunfilecheck Info: File `compat-preloaded.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 Package logreq Info: Writing requests to 'compat-preloaded.run.xml'.

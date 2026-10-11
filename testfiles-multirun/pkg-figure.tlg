@@ -1,15 +1,13 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 -------- pkg-figure.mylof (start) ---------
-(pkg-figure.mylof) \contentsline {myfigure}{\makebox [3.5em][l]{1.1}\mycleanfirstline {Default size (height=0.2).}}{1}{myfigure.1.1}%^^M
-\contentsline {myfigure}{\makebox [3.5em][l]{1.2}\mycleanfirstline {Short caption.}}{2}{myfigure.1.2}%^^M
-\contentsline {myfigure}{\makebox [3.5em][l]{1.3}\mycleanfirstline {Both sizes given.}}{3}{myfigure.1.3}%^^M
-\contentsline {myfigure}{\makebox [3.5em][l]{1.5}\mycleanfirstline {Caption with \textbf {bold} and math $x^2$. Second sentence.}}{3}{myfigure.1.5}%^^M
+(pkg-figure.mylof)
+\contentsline {myfigure}{\makebox [3.5em][l]{1.1}\mycleanfirstline {Default size (height=0.2).}}{1}{myfigure.1.1}%[nl]
+\contentsline {myfigure}{\makebox [3.5em][l]{1.2}\mycleanfirstline {Short caption.}}{2}{myfigure.1.2}%[nl]
+\contentsline {myfigure}{\makebox [3.5em][l]{1.3}\mycleanfirstline {Both sizes given.}}{3}{myfigure.1.3}%[nl]
+\contentsline {myfigure}{\makebox [3.5em][l]{1.5}\mycleanfirstline {Caption with \textbf {bold} and math $x^2$. Second sentence.}}{3}{myfigure.1.5}%[nl]
 -------- pkg-figure.mylof (end) -----------
 (pkg-figure.mylof
-LaTeX Font Info:    Trying to load font information for U+msa on input line ....
-LaTeX Font Info:    Trying to load font information for U+msb on input line ....
-\tf@mylof=\write...
 Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
@@ -55,7 +53,8 @@ REF fig:square: number=[1.3] page=[3] anchor=[myfigure.1.3]
 REF fig:plot: number=[1.4] page=[3] anchor=[myfigure.1.4]
 REF fig:sig: number=[1.5] page=[3] anchor=[myfigure.1.5]
 [1
- <./images/wide.png (PNG copy)>] [2 <./images/tall.png (PNG copy)>] [3 <./images/square.jpg> <./svg-inkscape/plot_svg-tex.pdf> <./images/sig.jpg>] (pkg-figure.aux)
+ <./images/wide.png (PNG copy)>] [2 <./images/tall.png (PNG copy)>] [3 <./images/square.jpg> <./svg-inkscape/plot_svg-tex.pdf> <./images/sig.jpg>]
+(pkg-figure.aux)
 Package rerunfilecheck Info: File `pkg-figure.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 Package logreq Info: Writing requests to 'pkg-figure.run.xml'.

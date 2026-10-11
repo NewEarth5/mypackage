@@ -1,25 +1,23 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 -------- cls-structure-parts.mytoc (start) ---------
-(cls-structure-parts.mytoc) \contentsline {mypart}{Contents}{I}{mycontents}%^^M
-\contentsline {mypart}{\mypartbox [l]{Part 1}\hspace {1em}First part}{1}{mypart.1}%^^M
-\contentsline {mychapter}{\mychapterbox [l]{1.1}\hspace {1em}First chapter}{2}{mychapter.1.1}%^^M
-\contentsline {mysection}{\mysectionbox [l]{1.1.1}\hspace {1em}First section}{2}{mysection.1.1.1}%^^M
-\contentsline {mysubsection}{\mysubsectionbox [l]{1.1.1.1}\hspace {1em}First subsection}{2}{mysubsection.1.1.1.1}%^^M
-\contentsline {mysubsubsection}{\mysubsubsectionbox [l]{1.1.1.1.1}\hspace {1em}First subsubsection}{2}{mysubsubsection.1.1.1.1.1}%^^M
-\contentsline {mysubsubsection}{\mysubsubsectionbox [l]{1.1.1.1.2}\hspace {1em}Second subsubsection}{2}{mysubsubsection.1.1.1.1.2}%^^M
-\contentsline {mysubsection}{\mysubsectionbox [l]{1.1.1.2}\hspace {1em}Second subsection}{2}{mysubsection.1.1.1.2}%^^M
-\contentsline {mysection}{\mysectionbox [l]{1.1.2}\hspace {1em}Second section}{2}{mysection.1.1.2}%^^M
-\contentsline {mychapter}{\mychapterbox [l]{1.2}\hspace {1em}Second chapter}{3}{mychapter.1.2}%^^M
-\contentsline {mychapter}{\mychapterbox [l]{1.7}\hspace {1em}Forced number}{4}{mychapter.1.7}%^^M
-\contentsline {mypart}{\mypartbox [l]{Book 2}\hspace {1em}Second part}{6}{mypart.2}%^^M
-\contentsline {mychapter}{\mychapterbox [l]{2.1}\hspace {1em}Chapter of the second part}{7}{mychapter.2.1}%^^M
-\contentsline {mypart}{\mypartbox [l]{Part 5}\hspace {1em}Forced part number}{9}{mypart.5}%^^M
+(cls-structure-parts.mytoc)
+\contentsline {mypart}{Contents}{I}{mycontents}%[nl]
+\contentsline {mypart}{\mypartbox [l]{Part 1}\hspace {1em}First part}{1}{mypart.1}%[nl]
+\contentsline {mychapter}{\mychapterbox [l]{1.1}\hspace {1em}First chapter}{2}{mychapter.1.1}%[nl]
+\contentsline {mysection}{\mysectionbox [l]{1.1.1}\hspace {1em}First section}{2}{mysection.1.1.1}%[nl]
+\contentsline {mysubsection}{\mysubsectionbox [l]{1.1.1.1}\hspace {1em}First subsection}{2}{mysubsection.1.1.1.1}%[nl]
+\contentsline {mysubsubsection}{\mysubsubsectionbox [l]{1.1.1.1.1}\hspace {1em}First subsubsection}{2}{mysubsubsection.1.1.1.1.1}%[nl]
+\contentsline {mysubsubsection}{\mysubsubsectionbox [l]{1.1.1.1.2}\hspace {1em}Second subsubsection}{2}{mysubsubsection.1.1.1.1.2}%[nl]
+\contentsline {mysubsection}{\mysubsectionbox [l]{1.1.1.2}\hspace {1em}Second subsection}{2}{mysubsection.1.1.1.2}%[nl]
+\contentsline {mysection}{\mysectionbox [l]{1.1.2}\hspace {1em}Second section}{2}{mysection.1.1.2}%[nl]
+\contentsline {mychapter}{\mychapterbox [l]{1.2}\hspace {1em}Second chapter}{3}{mychapter.1.2}%[nl]
+\contentsline {mychapter}{\mychapterbox [l]{1.7}\hspace {1em}Forced number}{4}{mychapter.1.7}%[nl]
+\contentsline {mypart}{\mypartbox [l]{Book 2}\hspace {1em}Second part}{6}{mypart.2}%[nl]
+\contentsline {mychapter}{\mychapterbox [l]{2.1}\hspace {1em}Chapter of the second part}{7}{mychapter.2.1}%[nl]
+\contentsline {mypart}{\mypartbox [l]{Part 5}\hspace {1em}Forced part number}{9}{mypart.5}%[nl]
 -------- cls-structure-parts.mytoc (end) -----------
 (cls-structure-parts.mytoc
-LaTeX Font Info:    Trying to load font information for U+msa on input line ....
-LaTeX Font Info:    Trying to load font information for U+msb on input line ....
-\tf@mytoc=\write...
 Package hyperref Info: bookmark level for unknown mypart defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
@@ -89,7 +87,8 @@ REF part:p5: number=[5] page=[9] anchor=[mypart.5]
 REF fig:wide: number=[1.1.1] page=[2] anchor=[myfigure.1.1.1]
 REF fig:tall: number=[1.2.1] page=[3] anchor=[myfigure.1.2.1]
 [9
-] (cls-structure-parts.aux)
+]
+(cls-structure-parts.aux)
 Package rerunfilecheck Info: File `cls-structure-parts.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 Package logreq Info: Writing requests to 'cls-structure-parts.run.xml'.

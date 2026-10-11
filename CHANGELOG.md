@@ -9,6 +9,27 @@ Sections: **Added** (new features), **Changed** (different behaviour on
 purpose), **Fixed** (bugs), **Removed**, **Known issues** (found, not fixed
 yet, with the version that should address them).
 
+## [Unreleased]
+
+### Repository
+
+- `l3build-normalise.lua`: test logs independent of the TeX distribution,
+  the OS and external programs. With MiKTeX, `--max-print-line=9999` is
+  passed to pdfTeX/XeTeX (MiKTeX ignores the `max_print_line` variable set
+  by l3build, so its logs were wrapped at 79 characters and almost every
+  test failed); Windows paths are normalised; `runsystem(...)` lines,
+  minted cache files, register allocations and `LaTeX Font Info` messages
+  are removed (they differ between minted 2 and 3, Windows and Linux, and
+  even between a first and a second run of minted).
+- On Windows, differences are written by `git diff` (`.diff`) instead of
+  `fc` (`.fc`) when Git is available.
+- New target `l3build saveall [-c <config>]` (replaces
+  `scripts/save-all.sh`, which did not run on Windows).
+- Expected results regenerated with l3build 2026-09-09 (its `\SHOWFILE`
+  output changed) and the new normalisation.
+- CI uses the latest TeX Live; new workflow "Save expected results"
+  regenerates the `.tlg` files there and opens a pull request.
+
 ## [0.6.5] - 2026-10-10
 
 Test-suite release. No user-facing command was added or renamed; the

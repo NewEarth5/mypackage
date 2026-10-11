@@ -1,24 +1,22 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 -------- cls-bib-parts.mytoc (start) ---------
-(cls-bib-parts.mytoc) \contentsline {mypart}{Contents}{I}{mycontents}%^^M
-\contentsline {mypart}{\mypartbox [l]{Part 1}\hspace {1em}Part}{1}{mypart.1}%^^M
-\contentsline {mychapter}{\mychapterbox [l]{1.1}\hspace {1em}Chapter}{2}{mychapter.1.1}%^^M
-\contentsline {mypart}{Bibliography}{i}{Bibliography}%^^M
-\contentsline {mychapter}{Articles}{ii}{Articles}%^^M
-\contentsline {mychapter}{Books}{iii}{Books}%^^M
-\contentsline {mychapter}{Collections}{iv}{Collections}%^^M
-\contentsline {mychapter}{Manuals}{v}{Manuals}%^^M
-\contentsline {mychapter}{Theses}{vi}{Theses}%^^M
-\contentsline {mychapter}{References}{vii}{References}%^^M
-\contentsline {mychapter}{Reports}{viii}{Reports}%^^M
-\contentsline {mychapter}{Websites}{ix}{Websites}%^^M
-\contentsline {mychapter}{Patents}{x}{Patents}%^^M
+(cls-bib-parts.mytoc)
+\contentsline {mypart}{Contents}{I}{mycontents}%[nl]
+\contentsline {mypart}{\mypartbox [l]{Part 1}\hspace {1em}Part}{1}{mypart.1}%[nl]
+\contentsline {mychapter}{\mychapterbox [l]{1.1}\hspace {1em}Chapter}{2}{mychapter.1.1}%[nl]
+\contentsline {mypart}{Bibliography}{i}{Bibliography}%[nl]
+\contentsline {mychapter}{Articles}{ii}{Articles}%[nl]
+\contentsline {mychapter}{Books}{iii}{Books}%[nl]
+\contentsline {mychapter}{Collections}{iv}{Collections}%[nl]
+\contentsline {mychapter}{Manuals}{v}{Manuals}%[nl]
+\contentsline {mychapter}{Theses}{vi}{Theses}%[nl]
+\contentsline {mychapter}{References}{vii}{References}%[nl]
+\contentsline {mychapter}{Reports}{viii}{Reports}%[nl]
+\contentsline {mychapter}{Websites}{ix}{Websites}%[nl]
+\contentsline {mychapter}{Patents}{x}{Patents}%[nl]
 -------- cls-bib-parts.mytoc (end) -----------
 (cls-bib-parts.mytoc
-LaTeX Font Info:    Trying to load font information for U+msa on input line ....
-LaTeX Font Info:    Trying to load font information for U+msb on input line ....
-\tf@mytoc=\write...
 Package hyperref Info: bookmark level for unknown mypart defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
@@ -37,7 +35,6 @@ COUNTERS: part=1, chapter=1, section=0, subsection=0, subsubsection=0, figure=0,
 ] [7
 ] [8
 ]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line ....
 ]
 COUNTERS: part=1, chapter=1, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=10 (x)
 FLAGS: part=T, chapter=T, section=F, subsection=F, subsubsection=F, annex=F, bib=F, highest=mypart
@@ -74,7 +71,8 @@ TEST 1: Citation numbers
 l. ...}
 ============================================================
 [10
-] (cls-bib-parts.aux)
+]
+(cls-bib-parts.aux)
 Package rerunfilecheck Info: File `cls-bib-parts.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 Package logreq Info: Writing requests to 'cls-bib-parts.run.xml'.

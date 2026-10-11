@@ -72,7 +72,8 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
- <./images/wide.png (PNG copy)>] [2 <./images/tall.png (PNG copy)>] (pkg-article.aux)
+ <./images/wide.png (PNG copy)>] [2 <./images/tall.png (PNG copy)>]
+(pkg-article.aux)
 Package rerunfilecheck Info: File `pkg-article.out' has not changed.
 (rerunfilecheck)             Checksum: D7C9065CA17CA666342B2B67C24790F0;139.
 Package logreq Info: Writing requests to 'pkg-article.run.xml'.

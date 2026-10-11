@@ -5,17 +5,14 @@ Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on inp
 File: lstlang1.sty ....-..-.. 1.9 listings language file
 ) (../lstmisc.sty
 File: lstmisc.sty ....-..-.. 1.9 (Carsten Heinz)
-) (_minted-compat-listings/lightbulb.pygstyle) (_minted-compat-listings/35CFCE743D78E7A57FE0B96FBA3B4D0894D8B8A34050AD4151D077BAD12BDF6B.pygtex
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line ....
-LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line ....
-LaTeX Font Info:    Trying to load font information for U+msa on input line ....
-LaTeX Font Info:    Trying to load font information for U+msb on input line ....
+)
 Package hyperref Info: bookmark level for unknown myprogram defaults to 0 on input line ....
 REF code:py:hello: number=[1.1] page=[1] anchor=[myprogram.1.1]
 [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
-] (compat-listings.aux)
+]
+(compat-listings.aux)
 Package rerunfilecheck Info: File `compat-listings.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 Package logreq Info: Writing requests to 'compat-listings.run.xml'.

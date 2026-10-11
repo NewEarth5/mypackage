@@ -27,12 +27,11 @@ jobs:
         uses: xu-cheng/texlive-action@v2
         with:
           scheme: full
-          # The .tlg files were generated with this TeX Live year.  Package
-          # updates change log messages, so keep this equal to the year you
-          # used for "l3build save" (see README, "Updating TeX Live").
-          texlive_version: 2023
+          # The reference results (.tlg) are generated in the same image by
+          # the "Save expected results" workflow: keep both on "latest".
+          texlive_version: latest
           run: |
-            apk add --no-cache inkscape py3-pygments ttf-dejavu
+            apk add --no-cache inkscape python3 py3-pygments ttf-dejavu
             l3build check -c ${{ matrix.config }} --show-saves
 
       - name: Upload the differences if a test failed

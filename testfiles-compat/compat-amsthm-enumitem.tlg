@@ -1,14 +1,13 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
-LaTeX Font Info:    Trying to load font information for U+msa on input line ....
-LaTeX Font Info:    Trying to load font information for U+msb on input line ....
 REF thm: number=[1] page=[1] anchor=[theorem.1]
 REF eq:th: number=[{1.1}] page=[1] anchor=[AMS.1]
 [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
-] (compat-amsthm-enumitem.aux)
+]
+(compat-amsthm-enumitem.aux)
 Package rerunfilecheck Info: File `compat-amsthm-enumitem.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 Package logreq Info: Writing requests to 'compat-amsthm-enumitem.run.xml'.

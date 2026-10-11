@@ -39,7 +39,6 @@ Non-PDF special ignored!
 ]
 Package hyperref Info: Option `pageanchor' set `true' on input line ....
 (eng-class-basic.mytoc)
-\tf@mytoc=\write...
 Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
 [1
 ]
@@ -59,9 +58,6 @@ Package luatex.def Info: ./svg-inkscape/plot_svg-tex.pdf , page1 used on input l
 )
 Package hyperref Info: bookmark level for unknown mytable defaults to 0 on input line ....
 Package hyperref Info: bookmark level for unknown myequation defaults to 0 on input line ....
-(_minted-eng-class-basic/lightbulb.pygstyle) (_minted-eng-class-basic/35CFCE743D78E7A57FE0B96FBA3B4D08A199B6D406C344B82E4CE320D8AC51A2.pygtex
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line ....
-LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line ....
 Package hyperref Info: bookmark level for unknown myprogram defaults to 0 on input line ....
 REF chap:c: number=[1] page=[1] anchor=[mychapter.1]
 REF fig:wide: number=[1.1] page=[1] anchor=[myfigure.1.1]
@@ -90,7 +86,8 @@ l. ...\TEST{Typeset text}{\SHOWTEXT{^^e9 ^^e0 ^^fc ^^df œ}}
 LaTeX Warning: `h' float specifier changed to `ht'.
 [1
 Missing character: There is no œ (U+0153) in font ec-lmr10!
-<./images/wide.png><./svg-inkscape/plot_svg-tex.pdf>] [2] (eng-class-basic.aux)
+<./images/wide.png><./svg-inkscape/plot_svg-tex.pdf>] [2]
+(eng-class-basic.aux)
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package rerunfilecheck Info: File `eng-class-basic.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.

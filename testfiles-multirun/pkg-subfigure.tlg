@@ -1,14 +1,12 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 -------- pkg-subfigure.mylof (start) ---------
-(pkg-subfigure.mylof) \contentsline {myfigure}{\makebox [3.5em][l]{1.1}\mycleanfirstline {Two subfigures.}}{1}{myfigure.1.1}%^^M
-\contentsline {myfigure}{\makebox [3.5em][l]{1.2}\mycleanfirstline {Short}}{2}{myfigure.1.2}%^^M
-\contentsline {myfigure}{\makebox [3.5em][l]{1.4}\mycleanfirstline {A normal figure after the groups.}}{3}{myfigure.1.4}%^^M
+(pkg-subfigure.mylof)
+\contentsline {myfigure}{\makebox [3.5em][l]{1.1}\mycleanfirstline {Two subfigures.}}{1}{myfigure.1.1}%[nl]
+\contentsline {myfigure}{\makebox [3.5em][l]{1.2}\mycleanfirstline {Short}}{2}{myfigure.1.2}%[nl]
+\contentsline {myfigure}{\makebox [3.5em][l]{1.4}\mycleanfirstline {A normal figure after the groups.}}{3}{myfigure.1.4}%[nl]
 -------- pkg-subfigure.mylof (end) -----------
 (pkg-subfigure.mylof
-LaTeX Font Info:    Trying to load font information for U+msa on input line ....
-LaTeX Font Info:    Trying to load font information for U+msb on input line ....
-\tf@mylof=\write...
 Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
@@ -24,7 +22,7 @@ File: images/tall.png Graphic file (type png)
 <use images/tall.png>
 Package pdftex.def Info: images/tall.png  used on input line ....
 (pdftex.def)             Requested size: 17.57048pt x 70.2826pt.
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
+Underfull \hbox (badness 10000) in paragraph at lines ...
 []|\T1/cmr/bx/n/9 (b)
 \hbox(7.69997+2.24945)x17.57048
 .\hbox(0.0+0.0)x0.0
@@ -36,7 +34,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 13--13
 .\T1/cmr/bx/n/9 )
 .\kern 0.0
 .\glue(\rightskip) 0.0
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
+Underfull \hbox (badness 10000) in paragraph at lines ...
 \T1/cmr/m/n/9 Sec-
 \hbox(6.19849+0.0)x17.57048
 .\T1/cmr/m/n/9 S
@@ -83,7 +81,8 @@ REF fig:star: number=[1.3] page=[3] anchor=[myfigure.1.3]
 REF fig:star:a: number=[1.3.a] page=[3] anchor=[mysubfigure.1.3.a]
 REF fig:sig: number=[1.4] page=[3] anchor=[myfigure.1.4]
 [1
- <./images/wide.png (PNG copy)> <./images/tall.png (PNG copy)>] [2 <./images/square.jpg>] [3 <./images/sig.jpg>] (pkg-subfigure.aux)
+ <./images/wide.png (PNG copy)> <./images/tall.png (PNG copy)>] [2 <./images/square.jpg>] [3 <./images/sig.jpg>]
+(pkg-subfigure.aux)
 Package rerunfilecheck Info: File `pkg-subfigure.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 Package logreq Info: Writing requests to 'pkg-subfigure.run.xml'.

@@ -74,10 +74,6 @@ Package pdftex.def Info: images/square.jpg  used on input line ....
 TEST 6: SVG files
 ============================================================
 Package svg Info: Calling Inkscape on input line ....
-runsystem(inkscape "images/plot.svg" -D --export-latex --export-filename="plot_svg-tex.pdf")...executed.
-runsystem(mkdir -p "./svg-inkscape/")...executed.
-runsystem(mv "plot_svg-tex.pdf" "./svg-inkscape/plot_svg-tex.pdf")...executed.
-runsystem(mv "plot_svg-tex.pdf_tex" "./svg-inkscape/plot_svg-tex.pdf_tex")...executed.
 Package svg Info: Last page of `./svg-inkscape/plot_svg-tex.pdf' is 1 on input line ....
 (svg-inkscape/plot_svg-tex.pdf_tex
 <./svg-inkscape/plot_svg-tex.pdf, id=10, page=1, 224.33812pt x 111.41624pt>

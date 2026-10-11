@@ -1,17 +1,15 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 -------- cls-structure-sections.mytoc (start) ---------
-(cls-structure-sections.mytoc) \contentsline {mysection}{Contents}{I}{mycontents}%^^M
-\contentsline {mysection}{\mysectionbox [l]{1}\hspace {1em}One}{1}{mysection.1}%^^M
-\contentsline {mysubsection}{\mysubsectionbox [l]{1.1}\hspace {1em}One A}{1}{mysubsection.1.1}%^^M
-\contentsline {mysection}{\mysectionbox [l]{2}\hspace {1em}Two}{1}{mysection.2}%^^M
-\contentsline {mysubsection}{\mysubsectionbox [l]{2.1}\hspace {1em}Two A}{1}{mysubsection.2.1}%^^M
-\contentsline {mysubsubsection}{\mysubsubsectionbox [l]{2.1.1}\hspace {1em}Two A i}{1}{mysubsubsection.2.1.1}%^^M
+(cls-structure-sections.mytoc)
+\contentsline {mysection}{Contents}{I}{mycontents}%[nl]
+\contentsline {mysection}{\mysectionbox [l]{1}\hspace {1em}One}{1}{mysection.1}%[nl]
+\contentsline {mysubsection}{\mysubsectionbox [l]{1.1}\hspace {1em}One A}{1}{mysubsection.1.1}%[nl]
+\contentsline {mysection}{\mysectionbox [l]{2}\hspace {1em}Two}{1}{mysection.2}%[nl]
+\contentsline {mysubsection}{\mysubsectionbox [l]{2.1}\hspace {1em}Two A}{1}{mysubsection.2.1}%[nl]
+\contentsline {mysubsubsection}{\mysubsubsectionbox [l]{2.1.1}\hspace {1em}Two A i}{1}{mysubsubsection.2.1.1}%[nl]
 -------- cls-structure-sections.mytoc (end) -----------
 (cls-structure-sections.mytoc
-LaTeX Font Info:    Trying to load font information for U+msa on input line ....
-LaTeX Font Info:    Trying to load font information for U+msb on input line ....
-\tf@mytoc=\write...
 Package hyperref Info: bookmark level for unknown mysection defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
@@ -41,7 +39,8 @@ REF fig:wide: number=[1.1] page=[1] anchor=[myfigure.1.1]
 REF fig:tall: number=[2.1] page=[1] anchor=[myfigure.2.1]
 REF eq:e1: number=[{1.1}] page=[1] anchor=[AMS.2]
 [1
- <./images/wide.png (PNG copy)> <./images/tall.png (PNG copy)>] (cls-structure-sections.aux)
+ <./images/wide.png (PNG copy)> <./images/tall.png (PNG copy)>]
+(cls-structure-sections.aux)
 Package rerunfilecheck Info: File `cls-structure-sections.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 Package logreq Info: Writing requests to 'cls-structure-sections.run.xml'.

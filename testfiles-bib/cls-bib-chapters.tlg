@@ -1,24 +1,22 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 -------- cls-bib-chapters.mytoc (start) ---------
-(cls-bib-chapters.mytoc) \contentsline {mychapter}{Contents}{I}{mycontents}%^^M
-\contentsline {mychapter}{\mychapterbox [l]{1}\hspace {1em}Chapter}{1}{mychapter.1}%^^M
-\contentsline {mysection}{\mysectionbox [l]{1.1}\hspace {1em}Section}{1}{mysection.1.1}%^^M
-\contentsline {mychapter}{Bibliography}{i}{Bibliography}%^^M
-\contentsline {mysection}{Articles}{i}{Articles}%^^M
-\contentsline {mysection}{Books}{i}{Books}%^^M
-\contentsline {mysection}{Collections}{i}{Collections}%^^M
-\contentsline {mysection}{Manuals}{i}{Manuals}%^^M
-\contentsline {mysection}{Theses}{i}{Theses}%^^M
-\contentsline {mysection}{References}{i}{References}%^^M
-\contentsline {mysection}{Reports}{i}{Reports}%^^M
-\contentsline {mysection}{Websites}{i}{Websites}%^^M
-\contentsline {mysection}{Patents}{i}{Patents}%^^M
+(cls-bib-chapters.mytoc)
+\contentsline {mychapter}{Contents}{I}{mycontents}%[nl]
+\contentsline {mychapter}{\mychapterbox [l]{1}\hspace {1em}Chapter}{1}{mychapter.1}%[nl]
+\contentsline {mysection}{\mysectionbox [l]{1.1}\hspace {1em}Section}{1}{mysection.1.1}%[nl]
+\contentsline {mychapter}{Bibliography}{i}{Bibliography}%[nl]
+\contentsline {mysection}{Articles}{i}{Articles}%[nl]
+\contentsline {mysection}{Books}{i}{Books}%[nl]
+\contentsline {mysection}{Collections}{i}{Collections}%[nl]
+\contentsline {mysection}{Manuals}{i}{Manuals}%[nl]
+\contentsline {mysection}{Theses}{i}{Theses}%[nl]
+\contentsline {mysection}{References}{i}{References}%[nl]
+\contentsline {mysection}{Reports}{i}{Reports}%[nl]
+\contentsline {mysection}{Websites}{i}{Websites}%[nl]
+\contentsline {mysection}{Patents}{i}{Patents}%[nl]
 -------- cls-bib-chapters.mytoc (end) -----------
 (cls-bib-chapters.mytoc
-LaTeX Font Info:    Trying to load font information for U+msa on input line ....
-LaTeX Font Info:    Trying to load font information for U+msb on input line ....
-\tf@mytoc=\write...
 Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
@@ -28,7 +26,6 @@ Package hyperref Info: bookmark level for unknown mysection defaults to 0 on inp
 COUNTERS: part=0, chapter=1, section=1, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=1 (1)
 [1
 ]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line ....
 COUNTERS: part=0, chapter=1, section=1, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=1 (i)
 FLAGS: part=F, chapter=T, section=T, subsection=F, subsubsection=F, annex=F, bib=F, highest=mychapter
 REF bib:bib: number=[Bibliography] page=[i] anchor=[mybibliography]
@@ -64,7 +61,8 @@ TEST 1: Citation numbers
 l. ...}
 ============================================================
 [1
-] (cls-bib-chapters.aux)
+]
+(cls-bib-chapters.aux)
 Package rerunfilecheck Info: File `cls-bib-chapters.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 Package logreq Info: Writing requests to 'cls-bib-chapters.run.xml'.

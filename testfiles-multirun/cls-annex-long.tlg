@@ -12,7 +12,8 @@ COUNTERS: part=0, chapter=1, section=0, subsection=0, subsubsection=0, figure=0,
 REF ann:chap:long: number=[A] page=[a] anchor=[mychapter.A]
 REF ann:chap:after: number=[B] page=[ae] anchor=[mychapter.B]
 [31
-] (cls-annex-long.aux)
+]
+(cls-annex-long.aux)
 Package rerunfilecheck Info: File `cls-annex-long.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 Package logreq Info: Writing requests to 'cls-annex-long.run.xml'.

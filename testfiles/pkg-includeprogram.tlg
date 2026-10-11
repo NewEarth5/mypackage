@@ -31,21 +31,6 @@ listing: file=long.c, lang=c, bg=bg, frame=black!70, numwidth=6mm+1mm, numbg=lin
 ============================================================
 TEST 6: Real listings are typeset without errors
 ============================================================
-runsystem(pygmentize -S lightbulb -f latex -P commandprefix=PYG > _minted-pkg-includeprogram/lightbulb.pygstyle)...executed.
-(_minted-pkg-includeprogram/lightbulb.pygstyle)
-runsystem(command -v python3 && touch pkg-includeprogram.aex)...executed.
-runsystem(rm pkg-includeprogram.aex)...executed.
-runsystem(python3 -c "import sys; import os; import textwrap; from io import open; fname = os.path.expanduser(os.path.expandvars(\"code/hello.py\")); f = open(fname, \"r\", encoding=\"UTF8\") if os.path.isfile(fname) else None; t = f.readlines() if f is not None else None; t_opt = t if t is not None else []; f.close() if f is not None else None; tmpfname = os.path.expanduser(os.path.expandvars(\"pkg-includeprogram.pyg\")); f = open(tmpfname, \"w\", encoding=\"UTF8\") if t is not None else None; fvstartnum = 0; fvstopnum = -1; s = max(0, fvstartnum-1); e = max(s, fvstopnum) if fvstopnum > 0 else len(t_opt); [f.write(textwrap.dedent(\"\".join(x))) for x in (t_opt[0:s], t_opt[s:e], t_opt[e:]) if x and t is not None]; f.close() if t is not None else os.remove(tmpfname);")...executed.
-runsystem(pygmentize -l 'python' -f latex -P commandprefix=PYG -F tokenmerge -P stripnl='False' -P mathescape='True' -o _minted-pkg-includeprogram/35CFCE743D78E7A57FE0B96FBA3B4D087C71B4B7E9E5099089C2306A046F54CF.pygtex pkg-includeprogram.pyg)...executed.
-(_minted-pkg-includeprogram/35CFCE743D78E7A57FE0B96FBA3B4D087C71B4B7E9E5099089C2306A046F54CF.pygtex
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line ....
-LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line ....
-runsystem(python3 -c "import sys; import os; import textwrap; from io import open; fname = os.path.expanduser(os.path.expandvars(\"code/short.c\")); f = open(fname, \"r\", encoding=\"UTF8\") if os.path.isfile(fname) else None; t = f.readlines() if f is not None else None; t_opt = t if t is not None else []; f.close() if f is not None else None; tmpfname = os.path.expanduser(os.path.expandvars(\"pkg-includeprogram.pyg\")); f = open(tmpfname, \"w\", encoding=\"UTF8\") if t is not None else None; fvstartnum = 0; fvstopnum = 3; s = max(0, fvstartnum-1); e = max(s, fvstopnum) if fvstopnum > 0 else len(t_opt); [f.write(textwrap.dedent(\"\".join(x))) for x in (t_opt[0:s], t_opt[s:e], t_opt[e:]) if x and t is not None]; f.close() if t is not None else os.remove(tmpfname);")...executed.
-runsystem(pygmentize -l 'c' -f latex -P commandprefix=PYG -F tokenmerge -P stripnl='False' -P mathescape='True' -o _minted-pkg-includeprogram/F8B0676F75C1261A5A8B3DA66667A9EAA70AE25FAEB734843F499565F587B4B4.pygtex pkg-includeprogram.pyg)...executed.
-(_minted-pkg-includeprogram/F8B0676F75C1261A5A8B3DA66667A9EAA70AE25FAEB734843F499565F587B4B4.pygtex
-LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line ....
-)
 box height > 0: yes
 ============================================================
 (pkg-includeprogram.aux)
@@ -59,5 +44,4 @@ Package rerunfilecheck Info: Checksums for `pkg-includeprogram.out':
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                pkg-includeprogram
 (biblatex)                and rerun LaTeX afterwards.
-runsystem(rm pkg-includeprogram.pyg)...executed.
 Package logreq Info: Writing requests to 'pkg-includeprogram.run.xml'.

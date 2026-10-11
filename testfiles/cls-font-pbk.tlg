@@ -5,8 +5,6 @@ TEST 1: Font family
 ============================================================
 body: pbk
 normalfont: pbk
-LaTeX Font Info:    Font shape `T1/pbk/m/n' in size <8> not available
-(Font)              Font shape `T1/pbk/l/n' tried instead on input line ....
 footnotesize: pbk
 familydefault: pbk; rmdefault: pbk; sfdefault: pag; ttdefault: pcr
 > \box...=

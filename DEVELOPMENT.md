@@ -131,7 +131,8 @@ l3build check -c config-multirun pkg-figure     one test
 l3build check -H --show-log-on-error stop at the first failure, show its log
 l3build check -S                     print the "save" command for each failure
 l3build save -c config-multirun pkg-figure      accept the new result
-scripts/save-all.sh config-multirun  save every test of a configuration
+l3build saveall -c config-multirun  save every test of a configuration
+l3build saveall                      save every test of every configuration
 l3build clean                        delete build/
 ```
 
@@ -139,10 +140,56 @@ When a test fails, `build/test-<config>/<name>.<engine>.diff` shows the
 difference (lines starting with `-` are expected, `+` obtained), and the
 full log is `build/test-<config>/<name>.log`.
 
+### Normalisation
+
+Before comparing, l3build *normalises* the log: it removes what changes from
+one computer to another (file paths, line numbers, dates). Our
+`l3build-normalise.lua` (loaded by `build.lua`) adds three rules:
+
+- with MiKTeX, the engines are asked not to wrap the log (see below);
+- Windows paths (`C:\...\umsa.fd`) are converted to `/` so that l3build
+  recognises them;
+- lines written by external programs (`runsystem(...)`: minted, Inkscape),
+  minted's cache files, register allocations and `LaTeX Font Info` messages
+  are removed: they depend on the OS and on program versions, not on our
+  code.
+
 ### Fixed date
 
 `epoch` in `build.lua` sets the date seen by TeX (`\today`, `\year`,
 `\currentacyear`) to 2026-10-10, so that the logs do not change every day.
+
+### Windows and MiKTeX
+
+l3build was written for TeX Live; two things differ with MiKTeX:
+
+1. **Line wrapping.** l3build asks the engine not to wrap the log through
+   the environment variable `max_print_line`. TeX Live reads it, MiKTeX
+   does not: its logs are wrapped at 79 characters, l3build cannot rejoin
+   the lines, and its normalisation (line numbers, paths) fails, so almost
+   every test fails. `l3build-normalise.lua` detects MiKTeX and passes
+   `--max-print-line=9999` to pdfTeX and XeTeX instead. MiKTeX's LuaTeX has
+   no such option: LuaLaTeX tests (`config-engines`) may still fail
+   locally with MiKTeX; GitHub Actions runs them.
+2. **Differences.** On Windows l3build compares with `fc` and writes `.fc`
+   files. If Git is installed, `l3build-normalise.lua` uses
+   `git diff --no-index` instead and writes `.diff` files (lines starting
+   with `-` are expected, `+` obtained). Set the environment variables
+   `diffexe` and `diffext` to choose another program.
+
+Even then, MiKTeX and TeX Live do not always ship the same version of
+every package, and a package that changes its log messages makes a test
+differ. Such differences are not bugs. Options, from most to least
+convenient:
+
+- **Let GitHub Actions decide** (the reference): push, look at the result.
+- **Install TeX Live on Windows** (https://tug.org/texlive/windows.html,
+  or `winget install TeXLive.TeXLive`) next to MiKTeX. Make it first in
+  `PATH` in the terminal where you run l3build, or for everything (LaTeX
+  Workshop works the same with both). Update it with `tlmgr update --all`.
+- **Use WSL** (Ubuntu on Windows) with TeX Live installed there, and run
+  l3build from the WSL terminal (VS Code's "WSL" extension opens the folder
+  there).
 
 ## 3. Adding a test
 
@@ -187,10 +234,16 @@ git push -u origin main --tags
 ### Continuous integration
 
 `.github/workflows/tests.yml` runs every configuration of the test suite
-in a full TeX Live on GitHub's servers, on every push and every pull
-request. The result appears as a green tick or a red cross next to the
+in the latest full TeX Live on GitHub's servers, on every push and every
+pull request. The result appears as a green tick or a red cross next to the
 commit; on failure, the `.diff` files can be downloaded from the run's
 summary page ("Artifacts").
+
+`.github/workflows/save.yml` ("Save expected results", started by hand
+from the Actions tab) regenerates every `.tlg` in the same TeX Live and
+opens a pull request with the changes. Use it after a TeX Live update, and
+whenever tests were added or changed. It needs Settings → Actions →
+General → "Allow GitHub Actions to create and approve pull requests".
 
 `.github/workflows/release.yml` runs when you push a tag `v...`: it builds
 the demos and creates a GitHub release with the `.sty`, `.cls`, `.cwl`,

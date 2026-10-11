@@ -21,9 +21,9 @@ jobs:
         uses: xu-cheng/texlive-action@v2
         with:
           scheme: full
-          texlive_version: 2023
+          texlive_version: latest
           run: |
-            apk add --no-cache inkscape py3-pygments ttf-dejavu zip
+            apk add --no-cache inkscape python3 py3-pygments ttf-dejavu zip
             l3build doc
             mkdir -p dist
             cp mypackage.sty myreport.cls mypackage.cwl myreport.cwl CHANGELOG.md dist/

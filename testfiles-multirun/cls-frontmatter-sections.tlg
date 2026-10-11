@@ -1,11 +1,12 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 -------- cls-frontmatter-sections.mytoc (start) ---------
-(cls-frontmatter-sections.mytoc) \contentsline {mysection}{Abstract}{I}{myabstract}%^^M
-\contentsline {mysection}{Contents}{II}{mycontents}%^^M
-\contentsline {mysection}{\mysectionbox [l]{0}\hspace {1em}Introduction}{1}{myintroduction}%^^M
-\contentsline {mysection}{\mysectionbox [l]{1}\hspace {1em}Main section}{1}{mysection.1}%^^M
-\contentsline {mysection}{\mysectionbox [l]{9}\hspace {1em}Introduction}{1}{myintroduction}%^^M
+(cls-frontmatter-sections.mytoc)
+\contentsline {mysection}{Abstract}{I}{myabstract}%[nl]
+\contentsline {mysection}{Contents}{II}{mycontents}%[nl]
+\contentsline {mysection}{\mysectionbox [l]{0}\hspace {1em}Introduction}{1}{myintroduction}%[nl]
+\contentsline {mysection}{\mysectionbox [l]{1}\hspace {1em}Main section}{1}{mysection.1}%[nl]
+\contentsline {mysection}{\mysectionbox [l]{9}\hspace {1em}Introduction}{1}{myintroduction}%[nl]
 -------- cls-frontmatter-sections.mytoc (end) -----------
 COUNTERS: part=0, chapter=0, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=1 (1)
 Package hyperref Info: bookmark level for unknown mysection defaults to 0 on input line ....
@@ -14,7 +15,6 @@ COUNTERS: part=0, chapter=0, section=0, subsection=0, subsubsection=0, figure=0,
 Non-PDF special ignored!
 <special> header=psfrag.pro
 ] (cls-frontmatter-sections.mytoc)
-\tf@mytoc=\write...
 [2
 ]
 COUNTERS: part=0, chapter=0, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=3 (III)
@@ -47,7 +47,8 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.I}) has b
 <to be read again> 
                    \relax 
 l. ...\end{document}
-[1] (cls-frontmatter-sections.aux)
+[1]
+(cls-frontmatter-sections.aux)
 Package rerunfilecheck Info: File `cls-frontmatter-sections.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 Package logreq Info: Writing requests to 'cls-frontmatter-sections.run.xml'.

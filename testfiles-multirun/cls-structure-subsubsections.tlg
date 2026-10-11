@@ -1,14 +1,12 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 -------- cls-structure-subsubsections.mytoc (start) ---------
-(cls-structure-subsubsections.mytoc) \contentsline {mysubsubsection}{Contents}{I}{mycontents}%^^M
-\contentsline {mysubsubsection}{\mysubsubsectionbox [l]{1}\hspace {1em}First}{1}{mysubsubsection.1}%^^M
-\contentsline {mysubsubsection}{\mysubsubsectionbox [l]{2}\hspace {1em}Second}{1}{mysubsubsection.2}%^^M
+(cls-structure-subsubsections.mytoc)
+\contentsline {mysubsubsection}{Contents}{I}{mycontents}%[nl]
+\contentsline {mysubsubsection}{\mysubsubsectionbox [l]{1}\hspace {1em}First}{1}{mysubsubsection.1}%[nl]
+\contentsline {mysubsubsection}{\mysubsubsectionbox [l]{2}\hspace {1em}Second}{1}{mysubsubsection.2}%[nl]
 -------- cls-structure-subsubsections.mytoc (end) -----------
 (cls-structure-subsubsections.mytoc
-LaTeX Font Info:    Trying to load font information for U+msa on input line ....
-LaTeX Font Info:    Trying to load font information for U+msb on input line ....
-\tf@mytoc=\write...
 Package hyperref Info: bookmark level for unknown mysubsubsection defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
@@ -32,7 +30,8 @@ REF subsubsec:s: number=[2] page=[1] anchor=[mysubsubsection.2]
 REF fig:wide: number=[1.1] page=[1] anchor=[myfigure.1.1]
 REF fig:tall: number=[2.1] page=[1] anchor=[myfigure.2.1]
 [1
- <./images/wide.png (PNG copy)> <./images/tall.png (PNG copy)>] (cls-structure-subsubsections.aux)
+ <./images/wide.png (PNG copy)> <./images/tall.png (PNG copy)>]
+(cls-structure-subsubsections.aux)
 Package rerunfilecheck Info: File `cls-structure-subsubsections.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 Package logreq Info: Writing requests to 'cls-structure-subsubsections.run.xml'.
