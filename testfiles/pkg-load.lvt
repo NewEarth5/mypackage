@@ -43,7 +43,6 @@
   \@for\@tempa:=myinclude,myfigure,mysubfigure,myincludeprogram,myprogram,%
     myref,myseeref,currentacyear,mycleantext,mycleanline,mycleanfirstline,%
     mylenmax,mylenmin,myhighestsec,myaddtotoc,myhyperanchor,mylabel,%
-    IfIsRomanTF,IfIsromanTF,IfIsarabicTF,IfIsAlphTF,IfIsalphTF,%
     mypartbox,mychapterbox,mysectionbox,mysubsectionbox,mysubsubsectionbox,%
     mysub,mysub*,myequation,myequation*,mytable,mytable*,mypseudocode,%
     mypseudocode*,myannex\do{%

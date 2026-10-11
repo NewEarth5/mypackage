@@ -1230,7 +1230,7 @@
     }%
     \RegisterStructureUsage{Mypart}%
     \ifMyannexUsed%
-      \mypackage@IfPagenumberingF{alph}{\newpage\pagenumbering{myalph}}%
+      \mypackage@IfPagenumberingF{myalph}{\newpage\pagenumbering{myalph}}%
       \let\myheadingname\myannexname%
     \else%
       \mypackage@IfPagenumberingF{arabic}{\newpage\pagenumbering{arabic}}%
@@ -1285,7 +1285,7 @@
     }%
     \RegisterStructureUsage{Mychapter}%
     \ifMyannexUsed%
-      \mypackage@IfPagenumberingF{alph}{\newpage\pagenumbering{myalph}}%
+      \mypackage@IfPagenumberingF{myalph}{\newpage\pagenumbering{myalph}}%
     \else%
       \mypackage@IfPagenumberingF{arabic}{\newpage\pagenumbering{arabic}}%
     \fi%
@@ -1335,7 +1335,7 @@
     }%
     \RegisterStructureUsage{Mysection}%
     \ifMyannexUsed%
-      \mypackage@IfPagenumberingF{alph}{\newpage\pagenumbering{myalph}}%
+      \mypackage@IfPagenumberingF{myalph}{\newpage\pagenumbering{myalph}}%
     \else%
       \mypackage@IfPagenumberingF{arabic}{\newpage\pagenumbering{arabic}}%
     \fi%
@@ -1395,7 +1395,7 @@
     }%
     \RegisterStructureUsage{Mysubsection}%
     \ifMyannexUsed%
-      \mypackage@IfPagenumberingF{alph}{\newpage\pagenumbering{myalph}}%
+      \mypackage@IfPagenumberingF{myalph}{\newpage\pagenumbering{myalph}}%
     \else%
       \mypackage@IfPagenumberingF{arabic}{\newpage\pagenumbering{arabic}}%
     \fi%
@@ -1458,7 +1458,7 @@
     }%
     \RegisterStructureUsage{Mysubsubsection}%
     \ifMyannexUsed%
-      \mypackage@IfPagenumberingF{alph}{\newpage\pagenumbering{myalph}}%
+      \mypackage@IfPagenumberingF{myalph}{\newpage\pagenumbering{myalph}}%
     \else%
       \mypackage@IfPagenumberingF{arabic}{\newpage\pagenumbering{arabic}}%
     \fi%

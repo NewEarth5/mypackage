@@ -26,7 +26,7 @@ COUNTERS: part=0, chapter=1, section=1, subsection=0, subsubsection=0, figure=0,
 ]
 COUNTERS: part=0, chapter=1, section=1, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=1 (i)
 FLAGS: part=F, chapter=T, section=T, subsection=F, subsubsection=F, annex=F, bib=F, highest=mychapter
-REF bib:bib: number=[Bibliography] page=[i] anchor=[mybibliography]
+REF bib:bib: number=[Bibliography] page=[i] anchor=[mybib]
 ============================================================
 TEST 1: Citation numbers
 ============================================================

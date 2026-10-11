@@ -5,7 +5,7 @@ TEST 1: Option values (defaults)
 ============================================================
 OPT \mypackage@lang=[british]
 OPT \mypackage@paths@images=[images/]
-OPT \mypackage@paths@code=[../code/]
+OPT \mypackage@paths@code=[code/]
 OPT \mypackage@paths@sources=[sources/sources.bib]
 OPT \mypackage@pos@figure=[h]
 OPT \mypackage@pos@table=[h]
@@ -67,11 +67,6 @@ myhighestsec: ok
 myaddtotoc: ok
 myhyperanchor: ok
 mylabel: ok
-IfIsRomanTF: ok
-IfIsromanTF: ok
-IfIsarabicTF: ok
-IfIsAlphTF: ok
-IfIsalphTF: ok
 mypartbox: ok
 mychapterbox: ok
 mysectionbox: ok

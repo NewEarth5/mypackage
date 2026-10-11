@@ -38,7 +38,7 @@ Completed box being shipped out [1]
 .....\pdfcolorstack 0 pop
 ...\glue 25.0
 ...\glue(\lineskip) 0.0
-...\vbox(702.78308+0.0)x455.24411, glue set 525.56fil
+...\vbox(702.78308+0.0)x455.24411, glue set 505.57fil
 ....\write1{\def\@LN@column{1}}
 ....\write-{}
 ....\write1{\noexpand \providecommand \noexpand \oddpage@label [2]{}}
@@ -120,6 +120,8 @@ Completed box being shipped out [1]
 .....\glue(\parfillskip) -26.99341
 .....\glue(\rightskip) 26.99341
 ....\glue 5.0
+....\glue -5.0
+....\glue 20.0
 ....\glue(\parskip) 0.0 plus 1.0
 ....\glue(\parskip) 0.0
 ....\glue(\baselineskip) 5.71869
@@ -148,6 +150,8 @@ Completed box being shipped out [1]
 .....\glue(\parfillskip) -26.99341
 .....\glue(\rightskip) 26.99341
 ....\glue 5.0
+....\glue -5.0
+....\glue 10.0
 ....\glue(\parskip) 0.0 plus 1.0
 ....\glue(\parskip) 0.0
 ....\glue(\baselineskip) 5.0989

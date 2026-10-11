@@ -20,7 +20,7 @@ TEST 2: Values received by mypackage
 ============================================================
 OPT \mypackage@lang=[british]
 OPT \mypackage@paths@images=[images/]
-OPT \mypackage@paths@code=[../code/]
+OPT \mypackage@paths@code=[code/]
 OPT \mypackage@paths@sources=[sources/sources.bib]
 OPT \mypackage@pos@figure=[h]
 OPT \mypackage@pos@table=[h]

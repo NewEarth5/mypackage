@@ -1571,12 +1571,12 @@
 \ExplSyntaxOff
 \ExplSyntaxOn
   \cs_new:Npn \mypackage@IfPagenumberingT #1#2{%
-    \IfPagenumberingTF{#1}{#2}{#3}%
+    \mypackage@IfPagenumberingTF{#1}{#2}{}%
   }
 \ExplSyntaxOff
 \ExplSyntaxOn
   \cs_new:Npn \mypackage@IfPagenumberingF #1#2{%
-    \IfPagenumberingTF{#1}{#2}{#3}%
+    \mypackage@IfPagenumberingTF{#1}{}{#2}%
   }
 \ExplSyntaxOff
 \ExplSyntaxOn

@@ -10,11 +10,11 @@
 \makeatletter
 % The \IfIs... commands are not expandable: record each answer first.
 \newcommand\CHECKSTYLES{%
-  \IfIsRomanTF {\def\rR{T}}{\def\rR{F}}%
-  \IfIsromanTF {\def\rr{T}}{\def\rr{F}}%
-  \IfIsarabicTF{\def\ra{T}}{\def\ra{F}}%
-  \IfIsAlphTF  {\def\rA{T}}{\def\rA{F}}%
-  \IfIsalphTF  {\def\rl{T}}{\def\rl{F}}%
+  \mypackage@IfPagenumberingTF{Roman}{\def\rR{T}}{\def\rR{F}}%
+  \mypackage@IfPagenumberingTF{roman}{\def\rr{T}}{\def\rr{F}}%
+  \mypackage@IfPagenumberingTF{arabic}{\def\ra{T}}{\def\ra{F}}%
+  \mypackage@IfPagenumberingTF{Alph}{\def\rA{T}}{\def\rA{F}}%
+  \mypackage@IfPagenumberingTF{alph}{\def\rl{T}}{\def\rl{F}}%
   \TYPE{\thepage: Roman=\rR\space roman=\rr\space arabic=\ra\space
     Alph=\rA\space alph=\rl}}
 \newcommand\CHECKPAGES[2]{% #1 = style, #2 = list of page numbers
@@ -29,9 +29,9 @@
 \TEST{Alph}{\CHECKPAGES{Alph}{1,3,4,9,12,13,22,24}}
 \TEST{The macros are usable inside the T/F branches}{%
   \pagenumbering{arabic}%
-  \IfIsarabicTF{\TYPE{arabic branch}}{\TYPE{other branch}}%
-  \IfIsarabicT{\TYPE{T only}}%
-  \IfIsarabicF{\TYPE{F only (wrong)}}%
-  \IfIsRomanF{\TYPE{not Roman}}%
+  \mypackage@IfPagenumberingTF{arabic}{\TYPE{arabic branch}}{\TYPE{other branch}}%
+  \mypackage@IfPagenumberingT{arabic}{\TYPE{T only}}%
+  \mypackage@IfPagenumberingF{arabic}{\TYPE{F only (wrong)}}%
+  \mypackage@IfPagenumberingF{Roman}{\TYPE{not Roman}}%
 }
 \end{document}

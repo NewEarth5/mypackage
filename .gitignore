@@ -1,3 +1,5 @@
+# VSCode work folder settings
+.vscode/
 # l3build working directory (tests, demos, packaging)
 build/
 # LaTeX auxiliary files (when compiling demos or documents by hand)
