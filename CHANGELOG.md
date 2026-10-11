@@ -9,7 +9,7 @@ Sections: **Added** (new features), **Changed** (different behaviour on
 purpose), **Fixed** (bugs), **Removed**, **Known issues** (found, not fixed
 yet, with the version that should address them).
 
-## [0.6.5] - 2026-10-11
+## [0.6.5] - 2026-10-12
 
 Test-suite release (first published 2026-10-10; the fix below, found by the
 engine tests on MiKTeX, was added on 2026-10-11 before any public release). No user-facing command was added or renamed; the

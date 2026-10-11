@@ -4,7 +4,7 @@
 \begin{document}
 \demoheader{Utilities}{\string\currentacyear, \string\mycleantext,
 \string\mycleanline, \string\mycleanfirstline, \string\mylenmax,
-\string\mylenmin, \string\myhighestsec, \string\IfIsRomanTF\ and co.}
+\string\mylenmin, and \string\myhighestsec}
 
 \mysection*{\textbackslash currentacyear}
 \begin{demo}
@@ -27,17 +27,5 @@ Academic year (switches on 1 September): \currentacyear
 \mysection*{Structure}
 \begin{demo}
 Highest level used in this document: \myhighestsec.
-\end{demo}
-
-\mysection*{Page numbering style}
-\begin{demosyntax}
-\IfIsRomanTF{<true>}{<false>}   \IfIsRomanT{<true>}   \IfIsRomanF{<false>}
-\IfIsromanTF ... \IfIsarabicTF ... \IfIsAlphTF ... \IfIsalphTF ...
-\end{demosyntax}
-\begin{demo}
-\pagenumbering{roman}
-This page is numbered \thepage:
-\IfIsromanTF{roman}{not roman},
-\IfIsalphTF{alph}{not alph}.
 \end{demo}
 \end{document}
