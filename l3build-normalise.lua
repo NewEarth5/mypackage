@@ -177,18 +177,28 @@ function mytests_prepare_log(content, engine)
   local pending_close = 0     -- ")" still to drop for removed "(file" opens
   local info = nil            -- name of the info message being dropped
   local preamble_errors = {}  -- "! ..." lines logged before START-TEST-LOG
+  local error_context = 0     -- lines of the current error still to copy
   for _, line in ipairs(lines) do
     line = windows_paths(line)
     local keep = true
     if info and not line:match("^%(" .. info:gsub("%p", "%%%0") .. "%)") then
       info = nil
     end
-    if not started and line:match("^! ") then
-      preamble_errors[#preamble_errors + 1] = line
+    -- An error and its context, up to the "l.<n>" line (at most 8 lines):
+    -- "! Missing number" alone does not say which macro was wrong, the
+    -- "<to be read again> \l@ngerman-x-latest" line below it does.
+    if not started then
+      if line:match("^! ") then
+        error_context = 8
+      end
+      if error_context > 0 then
+        preamble_errors[#preamble_errors + 1] = line
+        error_context = line:match("^l%.%d+") and 0 or error_context - 1
+      end
     end
     -- l3build may prepare the same log twice: drop the copies made the
     -- first time, they are made again below.
-    local old_copy = started and line:match("^PREAMBLE ERROR ! ")
+    local old_copy = started and line:match("^PREAMBLE ERROR")
     if line == "START-TEST-LOG" then
       -- l3build compares only what follows this line.  Errors raised while
       -- the class and packages were loaded would go unnoticed: report them
@@ -196,7 +206,7 @@ function mytests_prepare_log(content, engine)
       started = true
       out[#out + 1] = line
       for _, err in ipairs(preamble_errors) do
-        out[#out + 1] = "PREAMBLE ERROR " .. err
+        out[#out + 1] = "PREAMBLE ERROR | " .. err
       end
       keep = false
     end

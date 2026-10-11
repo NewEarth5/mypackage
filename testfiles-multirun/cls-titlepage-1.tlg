@@ -62,7 +62,8 @@ Completed box being shipped out [1]
 .....\pdfcolorstack 0 pop
 ...\glue 25.0
 ...\glue(\lineskip) 0.0
-...\vbox(788.14136+0.0)x540.60239, glue set 207.51fill
+...\vbox(788.14136+0.0)x540.60239, glue set 205.01fill
+....\write1{\def\@LN@column{1}}
 ....\write-{}
 ....\write1{\noexpand \providecommand \noexpand \oddpage@label [2]{}}
 ....\pdfcolorstack 0 push {0 g 0 G}
@@ -73,7 +74,6 @@ Completed box being shipped out [1]
 ....\hbox(8.5+3.5)x540.60239
 .....\hbox(0.0+0.0)x0.0
 .....\hbox(8.5+3.5)x540.60239
-......\mathon
 ......\vbox(8.5+3.5)x540.60239
 .......\hbox(8.39996+3.60004)x540.60239
 ........\glue(\tabskip) 0.0
@@ -162,7 +162,6 @@ Completed box being shipped out [1]
 .........\glue 0.0 plus 1.0fil
 .........\glue 6.0
 ........\glue(\tabskip) 0.0
-......\mathoff
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
@@ -176,7 +175,6 @@ Completed box being shipped out [1]
 ....\hbox(8.5+3.5)x540.60239
 .....\hbox(0.0+0.0)x0.0
 .....\hbox(8.5+3.5)x540.60239
-......\mathon
 ......\vbox(8.5+3.5)x540.60239
 .......\hbox(8.39996+3.60004)x540.60239
 ........\glue(\tabskip) 0.0
@@ -233,7 +231,6 @@ Completed box being shipped out [1]
 .........\glue 0.0 plus 1.0fil
 .........\glue 6.0
 ........\glue(\tabskip) 0.0
-......\mathoff
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
@@ -385,7 +382,6 @@ Completed box being shipped out [1]
 ....\glue(\lineskip) 1.0
 ....\hbox(16.29391+11.29391)x540.60239
 .....\hbox(16.29391+11.29391)x540.60239
-......\mathon
 ......\vbox(16.29391+11.29391)x540.60239
 .......\hbox(23.9878+3.60004)x540.60239
 ........\glue(\tabskip) 0.0
@@ -450,7 +446,6 @@ Completed box being shipped out [1]
 .........\glue 0.0 plus 1.0fil
 .........\glue 6.0
 ........\glue(\tabskip) 0.0
-......\mathoff
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
@@ -475,7 +470,6 @@ Completed box being shipped out [1]
 ......\glue 5.0
 .....\penalty 0
 .....\hbox(14.5+9.5)x456.47528
-......\mathon
 ......\vbox(14.5+9.5)x456.47528
 .......\hbox(8.39996+3.60004)x456.47528
 ........\glue(\tabskip) 0.0
@@ -591,13 +585,11 @@ Completed box being shipped out [1]
 .........\glue 0.0 plus 1.0fil
 .........\glue 6.0
 ........\glue(\tabskip) 0.0
-......\mathoff
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0
 .....\glue(\rightskip) 0.0 plus 1.0fil
 ....\penalty -51
 ....\glue 10.0 plus 3.0 minus 5.0
-....\glue -5.0
 ....\glue 0.0 plus 1.0fil
 ....\glue 0.0
 ....\glue 0.0 plus 0.0001fil

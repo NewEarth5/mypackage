@@ -39,6 +39,7 @@ Completed box being shipped out [1]
 ...\glue 25.0
 ...\glue(\lineskip) 0.0
 ...\vbox(702.78308+0.0)x455.24411, glue set 525.56fil
+....\write1{\def\@LN@column{1}}
 ....\write-{}
 ....\write1{\noexpand \providecommand \noexpand \oddpage@label [2]{}}
 ....\pdfcolorstack 0 push {0 g 0 G}

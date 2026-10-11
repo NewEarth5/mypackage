@@ -4,7 +4,7 @@ Don't change this file in any respect.
 TEST 1: Language and words
 ============================================================
 language=portuguese
-NAMES-1: contents=[Conte\'udo] lof=[Lista de Figuras] lot=[Lista de Tabelas] bib=[Bibliografia] abstract=[Resumo] chapter=[Cap\'{\i }tulo] part=[Parte] figure=[Figura] table=[Tabela]
+NAMES-1: contents=[\'Indice] lof=[Lista de Figuras] lot=[Lista de Tabelas] bib=[Bibliografia] abstract=[Resumo] chapter=[Cap\'{\i }tulo] part=[Parte] figure=[Figura] table=[Tabela]
 NAMES-2: equation=[Equa^^c3^^a7^^c3^^a3o] acyear=[Ano acad^^c3^^aamico] books=[Livros] articles=[Artigos] collections=[Cole^^c3^^a7^^c3^^b5es] manuals=[Manuais] theses=[Teses] references=[Refer^^c3^^aancias] reports=[Relat^^c3^^b3rios] websites=[Sites Web] patents=[Patentes]
 NAMES-3: program=[Programa] lop=[Lista de Programas] loe=[Lista de Equa^^c3^^a7^^c3^^b5es] introduction=[Introdu^^c3^^a7^^c3^^a3o] section=[Se^^c3^^a7^^c3^^a3o] subsection=[Subse^^c3^^a7^^c3^^a3o] subsubsection=[Subsubse^^c3^^a7^^c3^^a3o] annex=[Anexo] see=[ver]
 NAMES-4: professor=[Professor|Professora|Professores|Professoras] assistant=[Assistente|Assistente|Assistentes|Assistentes] author=[Autor|Autora|Autores|Autoras]

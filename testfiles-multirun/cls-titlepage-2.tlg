@@ -60,6 +60,7 @@ Completed box being shipped out [1]
 ...\glue 25.0
 ...\glue(\lineskip) 0.0
 ...\vbox(788.14136+0.0)x540.60239, glue set 286.24fill
+....\write1{\def\@LN@column{1}}
 ....\write-{}
 ....\write1{\noexpand \providecommand \noexpand \oddpage@label [2]{}}
 ....\pdfcolorstack 0 push {0 g 0 G}
@@ -70,7 +71,6 @@ Completed box being shipped out [1]
 ....\hbox(22.20474+17.20473)x540.60239
 .....\hbox(0.0+0.0)x0.0
 .....\hbox(22.20474+17.20473)x540.60239
-......\mathon
 ......\vbox(22.20474+17.20473)x540.60239
 .......\hbox(8.39996+31.0095)x540.60239
 ........\glue(\tabskip) 0.0
@@ -145,7 +145,6 @@ Completed box being shipped out [1]
 ...........\pdfcolorstack 0 pop
 .........\glue 6.0
 ........\glue(\tabskip) 0.0
-......\mathoff
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
@@ -255,7 +254,6 @@ Completed box being shipped out [1]
 .....\hbox(0.0+0.0)x0.0
 .....\glue 45.0
 .....\hbox(8.39996+39.60004)x132.61385
-......\mathon
 ......\vbox(8.39996+39.60004)x132.61385
 .......\hbox(8.39996+3.60004)x132.61385
 ........\glue(\tabskip) 0.0
@@ -390,10 +388,8 @@ Completed box being shipped out [1]
 .........\glue 0.0 plus 1.0fill
 .........\glue 6.0
 ........\glue(\tabskip) 0.0
-......\mathoff
 .....\glue 0.0 plus 1.0fill
 .....\hbox(8.39996+27.60004)x196.90785
-......\mathon
 ......\vbox(8.39996+27.60004)x196.90785
 .......\hbox(8.39996+3.60004)x196.90785
 ........\glue(\tabskip) 0.0
@@ -520,7 +516,6 @@ Completed box being shipped out [1]
 .........\glue 0.0 plus 1.0fill
 .........\glue 6.0
 ........\glue(\tabskip) 0.0
-......\mathoff
 .....\rule(*+*)x0.0
 .....\penalty 10000
 .....\glue 45.0
@@ -533,7 +528,6 @@ Completed box being shipped out [1]
 ....\glue(\lineskip) 1.0
 ....\hbox(8.5+3.5)x540.60239
 .....\hbox(8.5+3.5)x540.60239
-......\mathon
 ......\vbox(8.5+3.5)x540.60239
 .......\hbox(8.39996+3.60004)x540.60239
 ........\glue(\tabskip) 0.0
@@ -604,7 +598,6 @@ Completed box being shipped out [1]
 .........\kern 0.0
 .........\glue 6.0
 ........\glue(\tabskip) 0.0
-......\mathoff
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
