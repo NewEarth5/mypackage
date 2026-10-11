@@ -2,12 +2,13 @@
 \input{regression-test}
 \documentclass{myreport}
 \input{mytest-helpers}
-% A sub-caption is as wide as its image, so the caption of the narrow
-% second image ("Second", 17pt wide) cannot be set without an over- or
-% underfull box, depending on the hyphenation patterns of the TeX
-% distribution.  Those warnings are not what this test checks (the width of
-% sub-captions is revisited in v0.7.5), so they are switched off.
-\hbadness=10000 \hfuzz=\maxdimen
+% A sub-caption is as wide as its image (see v0.7.5 in TODO.txt): the
+% second image is only 17.6pt wide.  Its sub-caption is a word that fits,
+% so that the result does not depend on the hyphenation patterns of the TeX
+% distribution (a longer word was hyphenated by TeX Live and overfull with
+% MiKTeX; caption's \sloppy prevents silencing it with \hfuzz).  The
+% (b) label alone on its line is an underfull box: not reported.
+\hbadness=10000
 \begin{document}
 \START
 \SHOWLIST{mylof}
@@ -15,7 +16,7 @@
 \mychapter{Subfigures}
 \begin{mysub}{two}{Two subfigures.}
   \mysubfigure{wide.png}[First]{0.48}
-  \mysubfigure[height=0.1]{tall.png}[Second]{0.48}
+  \mysubfigure[height=0.1]{tall.png}[Two]{0.48}
 \end{mysub}
 \SHOWCOUNTERS
 \begin{mysub}{three}[Short]{Three subfigures, the last without caption.}[t]

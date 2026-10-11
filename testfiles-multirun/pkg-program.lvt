@@ -1,6 +1,11 @@
 % pkg-program: \myprogram / \myprogram*.  A short listing is put in a
 % listing float; one taller than half a page is typeset in the text flow
-% (it can break across pages).  Labels are code:<extension>:<label>.
+% (it can break across pages; its entry in the list of programs must show
+% the page where it starts).  Labels are code:<extension>:<label>.
+%
+% The height of a listing differs slightly between minted versions, so
+% each group starts on a new page and the long listing (lines 1-90) ends
+% well inside its second page: the page numbers do not depend on minted.
 \input{regression-test}
 \documentclass[paths={code=code/}]{myreport}
 \input{mytest-helpers}
@@ -11,7 +16,9 @@
 \mychapter{Programs}
 \myprogram{hello}{hello.py}{python}{A short Python program.}
 \myprogram[bgcol=white, numbgcol=gray!20]{short}{short.c}{c}[Short.]{Options and short caption. Second sentence.}
-\myprogram{long}{long.c}{c}{A long program, typeset in the text flow.}
+\clearpage
+\myprogram[minted={lastline=90}]{long}{long.c}{c}{A long program, typeset in the text flow.}
+\clearpage
 \myprogram*{star}{short.c}{c}{Starred: not in the list.}
 \myprogram[minted={firstline=3, lastline=5}]{part}{long.c}{c}{Lines 3 to 5.}
 \SHOWCOUNTERS

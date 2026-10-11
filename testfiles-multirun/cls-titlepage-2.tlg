@@ -31,7 +31,8 @@ Don't change this file in any respect.
 * \@mparswitchfalse
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
-(../umsa.fd) (../umsb.fd)
+(../umsa.fd)
+(../umsb.fd)
 File: images/square.jpg Graphic file (type jpg)
 <use images/square.jpg>
 Completed box being shipped out [1]

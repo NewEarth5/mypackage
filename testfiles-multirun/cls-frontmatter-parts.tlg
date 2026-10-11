@@ -21,7 +21,8 @@ COUNTERS: part=0, chapter=0, section=0, subsection=0, subsubsection=0, figure=0,
 COUNTERS: part=0, chapter=0, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=1 (1)
 THE: part=[0] chapter=[0.0] section=[0.0] subsection=[0.0] subsubsection=[0.0] figure=[0.0.0] subfigure=[0.0.0.] table=[0.0.0] program=[0.0.0] equation=[0.0.0]
 [1
-] [2
+]
+[2
 ]
 COUNTERS: part=1, chapter=1, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=3 (3)
 [3

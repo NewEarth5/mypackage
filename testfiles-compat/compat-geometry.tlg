@@ -32,7 +32,9 @@ textwidth after \geometry: 483.69687pt
 * \@mparswitchfalse
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
-(../umsa.fd) (../umsb.fd) [1
+(../umsa.fd)
+(../umsb.fd)
+[1
 Non-PDF special ignored!
 <special> header=psfrag.pro
 ]

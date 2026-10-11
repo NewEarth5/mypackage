@@ -33,7 +33,9 @@ font encoding: TU; family: lmr
 * \@mparswitchfalse
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
-(../umsa.fd) (../umsb.fd) [1
+(../umsa.fd)
+(../umsb.fd)
+[1
 ]
 (eng-class-basic.mytoc)
 [1
@@ -70,6 +72,7 @@ l. ...
 ============================================================
 LaTeX Warning: `h' float specifier changed to `ht'.
 [1
-] [2]
+]
+[2]
 (eng-class-basic.aux)
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.

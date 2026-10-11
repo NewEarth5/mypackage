@@ -3,8 +3,10 @@ Don't change this file in any respect.
 (compat-microtype.mytoc (../mt-eur.cfg
 File: mt-eur.cfg ....-..-.. v... microtype config. file: AMS Euler Roman (RS)
 )
+(../mt-msa.cfg
 File: mt-msa.cfg ....-..-.. v... microtype config. file: AMS symbols (a) (RS)
 )
+(../mt-msb.cfg
 File: mt-msb.cfg ....-..-.. v... microtype config. file: AMS symbols (b) (RS)
 ))
 [1

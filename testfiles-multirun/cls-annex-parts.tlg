@@ -20,7 +20,8 @@ Non-PDF special ignored!
 ] [1
 ]
 [2
-] [3
+]
+[3
 ]
 COUNTERS: part=2, chapter=1, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=4 (4)
 FLAGS: part=T, chapter=T, section=T, subsection=F, subsubsection=F, annex=T, bib=F, highest=mypart

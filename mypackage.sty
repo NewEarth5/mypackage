@@ -2070,7 +2070,11 @@
       \end{minipage}%
     }%
     \newif\iffits
-    \ifdim\dimexpr\ht0\relax<\dimexpr(\pagegoal-1cm)/2\relax%
+    % Taller than half the text height: typeset in the text flow (it may
+    % break across pages); otherwise a float.  (\pagegoal, used before,
+    % is \maxdimen at the top of a page, so every listing starting a page
+    % became a float, even one longer than the page.)
+    \ifdim\dimexpr\ht0\relax<\dimexpr(\textheight-1cm)/2\relax%
       \fitstrue%
     \else%
       \fitsfalse%

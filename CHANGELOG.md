@@ -40,6 +40,16 @@ yet, with the version that should address them).
 - `l3build saveall` fails if a test produced an empty `.tlg` (a test that
   stops before `\START`, e.g. because a package is missing). The empty
   `compat-glossaries.tlg` of 0.6.5 is fixed.
+- MiKTeX's LuaTeX: lines are rejoined when the next character would bring
+  them to 79 bytes (the rule was off by one byte for Cyrillic text).
+- `(a.fd) (b.fd) [1`, `) [9` and `] [9` are split into one marker per line
+  before comparing: TeX breaks such lines differently depending on the
+  length of file paths, and l3build's removal of `.fd` files swallowed a
+  page marker that followed `)` on the same line.
+- `pkg-subfigure`: the narrow sub-caption is a word that fits (`caption`
+  calls `\sloppy`, so box warnings in captions cannot be silenced with
+  `\hfuzz`); `pkg-program`: each group of listings starts on a new page, so
+  page numbers do not depend on the minted version.
 - `eng-lang-russian` loads a font with Cyrillic letters (CMU Serif) and
   `eng-fontspec` runs with LuaLaTeX again; `pkg-subfigure` ignores box
   warnings that depend on hyphenation patterns.
@@ -131,6 +141,10 @@ the 106 new tests fail (one of them never ends).
   glued together ("V0.6Custom Package ...").
 - `lang=russian` with pdfLaTeX: "No Cyrillic font encoding has been
   loaded" warning (T2A is now loaded explicitly).
+- `\myprogram`: a listing was put in a float when it was shorter than half
+  of `\pagegoal`, which is `\maxdimen` at the top of a page, so a listing
+  starting a page always became a float, even one longer than the page
+  ("Float too large for page"). It is now compared with `\textheight`.
 - With LuaLaTeX and XeLaTeX the package loaded the 8-bit font encodings
   (`T1`, and `T2A` for Russian) meant for pdfLaTeX. Text was then set in
   pdfLaTeX's Type 1 fonts instead of OpenType fonts: characters outside

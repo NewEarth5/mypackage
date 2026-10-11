@@ -88,8 +88,9 @@ local function windows_paths(line)
 end
 
 -- MiKTeX's LuaTeX has no --max-print-line option: it wraps its log at 79
--- bytes, or slightly earlier when the next character is a multi-byte UTF-8
--- character (LuaTeX does not split characters).  Such lines are rejoined.
+-- bytes, or earlier when the next character is a multi-byte UTF-8
+-- character that would bring the line to 79 bytes or more (LuaTeX does not
+-- split characters).  Such lines are rejoined.
 local luatex_wrap = 79
 local function utf8_length(byte)
   if not byte or byte < 0xC0 then return 1 end
@@ -97,11 +98,15 @@ local function utf8_length(byte)
   return 4
 end
 local function is_wrapped(line, nextline)
+  -- A line of exactly 79 bytes followed by an empty line really ended
+  -- there (TeX wrapped, then ended the line): keep both, so that preparing
+  -- the log a second time gives the same result.
+  if nextline == "" then return false end
   if #line == luatex_wrap then return true end
-  if #line < luatex_wrap - 3 or not nextline then return false end
+  if #line < luatex_wrap - 4 or not nextline then return false end
   local first = nextline:byte(1)
   return first ~= nil and first >= 0xC0
-    and #line + utf8_length(first) > luatex_wrap
+    and #line + utf8_length(first) >= luatex_wrap
 end
 local function unwrap(lines)
   local out, buffer = {}, nil
@@ -137,6 +142,26 @@ local function round_glue(line)
   end))
 end
 
+-- Lines that contain several file/page markers are split, one marker per
+-- line, recursively (so that splitting twice changes nothing):
+-- * "] (./job.aux)": the end of the last page and the .aux file read at
+--   \end{document} are on one line, unless a system command was logged in
+--   between (minted 3);
+-- * ") [9": the end of a file followed by something else.  l3build drops a
+--   font-definition file (.fd) up to the line that closes it, so whatever
+--   follows ")" on that line would be lost too (the page [9] vanished when
+--   TeX Live loaded the .fd there and MiKTeX did not);
+-- * "] [9": the end of one page and the start of the next.
+function split_markers(line)
+  local a, b = line:match("^(.*%]) (%(%.?/?[^%s%(%)]+%.aux%))$")
+  if not a then a, b = line:match("^(%)+)%s+(%S.*)$") end
+  if not a then a, b = line:match("^(%])%s+(%[.*)$") end
+  if not a then return {line} end
+  local pieces = split_markers(a)
+  for _, piece in ipairs(split_markers(b)) do pieces[#pieces + 1] = piece end
+  return pieces
+end
+
 -- Raw log -> raw log, before l3build's own normalisation.
 function mytests_prepare_log(content, engine)
   local lines = {}
@@ -161,6 +186,9 @@ function mytests_prepare_log(content, engine)
     if not started and line:match("^! ") then
       preamble_errors[#preamble_errors + 1] = line
     end
+    -- l3build may prepare the same log twice: drop the copies made the
+    -- first time, they are made again below.
+    local old_copy = started and line:match("^PREAMBLE ERROR ! ")
     if line == "START-TEST-LOG" then
       -- l3build compares only what follows this line.  Errors raised while
       -- the class and packages were loaded would go unnoticed: report them
@@ -210,14 +238,12 @@ function mytests_prepare_log(content, engine)
         if opened > 0 and line:match("^%s*$") then keep = false end
       end
     end
+    if old_copy then keep = false end
     if keep then
-      -- "] (./job.aux)": the end of the last page and the .aux file read at
-      -- \end{document} are on one line, unless a system command was logged
-      -- in between (minted 3).  Always use two lines.
-      local page_end, aux = line:match("^(.*%]) (%(%.?/?[^%s%(%)]+%.aux%))$")
-      if started and page_end then
-        out[#out + 1] = page_end
-        out[#out + 1] = aux
+      if started then
+        for _, piece in ipairs(split_markers(line)) do
+          out[#out + 1] = piece
+        end
       else
         out[#out + 1] = line
       end
@@ -242,5 +268,27 @@ function rewrite_log(source, result, engine, errlevels)
     file:write(mytests_prepare_log(content, engine))
     file:close()
   end
-  return l3build_rewrite_log(source, result, engine, errlevels)
+  local errorlevel = l3build_rewrite_log(source, result, engine, errlevels)
+  -- After l3build's normalisation: "(../a.fd) (../b.fd) [1".  TeX starts a
+  -- file name on a new line when the full path does not fit on the current
+  -- one, so with long (Windows) paths the same log has three lines.  File
+  -- and page markers that follow a closed file are always split.
+  file = io.open(result, "rb")
+  if file then
+    local content = file:read("a")
+    file:close()
+    local eol = content:find("\r\n", 1, true) and "\r\n" or "\n"
+    local out = {}
+    for line in content:gmatch("([^\n]*)\n") do
+      line = line:gsub("\r$", "")
+      if line:match("^%(") then
+        line = line:gsub("%) ([%(%[])", ")" .. eol .. "%1")
+      end
+      out[#out + 1] = line
+    end
+    file = assert(io.open(result, "wb"))
+    file:write(table.concat(out, eol) .. eol)
+    file:close()
+  end
+  return errorlevel
 end

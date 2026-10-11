@@ -51,7 +51,8 @@ pdfTeX warning (ext4): destination with the same identifier (name{mychapter.1.7}
                    \relax 
 l. ...
             {Second part}[name=Book, label=p2] [5
-] [6
+]
+[6
 ]
 THE: part=[2] chapter=[2.1] section=[2.1.0] subsection=[2.1.0.0] subsubsection=[2.1.0.0.0] figure=[2.1.0] subfigure=[2.1.0.] table=[2.1.0] program=[2.1.0] equation=[2.1.0]
 [7

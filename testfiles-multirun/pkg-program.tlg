@@ -4,7 +4,7 @@ Don't change this file in any respect.
 (pkg-program.mylop)
 \contentsline {myprogram}{\makebox [3.5em][l]{1.1}\mycleanfirstline {A short Python program.}}{1}{myprogram.1.1}%[nl]
 \contentsline {myprogram}{\makebox [3.5em][l]{1.2}\mycleanfirstline {Short.}}{1}{myprogram.1.2}%[nl]
-\contentsline {myprogram}{\makebox [3.5em][l]{1.3}\mycleanfirstline {A long program, typeset in the text flow.}}{1}{myprogram.1.3}%[nl]
+\contentsline {myprogram}{\makebox [3.5em][l]{1.3}\mycleanfirstline {A long program, typeset in the text flow.}}{2}{myprogram.1.3}%[nl]
 \contentsline {myprogram}{\makebox [3.5em][l]{1.5}\mycleanfirstline {Lines 3 to 5.}}{4}{myprogram.1.5}%[nl]
 -------- pkg-program.mylop (end) -----------
 (pkg-program.mylop
@@ -13,13 +13,15 @@ Non-PDF special ignored!
 <special> header=psfrag.pro
 ]
 [1
-] [2]
-LaTeX Warning: `h' float specifier changed to `ht'.
-COUNTERS: part=0, chapter=1, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=5, equation=0, annex=0, page=3 (3)
+] [2
+]
+[3]
+COUNTERS: part=0, chapter=1, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=5, equation=0, annex=0, page=4 (4)
 REF code:py:hello: number=[1.1] page=[1] anchor=[myprogram.1.1]
 REF code:c:short: number=[1.2] page=[1] anchor=[myprogram.1.2]
-REF code:c:long: number=[1.3] page=[1] anchor=[myprogram.1.3]
-REF code:c:star: number=[1.4] page=[3] anchor=[myprogram.1.4]
-REF code:c:part: number=[1.5] page=[3] anchor=[myprogram.1.5]
-[3] [4]
+REF code:c:long: number=[1.3] page=[2] anchor=[myprogram.1.3]
+REF code:c:star: number=[1.4] page=[4] anchor=[myprogram.1.4]
+REF code:c:part: number=[1.5] page=[4] anchor=[myprogram.1.5]
+[4
+]
 (pkg-program.aux)
