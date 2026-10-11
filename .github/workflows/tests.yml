@@ -30,8 +30,11 @@ jobs:
           # The reference results (.tlg) are generated in the same image by
           # the "Save expected results" workflow: keep both on "latest".
           texlive_version: latest
+          # The image is Alpine Linux: its built-in (BusyBox) diff does not
+          # know the options l3build uses ("diff -c --strip-trailing-cr"),
+          # so GNU diffutils is installed.
           run: |
-            apk add --no-cache inkscape python3 py3-pygments ttf-dejavu
+            apk add --no-cache diffutils inkscape python3 py3-pygments ttf-dejavu
             l3build check -c ${{ matrix.config }} --show-saves
 
       - name: Upload the differences if a test failed

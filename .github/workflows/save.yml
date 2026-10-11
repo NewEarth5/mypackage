@@ -34,7 +34,7 @@ jobs:
           scheme: full
           texlive_version: latest
           run: |
-            apk add --no-cache inkscape python3 py3-pygments ttf-dejavu
+            apk add --no-cache diffutils inkscape python3 py3-pygments ttf-dejavu
             if [ -n "${{ inputs.config }}" ]; then
               l3build saveall -c "${{ inputs.config }}"
             else
