@@ -9,10 +9,28 @@ Sections: **Added** (new features), **Changed** (different behaviour on
 purpose), **Fixed** (bugs), **Removed**, **Known issues** (found, not fixed
 yet, with the version that should address them).
 
-## [Unreleased]
+## [0.6.5] - 2026-10-11
 
-### Repository
+Test-suite release (first published 2026-10-10; the fix below, found by the
+engine tests on MiKTeX, was added on 2026-10-11 before any public release). No user-facing command was added or renamed; the
+existing `report.tex` produces a pixel-identical PDF, without the 28
+LaTeX errors that every build used to log. Run against version 0.6, 53 of
+the 106 new tests fail (one of them never ends).
 
+### Added (repository)
+
+- **l3build test suite**: 106 regression tests in five configurations
+  (`build.lua` + `config-*.lua`), covering every public command, every
+  option value, every supported language and font family:
+  - `testfiles/` (48 tests, 1 run): options, word lists, fonts, counters,
+    page-numbering tests, `\myinclude`, `\myincludeprogram`, utilities;
+  - `testfiles-multirun/` (33 tests, 3 runs): sectioning at every
+    hierarchy level, front matter, annexes, TOC depth, lists of
+    figures/tables/programs/equations, floats, references, title pages,
+    page layout of headings, TOC and floats;
+  - `testfiles-bib/` (6 tests, 3 runs + biber): bibliography;
+  - `testfiles-compat/` (16 tests): compatibility with other packages;
+  - `testfiles-engines/` (3 tests): LuaLaTeX and XeLaTeX.
 - `l3build-normalise.lua`: test logs independent of the TeX distribution,
   the OS and external programs. With MiKTeX, `--max-print-line=9999` is
   passed to pdfTeX/XeTeX (MiKTeX ignores the `max_print_line` variable set
@@ -23,8 +41,6 @@ yet, with the version that should address them).
   even between a first and a second run of minted).
 - On Windows, differences are written by `git diff` (`.diff`) instead of
   `fc` (`.fc`) when Git is available.
-- New target `l3build saveall [-c <config>]` (replaces
-  `scripts/save-all.sh`, which did not run on Windows).
 - Expected results regenerated with l3build 2026-09-09 (its `\SHOWFILE`
   output changed) and the new normalisation.
 - CI uses the latest TeX Live; new workflow "Save expected results"
@@ -53,29 +69,6 @@ yet, with the version that should address them).
 - `eng-lang-russian` loads a font with Cyrillic letters (CMU Serif) and
   `eng-fontspec` runs with LuaLaTeX again; `pkg-subfigure` ignores box
   warnings that depend on hyphenation patterns.
-
-## [0.6.5] - 2026-10-11
-
-Test-suite release (first published 2026-10-10; the fix below, found by the
-engine tests on MiKTeX, was added on 2026-10-11 before any public release). No user-facing command was added or renamed; the
-existing `report.tex` produces a pixel-identical PDF, without the 28
-LaTeX errors that every build used to log. Run against version 0.6, 53 of
-the 106 new tests fail (one of them never ends).
-
-### Added (repository)
-
-- **l3build test suite**: 106 regression tests in five configurations
-  (`build.lua` + `config-*.lua`), covering every public command, every
-  option value, every supported language and font family:
-  - `testfiles/` (48 tests, 1 run): options, word lists, fonts, counters,
-    page-numbering tests, `\myinclude`, `\myincludeprogram`, utilities;
-  - `testfiles-multirun/` (33 tests, 3 runs): sectioning at every
-    hierarchy level, front matter, annexes, TOC depth, lists of
-    figures/tables/programs/equations, floats, references, title pages,
-    page layout of headings, TOC and floats;
-  - `testfiles-bib/` (6 tests, 3 runs + biber): bibliography;
-  - `testfiles-compat/` (16 tests): compatibility with other packages;
-  - `testfiles-engines/` (3 tests): LuaLaTeX and XeLaTeX.
 - `support/`: small images, code files, `sources.bib` and
   `mytest-helpers.tex` (helper macros used by the tests).
 - `demo/`: 24 demo documents (`l3build doc`), one per command or command
@@ -84,7 +77,7 @@ the 106 new tests fail (one of them never ends).
 - GitHub Actions: `tests.yml` (all configurations on every push / pull
   request) and `release.yml` (demo PDFs and files attached to a release
   when a `v*` tag is pushed).
-- `scripts/save-all.sh`, `CHANGELOG.md`, `README.md`, `.gitignore`,
+- `CHANGELOG.md`, `README.md`, `.gitignore`,
   `.gitattributes`.
 
 ### mypackage.sty
