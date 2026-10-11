@@ -168,7 +168,7 @@
   lang={\myreport@text@lang},                      % - Language option              %
   paths={\myreport@paths},                         % - Folder paths                 %
   position={\myreport@position},                   % - Figures/tables/... position  %
-  toc={\myreport@toc},                             % - TOC options                    %
+  toc={\myreport@toc},                             % - TOC options                  %
 ]{mypackage}                                       %                                %
 \RequirePackage{amsmath}                           % Advanced math formulas         %
 \RequirePackage{amsfonts}                          % Extra math fonts and symbols   %
@@ -891,6 +891,9 @@
       \setlength{\parindent}{0cm}%
       \bfseries\large%
       \addvspace{5pt}%
+      \IfBooleanF{#1}{%
+        \addvspace{20pt}%
+      }%
       \noindent%
       \setlength{\rightskip}{2em}%
       \setlength{\parfillskip}{-2em}%
@@ -922,6 +925,9 @@
       \setlength{\parindent}{0cm}%
       \bfseries\normalsize%
       \addvspace{5pt}%
+      \IfBooleanF{#1}{%
+        \addvspace{10pt}%
+      }%
       \noindent%
       \setlength{\rightskip}{2em}%
       \setlength{\parfillskip}{-2em}%
@@ -1076,7 +1082,7 @@
   \l@mysection*{\myprogramname\space#1}{#2}%
 }
 \NewDocumentCommand{\myabstract}{s o}{%
-  \IfIsRomanF{\newpage\pagenumbering{Roman}}%
+  \mypackage@IfPagenumberingF{Roman}{\newpage\pagenumbering{Roman}}%
   \ifGlobalMypartUsed%
     \mypartheading*{\myabstractname}%
   \else%
@@ -1115,7 +1121,7 @@
     \keys_set:nn{myintroduction}{%
       #2%
     }%
-    \IfIsarabicF{\newpage\pagenumbering{arabic}}%
+    \mypackage@IfPagenumberingF{arabic}{\newpage\pagenumbering{arabic}}%
     \ifGlobalMypartUsed%
       \IfBooleanTF{#1}{%
         \mypartheading*{\myintroductionname}%
@@ -1224,10 +1230,10 @@
     }%
     \RegisterStructureUsage{Mypart}%
     \ifMyannexUsed%
-      \IfIsalphF{\newpage\pagenumbering{myalph}}%
+      \mypackage@IfPagenumberingF{alph}{\newpage\pagenumbering{myalph}}%
       \let\myheadingname\myannexname%
     \else%
-      \IfIsarabicF{\newpage\pagenumbering{arabic}}%
+      \mypackage@IfPagenumberingF{arabic}{\newpage\pagenumbering{arabic}}%
       \let\myheadingname\mypartname%
     \fi%
     \bool_if:NT{\l_mypart_nameUsed_bool}{%
@@ -1279,9 +1285,9 @@
     }%
     \RegisterStructureUsage{Mychapter}%
     \ifMyannexUsed%
-      \IfIsalphF{\newpage\pagenumbering{myalph}}%
+      \mypackage@IfPagenumberingF{alph}{\newpage\pagenumbering{myalph}}%
     \else%
-      \IfIsarabicF{\newpage\pagenumbering{arabic}}%
+      \mypackage@IfPagenumberingF{arabic}{\newpage\pagenumbering{arabic}}%
     \fi%
     \IfBooleanTF{#1}{%
       \mychapterheading*{#2}%
@@ -1329,9 +1335,9 @@
     }%
     \RegisterStructureUsage{Mysection}%
     \ifMyannexUsed%
-      \IfIsalphF{\newpage\pagenumbering{myalph}}%
+      \mypackage@IfPagenumberingF{alph}{\newpage\pagenumbering{myalph}}%
     \else%
-      \IfIsarabicF{\newpage\pagenumbering{arabic}}%
+      \mypackage@IfPagenumberingF{arabic}{\newpage\pagenumbering{arabic}}%
     \fi%
     \IfBooleanTF{#1}{%
       \mysectionheading*{#2}%
@@ -1389,9 +1395,9 @@
     }%
     \RegisterStructureUsage{Mysubsection}%
     \ifMyannexUsed%
-      \IfIsalphF{\newpage\pagenumbering{myalph}}%
+      \mypackage@IfPagenumberingF{alph}{\newpage\pagenumbering{myalph}}%
     \else%
-      \IfIsarabicF{\newpage\pagenumbering{arabic}}%
+      \mypackage@IfPagenumberingF{arabic}{\newpage\pagenumbering{arabic}}%
     \fi%
     \IfBooleanTF{#1}{%
       \mysubsectionheading*{#2}%
@@ -1452,9 +1458,9 @@
     }%
     \RegisterStructureUsage{Mysubsubsection}%
     \ifMyannexUsed%
-      \IfIsalphF{\newpage\pagenumbering{myalph}}%
+      \mypackage@IfPagenumberingF{alph}{\newpage\pagenumbering{myalph}}%
     \else%
-      \IfIsarabicF{\newpage\pagenumbering{arabic}}%
+      \mypackage@IfPagenumberingF{arabic}{\newpage\pagenumbering{arabic}}%
     \fi%
     \IfBooleanTF{#1}{%
       \mysubsubsectionheading*{#2}%
@@ -1496,7 +1502,7 @@
   }
 \ExplSyntaxOff
 \NewDocumentCommand{\mytableofcontents}{s o}{%
-  \IfIsRomanF{\newpage\pagenumbering{Roman}}%
+  \mypackage@IfPagenumberingF{Roman}{\newpage\pagenumbering{Roman}}%
   \begingroup%
     \clearpage%
     \let\\\space%
@@ -1523,7 +1529,7 @@
 }
 \NewDocumentCommand{\mylistoffigures}{s o}{%
   \clearpage%
-  \IfIsRomanF{\newpage\pagenumbering{Roman}}%
+  \mypackage@IfPagenumberingF{Roman}{\newpage\pagenumbering{Roman}}%
   \ifGlobalMypartUsed%
     \mypartheading*{\mylistfigurename}%
   \else%
@@ -1546,7 +1552,7 @@
 }
 \NewDocumentCommand{\mylistoftables}{s o}{%
   \clearpage%
-  \IfIsRomanF{\newpage\pagenumbering{Roman}}%
+  \mypackage@IfPagenumberingF{Roman}{\newpage\pagenumbering{Roman}}%
   \ifGlobalMypartUsed%
     \mypartheading*{\mylisttablename}%
   \else%
@@ -1569,7 +1575,7 @@
 }
 \NewDocumentCommand{\mylistofprograms}{s o}{%
   \clearpage%
-  \IfIsRomanF{\newpage\pagenumbering{Roman}}%
+  \mypackage@IfPagenumberingF{Roman}{\newpage\pagenumbering{Roman}}%
   \ifGlobalMypartUsed%
     \mypartheading*{\mylistprogramname}%
   \else%
@@ -1592,7 +1598,7 @@
 }
 \NewDocumentCommand{\mylistofequations}{s o}{%
   \clearpage%
-  \IfIsRomanF{\newpage\pagenumbering{Roman}}%
+  \mypackage@IfPagenumberingF{Roman}{\newpage\pagenumbering{Roman}}%
   \ifGlobalMypartUsed%
     \mypartheading*{\mylistequationname}%
   \else%
@@ -1686,8 +1692,8 @@
 \NewDocumentCommand{\mybibliography}{s o}{
   \MybibUsedtrue%
   \clearpage%
-  \IfIsRomanF{\newpage\pagenumbering{roman}}%
-  \myhyperanchor*{mybibliography}%
+  \mypackage@IfPagenumberingF{Roman}{\newpage\pagenumbering{roman}}%
+  \myhyperanchor*{mybib}%
   \IfNoValueF{#2}{%
     \mylabel*{mybib}{bib:#2}%
   }%
