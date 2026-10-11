@@ -1,20 +1,11 @@
 % eng-fontspec: the user selects an OpenType font with fontspec; the class
 % must not override it (text={fontfamily=...} is left at its default).
-%
-% NOTE: the reference .tlg files were generated on a TeX Live 2023 where
-% luaotfload could not read any OpenType font, so the LuaTeX run is
-% skipped.  On a working TeX Live, delete the \ifdefined\directlua block
-% and run "scripts/save-all.sh config-engines".
 \input{regression-test}
 \documentclass{myreport}
-\ifdefined\directlua
-  \begin{document}
-  \START
-  \TYPE{SKIPPED with LuaTeX (see the note at the top of the file)}
-  \end{document}
-\fi
 \usepackage{fontspec}
-\setmainfont{TeX Gyre Pagella}
+\setmainfont{texgyrepagella-regular.otf}[
+  BoldFont=texgyrepagella-bold.otf, ItalicFont=texgyrepagella-italic.otf,
+  BoldItalicFont=texgyrepagella-bolditalic.otf]
 \input{mytest-helpers}
 \begin{document}
 \START

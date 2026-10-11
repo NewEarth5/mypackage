@@ -13,17 +13,13 @@ familydefault: ptm; rmdefault: ptm; sfdefault: cmss; ttdefault: cmtt
 .\T1/ptm/m/n/10 b
 ! OK.
 \SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
-l. ...}
+l. ...
 ============================================================
 (cls-font-ptm.aux)
 LaTeX Warning: There were undefined references.
 Package rerunfilecheck Warning: File `cls-font-ptm.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
-Package rerunfilecheck Info: Checksums for `cls-font-ptm.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                cls-font-ptm
 (biblatex)                and rerun LaTeX afterwards.
-Package logreq Info: Writing requests to 'cls-font-ptm.run.xml'.

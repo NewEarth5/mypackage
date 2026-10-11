@@ -6,7 +6,6 @@ Don't change this file in any respect.
 \contentsline {mychapter}{\mychapterbox [l]{1}\hspace {1em}Chapter}{1}{mychapter.1}%[nl]
 -------- cls-bib-star.mytoc (end) -----------
 (cls-bib-star.mytoc)
-Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
@@ -24,6 +23,3 @@ COUNTERS: part=0, chapter=1, section=0, subsection=0, subsubsection=0, figure=0,
 [1
 ]
 (cls-bib-star.aux)
-Package rerunfilecheck Info: File `cls-bib-star.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'cls-bib-star.run.xml'.

@@ -1,13 +1,8 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
-Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
 <images/wide.png, id=6, 301.125pt x 100.375pt>
 File: images/wide.png Graphic file (type png)
 <use images/wide.png>
-Package pdftex.def Info: images/wide.png  used on input line ....
-(pdftex.def)             Requested size: 421.72374pt x 140.55446pt.
-Package hyperref Info: bookmark level for unknown myfigure defaults to 0 on input line ....
-Package hyperref Info: bookmark level for unknown mytable defaults to 0 on input line ....
 ============================================================
 TEST 1: \cref on package labels
 ============================================================
@@ -21,7 +16,7 @@ LaTeX Warning: cref reference format for label type `' undefined on input line .
 .\glue 3.33252 plus 1.66626 minus 1.11084
 ! OK.
 \SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
-l. ...}
+l. ...
 LaTeX Warning: cref reference format for label type `' undefined on input line ....
 > \box...=
 \hbox(6.9011+0.0)x14.19098
@@ -32,7 +27,7 @@ LaTeX Warning: cref reference format for label type `' undefined on input line .
 .\glue 3.33252 plus 1.66626 minus 1.11084
 ! OK.
 \SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
-l. ...}
+l. ...
 ============================================================
 ============================================================
 TEST 2: \myref still works
@@ -56,7 +51,7 @@ TEST 2: \myref still works
 .\pdfendlink
 ! OK.
 \SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
-l. ...}
+l. ...
 ============================================================
 [1
 Non-PDF special ignored!
@@ -64,6 +59,3 @@ Non-PDF special ignored!
  <./images/wide.png (PNG copy)>]
 (compat-cleveref.aux)
 LaTeX Warning: There were undefined references.
-Package rerunfilecheck Info: File `compat-cleveref.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'compat-cleveref.run.xml'.

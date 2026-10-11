@@ -1,18 +1,11 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
-Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
 <images/wide.png, id=6, 301.125pt x 100.375pt>
 File: images/wide.png Graphic file (type png)
 <use images/wide.png>
-Package pdftex.def Info: images/wide.png  used on input line ....
-(pdftex.def)             Requested size: 421.72374pt x 140.55446pt.
-Package hyperref Info: bookmark level for unknown myfigure defaults to 0 on input line ....
 REF fig:wide: number=[1.1] page=[1] anchor=[myfigure.1.1]
 [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
  <./images/wide.png (PNG copy)>]
 (compat-tikz-pgfplots.aux)
-Package rerunfilecheck Info: File `compat-tikz-pgfplots.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'compat-tikz-pgfplots.run.xml'.

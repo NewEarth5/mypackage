@@ -7,7 +7,6 @@ Don't change this file in any respect.
 \contentsline {mysection}{\mysectionbox [l]{A}\hspace {1em}Annex one}{a}{mysection.A}%[nl]
 -------- cls-annex-sections.mytoc (end) -----------
 (cls-annex-sections.mytoc)
-Package hyperref Info: bookmark level for unknown mysection defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
@@ -20,6 +19,3 @@ REF ann:subsec:asub: number=[A.1] page=[a] anchor=[mysubsection.A.1]
 [1
 ]
 (cls-annex-sections.aux)
-Package rerunfilecheck Info: File `cls-annex-sections.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'cls-annex-sections.run.xml'.

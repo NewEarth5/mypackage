@@ -2,6 +2,12 @@
 \input{regression-test}
 \documentclass{myreport}
 \input{mytest-helpers}
+% A sub-caption is as wide as its image, so the caption of the narrow
+% second image ("Second", 17pt wide) cannot be set without an over- or
+% underfull box, depending on the hyphenation patterns of the TeX
+% distribution.  Those warnings are not what this test checks (the width of
+% sub-captions is revisited in v0.7.5), so they are switched off.
+\hbadness=10000 \hfuzz=\maxdimen
 \begin{document}
 \START
 \SHOWLIST{mylof}

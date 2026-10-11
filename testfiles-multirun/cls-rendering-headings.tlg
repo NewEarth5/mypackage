@@ -1,24 +1,23 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
-Package hyperref Info: bookmark level for unknown mypart defaults to 0 on input line ....
 Completed box being shipped out [1]
 \vbox(731.64497+0.0)x454.106
 .\hbox(0.0+0.0)x0.0
 .\hbox(0.0+0.0)x0.0
 ..\kern -72.26999
-..\vbox(0.0+0.0)x0.0, glue set 72.26999fil
+..\vbox(0.0+0.0)x0.0, glue set 72.27fil
 ...\kern -72.26999
 ...\hbox(0.0+0.0)x0.0
-....\hbox(0.0+0.0)x0.0, glue set 72.26999fil, shifted 72.26999
+....\hbox(0.0+0.0)x0.0, glue set 72.27fil, shifted 72.26999
 .....\kern -72.26999
 .....\glue 0.0 plus 1.0fil minus 1.0fil
 ....\glue 0.0 plus 1.0fil minus 1.0fil
 ...\glue 0.0 plus 1.0fil minus 1.0fil
-.\vbox(0.0+0.0)x0.0, glue set 39.14185fil
+.\vbox(0.0+0.0)x0.0, glue set 39.14fil
 ..\kern 0.0
 ..\kern -38.1381
 ..\kern -1.00374
-..\hbox(0.0+0.0)x0.0, glue set 2.14185fil
+..\hbox(0.0+0.0)x0.0, glue set 2.14fil
 ...\kern 0.0
 ...\kern -1.1381
 ...\kern -1.00374
@@ -30,7 +29,7 @@ Completed box being shipped out [1]
 .\vbox(731.64497+0.0)x454.106
 ..\glue -38.1381
 ..\vbox(769.78308+0.0)x455.24411, shifted -1.1381
-...\vbox(12.0+0.0)x455.24411, glue set 12.0fil
+...\vbox(12.0+0.0)x455.24411, glue set 12.00fil
 ....\glue 0.0 plus 1.0fil
 ....\hbox(0.0+0.0)x455.24411
 .....\pdfcolorstack 0 push {0 g 0 G}
@@ -38,7 +37,7 @@ Completed box being shipped out [1]
 .....\pdfcolorstack 0 pop
 ...\glue 25.0
 ...\glue(\lineskip) 0.0
-...\vbox(702.78308+0.0)x455.24411, glue set 583.84283fil
+...\vbox(702.78308+0.0)x455.24411, glue set 583.84fil
 ....\write-{}
 ....\write1{\noexpand \providecommand \noexpand \oddpage@label [2]{}}
 ....\pdfcolorstack 0 push {0 g 0 G}
@@ -46,7 +45,7 @@ Completed box being shipped out [1]
 ....\pdfdest name{Doc-Start} xyz
 ....\write-{}
 ....\glue(\topskip) 0.0
-....\hbox(16.5626+0.0)x455.24411, glue set 189.40227fil
+....\hbox(16.5626+0.0)x455.24411, glue set 189.40fil
 .....\glue(\leftskip) 0.0 plus 1.0fil
 .....\hbox(0.0+0.0)x0.0
 .....\T1/cmr/bx/it/24.88 P
@@ -76,7 +75,7 @@ Completed box being shipped out [1]
 ....\glue(\parskip) 0.0 plus 1.0
 ....\glue(\parskip) 0.0
 ....\glue(\baselineskip) 13.4374
-....\hbox(16.5626+0.0)x455.24411, glue set 173.43321fil
+....\hbox(16.5626+0.0)x455.24411, glue set 173.43fil
 .....\glue(\leftskip) 0.0 plus 1.0fil
 .....\hbox(0.0+0.0)x0.0
 .....\T1/cmr/bx/it/24.88 P
@@ -119,7 +118,7 @@ Completed box being shipped out [1]
 ...\glue(\baselineskip) 23.5849
 ...\hbox(6.4151+0.0)x455.24411
 ....\pdfcolorstack 0 push {0 g 0 G}
-....\hbox(6.4151+0.0)x455.24411, glue set 225.12267fil
+....\hbox(6.4151+0.0)x455.24411, glue set 225.12fil
 .....\glue 0.0 plus 1.0fil
 .....\T1/cmr/m/n/10 1
 .....\glue 0.0 plus 1.0fil
@@ -128,25 +127,23 @@ Completed box being shipped out [1]
 .\kern 0.0
 Non-PDF special ignored!
 <special> header=psfrag.pro
-Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
-Package hyperref Info: bookmark level for unknown mysection defaults to 0 on input line ....
 Completed box being shipped out [2]
 \vbox(731.64497+0.0)x454.106
 .\hbox(0.0+0.0)x0.0
 ..\kern -72.26999
-..\vbox(0.0+0.0)x0.0, glue set 72.26999fil
+..\vbox(0.0+0.0)x0.0, glue set 72.27fil
 ...\kern -72.26999
 ...\hbox(0.0+0.0)x0.0
-....\hbox(0.0+0.0)x0.0, glue set 72.26999fil, shifted 72.26999
+....\hbox(0.0+0.0)x0.0, glue set 72.27fil, shifted 72.26999
 .....\kern -72.26999
 .....\glue 0.0 plus 1.0fil minus 1.0fil
 ....\glue 0.0 plus 1.0fil minus 1.0fil
 ...\glue 0.0 plus 1.0fil minus 1.0fil
-.\vbox(0.0+0.0)x0.0, glue set 39.14185fil
+.\vbox(0.0+0.0)x0.0, glue set 39.14fil
 ..\kern 0.0
 ..\kern -38.1381
 ..\kern -1.00374
-..\hbox(0.0+0.0)x0.0, glue set 2.14185fil
+..\hbox(0.0+0.0)x0.0, glue set 2.14fil
 ...\kern 0.0
 ...\kern -1.1381
 ...\kern -1.00374
@@ -158,7 +155,7 @@ Completed box being shipped out [2]
 .\vbox(731.64497+0.0)x454.106
 ..\glue -38.1381
 ..\vbox(769.78308+0.0)x455.24411, shifted -1.1381
-...\vbox(12.0+0.0)x455.24411, glue set 12.0fil
+...\vbox(12.0+0.0)x455.24411, glue set 12.00fil
 ....\glue 0.0 plus 1.0fil
 ....\hbox(0.0+0.0)x455.24411
 .....\pdfcolorstack 0 push {0 g 0 G}
@@ -166,10 +163,10 @@ Completed box being shipped out [2]
 .....\pdfcolorstack 0 pop
 ...\glue 25.0
 ...\glue(\lineskip) 0.0
-...\vbox(702.78308+0.0)x455.24411, glue set 510.80132fil
+...\vbox(702.78308+0.0)x455.24411, glue set 510.80fil
 ....\write-{}
 ....\glue(\topskip) 0.0
-....\hbox(11.92508+3.35919)x455.24411, glue set 306.52655fil
+....\hbox(11.92508+3.35919)x455.24411, glue set 306.53fil
 .....\hbox(0.0+0.0)x0.0
 .....\T1/cmr/bx/n/17.28 1
 .....\T1/cmr/bx/n/17.28 .
@@ -194,7 +191,7 @@ Completed box being shipped out [2]
 .....\glue(\rightskip) 0.0
 ....\penalty 300
 ....\glue(\baselineskip) 18.64081
-....\hbox(0.0+0.0)x455.24411, glue set 455.24411fil
+....\hbox(0.0+0.0)x455.24411, glue set 455.24fil
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
@@ -206,7 +203,7 @@ Completed box being shipped out [2]
 ....\glue(\parskip) 0.0 plus 1.0
 ....\glue(\parskip) 0.0
 ....\glue(\baselineskip) 5.1128
-....\hbox(6.8872+0.0)x455.24411, glue set 413.02853fil
+....\hbox(6.8872+0.0)x455.24411, glue set 413.03fil
 .....\hbox(0.0+0.0)x15.0
 .....\T1/cmr/m/n/10 T
 .....\kern-0.83313
@@ -226,7 +223,7 @@ Completed box being shipped out [2]
 ....\glue(\parskip) 0.0 plus 1.0
 ....\glue(\parskip) 0.0
 ....\glue(\baselineskip) 8.06242
-....\hbox(9.93758+0.0)x455.24411, glue set 322.95125fil
+....\hbox(9.93758+0.0)x455.24411, glue set 322.95fil
 .....\hbox(0.0+0.0)x0.0
 .....\T1/cmr/bx/n/14.4 1
 .....\T1/cmr/bx/n/14.4 .
@@ -253,7 +250,7 @@ Completed box being shipped out [2]
 .....\glue(\rightskip) 0.0
 ....\penalty 300
 ....\glue(\baselineskip) 18.0
-....\hbox(0.0+0.0)x455.24411, glue set 455.24411fil
+....\hbox(0.0+0.0)x455.24411, glue set 455.24fil
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
@@ -265,7 +262,7 @@ Completed box being shipped out [2]
 ....\glue(\parskip) 0.0 plus 1.0
 ....\glue(\parskip) 0.0
 ....\glue(\baselineskip) 5.1128
-....\hbox(6.8872+0.0)x455.24411, glue set 413.02853fil
+....\hbox(6.8872+0.0)x455.24411, glue set 413.03fil
 .....\hbox(0.0+0.0)x15.0
 .....\T1/cmr/m/n/10 T
 .....\kern-0.83313
@@ -285,7 +282,7 @@ Completed box being shipped out [2]
 ....\glue(\parskip) 0.0 plus 1.0
 ....\glue(\parskip) 0.0
 ....\glue(\baselineskip) 5.71869
-....\hbox(8.28131+0.0)x455.24411, glue set 311.63477fil
+....\hbox(8.28131+0.0)x455.24411, glue set 311.63fil
 .....\hbox(0.0+0.0)x0.0
 .....\T1/cmr/bx/n/12 1
 .....\T1/cmr/bx/n/12 .
@@ -317,7 +314,7 @@ Completed box being shipped out [2]
 .....\glue(\rightskip) 0.0
 ....\penalty 300
 ....\glue(\baselineskip) 14.0
-....\hbox(0.0+0.0)x455.24411, glue set 455.24411fil
+....\hbox(0.0+0.0)x455.24411, glue set 455.24fil
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
@@ -328,7 +325,7 @@ Completed box being shipped out [2]
 ....\glue(\parskip) 0.0 plus 1.0
 ....\glue(\parskip) 0.0
 ....\glue(\baselineskip) 5.1128
-....\hbox(6.8872+0.0)x455.24411, glue set 413.02853fil
+....\hbox(6.8872+0.0)x455.24411, glue set 413.03fil
 .....\hbox(0.0+0.0)x15.0
 .....\T1/cmr/m/n/10 T
 .....\kern-0.83313
@@ -348,7 +345,7 @@ Completed box being shipped out [2]
 ....\glue(\parskip) 0.0 plus 1.0
 ....\glue(\parskip) 0.0
 ....\glue(\baselineskip) 5.0989
-....\hbox(6.9011+0.0)x455.24411, glue set 306.61096fil
+....\hbox(6.9011+0.0)x455.24411, glue set 306.61fil
 .....\hbox(0.0+0.0)x0.0
 .....\T1/cmr/bx/n/10 1
 .....\T1/cmr/bx/n/10 .
@@ -385,7 +382,7 @@ Completed box being shipped out [2]
 .....\glue(\rightskip) 0.0
 ....\penalty 300
 ....\glue(\baselineskip) 12.0
-....\hbox(0.0+0.0)x455.24411, glue set 455.24411fil
+....\hbox(0.0+0.0)x455.24411, glue set 455.24fil
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
@@ -396,7 +393,7 @@ Completed box being shipped out [2]
 ....\glue(\parskip) 0.0 plus 1.0
 ....\glue(\parskip) 0.0
 ....\glue(\baselineskip) 5.1128
-....\hbox(6.8872+0.0)x455.24411, glue set 413.02853fil
+....\hbox(6.8872+0.0)x455.24411, glue set 413.03fil
 .....\hbox(0.0+0.0)x15.0
 .....\T1/cmr/m/n/10 T
 .....\kern-0.83313
@@ -416,7 +413,7 @@ Completed box being shipped out [2]
 ....\glue(\parskip) 0.0 plus 1.0
 ....\glue(\parskip) 0.0
 ....\glue(\baselineskip) 8.06242
-....\hbox(9.93758+0.0)x455.24411, glue set 350.47884fil
+....\hbox(9.93758+0.0)x455.24411, glue set 350.48fil
 .....\hbox(0.0+0.0)x0.0
 .....\T1/cmr/bx/n/14.4 S
 .....\T1/cmr/bx/n/14.4 t
@@ -439,7 +436,7 @@ Completed box being shipped out [2]
 .....\glue(\rightskip) 0.0
 ....\penalty 300
 ....\glue(\baselineskip) 18.0
-....\hbox(0.0+0.0)x455.24411, glue set 455.24411fil
+....\hbox(0.0+0.0)x455.24411, glue set 455.24fil
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
@@ -450,7 +447,7 @@ Completed box being shipped out [2]
 ....\glue(\parskip) 0.0 plus 1.0
 ....\glue(\parskip) 0.0
 ....\glue(\baselineskip) 5.1128
-....\hbox(6.8872+0.0)x455.24411, glue set 417.4719fil
+....\hbox(6.8872+0.0)x455.24411, glue set 417.47fil
 .....\hbox(0.0+0.0)x15.0
 .....\T1/cmr/m/n/10 T
 .....\kern-0.83313
@@ -467,7 +464,7 @@ Completed box being shipped out [2]
 ...\glue(\baselineskip) 23.5849
 ...\hbox(6.4151+0.0)x455.24411
 ....\pdfcolorstack 0 push {0 g 0 G}
-....\hbox(6.4151+0.0)x455.24411, glue set 225.12267fil
+....\hbox(6.4151+0.0)x455.24411, glue set 225.12fil
 .....\glue 0.0 plus 1.0fil
 .....\T1/cmr/m/n/10 2
 .....\glue 0.0 plus 1.0fil
@@ -476,8 +473,5 @@ Completed box being shipped out [2]
 pdfTeX warning (ext4): destination with the same identifier (name{mysection.1.1.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l. ...\end{document}
+l. ...
 (cls-rendering-headings.aux)
-Package rerunfilecheck Info: File `cls-rendering-headings.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'cls-rendering-headings.run.xml'.

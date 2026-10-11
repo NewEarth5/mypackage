@@ -1,18 +1,13 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
-Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
 (../lstlang1.sty
-File: lstlang1.sty ....-..-.. 1.9 listings language file
+File: lstlang1.sty ....-..-.. v... listings language file
 ) (../lstmisc.sty
-File: lstmisc.sty ....-..-.. 1.9 (Carsten Heinz)
+File: lstmisc.sty ....-..-.. v... (Carsten Heinz)
 )
-Package hyperref Info: bookmark level for unknown myprogram defaults to 0 on input line ....
 REF code:py:hello: number=[1.1] page=[1] anchor=[myprogram.1.1]
 [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
 ]
 (compat-listings.aux)
-Package rerunfilecheck Info: File `compat-listings.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'compat-listings.run.xml'.

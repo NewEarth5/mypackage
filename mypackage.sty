@@ -9,7 +9,7 @@
 \ProvidesPackage{%                                 % Package information            %
   mypackage%                                       % - Name                         %
 }[%                                                %                                %
-  2026/10/10 V0.6.5 %                              % - Version (the space before %  %
+  2026/10/11 V0.6.5 %                              % - Version (the space before %  %
   Custom Package by Alexandre Lindsey%             %   ends the version number)     %
 ]                                                  %                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -161,11 +161,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% REQUIRED PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\IfSubStr{\mypackage@lang}{russian}{%              % Font output encoding:          %
-  \RequirePackage[T2A,T1]{fontenc}%                % - Cyrillic + Latin             %
-}{%                                                %                                %
-  \RequirePackage[T1]{fontenc}%                    % - Latin                        %
-}                                                  %                                %
+\ifdefined\Umathcode\else%                         % Font output encoding, pdfTeX   %
+  \IfSubStr{\mypackage@lang}{russian}{%            % only (LuaTeX/XeTeX use TU)     %
+    \RequirePackage[T2A,T1]{fontenc}%              % - Cyrillic + Latin             %
+  }{%                                              %                                %
+    \RequirePackage[T1]{fontenc}%                  % - Latin                        %
+  }%                                               %                                %
+\fi                                                %                                %
 \RequirePackage{adjustbox}                         % Create custom boxes            %
 \RequirePackage[                                   % Multilingual text support      %
   \mypackage@lang,                                 % - Language option              %
@@ -183,20 +185,20 @@
 ]{caption}                                         %                                %
 \RequirePackage{chemmacros}                        % Chemistry symbols and units    %
 \RequirePackage{enumitem}                          % Bullet symbol for itemize      %
-\RequirePackage[                                   % Set page layout and margins    %
-  a4paper,                                         % - Set page size to A4          %
-  margin=2.5cm,                                    % - Set all page margins         %
-  bottom=2.5cm,                                    % - Bottom page margin size      %
-  top=2.5cm,                                       % - Top page margin size         %
-]{geometry}                                        %                                %
+\RequirePackage{geometry}                          % Set page layout and margins    %
+\geometry{%                                        % (set after loading: no option  %
+  a4paper,%                                        % clash if the user loaded       %
+  margin=2.5cm,%                                   % geometry first)                %
+}                                                  % - A4, all margins 2.5cm        %
 \RequirePackage{graphicx}                          % Include and adjust graphics    %
-\RequirePackage[                                   % Add hyperlinks to document     %
-  linktoc=none,                                    % - Controls if TOC has links    %
-  colorlinks=true,                                 % - Enable colored hyperlinks    %
-  linkcolor=black,                                 % - Color for internal links     %
-  urlcolor=black,                                  % - Color for URL links          %
-  citecolor=black,                                 % - Color for citation links     %
-]{hyperref}                                        %                                %
+\RequirePackage{hyperref}                          % Add hyperlinks to document     %
+\hypersetup{%                                      % (set after loading: no option  %
+  linktoc=none,%                                   % clash if the user loaded       %
+  colorlinks=true,%                                % hyperref first)                %
+  linkcolor=black,%                                % - No automatic TOC links (the  %
+  urlcolor=black,%                                 %   class makes its own), black  %
+  citecolor=black,%                                %   coloured links               %
+}                                                  %                                %
 \RequirePackage[                                   % Typeset chemical equations     %
     version=4,                                     % - Version number               %
 ]{mhchem}                                          %                                %

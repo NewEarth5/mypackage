@@ -3,20 +3,11 @@ Don't change this file in any respect.
 <images/wide.png, id=10, 301.125pt x 100.375pt>
 File: images/wide.png Graphic file (type png)
 <use images/wide.png>
-Package pdftex.def Info: images/wide.png  used on input line ....
-(pdftex.def)             Requested size: 421.72374pt x 140.55446pt.
-Package hyperref Info: bookmark level for unknown myfigure defaults to 0 on input line ....
-Package hyperref Info: bookmark level for unknown mytable defaults to 0 on input line ....
-Package hyperref Info: bookmark level for unknown myequation defaults to 0 on input line ....
 File: images/wide.png Graphic file (type png)
 <use images/wide.png>
-Package pdftex.def Info: images/wide.png  used on input line ....
-(pdftex.def)             Requested size: 182.09486pt x 60.70024pt.
 <images/tall.png, id=11, 100.375pt x 401.5pt>
 File: images/tall.png Graphic file (type png)
 <use images/tall.png>
-Package pdftex.def Info: images/tall.png  used on input line ....
-(pdftex.def)             Requested size: 182.09486pt x 728.48888pt.
 LaTeX Warning: Float too large for page by 64.7058pt on input line ....
 THE: part=[] chapter=[] section=[] subsection=[] subsubsection=[] figure=[2] subfigure=[2.b] table=[1] program=[0] equation=[1]
 FLAGS: part=F, chapter=F, section=F, subsection=F, subsubsection=F, annex=F, bib=F, highest=mysubsubsection
@@ -44,7 +35,7 @@ TEST 1: References
 .\pdfendlink
 ! OK.
 \SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
-l. ...}
+l. ...
 > \box...=
 \hbox(6.8872+0.0)x48.65479
 .\pdfstartlink(*+*)x* attr{/Border[0 0 0]/H/I/C[1 0 0]} action goto name{mytable.1}
@@ -66,7 +57,7 @@ l. ...}
 .\pdfendlink
 ! OK.
 \SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
-l. ...}
+l. ...
 ============================================================
 LaTeX Warning: `h' float specifier changed to `ht'.
 [1
@@ -74,6 +65,3 @@ Non-PDF special ignored!
 <special> header=psfrag.pro
  <./images/wide.png (PNG copy)>] [2 <./images/tall.png (PNG copy)>]
 (pkg-article.aux)
-Package rerunfilecheck Info: File `pkg-article.out' has not changed.
-(rerunfilecheck)             Checksum: D7C9065CA17CA666342B2B67C24790F0;139.
-Package logreq Info: Writing requests to 'pkg-article.run.xml'.

@@ -22,10 +22,6 @@ LaTeX Warning: There were undefined references.
 Package rerunfilecheck Warning: File `cls-options-text.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
-Package rerunfilecheck Info: Checksums for `cls-options-text.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                cls-options-text
 (biblatex)                and rerun LaTeX afterwards.
-Package logreq Info: Writing requests to 'cls-options-text.run.xml'.

@@ -1,7 +1,6 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 textwidth after \geometry: 483.69687pt
-Package hyperref Info: Option `pageanchor' set `false' on input line ....
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
 * paper: a4paper
@@ -37,7 +36,6 @@ Package hyperref Info: Option `pageanchor' set `false' on input line ....
 Non-PDF special ignored!
 <special> header=psfrag.pro
 ]
-Package hyperref Info: Option `pageanchor' set `true' on input line ....
 textwidth after \mymaketitle: 483.69687pt
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
@@ -73,6 +71,3 @@ textwidth after \mymaketitle: 483.69687pt
 textwidth after \newgeometry: 369.88583pt
 textwidth after \restoregeometry: 483.69687pt
 (compat-geometry.aux)
-Package rerunfilecheck Info: File `compat-geometry.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'compat-geometry.run.xml'.

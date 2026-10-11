@@ -9,7 +9,7 @@
 \ProvidesClass{%                                   % Class information              %
   myreport%                                        % - Name                         %
 }[%                                                %                                %
-  2026/10/10 V0.6.5 %                              % - Version (the space before %  %
+  2026/10/11 V0.6.5 %                              % - Version (the space before %  %
   Custom Report Class by Alexandre Lindsey%        %   ends the version number)     %
 ]                                                  %                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

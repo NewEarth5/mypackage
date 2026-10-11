@@ -1,13 +1,8 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
-Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
-Package hyperref Info: bookmark level for unknown myequation defaults to 0 on input line ....
 REF eq:ch: number=[{1.1}] page=[1] anchor=[AMS.1]
 [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
 ]
 (compat-chemistry.aux)
-Package rerunfilecheck Info: File `compat-chemistry.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'compat-chemistry.run.xml'.

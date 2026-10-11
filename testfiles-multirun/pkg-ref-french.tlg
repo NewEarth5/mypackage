@@ -1,6 +1,5 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
-Package hyperref Info: bookmark level for unknown mypart defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
@@ -11,17 +10,9 @@ Non-PDF special ignored!
 ] [1
 ] [2
 ]
-Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
-Package hyperref Info: bookmark level for unknown mysection defaults to 0 on input line ....
 <images/wide.png, id=49, 301.125pt x 100.375pt>
 File: images/wide.png Graphic file (type png)
 <use images/wide.png>
-Package pdftex.def Info: images/wide.png  used on input line ....
-(pdftex.def)             Requested size: 421.72374pt x 140.55446pt.
-Package hyperref Info: bookmark level for unknown myfigure defaults to 0 on input line ....
-Package hyperref Info: bookmark level for unknown mytable defaults to 0 on input line ....
-Package hyperref Info: bookmark level for unknown myequation defaults to 0 on input line ....
-Package hyperref Info: bookmark level for unknown myprogram defaults to 0 on input line ....
 [3
  <./images/wide.png (PNG copy)>] [1
 ]
@@ -49,7 +40,7 @@ TEST 1: Typeset references
 .\pdfendlink
 ! OK.
 \SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
-l. ...}
+l. ...
 > \box...=
 \hbox(6.8872+1.94397)x72.12128
 .\pdfstartlink(*+*)x* attr{/Border[0 0 0]/H/I/C[1 0 0]} action goto name{myfigure.1.1.1}
@@ -77,7 +68,7 @@ l. ...}
 .\pdfendlink
 ! OK.
 \SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
-l. ...}
+l. ...
 > \box...=
 \hbox(8.56377+2.49939)x71.51031
 .\pdfstartlink(*+*)x* attr{/Border[0 0 0]/H/I/C[1 0 0]} action goto name{AMS.3}
@@ -103,7 +94,7 @@ l. ...}
 .\T1/cmr/m/n/10 )
 ! OK.
 \SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
-l. ...}
+l. ...
 ============================================================
 ============================================================
 TEST 2: Text of every reference (\hyperref is spied on)
@@ -158,6 +149,3 @@ voir Annexe A.1
 [2
 ]
 (pkg-ref-french.aux)
-Package rerunfilecheck Info: File `pkg-ref-french.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'pkg-ref-french.run.xml'.

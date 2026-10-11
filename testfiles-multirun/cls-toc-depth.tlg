@@ -10,20 +10,14 @@ Don't change this file in any respect.
 \contentsline {mysection}{\mysectionbox [l]{A.1.1}\hspace {1em}AS (depth 2, listed: annexdepth=2)}{b}{mysection.A.1.1}%[nl]
 -------- cls-toc-depth.mytoc (end) -----------
 (cls-toc-depth.mytoc
-Package hyperref Info: bookmark level for unknown mypart defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
 ] [1
 ]
-Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
 [2
 ] [1
 ]
-Package hyperref Info: bookmark level for unknown mysection defaults to 0 on input line ....
 [2
 ]
 (cls-toc-depth.aux)
-Package rerunfilecheck Info: File `cls-toc-depth.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'cls-toc-depth.run.xml'.

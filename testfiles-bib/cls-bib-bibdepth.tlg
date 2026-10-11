@@ -7,7 +7,6 @@ Don't change this file in any respect.
 \contentsline {mychapter}{Bibliography}{i}{Bibliography}%[nl]
 -------- cls-bib-bibdepth.mytoc (end) -----------
 (cls-bib-bibdepth.mytoc)
-Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
@@ -23,6 +22,3 @@ LaTeX Warning: Empty bibliography on input line ....
 [1
 ]
 (cls-bib-bibdepth.aux)
-Package rerunfilecheck Info: File `cls-bib-bibdepth.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'cls-bib-bibdepth.run.xml'.

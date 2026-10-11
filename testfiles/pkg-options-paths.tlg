@@ -12,10 +12,6 @@ LaTeX Warning: There were undefined references.
 Package rerunfilecheck Warning: File `pkg-options-paths.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
-Package rerunfilecheck Info: Checksums for `pkg-options-paths.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                pkg-options-paths
 (biblatex)                and rerun LaTeX afterwards.
-Package logreq Info: Writing requests to 'pkg-options-paths.run.xml'.

@@ -26,7 +26,7 @@ TEST 2: \mycleantext : trims spaces
 .\T1/cmr/m/n/10 ]
 ! OK.
 \SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
-l. ...}
+l. ...
 ============================================================
 ============================================================
 TEST 3: \mycleanline : trims spaces and trailing punctuation
@@ -60,7 +60,7 @@ STRING 1: macro:->\mycleanline {Caption.}
 .\T1/cmr/m/n/10 ]
 ! OK.
 \SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
-l. ...}
+l. ...
 > \box...=
 \hbox(7.49817+2.49939)x44.48914
 .\T1/cmr/m/n/10 [
@@ -75,7 +75,7 @@ l. ...}
 .\T1/cmr/m/n/10 ]
 ! OK.
 \SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
-l. ...}
+l. ...
 > \box...=
 \hbox(7.49817+2.49939)x74.14856
 .\T1/cmr/m/n/10 [
@@ -96,7 +96,7 @@ l. ...}
 .\T1/cmr/m/n/10 ]
 ! OK.
 \SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
-l. ...}
+l. ...
 ============================================================
 ============================================================
 TEST 4: \mycleanfirstline : first sentence without its final punctuation
@@ -122,7 +122,7 @@ TEST 4: \mycleanfirstline : first sentence without its final punctuation
 .\T1/cmr/m/n/10 ]
 ! OK.
 \SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
-l. ...}
+l. ...
 > \box...=
 \hbox(7.49817+2.49939)x85.03479
 .\T1/cmr/m/n/10 [
@@ -147,7 +147,7 @@ l. ...}
 .\T1/cmr/m/n/10 ]
 ! OK.
 \SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
-l. ...}
+l. ...
 > \box...=
 \hbox(7.49817+2.49939)x96.36536
 .\T1/cmr/m/n/10 [
@@ -173,7 +173,7 @@ l. ...}
 .\T1/cmr/m/n/10 ]
 ! OK.
 \SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
-l. ...}
+l. ...
 > \box...=
 \hbox(7.49817+2.49939)x23.10547
 .\T1/cmr/m/n/10 [
@@ -185,7 +185,7 @@ l. ...}
 .\T1/cmr/m/n/10 ]
 ! OK.
 \SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
-l. ...}
+l. ...
 > \box...=
 \hbox(7.49817+2.49939)x88.39508
 .\T1/cmr/m/n/10 [
@@ -211,7 +211,7 @@ l. ...}
 .\T1/cmr/m/n/10 ]
 ! OK.
 \SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
-l. ...}
+l. ...
 ============================================================
 ============================================================
 TEST 5: \currentacyear for every month
@@ -245,10 +245,6 @@ LaTeX Warning: There were undefined references.
 Package rerunfilecheck Warning: File `pkg-utils.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
-Package rerunfilecheck Info: Checksums for `pkg-utils.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                pkg-utils
 (biblatex)                and rerun LaTeX afterwards.
-Package logreq Info: Writing requests to 'pkg-utils.run.xml'.

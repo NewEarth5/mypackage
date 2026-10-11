@@ -150,9 +150,21 @@ one computer to another (file paths, line numbers, dates). Our
 - Windows paths (`C:\...\umsa.fd`) are converted to `/` so that l3build
   recognises them;
 - lines written by external programs (`runsystem(...)`: minted, Inkscape),
-  minted's cache files, register allocations and `LaTeX Font Info` messages
-  are removed: they depend on the OS and on program versions, not on our
-  code.
+  minted's cache files, register allocations and every *information*
+  message (`Package x Info: ...`, `LaTeX Font Info: ...`) are removed: they
+  depend on the OS and on package versions, not on our code. Warnings and
+  errors are kept;
+- details that differ between engine versions are normalised: the
+  character code in `Missing character` messages, the source text after
+  `l.<n>`, version numbers on dated lines, the last decimals of
+  `glue set`.
+
+What remains can still differ when *your* TeX installation has another
+version of a package than the reference: a package may change the layout
+(e.g. a page break moves) or its words (babel-portuges now calls the
+table of contents "Índice"). Those differences are real, but they are not
+bugs of ours: the reference is updated with the "Save expected results"
+workflow (see section 6).
 
 ### Fixed date
 
@@ -169,8 +181,8 @@ l3build was written for TeX Live; two things differ with MiKTeX:
    the lines, and its normalisation (line numbers, paths) fails, so almost
    every test fails. `l3build-normalise.lua` detects MiKTeX and passes
    `--max-print-line=9999` to pdfTeX and XeTeX instead. MiKTeX's LuaTeX has
-   no such option: LuaLaTeX tests (`config-engines`) may still fail
-   locally with MiKTeX; GitHub Actions runs them.
+   no such option; its lines (79 bytes, or a little less before a
+   multi-byte character) are rejoined before comparing.
 2. **Differences.** On Windows l3build compares with `fc` and writes `.fc`
    files. If Git is installed, `l3build-normalise.lua` uses
    `git diff --no-index` instead and writes `.diff` files (lines starting

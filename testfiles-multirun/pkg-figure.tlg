@@ -8,7 +8,6 @@ Don't change this file in any respect.
 \contentsline {myfigure}{\makebox [3.5em][l]{1.5}\mycleanfirstline {Caption with \textbf {bold} and math $x^2$. Second sentence.}}{3}{myfigure.1.5}%[nl]
 -------- pkg-figure.mylof (end) -----------
 (pkg-figure.mylof
-Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
@@ -16,35 +15,23 @@ Non-PDF special ignored!
 <images/wide.png, id=25, 301.125pt x 100.375pt>
 File: images/wide.png Graphic file (type png)
 <use images/wide.png>
-Package pdftex.def Info: images/wide.png  used on input line ....
-(pdftex.def)             Requested size: 421.72374pt x 140.55446pt.
-Package hyperref Info: bookmark level for unknown myfigure defaults to 0 on input line ....
 <images/tall.png, id=26, 100.375pt x 401.5pt>
 File: images/tall.png Graphic file (type png)
 <use images/tall.png>
-Package pdftex.def Info: images/tall.png  used on input line ....
-(pdftex.def)             Requested size: 227.62206pt x 910.6264pt.
 LaTeX Warning: Float too large for page by 229.84332pt on input line ....
 LaTeX Warning: `h' float specifier changed to `ht'.
 <images/square.jpg, id=27, 200.75pt x 200.75pt>
 File: images/square.jpg Graphic file (type jpg)
 <use images/square.jpg>
-Package pdftex.def Info: images/square.jpg  used on input line ....
-(pdftex.def)             Requested size: 136.58476pt x 70.28499pt.
-Package svg Info: Last page of `./svg-inkscape/plot_svg-tex.pdf' is 1 on input line ....
 (svg-inkscape/plot_svg-tex.pdf_tex
 <./svg-inkscape/plot_svg-tex.pdf, id=29, page=1, 224.33812pt x 111.41624pt>
 File: ./svg-inkscape/plot_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/plot_svg-tex.pdf, page 1>
-Package pdftex.def Info: ./svg-inkscape/plot_svg-tex.pdf , page1 used on input line ....
-(pdftex.def)             Requested size: 283.04343pt x 140.58751pt.
 )
 LaTeX Warning: `h' float specifier changed to `ht'.
 <images/sig.jpg, id=30, 301.125pt x 100.375pt>
 File: images/sig.jpg Graphic file (type jpg)
 <use images/sig.jpg>
-Package pdftex.def Info: images/sig.jpg  used on input line ....
-(pdftex.def)             Requested size: 421.72374pt x 140.55446pt.
 LaTeX Warning: `h' float specifier changed to `ht'.
 COUNTERS: part=0, chapter=1, section=0, subsection=0, subsubsection=0, figure=5, subfigure=0, table=0, program=0, equation=0, annex=0, page=1 (1)
 REF fig:wide: number=[1.1] page=[1] anchor=[myfigure.1.1]
@@ -55,6 +42,3 @@ REF fig:sig: number=[1.5] page=[3] anchor=[myfigure.1.5]
 [1
  <./images/wide.png (PNG copy)>] [2 <./images/tall.png (PNG copy)>] [3 <./images/square.jpg> <./svg-inkscape/plot_svg-tex.pdf> <./images/sig.jpg>]
 (pkg-figure.aux)
-Package rerunfilecheck Info: File `pkg-figure.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'pkg-figure.run.xml'.

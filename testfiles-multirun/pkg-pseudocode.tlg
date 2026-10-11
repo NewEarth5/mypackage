@@ -7,12 +7,10 @@ Don't change this file in any respect.
 \contentsline {myprogram}{\makebox [3.5em][l]{1.2}\mycleanfirstline {Short caption}}{2}{myprogram.1.2}%[nl]
 -------- pkg-pseudocode.mylop (end) -----------
 (pkg-pseudocode.mylop
-Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
 ]
-Package hyperref Info: bookmark level for unknown myprogram defaults to 0 on input line ....
 LaTeX Warning: `h' float specifier changed to `ht'.
 COUNTERS: part=0, chapter=1, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=4, equation=0, annex=0, page=1 (1)
 REF code:pseudo:insertion: number=[1.1] page=[1] anchor=[myprogram.1.1]
@@ -22,6 +20,3 @@ REF code:py:hello: number=[1.4] page=[1] anchor=[myprogram.1.4]
 [1
 ] [2]
 (pkg-pseudocode.aux)
-Package rerunfilecheck Info: File `pkg-pseudocode.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'pkg-pseudocode.run.xml'.

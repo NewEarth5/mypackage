@@ -87,6 +87,19 @@ target_list.saveall = {
       local errorlevel = call({"."}, "save",
         {config = {config}, names = names, engine = info.engines})
       if errorlevel ~= 0 then return errorlevel end
+      -- A test that stops before \START (e.g. a missing package) gives an
+      -- empty .tlg, which would then be accepted as the expected result.
+      for _, file in ipairs(filelist(info.dir, "*.tlg")) do
+        local f = io.open(info.dir .. "/" .. file, "rb")
+        local size = f and f:seek("end") or 0
+        if f then f:close() end
+        if size == 0 then
+          print("Error: " .. info.dir .. "/" .. file .. " is empty: the test"
+            .. " did not reach \\START (see its .log in build/).")
+          errorlevel = 1
+        end
+      end
+      if errorlevel ~= 0 then return errorlevel end
     end
     return 0
   end,

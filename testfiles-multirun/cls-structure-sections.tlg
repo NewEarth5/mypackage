@@ -10,25 +10,16 @@ Don't change this file in any respect.
 \contentsline {mysubsubsection}{\mysubsubsectionbox [l]{2.1.1}\hspace {1em}Two A i}{1}{mysubsubsection.2.1.1}%[nl]
 -------- cls-structure-sections.mytoc (end) -----------
 (cls-structure-sections.mytoc
-Package hyperref Info: bookmark level for unknown mysection defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
 ]
-Package hyperref Info: bookmark level for unknown mysubsection defaults to 0 on input line ....
 <images/wide.png, id=25, 301.125pt x 100.375pt>
 File: images/wide.png Graphic file (type png)
 <use images/wide.png>
-Package pdftex.def Info: images/wide.png  used on input line ....
-(pdftex.def)             Requested size: 421.72374pt x 140.55446pt.
-Package hyperref Info: bookmark level for unknown myfigure defaults to 0 on input line ....
-Package hyperref Info: bookmark level for unknown myequation defaults to 0 on input line ....
 <images/tall.png, id=26, 100.375pt x 401.5pt>
 File: images/tall.png Graphic file (type png)
 <use images/tall.png>
-Package pdftex.def Info: images/tall.png  used on input line ....
-(pdftex.def)             Requested size: 35.13942pt x 140.55446pt.
-Package hyperref Info: bookmark level for unknown mysubsubsection defaults to 0 on input line ....
 THE: part=[] chapter=[] section=[2] subsection=[2.1] subsubsection=[2.1.1] figure=[2.1] subfigure=[2.1.] table=[2.0] program=[2.0] equation=[2.0]
 FLAGS: part=F, chapter=F, section=T, subsection=T, subsubsection=T, annex=F, bib=F, highest=mysection
 REF sec:one: number=[1] page=[1] anchor=[mysection.1]
@@ -41,6 +32,3 @@ REF eq:e1: number=[{1.1}] page=[1] anchor=[AMS.2]
 [1
  <./images/wide.png (PNG copy)> <./images/tall.png (PNG copy)>]
 (cls-structure-sections.aux)
-Package rerunfilecheck Info: File `cls-structure-sections.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'cls-structure-sections.run.xml'.

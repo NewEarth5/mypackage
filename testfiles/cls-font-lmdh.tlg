@@ -13,17 +13,13 @@ familydefault: lmdh; rmdefault: lmr; sfdefault: lmss; ttdefault: lmtt
 .\T1/lmdh/m/n/10 b
 ! OK.
 \SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
-l. ...}
+l. ...
 ============================================================
 (cls-font-lmdh.aux)
 LaTeX Warning: There were undefined references.
 Package rerunfilecheck Warning: File `cls-font-lmdh.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
-Package rerunfilecheck Info: Checksums for `cls-font-lmdh.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                cls-font-lmdh
 (biblatex)                and rerun LaTeX afterwards.
-Package logreq Info: Writing requests to 'cls-font-lmdh.run.xml'.

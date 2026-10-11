@@ -9,7 +9,6 @@ Don't change this file in any respect.
 \contentsline {mychapter}{Articles}{i}{Articles}%[nl]
 -------- cls-bib-annex.mytoc (end) -----------
 (cls-bib-annex.mytoc
-Package hyperref Info: bookmark level for unknown mypart defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
@@ -19,7 +18,6 @@ COUNTERS: part=1, chapter=0, section=0, subsection=0, subsubsection=0, figure=0,
 [1
 ]
 LaTeX Warning: Empty bibliography on input line ....
-Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
 LaTeX Warning: Empty bibliography on input line ....
 LaTeX Warning: Empty bibliography on input line ....
 LaTeX Warning: Empty bibliography on input line ....
@@ -32,6 +30,3 @@ COUNTERS: part=1, chapter=0, section=0, subsection=0, subsubsection=0, figure=0,
 [1
 ]
 (cls-bib-annex.aux)
-Package rerunfilecheck Info: File `cls-bib-annex.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'cls-bib-annex.run.xml'.

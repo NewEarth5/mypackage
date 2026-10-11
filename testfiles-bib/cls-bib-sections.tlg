@@ -16,7 +16,6 @@ Don't change this file in any respect.
 \contentsline {mysubsection}{Patents}{i}{Patents}%[nl]
 -------- cls-bib-sections.mytoc (end) -----------
 (cls-bib-sections.mytoc
-Package hyperref Info: bookmark level for unknown mysection defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
@@ -24,7 +23,6 @@ Non-PDF special ignored!
 COUNTERS: part=0, chapter=0, section=1, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=1 (1)
 [1
 ]
-Package hyperref Info: bookmark level for unknown mysubsection defaults to 0 on input line ....
 COUNTERS: part=0, chapter=0, section=1, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=1 (i)
 FLAGS: part=F, chapter=F, section=T, subsection=F, subsubsection=F, annex=F, bib=F, highest=mysection
 REF bib:bib: number=[Bibliography] page=[i] anchor=[mybibliography]
@@ -57,11 +55,8 @@ TEST 1: Citation numbers
 .\T1/cmr/m/n/10 ]
 ! OK.
 \SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
-l. ...}
+l. ...
 ============================================================
 [1
 ]
 (cls-bib-sections.aux)
-Package rerunfilecheck Info: File `cls-bib-sections.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'cls-bib-sections.run.xml'.

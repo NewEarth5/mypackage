@@ -1,7 +1,6 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 (compat-reporttex.mytoc
-Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
@@ -9,10 +8,6 @@ Non-PDF special ignored!
 <images/wide.png, id=19, 301.125pt x 100.375pt>
 File: images/wide.png Graphic file (type png)
 <use images/wide.png>
-Package pdftex.def Info: images/wide.png  used on input line ....
-(pdftex.def)             Requested size: 421.72374pt x 140.55446pt.
-Package hyperref Info: bookmark level for unknown myfigure defaults to 0 on input line ....
-Package hyperref Info: bookmark level for unknown mytable defaults to 0 on input line ....
 ============================================================
 TEST 1: References in French
 ============================================================
@@ -41,7 +36,7 @@ TEST 1: References in French
 .\pdfendlink
 ! OK.
 \SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
-l. ...}
+l. ...
 > \box...=
 \hbox(9.39049+2.12863)x60.94337
 .\pdfstartlink(*+*)x* attr{/Border[0 0 0]/H/I/C[1 0 0]} action goto name{AMS.3}
@@ -63,7 +58,7 @@ l. ...}
 .\pdfendlink
 ! OK.
 \SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
-l. ...}
+l. ...
 ============================================================
 REF fig:wide: number=[1.1] page=[1] anchor=[myfigure.1.1]
 REF tab:t: number=[1.1] page=[1] anchor=[mytable.1.1]
@@ -71,6 +66,3 @@ REF eq:re: number=[{1.1}] page=[1] anchor=[AMS.3]
 [1
  <./images/wide.png (PNG copy)>]
 (compat-reporttex.aux)
-Package rerunfilecheck Info: File `compat-reporttex.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'compat-reporttex.run.xml'.

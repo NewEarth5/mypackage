@@ -8,12 +8,10 @@ Don't change this file in any respect.
 \contentsline {myprogram}{\makebox [3.5em][l]{1.5}\mycleanfirstline {Lines 3 to 5.}}{4}{myprogram.1.5}%[nl]
 -------- pkg-program.mylop (end) -----------
 (pkg-program.mylop
-Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
 ]
-Package hyperref Info: bookmark level for unknown myprogram defaults to 0 on input line ....
 [1
 ] [2]
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -25,6 +23,3 @@ REF code:c:star: number=[1.4] page=[3] anchor=[myprogram.1.4]
 REF code:c:part: number=[1.5] page=[3] anchor=[myprogram.1.5]
 [3] [4]
 (pkg-program.aux)
-Package rerunfilecheck Info: File `pkg-program.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'pkg-program.run.xml'.

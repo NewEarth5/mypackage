@@ -9,12 +9,10 @@ Don't change this file in any respect.
 \contentsline {mychapter}{\mychapterbox [l]{B}\hspace {1em}Annex two}{b}{mychapter.B}%[nl]
 -------- cls-annex-chapters.mytoc (end) -----------
 (cls-annex-chapters.mytoc
-Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
 ]
-Package hyperref Info: bookmark level for unknown mysection defaults to 0 on input line ....
 [1
 ]
 THE: part=[] chapter=[A] section=[A.1] subsection=[A.1] subsubsection=[A.1] figure=[A.0] subfigure=[A.0.] table=[A.0] program=[A.0] equation=[A.0]
@@ -28,6 +26,3 @@ REF ann:chap:a2: number=[B] page=[b] anchor=[mychapter.B]
 [2
 ]
 (cls-annex-chapters.aux)
-Package rerunfilecheck Info: File `cls-annex-chapters.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'cls-annex-chapters.run.xml'.

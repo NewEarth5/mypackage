@@ -12,20 +12,14 @@ TEST 2: Default size: height=0.2
 <images/wide.png, id=6, 301.125pt x 100.375pt>
 File: images/wide.png Graphic file (type png)
 <use images/wide.png>
-Package pdftex.def Info: images/wide.png  used on input line ....
-(pdftex.def)             Requested size: 421.72374pt x 140.55446pt.
 {wide.png}: 421.72374ptx 140.55446pt
 <images/tall.png, id=7, 100.375pt x 401.5pt>
 File: images/tall.png Graphic file (type png)
 <use images/tall.png>
-Package pdftex.def Info: images/tall.png  used on input line ....
-(pdftex.def)             Requested size: 35.13942pt x 140.55446pt.
 {tall.png}: 35.13942ptx 140.55446pt
 <images/square.jpg, id=8, 200.75pt x 200.75pt>
 File: images/square.jpg Graphic file (type jpg)
 <use images/square.jpg>
-Package pdftex.def Info: images/square.jpg  used on input line ....
-(pdftex.def)             Requested size: 140.56384pt x 140.55446pt.
 {square.jpg}: 140.56384ptx 140.55446pt
 ============================================================
 ============================================================
@@ -33,23 +27,15 @@ TEST 3: height= and width=
 ============================================================
 File: images/wide.png Graphic file (type png)
 <use images/wide.png>
-Package pdftex.def Info: images/wide.png  used on input line ....
-(pdftex.def)             Requested size: 210.85957pt x 70.2826pt.
 [height=0.1]{wide.png}: 210.85957ptx 70.2826pt
 File: images/wide.png Graphic file (type png)
 <use images/wide.png>
-Package pdftex.def Info: images/wide.png  used on input line ....
-(pdftex.def)             Requested size: 227.62206pt x 75.87685pt.
 [width=0.5]{wide.png}: 227.62206ptx 75.87685pt
 File: images/tall.png Graphic file (type png)
 <use images/tall.png>
-Package pdftex.def Info: images/tall.png  used on input line ....
-(pdftex.def)             Requested size: 227.62206pt x 910.6264pt.
 [width=0.5]{tall.png}: 227.62206ptx 910.6264pt
 File: images/square.jpg Graphic file (type jpg)
 <use images/square.jpg>
-Package pdftex.def Info: images/square.jpg  used on input line ....
-(pdftex.def)             Requested size: 455.24411pt x 455.31319pt.
 [width=1]{square.jpg}: 455.24411ptx 455.31319pt
 ============================================================
 ============================================================
@@ -57,8 +43,6 @@ TEST 4: Both height= and width=
 ============================================================
 File: images/square.jpg Graphic file (type jpg)
 <use images/square.jpg>
-Package pdftex.def Info: images/square.jpg  used on input line ....
-(pdftex.def)             Requested size: 227.63821pt x 70.28499pt.
 [height=0.1, width=0.5]{square.jpg}: 227.63821ptx 70.28499pt
 ============================================================
 ============================================================
@@ -66,29 +50,20 @@ TEST 5: Empty option list (natural size)
 ============================================================
 File: images/square.jpg Graphic file (type jpg)
 <use images/square.jpg>
-Package pdftex.def Info: images/square.jpg  used on input line ....
-(pdftex.def)             Requested size: 200.7495pt x 200.7495pt.
 []{square.jpg}: 200.7495ptx 200.7495pt
 ============================================================
 ============================================================
 TEST 6: SVG files
 ============================================================
-Package svg Info: Calling Inkscape on input line ....
-Package svg Info: Last page of `./svg-inkscape/plot_svg-tex.pdf' is 1 on input line ....
 (svg-inkscape/plot_svg-tex.pdf_tex
 <./svg-inkscape/plot_svg-tex.pdf, id=10, page=1, 224.33812pt x 111.41624pt>
 File: ./svg-inkscape/plot_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/plot_svg-tex.pdf, page 1>
-Package pdftex.def Info: ./svg-inkscape/plot_svg-tex.pdf , page1 used on input line ....
-(pdftex.def)             Requested size: 283.04343pt x 140.58751pt.
 )
 {plot.svg}: 283.04343ptx 140.57155pt
-Package svg Info: Last page of `./svg-inkscape/plot_svg-tex.pdf' is 1 on input line ....
 (svg-inkscape/plot_svg-tex.pdf_tex
 File: ./svg-inkscape/plot_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/plot_svg-tex.pdf, page 1>
-Package pdftex.def Info: ./svg-inkscape/plot_svg-tex.pdf , page1 used on input line ....
-(pdftex.def)             Requested size: 227.62206pt x 113.05144pt.
 )
 [width=0.5]{plot.svg}: 227.62206ptx 113.0469pt
 ============================================================
@@ -97,10 +72,6 @@ LaTeX Warning: There were undefined references.
 Package rerunfilecheck Warning: File `pkg-include.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
-Package rerunfilecheck Info: Checksums for `pkg-include.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                pkg-include
 (biblatex)                and rerun LaTeX afterwards.
-Package logreq Info: Writing requests to 'pkg-include.run.xml'.

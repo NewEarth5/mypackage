@@ -1,8 +1,26 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
-SKIPPED with LuaTeX (see the note at the top of the file)
+family: texgyrepagella-regular.otf(0); encoding: TU
+<images/wide.png, id=6, 301.125pt x 100.375pt>
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+============================================================
+TEST 1: Typeset text
+============================================================
+> \box...=
+\hbox(6.92+0.2)x25.68, direction TLT
+.\TU/texgyrepagella-regular.otf(0)/m/n/10 T
+.\kern-0.95 (font)
+.\TU/texgyrepagella-regular.otf(0)/m/n/10 e
+.\TU/texgyrepagella-regular.otf(0)/m/n/10 x
+.\TU/texgyrepagella-regular.otf(0)/m/n/10 t
+.\glue(\spaceskip) 2.5 plus 1.25 minus 0.83333
+.\TU/texgyrepagella-regular.otf(0)/m/n/10 ^^e9
+! OK.
+\SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
+l. ...
+============================================================
+[1
+Non-PDF special ignored!
+<./images/wide.png>]
 (eng-fontspec.aux)
-Package rerunfilecheck Info: File `eng-fontspec.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'eng-fontspec.run.xml'.
-Bad conditionals: 1!

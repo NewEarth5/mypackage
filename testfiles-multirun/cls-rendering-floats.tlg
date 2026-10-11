@@ -1,32 +1,26 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
-Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
 <images/wide.png, id=6, 301.125pt x 100.375pt>
 File: images/wide.png Graphic file (type png)
 <use images/wide.png>
-Package pdftex.def Info: images/wide.png  used on input line ....
-(pdftex.def)             Requested size: 105.42747pt x 35.1413pt.
-Package hyperref Info: bookmark level for unknown myfigure defaults to 0 on input line ....
-Package hyperref Info: bookmark level for unknown mytable defaults to 0 on input line ....
-Package hyperref Info: bookmark level for unknown myequation defaults to 0 on input line ....
 Completed box being shipped out [1]
 \vbox(731.64497+0.0)x454.106
 .\hbox(0.0+0.0)x0.0
 .\hbox(0.0+0.0)x0.0
 ..\kern -72.26999
-..\vbox(0.0+0.0)x0.0, glue set 72.26999fil
+..\vbox(0.0+0.0)x0.0, glue set 72.27fil
 ...\kern -72.26999
 ...\hbox(0.0+0.0)x0.0
-....\hbox(0.0+0.0)x0.0, glue set 72.26999fil, shifted 72.26999
+....\hbox(0.0+0.0)x0.0, glue set 72.27fil, shifted 72.26999
 .....\kern -72.26999
 .....\glue 0.0 plus 1.0fil minus 1.0fil
 ....\glue 0.0 plus 1.0fil minus 1.0fil
 ...\glue 0.0 plus 1.0fil minus 1.0fil
-.\vbox(0.0+0.0)x0.0, glue set 39.14185fil
+.\vbox(0.0+0.0)x0.0, glue set 39.14fil
 ..\kern 0.0
 ..\kern -38.1381
 ..\kern -1.00374
-..\hbox(0.0+0.0)x0.0, glue set 2.14185fil
+..\hbox(0.0+0.0)x0.0, glue set 2.14fil
 ...\kern 0.0
 ...\kern -1.1381
 ...\kern -1.00374
@@ -38,7 +32,7 @@ Completed box being shipped out [1]
 .\vbox(731.64497+0.0)x454.106
 ..\glue -38.1381
 ..\vbox(769.78308+0.0)x455.24411, shifted -1.1381
-...\vbox(12.0+0.0)x455.24411, glue set 12.0fil
+...\vbox(12.0+0.0)x455.24411, glue set 12.00fil
 ....\glue 0.0 plus 1.0fil
 ....\hbox(0.0+0.0)x455.24411
 .....\pdfcolorstack 0 push {0 g 0 G}
@@ -46,7 +40,7 @@ Completed box being shipped out [1]
 .....\pdfcolorstack 0 pop
 ...\glue 25.0
 ...\glue(\lineskip) 0.0
-...\vbox(702.78308+0.0)x455.24411, glue set 483.78685fil
+...\vbox(702.78308+0.0)x455.24411, glue set 483.79fil
 ....\write-{}
 ....\write1{\noexpand \providecommand \noexpand \oddpage@label [2]{}}
 ....\pdfcolorstack 0 push {0 g 0 G}
@@ -54,7 +48,7 @@ Completed box being shipped out [1]
 ....\pdfdest name{Doc-Start} xyz
 ....\write-{}
 ....\glue(\topskip) 0.0
-....\hbox(11.92508+0.0)x455.24411, glue set 377.14131fil
+....\hbox(11.92508+0.0)x455.24411, glue set 377.14fil
 .....\hbox(0.0+0.0)x0.0
 .....\T1/cmr/bx/n/17.28 1
 .....\glue 18.64352
@@ -70,7 +64,7 @@ Completed box being shipped out [1]
 .....\glue(\rightskip) 0.0
 ....\penalty 300
 ....\glue(\baselineskip) 22.0
-....\hbox(0.0+0.0)x455.24411, glue set 455.24411fil
+....\hbox(0.0+0.0)x455.24411, glue set 455.24fil
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
@@ -96,7 +90,7 @@ Completed box being shipped out [1]
 ......\glue 0.0
 ......\glue(\parskip) 0.0
 ......\glue(\parskip) 0.0
-......\hbox(37.07065+32.07065)x455.24411, glue set 56.90552fil
+......\hbox(37.07065+32.07065)x455.24411, glue set 56.91fil
 .......\glue(\leftskip) 0.0 plus 1.0fil
 .......\hbox(0.0+0.0)x0.0
 .......\mathon
@@ -107,7 +101,7 @@ Completed box being shipped out [1]
 ........\write1{\newlabel{fig:wide}{{1.1}{\thepage }{}{myfigure.1.1}{}}}
 ........\glue(\parskip) 0.0
 ........\glue(\parskip) 0.0
-........\hbox(35.1413+0.0)x341.43307, glue set 118.0028fil
+........\hbox(35.1413+0.0)x341.43307, glue set 118.00fil
 .........\glue(\leftskip) 0.0 plus 1.0fil
 .........\hbox(0.0+0.0)x0.0
 .........\hbox(35.1413+0.0)x105.42747
@@ -118,7 +112,7 @@ Completed box being shipped out [1]
 .............\hbox(35.14258+0.0)x0.0
 ..............\pdfsave
 ..............\pdfsetmatrix{.35011 0 0 .35011}
-..............\hbox(100.375+0.0)x0.0, glue set - 301.125fil
+..............\hbox(100.375+0.0)x0.0, glue set -301.12fil
 ...............\hbox(100.375+0.0)x301.125
 ................\pdfrefximage(100.375+0.0)x301.125
 ...............\glue 0.0 plus 1.0fil minus 1.0fil
@@ -138,7 +132,7 @@ Completed box being shipped out [1]
 .........\hbox(0.0+0.0)x0.0
 .........\glue 0.0
 .........\vbox(20.39996+3.60004)x341.43307
-..........\hbox(8.39996+1.94397)x341.43307, glue set 0.08092
+..........\hbox(8.39996+1.94397)x341.43307, glue set 0.08
 ...........\hbox(0.0+0.0)x0.0
 ...........\rule(8.39996+*)x0.0
 ...........\penalty 10000
@@ -222,7 +216,7 @@ Completed box being shipped out [1]
 ...........\glue(\rightskip) 0.0
 ..........\penalty 300
 ..........\glue(\baselineskip) 3.16882
-..........\hbox(6.8872+3.60004)x341.43307, glue set 226.18344fil
+..........\hbox(6.8872+3.60004)x341.43307, glue set 226.18fil
 ...........\T1/cmr/m/n/10 o
 ...........\T1/cmr/m/n/10 f
 ...........\glue 3.33252 plus 1.66626 minus 1.11084
@@ -293,7 +287,7 @@ Completed box being shipped out [1]
 ......\write1{\newlabel{tab:t}{{1.1}{\thepage }{}{mytable.1.1}{}}}
 ......\glue(\parskip) 0.0
 ......\glue(\parskip) 0.0
-......\hbox(10.09998+5.09996)x455.24411, glue set 209.74557fil
+......\hbox(10.09998+5.09996)x455.24411, glue set 209.75fil
 .......\glue(\leftskip) 0.0 plus 1.0fil
 .......\hbox(0.0+0.0)x0.0
 ........\glue 0.0
@@ -362,7 +356,7 @@ Completed box being shipped out [1]
 .......\hbox(0.0+0.0)x0.0
 .......\glue 0.0
 .......\vbox(8.39996+3.60004)x455.24411
-........\hbox(8.39996+3.60004)x455.24411, glue set 181.64023fil
+........\hbox(8.39996+3.60004)x455.24411, glue set 181.64fil
 .........\glue(\leftskip) 0.0 plus 1.0fil
 .........\hbox(0.0+0.0)x0.0
 .........\rule(8.39996+*)x0.0
@@ -409,7 +403,7 @@ Completed box being shipped out [1]
 ....\glue(\parskip) 0.0 plus 1.0
 ....\glue(\parskip) 0.0
 ....\glue(\baselineskip) 12.0
-....\hbox(0.0+0.0)x455.24411, glue set 440.24411fil
+....\hbox(0.0+0.0)x455.24411, glue set 440.24fil
 .....\hbox(0.0+0.0)x15.0
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
@@ -471,7 +465,7 @@ Completed box being shipped out [1]
 ...\glue(\baselineskip) 23.5849
 ...\hbox(6.4151+0.0)x455.24411
 ....\pdfcolorstack 0 push {0 g 0 G}
-....\hbox(6.4151+0.0)x455.24411, glue set 225.12267fil
+....\hbox(6.4151+0.0)x455.24411, glue set 225.12fil
 .....\glue 0.0 plus 1.0fil
 .....\T1/cmr/m/n/10 1
 .....\glue 0.0 plus 1.0fil
@@ -481,6 +475,3 @@ Completed box being shipped out [1]
 Non-PDF special ignored!
 <special> header=psfrag.pro
  <./images/wide.png (PNG copy)> (cls-rendering-floats.aux)
-Package rerunfilecheck Info: File `cls-rendering-floats.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'cls-rendering-floats.run.xml'.

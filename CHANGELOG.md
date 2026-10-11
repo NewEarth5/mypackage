@@ -29,10 +29,25 @@ yet, with the version that should address them).
   output changed) and the new normalisation.
 - CI uses the latest TeX Live; new workflow "Save expected results"
   regenerates the `.tlg` files there and opens a pull request.
+- MiKTeX's LuaTeX (no `--max-print-line` option): its lines, wrapped at 79
+  bytes, are rejoined before comparing.
+- Also removed from the logs before comparing: every information message
+  (`Package x Info`, `LaTeX Info`, with their continuation lines), the
+  character code in `Missing character` messages, the source text after
+  `l.<n>`; version numbers on dated lines (`1.11b`) and the last decimals
+  of `glue set` values are normalised. These changed with package or
+  engine versions only.
+- `l3build saveall` fails if a test produced an empty `.tlg` (a test that
+  stops before `\START`, e.g. because a package is missing). The empty
+  `compat-glossaries.tlg` of 0.6.5 is fixed.
+- `eng-lang-russian` loads a font with Cyrillic letters (CMU Serif) and
+  `eng-fontspec` runs with LuaLaTeX again; `pkg-subfigure` ignores box
+  warnings that depend on hyphenation patterns.
 
-## [0.6.5] - 2026-10-10
+## [0.6.5] - 2026-10-11
 
-Test-suite release. No user-facing command was added or renamed; the
+Test-suite release (first published 2026-10-10; the fix below, found by the
+engine tests on MiKTeX, was added on 2026-10-11 before any public release). No user-facing command was added or renamed; the
 existing `report.tex` produces a pixel-identical PDF, without the 28
 LaTeX errors that every build used to log. Run against version 0.6, 53 of
 the 106 new tests fail (one of them never ends).
@@ -116,6 +131,11 @@ the 106 new tests fail (one of them never ends).
   glued together ("V0.6Custom Package ...").
 - `lang=russian` with pdfLaTeX: "No Cyrillic font encoding has been
   loaded" warning (T2A is now loaded explicitly).
+- With LuaLaTeX and XeLaTeX the package loaded the 8-bit font encodings
+  (`T1`, and `T2A` for Russian) meant for pdfLaTeX. Text was then set in
+  pdfLaTeX's Type 1 fonts instead of OpenType fonts: characters outside
+  those fonts disappeared (all Cyrillic letters, `œ`, ...). `fontenc` is
+  now loaded with pdfLaTeX only.
 
 ### myreport.cls
 

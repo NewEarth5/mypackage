@@ -1,16 +1,13 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 (cls-sectioning-break.mytoc
-Package hyperref Info: bookmark level for unknown mypart defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
 ] [1
 ]
-Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
 [2
 ]
-Package hyperref Info: bookmark level for unknown mysection defaults to 0 on input line ....
 [3
 ] [4
 ] [5
@@ -30,6 +27,3 @@ REF ann:chap:ac: number=[A.1] page=[b] anchor=[mychapter.A.1]
 [2
 ]
 (cls-sectioning-break.aux)
-Package rerunfilecheck Info: File `cls-sectioning-break.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'cls-sectioning-break.run.xml'.

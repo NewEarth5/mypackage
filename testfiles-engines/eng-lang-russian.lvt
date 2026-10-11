@@ -1,9 +1,17 @@
-% eng-lang-russian: Cyrillic words with a Unicode engine.
+% eng-lang-russian: Cyrillic words with a Unicode engine.  Under LuaLaTeX
+% and XeLaTeX the package must not load 8-bit font encodings (T1/T2A): the
+% text is set in TU with an OpenType font.  The default Latin Modern has no
+% Cyrillic, so the document chooses one, as a user would (CMU Serif, from
+% the cm-unicode package, available in TeX Live and MiKTeX).
 \input{regression-test}
 \documentclass[text={lang=russian}]{myreport}
+\usepackage{fontspec}
+\setmainfont{cmunrm.otf}[BoldFont=cmunbx.otf, ItalicFont=cmunti.otf,
+  BoldItalicFont=cmunbi.otf]
 \input{mytest-helpers}
 \begin{document}
 \START
+\makeatletter\TYPE{encoding: \f@encoding}\makeatother
 \SHOWNAMES
 \TEST{Typeset words}{\SHOWTEXT{\myfigurename\ \myequationname}}
 \end{document}

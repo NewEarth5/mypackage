@@ -1,6 +1,5 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
-Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
@@ -14,6 +13,3 @@ REF ann:chap:after: number=[B] page=[ae] anchor=[mychapter.B]
 [31
 ]
 (cls-annex-long.aux)
-Package rerunfilecheck Info: File `cls-annex-long.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'cls-annex-long.run.xml'.

@@ -14,13 +14,11 @@ Don't change this file in any respect.
 \contentsline {mypart}{\mypartbox [l]{Annex C}\hspace {1em}Third annex}{a}{mypart.C}%[nl]
 -------- cls-annex-parts.mytoc (end) -----------
 (cls-annex-parts.mytoc
-Package hyperref Info: bookmark level for unknown mypart defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
 ] [1
 ]
-Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
 [2
 ] [3
 ]
@@ -35,9 +33,6 @@ THE: part=[A] chapter=[A.0] section=[A.0.0] subsection=[A.0.0] subsubsection=[A.
 <images/wide.png, id=56, 301.125pt x 100.375pt>
 File: images/wide.png Graphic file (type png)
 <use images/wide.png>
-Package pdftex.def Info: images/wide.png  used on input line ....
-(pdftex.def)             Requested size: 421.72374pt x 140.55446pt.
-Package hyperref Info: bookmark level for unknown myfigure defaults to 0 on input line ....
 [2
  <./images/wide.png (PNG copy)>]
 THE: part=[B] chapter=[B.0] section=[B.0.0] subsection=[B.0.0] subsubsection=[B.0.0] figure=[B.0.0] subfigure=[B.0.0.] table=[B.0.0] program=[B.0.0] equation=[B.0.0]
@@ -49,7 +44,7 @@ THE: part=[3] chapter=[3.0] section=[3.0.0] subsection=[3.0.0] subsubsection=[3.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l. ...\mypart{Third annex}[label=a3]
+l. ...
 [1
 ]
 THE: part=[C] chapter=[C.0] section=[C.0.0] subsection=[C.0.0] subsubsection=[C.0.0] figure=[C.0.0] subfigure=[C.0.0.] table=[C.0.0] program=[C.0.0] equation=[C.0.0]
@@ -66,10 +61,7 @@ REF fig:wide: number=[A.1.1] page=[b] anchor=[myfigure.A.1.1]
 pdfTeX warning (ext4): destination with the same identifier (name{page.a}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l. ...\end{document}
+l. ...
 [1
 ]
 (cls-annex-parts.aux)
-Package rerunfilecheck Info: File `cls-annex-parts.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'cls-annex-parts.run.xml'.

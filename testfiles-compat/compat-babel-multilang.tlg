@@ -34,6 +34,3 @@ english: Equation, Figure
 french: ^^c3^^89quation, Figure
 ============================================================
 (compat-babel-multilang.aux)
-Package rerunfilecheck Info: File `compat-babel-multilang.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'compat-babel-multilang.run.xml'.

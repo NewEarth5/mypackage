@@ -14,17 +14,13 @@ familydefault: qhv; rmdefault: cmr; sfdefault: qhv; ttdefault: cmtt
 .\T1/qhv/m/n/10 b
 ! OK.
 \SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
-l. ...}
+l. ...
 ============================================================
 (cls-font-qhv.aux)
 LaTeX Warning: There were undefined references.
 Package rerunfilecheck Warning: File `cls-font-qhv.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
-Package rerunfilecheck Info: Checksums for `cls-font-qhv.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                cls-font-qhv
 (biblatex)                and rerun LaTeX afterwards.
-Package logreq Info: Writing requests to 'cls-font-qhv.run.xml'.

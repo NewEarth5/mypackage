@@ -44,17 +44,13 @@ TEST 2: Typeset words (glyphs and font encoding)
 .\T1/cmr/m/n/10 o
 ! OK.
 \SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
-l. ...}
+l. ...
 ============================================================
 (pkg-lang-spanish.aux)
 LaTeX Warning: There were undefined references.
 Package rerunfilecheck Warning: File `pkg-lang-spanish.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
-Package rerunfilecheck Info: Checksums for `pkg-lang-spanish.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                pkg-lang-spanish
 (biblatex)                and rerun LaTeX afterwards.
-Package logreq Info: Writing requests to 'pkg-lang-spanish.run.xml'.

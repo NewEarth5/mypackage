@@ -52,17 +52,13 @@ TEST 2: Typeset words (glyphs and font encoding)
 .\T2A/cmr/m/n/10 ^^e5
 ! OK.
 \SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
-l. ...}
+l. ...
 ============================================================
 (pkg-lang-russian.aux)
 LaTeX Warning: There were undefined references.
 Package rerunfilecheck Warning: File `pkg-lang-russian.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
-Package rerunfilecheck Info: Checksums for `pkg-lang-russian.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                pkg-lang-russian
 (biblatex)                and rerun LaTeX afterwards.
-Package logreq Info: Writing requests to 'pkg-lang-russian.run.xml'.

@@ -11,13 +11,11 @@ Don't change this file in any respect.
 \contentsline {mytable}{\makebox [3.5em][l]{1.7}\mycleanfirstline {Both.}}{2}{mytable.1.7}%[nl]
 -------- pkg-table.mylot (end) -----------
 (pkg-table.mylot
-Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
 ]
 rowcolors: first=1 odd=[gray!25] even=[]
-Package hyperref Info: bookmark level for unknown mytable defaults to 0 on input line ....
 rowcolors: first=2 odd=[] even=[gray!25]
 rowcolors: first=1 odd=[blue!10] even=[]
 rowcolors: first=3 odd=[gray!25] even=[yellow]
@@ -38,6 +36,3 @@ REF tab:star: number=[1.8] page=[2] anchor=[mytable.1.8]
 [1
 ] [2]
 (pkg-table.aux)
-Package rerunfilecheck Info: File `pkg-table.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'pkg-table.run.xml'.

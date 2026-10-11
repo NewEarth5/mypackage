@@ -9,7 +9,6 @@ Don't change this file in any respect.
 \contentsline {mysubsection}{\mysubsectionbox [l]{9}\hspace {1em}Introduction}{1}{myintroduction}%[nl]
 -------- cls-frontmatter-subsections.mytoc (end) -----------
 COUNTERS: part=0, chapter=0, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=1 (1)
-Package hyperref Info: bookmark level for unknown mysubsection defaults to 0 on input line ....
 COUNTERS: part=0, chapter=0, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=1 (I)
 [1
 Non-PDF special ignored!
@@ -26,17 +25,17 @@ COUNTERS: part=0, chapter=0, section=0, subsection=9, subsubsection=0, figure=0,
 pdfTeX warning (ext4): destination with the same identifier (name{myintroduction}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l. ...\SHOWREF
+l. ...
              {abst:abs}\SHOWREF{intro:intro}\SHOWREF{intro:intro9}
 pdfTeX warning (ext4): destination with the same identifier (name{myintroduction}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l. ...\SHOWREF
+l. ...
              {abst:abs}\SHOWREF{intro:intro}\SHOWREF{intro:intro9}]
 pdfTeX warning (ext4): destination with the same identifier (name{myabstract}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l. ...\SHOWREF
+l. ...
              {abst:abs}\SHOWREF{intro:intro}\SHOWREF{intro:intro9}
 REF abst:abs: number=[Abstract] page=[I] anchor=[myabstract]
 REF intro:intro: number=[Introduction] page=[1] anchor=[myintroduction]
@@ -46,9 +45,6 @@ FLAGS: part=F, chapter=F, section=F, subsection=T, subsubsection=F, annex=F, bib
 pdfTeX warning (ext4): destination with the same identifier (name{page.I}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l. ...\end{document}
+l. ...
 [1]
 (cls-frontmatter-subsections.aux)
-Package rerunfilecheck Info: File `cls-frontmatter-subsections.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'cls-frontmatter-subsections.run.xml'.

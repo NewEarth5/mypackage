@@ -17,13 +17,11 @@ Don't change this file in any respect.
 \contentsline {mychapter}{Patents}{x}{Patents}%[nl]
 -------- cls-bib-parts.mytoc (end) -----------
 (cls-bib-parts.mytoc
-Package hyperref Info: bookmark level for unknown mypart defaults to 0 on input line ....
 [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
 ] [1
 ]
-Package hyperref Info: bookmark level for unknown mychapter defaults to 0 on input line ....
 COUNTERS: part=1, chapter=1, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=2 (2)
 [2
 ] [1
@@ -68,11 +66,8 @@ TEST 1: Citation numbers
 .\T1/cmr/m/n/10 ]
 ! OK.
 \SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
-l. ...}
+l. ...
 ============================================================
 [10
 ]
 (cls-bib-parts.aux)
-Package rerunfilecheck Info: File `cls-bib-parts.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package logreq Info: Writing requests to 'cls-bib-parts.run.xml'.
