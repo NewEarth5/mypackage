@@ -28,3 +28,5 @@ perf/build/
 perf/report.tex
 # PDFs copied back by "l3build doc"
 demo/*.pdf
+# Debugging
+*.diff

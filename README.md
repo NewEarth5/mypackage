@@ -6,8 +6,9 @@ localised words). `myreport.cls` is a report class built on it (title
 pages, adaptive sectioning, annexes, table of contents and lists,
 bibliography by category).
 
-Current version: **0.6.5** (2026-10-10). See [CHANGELOG.md](CHANGELOG.md)
-and the roadmap in [TODO.txt](TODO.txt).
+Current version: **0.7.0** (in development on the `v0.7.0` branch; last
+release 0.6.5). See [CHANGELOG.md](CHANGELOG.md) and the roadmap in
+[TODO.txt](TODO.txt).
 
 ## Requirements
 
@@ -22,8 +23,12 @@ and the roadmap in [TODO.txt](TODO.txt).
 pdflatex -shell-escape report
 biber report
 pdflatex -shell-escape report
-pdflatex -shell-escape report
 ```
+
+Since 0.7.0 the document is usually final after these two LaTeX runs
+(one more when the bibliography categories are listed in the table of
+contents, or when a page number in the front matter changes); latexmk and
+LaTeX Workshop rerun LaTeX by themselves when needed.
 
 ## Using it
 
@@ -36,7 +41,9 @@ personal TEXMF tree). Then:
 ```
 
 Every command has a demo in `demo/` (`l3build doc` typesets them into
-`build/doc/`), and `documentation.txt` describes the interface.
+`build/doc/`), and `documentation.txt` describes the interface. Only the
+commands starting with `my` (and the words `\my...name`) are meant for
+documents: see "Naming conventions" at the top of `mypackage.sty`.
 
 ## Repository layout
 
@@ -57,7 +64,7 @@ Every command has a demo in `demo/` (`l3build doc` typesets them into
 See [DEVELOPMENT.md](DEVELOPMENT.md) for how l3build works. In short:
 
 ```
-l3build check                  # all 106 tests (about 6 minutes)
+l3build check                  # all 114 tests (about 7 minutes)
 l3build check -c build         # only the quick single-run tests
 l3build check -c config-multirun cls-annex-long   # one test (give its configuration)
 l3build saveall                # regenerate every expected result

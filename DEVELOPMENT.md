@@ -77,8 +77,15 @@ The macros of `regression-test.tex`:
 Our helpers (`support/mytest-helpers.tex`) add one-line summaries:
 `\SHOWREF{label}` (number, page and anchor of a label), `\SHOWCOUNTERS`,
 `\SHOWTHE`, `\SHOWFLAGS`, `\SHOWNAMES` (localised words), `\SHOWOPT\macro`
-(value of an option), `\SHOWLIST{ext}` (content of a TOC/LoF... file),
-`\SHOWTEXT{text}` (the typeset box).
+(value of a macro), `\SHOWVAR{variable}` (value of an expl3 variable, e.g.
+`\SHOWVAR{l__mypackage_toc_depth_int}`), `\SHOWLIST{ext}` (content of a
+TOC/LoF... file), `\SHOWTEXT{text}` (the typeset box). To set up a state
+without headings: `\SETUSED{chapter,section}` (levels used, locally),
+`\SETANNEX` (annex mode, locally), `\IFPAGENUMBERING{style}{yes}{no}`.
+
+The helpers are the only place of the test suite that knows how the
+package stores its state: when an internal name changes, update the helper
+rather than every test.
 
 Errors are part of the log too: a test that suddenly raises
 `! Undefined control sequence` fails, even if nothing else changed.
@@ -203,6 +210,35 @@ convenient:
   l3build from the WSL terminal (VS Code's "WSL" extension opens the folder
   there).
 
+### Checking a refactoring against a local baseline
+
+When the code changes but the behaviour must not (a refactoring), the
+reference results of the other TeX distribution get in the way: a test can
+differ only because your TeX Live or MiKTeX is not the reference one. Make
+a local baseline first, with the *old* code, on your machine. With git
+(the same commands in cmd, PowerShell or a Unix shell):
+
+```
+git worktree add -b baseline-tlg ../baseline v0.6.5   # the old code
+cd ../baseline
+l3build saveall                                       # results of YOUR installation
+git commit -am "Local baseline"
+cd ../mypackage
+git worktree add --detach ../check                    # scratch copy of the new code (committed)
+cd ../check
+git checkout baseline-tlg -- ":(glob)testfiles*/*.tlg"
+l3build check                                         # differences = changes of behaviour
+```
+
+Every difference is then a change of behaviour of the new code, nothing
+else (the new tests keep their own `.tlg`). Port the intended differences
+to the real `.tlg` files: for a test whose baseline equals the reference,
+the new local result *is* the new reference. Afterwards: `git worktree
+remove ../check`, `git worktree remove ../baseline`, `git branch -D
+baseline-tlg`. 0.7.0 was checked this way: the only differences were the
+renamed internals printed by some tests and the changes listed in the
+changelog.
+
 ## 3. Adding a test
 
 1. Choose the configuration (one run is enough? → `testfiles/`; needs the
@@ -217,6 +253,14 @@ convenient:
 When you fix a bug, first write the test that shows it, save it (the .tlg
 records the bug), fix the code, save again: the .tlg diff documents the
 fix.
+
+### Naming conventions of the code
+
+See the comment "NAMING CONVENTIONS" at the top of `mypackage.sty`. In
+short: document commands `\my...`; programmer interface (expl3, public)
+`\mypackage_...`; private code `\__mypackage_...` / `\__myreport_...`,
+which may change at any version. Tests may use private names, through the
+helpers when possible.
 
 ## 4. Demos
 
