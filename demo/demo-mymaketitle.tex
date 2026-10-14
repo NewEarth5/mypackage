@@ -11,7 +11,7 @@ that fill it in.}
 \myaddprofessor[*]{<surname>}{<first name>}  % * = female; repeat for more
 \myaddassistant[*]{<surname>}{<first name>}
 \myaddauthor[*]{<surname>}{<first name>}[<student ID>]
-\myacademicyear{<text>}      % default: \currentacyear
+\myacademicyear{<text>}      % default: \mycurrentacyear
 \mytitle[*]{<title>}         % * = not underlined
 \mysubtitle{<subtitle>}
 \myimage[<options>]{<file>}  % default width=1
@@ -22,7 +22,8 @@ that fill it in.}
 \end{demosyntax}
 \demonote{Labels are plural and gendered automatically: two female
 professors give ``Professors'' in English, ``Professeures'' in French.
-Style 1 shows the professors, not the assistants.}
+Style 1 shows the professors, not the assistants. An item given an empty
+value (\texttt{\string\mydate\{\}}) is not shown.}
 
 \begin{demo}
 \mycourse*{Fluid mechanics}[MECA0025]

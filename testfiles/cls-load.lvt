@@ -6,28 +6,28 @@
 \begin{document}
 \START
 \TEST{Class option values (defaults)}{%
-  \SHOWOPT\myreport@text@fontsize
-  \SHOWOPT\myreport@text@fontfamily
-  \SHOWOPT\myreport@text@lang
-  \SHOWOPT\myreport@position
-  \SHOWOPT\myreport@sect@part
-  \SHOWOPT\myreport@sect@chapter
-  \SHOWOPT\myreport@sect@section
-  \SHOWOPT\myreport@sect@subsection
-  \SHOWOPT\myreport@sect@subsubsection
-  \SHOWOPT\myreport@sect@annex
-  \SHOWOPT\myreport@sect@bib
+  \SHOWVAR{l__myreport_text_fontsize_tl}
+  \SHOWVAR{l__myreport_text_fontfamily_tl}
+  \SHOWVAR{l__myreport_text_lang_tl}
+  \SHOWVAR{l__myreport_position_tl}
+  \SHOWVAR{l__myreport_sectioning_part_tl}
+  \SHOWVAR{l__myreport_sectioning_chapter_tl}
+  \SHOWVAR{l__myreport_sectioning_section_tl}
+  \SHOWVAR{l__myreport_sectioning_subsection_tl}
+  \SHOWVAR{l__myreport_sectioning_subsubsection_tl}
+  \SHOWVAR{l__myreport_sectioning_annex_tl}
+  \SHOWVAR{l__myreport_sectioning_bib_tl}
 }
 \TEST{Values received by mypackage}{%
-  \SHOWOPT\mypackage@lang
-  \SHOWOPT\mypackage@paths@images
-  \SHOWOPT\mypackage@paths@code
-  \SHOWOPT\mypackage@paths@sources
-  \SHOWOPT\mypackage@pos@figure
-  \SHOWOPT\mypackage@pos@table
-  \SHOWOPT\mypackage@toc@depth
-  \SHOWOPT\mypackage@toc@annexdepth
-  \SHOWOPT\mypackage@toc@bibdepth
+  \SHOWVAR{l__mypackage_lang_tl}
+  \SHOWVAR{l__mypackage_path_images_tl}
+  \SHOWVAR{l__mypackage_path_code_tl}
+  \SHOWVAR{l__mypackage_path_sources_tl}
+  \SHOWVAR{l__mypackage_position_figure_tl}
+  \SHOWVAR{l__mypackage_position_table_tl}
+  \SHOWVAR{l__mypackage_toc_depth_int}
+  \SHOWVAR{l__mypackage_toc_annexdepth_int}
+  \SHOWVAR{l__mypackage_toc_bibdepth_int}
 }
 \TEST{Base class, size, fonts}{%
   \TYPE{report class: \@ifclassloaded{report}{yes}{no}}%
@@ -41,7 +41,7 @@
 }
 \TEST{Words}{\SHOWNAMES}
 \TEST{Title-page defaults}{%
-  \SHOWOPT\mycourseval \SHOWOPT\mytitleval \SHOWOPT\mydateval
-  \SHOWOPT\myacademicyearval \SHOWOPT\myauthorval \SHOWOPT\myprofessorval
+  \SHOWVAR{g__myreport_course_tl} \SHOWVAR{g__myreport_title_tl} \SHOWVAR{g__myreport_date_tl}
+  \SHOWVAR{g__myreport_acyear_tl} \SHOWVAR{g__myreport_author_seq} \SHOWVAR{g__myreport_professor_seq}
 }
 \end{document}

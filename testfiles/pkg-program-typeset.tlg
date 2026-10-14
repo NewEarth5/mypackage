@@ -1,0 +1,29 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+Short listing (float): typeset 1 time(s)
+[1
+Non-PDF special ignored!
+<special> header=psfrag.pro
+]
+Lines 1-90 (text flow, not measured): typeset 1 time(s)
+[2
+]
+Larger font, does not fit (measured, text flow): typeset 2 time(s)
+[3
+]
+Larger font, fits (measured, float): typeset 1 time(s)
+[4
+]
+Starred, short (float): typeset 1 time(s)
+[5
+]
+COUNTERS: part=0, chapter=0, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=5, equation=0, annex=0, page=6 (6)
+(pkg-program-typeset.aux)
+LaTeX Warning: There were undefined references.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+Package rerunfilecheck Warning: File `pkg-program-typeset.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                pkg-program-typeset
+(biblatex)                and rerun LaTeX afterwards.

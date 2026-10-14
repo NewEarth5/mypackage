@@ -14,26 +14,26 @@
 \begin{document}
 \START
 \TEST{No level used}{\SETALL\SHOWTHE}
-\TEST{Only subsubsections}{\GlobalMysubsubsectionUsedtrue\SETALL\SHOWTHE}
-\TEST{Subsections and below}{\GlobalMysubsubsectionUsedtrue
-  \GlobalMysubsectionUsedtrue\SETALL\SHOWTHE}
-\TEST{Sections and below}{\GlobalMysubsubsectionUsedtrue
-  \GlobalMysubsectionUsedtrue\GlobalMysectionUsedtrue\SETALL\SHOWTHE}
-\TEST{Chapters and below}{\GlobalMysubsubsectionUsedtrue
-  \GlobalMysubsectionUsedtrue\GlobalMysectionUsedtrue
-  \GlobalMychapterUsedtrue\SETALL\SHOWTHE}
-\TEST{Parts and below}{\GlobalMysubsubsectionUsedtrue
-  \GlobalMysubsectionUsedtrue\GlobalMysectionUsedtrue
-  \GlobalMychapterUsedtrue\GlobalMypartUsedtrue\SETALL\SHOWTHE}
+\TEST{Only subsubsections}{\SETUSED{subsubsection}\SETALL\SHOWTHE}
+\TEST{Subsections and below}{\SETUSED{subsubsection}
+  \SETUSED{subsection}\SETALL\SHOWTHE}
+\TEST{Sections and below}{\SETUSED{subsubsection}
+  \SETUSED{subsection}\SETUSED{section}\SETALL\SHOWTHE}
+\TEST{Chapters and below}{\SETUSED{subsubsection}
+  \SETUSED{subsection}\SETUSED{section}
+  \SETUSED{chapter}\SETALL\SHOWTHE}
+\TEST{Parts and below}{\SETUSED{subsubsection}
+  \SETUSED{subsection}\SETUSED{section}
+  \SETUSED{chapter}\SETUSED{part}\SETALL\SHOWTHE}
 \TEST{Parts and chapters only}{%
-  \GlobalMychapterUsedtrue\GlobalMypartUsedtrue\SETALL\SHOWTHE}
-\TEST{Chapters only}{\GlobalMychapterUsedtrue\SETALL\SHOWTHE}
-\TEST{Annex mode, parts used}{\GlobalMychapterUsedtrue\GlobalMypartUsedtrue
-  \MyannexUsedtrue\SETALL\SHOWTHE}
-\TEST{Annex mode, chapters used}{\GlobalMychapterUsedtrue
-  \GlobalMysectionUsedtrue\MyannexUsedtrue\SETALL\SHOWTHE}
-\TEST{Annex mode, sections used}{\GlobalMysectionUsedtrue
-  \MyannexUsedtrue\SETALL\SHOWTHE}
+  \SETUSED{chapter}\SETUSED{part}\SETALL\SHOWTHE}
+\TEST{Chapters only}{\SETUSED{chapter}\SETALL\SHOWTHE}
+\TEST{Annex mode, parts used}{\SETUSED{chapter}\SETUSED{part}
+  \SETANNEX\SETALL\SHOWTHE}
+\TEST{Annex mode, chapters used}{\SETUSED{chapter}
+  \SETUSED{section}\SETANNEX\SETALL\SHOWTHE}
+\TEST{Annex mode, sections used}{\SETUSED{section}
+  \SETANNEX\SETALL\SHOWTHE}
 \TEST{Counter resets}{%
   \SETALL\stepcounter{mypart}\SHOWCOUNTERS
   \SETALL\stepcounter{mychapter}\SHOWCOUNTERS
@@ -42,7 +42,7 @@
   \SETALL\stepcounter{myfigure}\SHOWCOUNTERS
 }
 \TEST{myannex environment saves and restores the counters}{%
-  \GlobalMypartUsedtrue\GlobalMychapterUsedtrue
+  \SETUSED{part}\SETUSED{chapter}
   \SETALL\SHOWCOUNTERS
   \begin{myannex}%
     \SHOWFLAGS\SHOWCOUNTERS
@@ -55,8 +55,8 @@
   \end{myannex}%
 }
 \TEST{Width boxes (\mypartbox and co.)}{%
-  \GlobalMypartUsedtrue\GlobalMychapterUsedtrue\GlobalMysectionUsedtrue
-  \GlobalMysubsectionUsedtrue\GlobalMysubsubsectionUsedtrue
+  \SETUSED{part}\SETUSED{chapter}\SETUSED{section}
+  \SETUSED{subsection}\SETUSED{subsubsection}
   \setcounter{mypart}{1}\setcounter{mychapter}{1}\setcounter{mysection}{1}%
   \setcounter{mysubsection}{1}\setcounter{mysubsubsection}{1}%
   \setbox0\hbox{\mypartbox{\themypart}}\TYPE{part box: \the\wd0}%

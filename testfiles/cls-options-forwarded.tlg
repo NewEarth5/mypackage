@@ -3,17 +3,16 @@ Don't change this file in any respect.
 ============================================================
 TEST 1: Forwarded values
 ============================================================
-OPT \mypackage@paths@images=[img/]
-OPT \mypackage@paths@code=[src/]
-OPT \mypackage@paths@sources=[refs.bib]
-OPT \mypackage@pos@figure=[t]
-OPT \mypackage@pos@table=[h]
-OPT \mypackage@pos@program=[b]
-OPT \mypackage@pos@pseudocode=[h]
-OPT \mypackage@toc@depth=[3]
-OPT \mypackage@toc@annexdepth=[1]
-OPT \mypackage@toc@bibdepth=[0]
-counters: toc=3, annex=1, bib=0
+VAR l__mypackage_path_images_tl=[img/]
+VAR l__mypackage_path_code_tl=[src/]
+VAR l__mypackage_path_sources_tl=[refs.bib]
+VAR l__mypackage_position_figure_tl=[t]
+VAR l__mypackage_position_table_tl=[h]
+VAR l__mypackage_position_program_tl=[b]
+VAR l__mypackage_position_pseudocode_tl=[h]
+VAR l__mypackage_toc_depth_int=[3]
+VAR l__mypackage_toc_annexdepth_int=[1]
+VAR l__mypackage_toc_bibdepth_int=[0]
 ============================================================
 (cls-options-forwarded.aux)
 LaTeX Warning: There were undefined references.

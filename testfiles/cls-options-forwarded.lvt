@@ -10,13 +10,11 @@
 \begin{document}
 \START
 \TEST{Forwarded values}{%
-  \SHOWOPT\mypackage@paths@images \SHOWOPT\mypackage@paths@code
-  \SHOWOPT\mypackage@paths@sources
-  \SHOWOPT\mypackage@pos@figure \SHOWOPT\mypackage@pos@table
-  \SHOWOPT\mypackage@pos@program \SHOWOPT\mypackage@pos@pseudocode
-  \SHOWOPT\mypackage@toc@depth \SHOWOPT\mypackage@toc@annexdepth
-  \SHOWOPT\mypackage@toc@bibdepth
-  \TYPE{counters: toc=\the\c@mytocdepth, annex=\the\c@myannexdepth,
-    bib=\the\c@mybibdepth}%
+  \SHOWVAR{l__mypackage_path_images_tl} \SHOWVAR{l__mypackage_path_code_tl}
+  \SHOWVAR{l__mypackage_path_sources_tl}
+  \SHOWVAR{l__mypackage_position_figure_tl} \SHOWVAR{l__mypackage_position_table_tl}
+  \SHOWVAR{l__mypackage_position_program_tl} \SHOWVAR{l__mypackage_position_pseudocode_tl}
+  \SHOWVAR{l__mypackage_toc_depth_int} \SHOWVAR{l__mypackage_toc_annexdepth_int}
+  \SHOWVAR{l__mypackage_toc_bibdepth_int}
 }
 \end{document}

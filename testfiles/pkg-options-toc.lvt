@@ -7,10 +7,8 @@
 \begin{document}
 \START
 \TEST{TOC depth options}{%
-  \SHOWOPT\mypackage@toc@depth
-  \SHOWOPT\mypackage@toc@annexdepth
-  \SHOWOPT\mypackage@toc@bibdepth
-  \TYPE{counters: toc=\the\c@mytocdepth, annex=\the\c@myannexdepth,
-    bib=\the\c@mybibdepth}%
+  \SHOWVAR{l__mypackage_toc_depth_int}
+  \SHOWVAR{l__mypackage_toc_annexdepth_int}
+  \SHOWVAR{l__mypackage_toc_bibdepth_int}
 }
 \end{document}

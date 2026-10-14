@@ -29,23 +29,23 @@
   \SHOWTEXT{[\mycleanfirstline{Is it? Yes it is.}]}%
   \SHOWTEXT{[\mycleanfirstline{Value 3.5 m/s here. More.}]}%
 }
-\TEST{\currentacyear for every month}{%
+\TEST{\mycurrentacyear for every month}{%
   \TYPE{date of the test run: \the\year-\the\month-\the\day}%
   \count@=\month
   \@tempcnta=\@ne
   \loop
     \month=\@tempcnta
-    \TYPE{month \the\month: \currentacyear}%
+    \TYPE{month \the\month: \mycurrentacyear}%
     \advance\@tempcnta\@ne
   \ifnum\@tempcnta<13 \repeat
   \month=\count@
 }
 \TEST{\myhighestsec for each combination of used levels}{%
   \TYPE{none: \myhighestsec}%
-  \GlobalMysubsubsectionUsedtrue \TYPE{subsubsection: \myhighestsec}%
-  \GlobalMysubsectionUsedtrue    \TYPE{+subsection: \myhighestsec}%
-  \GlobalMysectionUsedtrue       \TYPE{+section: \myhighestsec}%
-  \GlobalMychapterUsedtrue       \TYPE{+chapter: \myhighestsec}%
-  \GlobalMypartUsedtrue          \TYPE{+part: \myhighestsec}%
+  \SETUSED{subsubsection} \TYPE{subsubsection: \myhighestsec}%
+  \SETUSED{subsection}    \TYPE{+subsection: \myhighestsec}%
+  \SETUSED{section}       \TYPE{+section: \myhighestsec}%
+  \SETUSED{chapter}       \TYPE{+chapter: \myhighestsec}%
+  \SETUSED{part}          \TYPE{+part: \myhighestsec}%
 }
 \end{document}

@@ -1,0 +1,21 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+cls-structure-aux.aux: \mypackage@structure {}
+cls-structure-aux.aux: \mypackage@structure {chapter}
+cls-structure-aux.aux: \mypackage@structure {section}
+cls-structure-aux-inc.aux: \mypackage@structure {chapter}
+cls-structure-aux-inc.aux: \mypackage@structure {section}
+cls-structure-aux-inc.aux: \mypackage@structure {subsection}
+[1
+Non-PDF special ignored!
+<special> header=psfrag.pro
+] [2
+]
+(cls-structure-aux-inc.tex)
+[3
+]
+FLAGS: part=F, chapter=T, section=T, subsection=T, subsubsection=F, annex=F, bib=F, highest=mychapter
+THE: part=[] chapter=[4] section=[4.1] subsection=[4.1.0] subsubsection=[4.1.0] figure=[4.0] subfigure=[4.0.] table=[4.0] program=[4.0] equation=[4.0]
+[4
+]
+(cls-structure-aux.aux (cls-structure-aux-inc.aux))

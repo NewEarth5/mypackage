@@ -3,9 +3,9 @@ Don't change this file in any respect.
 ============================================================
 TEST 1: Paths given as keys
 ============================================================
-OPT \mypackage@paths@images=[img/]
-OPT \mypackage@paths@code=[src/code/]
-OPT \mypackage@paths@sources=[refs/main.bib]
+VAR l__mypackage_path_images_tl=[img/]
+VAR l__mypackage_path_code_tl=[src/code/]
+VAR l__mypackage_path_sources_tl=[refs/main.bib]
 ============================================================
 (pkg-options-paths.aux)
 LaTeX Warning: There were undefined references.

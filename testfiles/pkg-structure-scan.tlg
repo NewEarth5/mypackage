@@ -1,0 +1,25 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+============================================================
+TEST 1: Levels found in the source, before any heading
+============================================================
+FLAGS: part=T, chapter=F, section=T, subsection=F, subsubsection=T, annex=F, bib=F, highest=mypart
+============================================================
+============================================================
+TEST 2: After the headings
+============================================================
+FLAGS: part=T, chapter=F, section=T, subsection=F, subsubsection=T, annex=F, bib=F, highest=mypart
+THE: part=[1] chapter=[1] section=[1.1] subsection=[1.1] subsubsection=[1.1.1] figure=[1.0] subfigure=[1.0.] table=[1.0] program=[1.0] equation=[1.0]
+============================================================
+[1
+Non-PDF special ignored!
+<special> header=psfrag.pro
+]
+(pkg-structure-scan.aux)
+LaTeX Warning: There were undefined references.
+Package rerunfilecheck Warning: File `pkg-structure-scan.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                pkg-structure-scan
+(biblatex)                and rerun LaTeX afterwards.

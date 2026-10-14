@@ -1,0 +1,24 @@
+% cls-bib-aliases: entry types that biber turns into other types
+% (phdthesis -> thesis, techreport -> report, www -> online, conference ->
+% inproceedings) are printed in the right category, and the numbers follow
+% the printed order (no "defernumbers": the category is the first sort key).
+\begin{filecontents*}[overwrite]{\jobname.bib}
+@phdthesis{phd, author={Zed, Anna}, title={A thesis}, school={U}, year=2000}
+@techreport{tech, author={Zed, Bob}, title={A report}, institution={U}, year=2001}
+@www{www, author={Zed, Carl}, title={A site}, url={https://example.org}, year=2002}
+@conference{conf, author={Zed, Dora}, title={A talk}, booktitle={Proc.}, year=2003}
+@article{art, author={Zed, Eve}, title={An article}, journal={J}, year=2004}
+@misc{misc, author={Aaron, Abe}, title={Something}, year=2005}
+\end{filecontents*}
+\input{regression-test}
+\documentclass[paths={sources=cls-bib-aliases.bib}]{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\mychapter{Chapter}
+\nocite{*}
+\mybibliography
+\TEST{Numbers, in printed order}{%
+  \SHOWTEXT{\cite{misc}\cite{conf}\cite{art}\cite{phd}\cite{tech}\cite{www}}%
+}
+\end{document}

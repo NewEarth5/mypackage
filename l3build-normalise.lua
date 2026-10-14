@@ -146,14 +146,15 @@ end
 -- line, recursively (so that splitting twice changes nothing):
 -- * "] (./job.aux)": the end of the last page and the .aux file read at
 --   \end{document} are on one line, unless a system command was logged in
---   between (minted 3);
+--   between (minted 3), or depending on the engine (MiKTeX); also with the
+--   .aux files of \include'd files after it: "] (job.aux (job-inc.aux))";
 -- * ") [9": the end of a file followed by something else.  l3build drops a
 --   font-definition file (.fd) up to the line that closes it, so whatever
 --   follows ")" on that line would be lost too (the page [9] vanished when
 --   TeX Live loaded the .fd there and MiKTeX did not);
 -- * "] [9": the end of one page and the start of the next.
 function split_markers(line)
-  local a, b = line:match("^(.*%]) (%(%.?/?[^%s%(%)]+%.aux%))$")
+  local a, b = line:match("^(.*%]) (%(%.?/?[^%s%(%)]+%.aux[%s%)].*)$")
   if not a then a, b = line:match("^(%)+)%s+(%S.*)$") end
   if not a then a, b = line:match("^(%])%s+(%[.*)$") end
   if not a then return {line} end

@@ -214,21 +214,21 @@ l. ...
 l. ...
 ============================================================
 ============================================================
-TEST 5: \currentacyear for every month
+TEST 5: \mycurrentacyear for every month
 ============================================================
 date of the test run: ....-..-..
-month 1: \currentacyear 
-month 2: \currentacyear 
-month 3: \currentacyear 
-month 4: \currentacyear 
-month 5: \currentacyear 
-month 6: \currentacyear 
-month 7: \currentacyear 
-month 8: \currentacyear 
-month 9: \currentacyear 
-month 10: \currentacyear 
-month 11: \currentacyear 
-month 12: \currentacyear 
+month 1: 2025-2026
+month 2: 2025-2026
+month 3: 2025-2026
+month 4: 2025-2026
+month 5: 2025-2026
+month 6: 2025-2026
+month 7: 2025-2026
+month 8: 2025-2026
+month 9: 2026-2027
+month 10: 2026-2027
+month 11: 2026-2027
+month 12: 2026-2027
 ============================================================
 ============================================================
 TEST 6: \myhighestsec for each combination of used levels

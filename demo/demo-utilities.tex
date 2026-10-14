@@ -2,14 +2,17 @@
 \documentclass[sectioning=nobreak]{myreport}
 \usepackage{mydemo}
 \begin{document}
-\demoheader{Utilities}{\string\currentacyear, \string\mycleantext,
+\demoheader{Utilities}{\string\mycurrentacyear, \string\mycleantext,
 \string\mycleanline, \string\mycleanfirstline, \string\mylenmax,
 \string\mylenmin, and \string\myhighestsec}
 
-\mysection*{\textbackslash currentacyear}
+\mysection*{\textbackslash mycurrentacyear}
 \begin{demo}
-Academic year (switches on 1 September): \currentacyear
+Academic year (switches on 1 September): \mycurrentacyear
 \end{demo}
+\demonote{Expandable (usable in \texttt{\string\edef}, PDF metadata, ...).
+The former name \texttt{\string\currentacyear} still works but is
+deprecated (one warning).}
 
 \mysection*{Text cleaning}
 \begin{demo}

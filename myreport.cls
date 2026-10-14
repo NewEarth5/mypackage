@@ -9,1777 +9,961 @@
 \ProvidesClass{%                                   % Class information              %
   myreport%                                        % - Name                         %
 }[%                                                %                                %
-  2026/10/12 V0.6.5 %                              % - Version (the space before %  %
+  2026/10/12 V0.7.0 %                              % - Version (the space before %  %
   Custom Report Class by Alexandre Lindsey%        %   ends the version number)     %
 ]                                                  %                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%% ESSENTIAL PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%%%
+%%%%%% NAMING CONVENTIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\RequirePackage{xstring}                           % String manipulation tools      %
-\RequirePackage{kvoptions}                         % Better package/class options   %
-\RequirePackage{kvsetkeys}                         % Better suboptions              %
+% 1. Document interface (public, stable).  Commands and environments starting       %
+%    with "my" (\myfigure, \myref, mytable, ...), the words \my<word>name, the      %
+%    counters my<level> / my<object> with their \themy<...>, the page-numbering     %
+%    style myalph, the utilities \mycleantext, \mycleanline, \mycleanfirstline,     %
+%    \mylenmax, \mylenmin, \myhighestsec and \mycurrentacyear.                      %
+% 2. Programmer interface (public, for myreport.cls and other packages).            %
+%    expl3 functions and variables of the "mypackage" module without a double       %
+%    underscore: \mypackage_<name>:<arguments>, \l_mypackage_<name>_<type>.         %
+% 3. Private code (may change at any version).  \__mypackage_<name>:<args>,         %
+%    \l__mypackage_..., \g__mypackage_..., \c__mypackage_..., the keys under        %
+%    mypackage/..., and the few LaTeX2e-level internals \mypackage@<name>.          %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%% PACKAGE OPTIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%
+%%%%%% CLASS OPTIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\SetupKeyvalOptions{%                              % Setup for main class options   %
-  family=myreport,%                                % - Class family name            %
-  prefix=myreport@%                                % - Class prefix name            %
-}                                                  %                                %
-\DeclareStringOption{%                             % Text formatting options        %
-  text%                                            % - Name of the option           %
-}                                                  %                                %
-\DeclareStringOption{%                             % Paths to folders & files       %
-  paths%                                           % - Name of the option           %
-}                                                  %                                %
-\DeclareStringOption[%                             % Position default options       %
-  h%                                               % - Initial value                %
-]{%                                                %                                %
-  position%                                        % - Name of the option           %
-}                                                  %                                %
-\DeclareStringOption{%                             % Sectionning options            %
-  sectioning%                                      % - Name of the option           %
-}                                                  %                                %
-\DeclareStringOption{%                             % TOC depth                      %
-  toc%                                             % - Name of the option           %
-}                                                  %                                %
-\ProcessKeyvalOptions*                             % Processes the options          %
+% text={                                           % defaults:                      %
+%   fontsize=<size>,                               % - 10pt                         %
+%   fontfamily=<family>,                           % - cmr                          %
+%   lang=<babel language(s)>                       % - british                      %
+% }                                                %                                %
+% paths={                                          % defaults:                      %
+%   images=<dir/>,                                 % - code/                        %
+%   code=<dir/>,                                   % - images/                      %
+%   sources=<file.bib>                             % - sources/sources.bib          %
+% }                                                %                                %
+% position=<placement>                             % placement for every float type %
+% position={                                       % per float type; defaults:      %
+%   figure=<placement>,                            % - h                            %
+%   table=<placement>,                             % - h                            %
+%   program=<placement>,                           % - h                            %
+%   pseudocode=<placement>                         % - h                            %
+% }                                                %                                %
+% toc={                                            % defaults:                      %
+%   depth=<n>,                                     % - 2                            %
+%   annexdepth=<n>,                                % - 0                            %
+%   bibdepth=<n>                                   % - 1                            %
+% }                                                %                                %
+% sectioning=<break|nobreak>                       % page break for every level     %
+% sectioning={                                     % per level; defaults:           %
+%   part=<break|nobreak>,                          % - break                        %
+%   chapter=<break|nobreak>,                       % - break                        %
+%   section=<break|nobreak>,                       % - nobreak                      %
+%   subsection=<break|nobreak>,                    % - nobreak                      %
+%   subsubsection=<break|nobreak>,                 % - nobreak                      %
+%   annex=<break|nobreak>,                         % - break                        %
+%   bib=<break|nobreak>                            % - break                        %
+% }                                                %                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%% PACKAGE SUB-OPTIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%
+\ExplSyntaxOn
+\tl_new:N \l__myreport_text_fontsize_tl
+\tl_new:N \l__myreport_text_fontfamily_tl
+\tl_new:N \l__myreport_text_lang_tl
+\tl_new:N \l__myreport_paths_tl
+\tl_new:N \l__myreport_position_tl
+\tl_new:N \l__myreport_toc_tl
+\clist_const:Nn \c__myreport_sectioning_clist {
+  part,
+  chapter,
+  section,
+  subsection,
+  subsubsection,
+  annex,
+  bib
+}
+\clist_map_inline:Nn \c__myreport_sectioning_clist {
+  \tl_new:c { l__myreport_sectioning_ #1 _tl }
+}
+\keys_define:nn { myreport } {
+  text.code:n = { \keys_set:no { myreport / text } {#1} },
+  paths.tl_set:N = \l__myreport_paths_tl,
+  position.tl_set:N = \l__myreport_position_tl,
+  toc.tl_set:N = \l__myreport_toc_tl ,
+  sectioning.code:n = { \__myreport_sectioning_set:o {#1} },
+}
+\keys_define:nn { myreport / text } {
+  fontsize.tl_set:N = \l__myreport_text_fontsize_tl,
+  fontsize.initial:n = 10pt,
+  fontfamily.tl_set:N = \l__myreport_text_fontfamily_tl,
+  fontfamily.initial:n = cmr,
+  lang.tl_set:N = \l__myreport_text_lang_tl,
+  lang.initial:n = british,
+}
+\keys_define:nn { myreport / sectioning } {
+  part.tl_set:N = \l__myreport_sectioning_part_tl,
+  part.initial:n = break,
+  chapter.tl_set:N = \l__myreport_sectioning_chapter_tl,
+  chapter.initial:n = break,
+  section.tl_set:N = \l__myreport_sectioning_section_tl,
+  section.initial:n = nobreak,
+  subsection.tl_set:N = \l__myreport_sectioning_subsection_tl,
+  subsection.initial:n = nobreak,
+  subsubsection.tl_set:N = \l__myreport_sectioning_subsubsection_tl,
+  subsubsection.initial:n = nobreak,
+  annex.tl_set:N = \l__myreport_sectioning_annex_tl,
+  annex.initial:n = break,
+  bib.tl_set:N = \l__myreport_sectioning_bib_tl,
+  bib.initial:n = break,
+}
+\cs_new_protected:Npn \__myreport_sectioning_set:n #1 {
+  \tl_if_blank:nF {#1} {
+    \tl_if_in:nnTF {#1} { = } {
+      \keys_set:nn { myreport / sectioning } {#1}
+    } {
+      \clist_map_inline:Nn \c__myreport_sectioning_clist {
+        \tl_set:cn { l__myreport_sectioning_ ##1 _tl } {#1}
+      }
+    }
+  }
+}
+\cs_generate_variant:Nn \__myreport_sectioning_set:n { o }
+\ProcessKeyOptions [ myreport ]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\SetupKeyvalOptions{%                              % Setup for "text" options       %
-  family=myreporttext,%                            % - "text" family name           %
-  prefix=myreport@text@%                           % - "text" prefix name           %
-}                                                  %                                %
-\DeclareStringOption[%                             % Font size                      %
-  10pt%                                            % - Initial value                %
-]{%                                                %                                %
-  fontsize%                                        % - Name of the option           %
-}                                                  %                                %
-\DeclareStringOption[%                             % Font family                    %
-  cmr%                                             % - Initial value                %
-]{%                                                %                                %
-  fontfamily%                                      % - Name of the option           %
-}                                                  %                                %
-\DeclareStringOption[%                             % Text language                  %
-  british%                                         % - Initial value                %
-]{%                                                %                                %
-  lang%                                            % - Name of the option           %
-}                                                  %                                %
-\SetupKeyvalOptions{%                              % Setup for "sectioning" options %
-  family=myreportsect,%                            % - "sectioning" family name     %
-  prefix=myreport@sect@%                           % - "sectioning" prefix name     %
-}                                                  %                                %
-\DeclareStringOption[%                             % Part sectioning                %
-  break%                                           % - Initial value                %
-]{%                                                %                                %
-  part%                                            % - Name of the option           %
-}                                                  %                                %
-\DeclareStringOption[%                             % Chapter sectioning             %
-  break%                                           % - Initial value                %
-]{%                                                %                                %
-  chapter%                                         % - Name of the option           %
-}                                                  %                                %
-\DeclareStringOption[%                             % Section sectioning             %
-  nobreak%                                         % - Initial value                %
-]{%                                                %                                %
-  section%                                         % - Name of the option           %
-}                                                  %                                %
-\DeclareStringOption[%                             % Subsection sectioning          %
-  nobreak%                                         % - Initial value                %
-]{%                                                %                                %
-  subsection%                                      % - Name of the option           %
-}                                                  %                                %
-\DeclareStringOption[%                             % Subsubsection sectioning       %
-  nobreak%                                         % - Initial value                %
-]{%                                                %                                %
-  subsubsection%                                   % - Name of the option           %
-}                                                  %                                %
-\DeclareStringOption[%                             % Annex sectioning               %
-  break%                                           % - Initial value                %
-]{%                                                %                                %
-  annex%                                           % - Name of the option           %
-}                                                  %                                %
-\DeclareStringOption[%                             % Bibliography sectioning        %
-  break%                                           % - Initial value                %
-]{%                                                %                                %
-  bib%                                             % - Name of the option           %
-}                                                  %                                %
+%%%%%% LOAD CLASS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%% PACKAGE OPTIONS PROCESSING %%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\ifx\myreport@text\@empty                          % Text sub-options               %
-\else                                              %                                %
-  \kvsetkeys@expandafter{%                         %                                %
-    myreporttext%                                  %                                %
-  }{%                                              %                                %
-    \myreport@text%                                %                                %
-  }                                                %                                %
-\fi                                                %                                %
-\ifx\myreport@sectioning\@empty                    % Sectioning sub-options         %
-\else                                              %                                %
-  \IfSubStr{\myreport@sectioning}{=}{              %                                %
-    \kvsetkeys@expandafter{%                       %                                %
-      myreportsect%                                %                                %
-    }{%                                            %                                %
-      \myreport@sectioning%                        %                                %
-    }                                              %                                %
-  }{                                               %                                %
-    \expandafter\def                               %                                %
-    \csname myreport@sect@part\endcsname{%         %                                %
-      \myreport@sectioning%                        %                                %
-    }                                              %                                %
-    \expandafter\def                               %                                %
-    \csname myreport@sect@chapter\endcsname{%      %                                %
-      \myreport@sectioning%                        %                                %
-    }                                              %                                %
-    \expandafter\def                               %                                %
-    \csname myreport@sect@section\endcsname{%      %                                %
-      \myreport@sectioning%                        %                                %
-    }                                              %                                %
-    \expandafter\def                               %                                %
-    \csname myreport@sect@subsection\endcsname{%   %                                %
-      \myreport@sectioning%                        %                                %
-    }                                              %                                %
-    \expandafter\def                               %                                %
-    \csname myreport@sect@subsubsection\endcsname{%%                                %
-      \myreport@sectioning%                        %                                %
-    }                                              %                                %
-    \expandafter\def                               %                                %
-    \csname myreport@sect@annex\endcsname{%        %                                %
-      \myreport@sectioning%                        %                                %
-    }                                              %                                %
-    \expandafter\def                               %                                %
-    \csname myreport@sect@bib\endcsname{%          %                                %
-      \myreport@sectioning%                        %                                %
-    }                                              %                                %
-  }                                                %                                %
-\fi                                                %                                %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%% CLASS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\LoadClass[%                                       % Base class                     %
-  a4paper,%                                        % - Page size                    %
-  \myreport@text@fontsize%                         % - Font size                    %
-]{report}                                          %                                %
+\use:e {                                           %                                %
+  \exp_not:N \LoadClass [                          % Base class                     %
+    a4paper,                                       % - Page size                    %
+    \l__myreport_text_fontsize_tl                  % - Font size                    %
+  ] { report }                                     %                                %
+}                                                  %                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% REQUIRED PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\RequirePackage[                                   % My custom package              %
-  lang={\myreport@text@lang},                      % - Language option              %
-  paths={\myreport@paths},                         % - Folder paths                 %
-  position={\myreport@position},                   % - Figures/tables/... position  %
-  toc={\myreport@toc},                             % - TOC options                  %
-]{mypackage}                                       %                                %
+\use:e {                                           %                                %
+  \exp_not:N \RequirePackage [                     % My custom package              %
+    lang = { \exp_not:V \l__myreport_text_lang_tl },    % - Language option              %
+    paths = { \exp_not:V \l__myreport_paths_tl },       % - Folder paths                 %
+    position = { \exp_not:V \l__myreport_position_tl }, % - Float placement              %
+    toc = { \exp_not:V \l__myreport_toc_tl },      % - TOC options                  %
+  ] { mypackage }                                  %                                %
+}                                                  %                                %
+\ExplSyntaxOff                                     %                                %
 \RequirePackage{amsmath}                           % Advanced math formulas         %
 \RequirePackage{amsfonts}                          % Extra math fonts and symbols   %
 \RequirePackage{amssymb}                           % More math symbols and fonts    %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% FONTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DESCRIPTION %%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\ExplSyntaxOn
-  \str_case_e:nn{\myreport@text@fontfamily}{
-    {cmr}{
-    }
-    {lmr}{
-      \RequirePackage{lmodern}
-    }
-    {lmdh}{
-      \RequirePackage{lmodern}
-    }
-    {qtm}{
-      \RequirePackage{tgtermes}
-    }
-    {qpl}{
-      \RequirePackage{tgpagella}
-    }
-    {qbk}{
-      \RequirePackage{tgbonum}
-    }
-    {qcs}{
-      \RequirePackage{tgschola}
-    }
-    {ptm}{
-      \RequirePackage{mathptmx}
-    }
-    {put}{
-      \RequirePackage{utopia}
-    }
-    {ppl}{
-      \RequirePackage{palatino}
-    }
-    {pbk}{
-      \RequirePackage{bookman}
-    }
-    {bch}{
-      \RequirePackage{charter}
-    }
-    {cmss}{
-    }
-    {lmss}{
-      \RequirePackage{lmodern}
-    }
-    {qag}{
-      \RequirePackage{tgadventor}
-    }
-    {qhv}{
-      \RequirePackage{tgheros}
-    }
-    {phv}{
-      \RequirePackage{helvet}
-    }
-    {cmtt}{
-    }
-    {lmtt}{
-      \RequirePackage{lmodern}
-    }
-    {qcr}{
-      \RequirePackage{tgcursor}
-    }
-    {pcr}{
-      \RequirePackage{courier}
-    }
-  }
-\ExplSyntaxOff
-\IfStrEq{\myreport@text@fontfamily}{cmr}{}{%       % Default family of the document %
-  \renewcommand{\familydefault}{%                  % (used by \normalfont, so also  %
-    \myreport@text@fontfamily%                     % in captions, footnotes, ...);  %
-  }%                                               % left alone for cmr, so that    %
-}                                                  % fontspec's main font works     %
+% text={fontfamily=<family>} loads the package of the family and makes it the       %
+% default family of the document (\familydefault, used by \normalfont, so also      %
+% in captions, footnotes, ...). The default cmr leaves LaTeX's default alone,       %
+% so that a main font chosen with fontspec still works.                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%% CUSTOM COMMANDS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ExplSyntaxOn
+\prop_const_from_keyval:Nn \c__myreport_font_packages_prop {
+  cmr = ,
+  lmr = lmodern,
+  lmdh = lmodern,
+  qtm = tgtermes,
+  qpl = tgpagella,
+  qbk = tgbonum,
+  qcs = tgschola,
+  ptm = mathptmx,
+  put = utopia,
+  ppl = palatino,
+  pbk = bookman,
+  bch = charter,
+  cmss = ,
+  lmss = lmodern,
+  qag = tgadventor,
+  qhv = tgheros,
+  phv = helvet,
+  cmtt = ,
+  lmtt = lmodern,
+  qcr = tgcursor,
+  pcr = courier,
+}
+\tl_new:N \l__myreport_font_package_tl
+\exp_args:NNV \prop_get:NnNT \c__myreport_font_packages_prop \l__myreport_text_fontfamily_tl \l__myreport_font_package_tl {
+  \tl_if_empty:NF \l__myreport_font_package_tl {
+    \exp_args:NV \RequirePackage \l__myreport_font_package_tl
+  }
+}
+\str_if_eq:VnF \l__myreport_text_fontfamily_tl { cmr } {
+  \cs_set:Npe \familydefault { \l__myreport_text_fontfamily_tl }
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\myclearpage}[2]{%
-  \edef\mysavedtext{#2}%
-  \ifMyannexUsed%
-    \IfStrEq{\myreport@sect@annex}{nobreak}{%
-      \def\mysavedtext{nobreak}%
-    }{}%
-  \fi%
-  \ifMybibUsed%
-    \IfStrEq{\myreport@sect@bib}{nobreak}{%
-      \def\mysavedtext{nobreak}%
-    }{}%
-  \fi%
-  \IfStrEq{\mysavedtext}{nobreak}{%
-    \ifMyannexUsed%
-      \IfStrEq{#1}{\myhighestsec}{%
-        \clearpage%
-      }{%
-        \par%
-      }%
-    \else%
-      \par%
-    \fi%
-  }{%
-    \IfStrEq{#1}{mypart}{%
-      \cleardoublepage%
-    }{\IfStrEq{#1}{mychapter}{%
-      \ifGlobalMypartUsed%
-        \clearpage%
-      \else%
-        \cleardoublepage%
-      \fi%
-    }{\IfStrEq{#1}{mysection}{%
-      \ifGlobalMypartUsed%
-        \clearpage%
-      \else%
-        \ifGlobalMychapterUsed%
-          \clearpage%
-        \else%
-          \cleardoublepage%
-        \fi%
-      \fi%
-    }{\IfStrEq{#1}{mysubsection}{%
-      \ifGlobalMypartUsed%
-        \clearpage%
-      \else%
-        \ifGlobalMychapterUsed%
-          \clearpage%
-        \else%
-          \ifGlobalMysectionUsed%
-            \clearpage%
-          \else%
-            \cleardoublepage%
-          \fi%
-        \fi%
-      \fi%
-    }{\IfStrEq{#1}{mysubsubsection}{%
-      \ifGlobalMypartUsed%
-        \clearpage%
-      \else%
-        \ifGlobalMychapterUsed%
-          \clearpage%
-        \else%
-          \ifGlobalMysectionUsed%
-            \clearpage%
-          \else%
-            \ifGlobalMysubsectionUsed%
-              \clearpage%
-            \else%
-              \cleardoublepage%
-            \fi%
-          \fi%
-        \fi%
-      \fi%
-    }{%
-      \pagebreak%
-    }}}}}%
+%%%%%% PAGE BREAKS AND HEADINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \__myreport_clearpage:nn {<level>} {<break|nobreak>}: what comes before a         %
+% heading. nobreak: a new paragraph (in an annex the highest level still starts     %
+% a new page). break: a new page; a right-hand page (\cleardoublepage) for the      %
+% highest level used. In an annex or in the bibliography, sectioning={annex=        %
+% nobreak} or {bib=nobreak} turns every break into nobreak.                         %
+%                                                                                   %
+% \__myreport_heading:nnn {<level>} {<number>} {<title>} typesets the heading       %
+% (<number> empty: unnumbered); \__myreport_part_heading:nn {<label>} {<title>}     %
+% the part heading ("Part 1" above the title, nothing if <label> is empty).         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tl_new:N \l__myreport_break_tl
+% \begingroup Improve
+% Remove #2 by find it's value from #1
+\cs_new_protected:Npn \__myreport_clearpage:nn #1#2 {
+  \tl_set:Nn \l__myreport_break_tl {#2}
+  \bool_if:NT \l_mypackage_annex_bool {
+    \str_if_eq:VnT \l__myreport_sectioning_annex_tl { nobreak } {
+      \tl_set:Nn \l__myreport_break_tl { nobreak }
+    }
+  }
+  \bool_if:NT \l_mypackage_bibliography_bool {
+    \str_if_eq:VnT \l__myreport_sectioning_bib_tl { nobreak } {
+      \tl_set:Nn \l__myreport_break_tl { nobreak }
+    }
+  }
+  \str_if_eq:VnTF \l__myreport_break_tl { nobreak } {
+    \bool_lazy_and:nnTF {
+      \l_mypackage_annex_bool
+    } {
+      \str_if_eq_p:ee {#1} { \mypackage_highest_level: }
+    } {
+      \clearpage
+    } {
+      \par
+    }
+  } {
+    \clist_if_in:NnTF \c_mypackage_levels_clist {#1} {
+      \mypackage_if_above_used:nTF {#1} {
+        \clearpage
+      } { 
+        \cleardoublepage
+      }
+    } {
+      \pagebreak
+    }
   }
 }
-\NewDocumentCommand{\mycourse}{s m o}{%
-  \def\mycourseval{%
-    #2%
-  }%
-  \IfNoValueF{#3}{%
-    \IfBlankF{#3}{%
-      \def\mycourseidval{%
-        #3%
-      }%
-    }%
-  }%
-  \IfBooleanTF{#1}{%
-    \def\mycoursestarval{true}%
-  }{%
-    \def\mycoursestarval{false}%
-  }%
+\prop_const_from_keyval:Nn \c__myreport_heading_font_prop {
+  part = \centering \bfseries \itshape \Huge,
+  chapter = \bfseries \LARGE,
+  section = \bfseries \Large,
+  subsection = \bfseries \large,
+  subsubsection = \bfseries \normalsize,
 }
-\ExplSyntaxOn
-  \NewDocumentCommand{\myaddprofessor}{s m m}{%
-    \str_if_eq:VnTF\myprofessorval{-NoValue-}{%
-      \gdef\myprofessorval{\textsc{#2}\space#3}%
-      \gdef\myprofessortabval{\textsc{#2}\space#3}%
-      \IfBooleanTF{#1}{%
-        \gdef\myprofessorgenderval{f}%
-      }{%
-        \gdef\myprofessorgenderval{m}%
-      }%
-    }{%
-      \g@addto@macro\myprofessorval{\space\&\space\textsc{#2}\space#3}%
-      \g@addto@macro\myprofessortabval{&\textsc{#2}\space#3}%
-      \IfBooleanTF{#1}{%
-        \g@addto@macro\myprofessorgenderval{,f}%
-      }{%
-        \g@addto@macro\myprofessorgenderval{,m}%
-      }%
-    }%
+\prop_const_from_keyval:Nn \c__myreport_heading_after_prop {
+  part = 0em,
+  chapter = -0.5em,
+  section = -1em,
+  subsection = -1em,
+  subsubsection = -1em,
+}
+\cs_new_protected:Npn \__myreport_heading:nnn #1#2#3 {
+  \group_begin:
+    \vspace { 4em }
+    \__myreport_clearpage:nv {#1} { l__myreport_sectioning_ #1 _tl }
+    \setlength { \parindent } { 0cm }
+    \vspace { -3em }
+    \prop_item:Nn \c__myreport_heading_font_prop {#1}
+    \tl_if_empty:nF {#2} { #2 \hspace { 1em } }
+    #3 \\
+    \vspace { \prop_item:Nn \c__myreport_heading_after_prop {#1} }
+    \par
+  \group_end:
+}
+\cs_new_protected:Npn \__myreport_part_heading:nn #1#2 {
+  \group_begin:
+    \vspace { 3em }
+    \__myreport_clearpage:nV { part } \l__myreport_sectioning_part_tl
+    \setlength { \parindent } { 0cm }
+    \vspace { -2em }
+    \prop_item:Nn \c__myreport_heading_font_prop { part }
+    \tl_if_empty:nF {#1} { #1 \\ }
+    \vspace { -0.5em }
+    \rule { \textwidth } { 1pt } \\
+    #2 \\
+    \vspace { -0.5em }
+    \rule { \textwidth } { 0.3pt }
+    \vspace { \prop_item:Nn \c__myreport_heading_after_prop { part } }
+    \par
+  \group_end:
+}
+\cs_generate_variant:Nn \__myreport_clearpage:nn { nV , nv }
+\cs_new_protected:Npn \__myreport_heading_any:nnn #1#2#3 {
+  \str_if_eq:nnTF {#1} { part } {
+    \__myreport_part_heading:nn {#2} {#3}
+  } {
+    \__myreport_heading:nnn {#1} {#2} {#3}
   }
+}
+% \begingroup Improve
+% Make it work for subsection and subsubsection also if those are the highest used levels
+\cs_new:Npn \__myreport_front_level: {
+  \mypackage_if_level_used:nTF { part } {
+    part
+  } {
+    \mypackage_if_level_used:nTF { chapter } { chapter } { section }
+  }
+}
+\cs_new_protected:Npn \__myreport_front_heading:n #1 {
+  \__myreport_heading_any:enn { \__myreport_front_level: } { } {#1}
+}
+\cs_generate_variant:Nn \__myreport_heading_any:nnn { e }
+\cs_new_protected:Npn \__myreport_set_pagenumbering:n #1 {
+  \mypackage_if_pagenumbering:nF {#1} {
+    \newpage \pagenumbering {#1}
+  }
+}
+\cs_new_protected:Npn \__myreport_main_pagenumbering: {
+  \bool_if:NTF \l_mypackage_annex_bool {
+    \__myreport_set_pagenumbering:n { myalph }
+  } {
+    \__myreport_set_pagenumbering:n { arabic }
+  }
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% TITLE PAGE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \mycourse{<name>}[<ID>] course (ID in brackets)                                   %
+% \myaddprofessor(*){<last>}{<first>}, \myaddassistant(*){<last>}{<first>}          %
+% \myaddauthor(*){<last>}{<first>}[<ID>] (*: female, for the role names)            %
+% \mytitle(*){<title>} (*: not underlined), \mysubtitle{<subtitle>}                 %
+% \myimage[<options>]{<file>}, \mylogo[<options>]{<file>}                           %
+% \mydate{<date>} (default \today), \myacademicyear{<years>} (default: the          %
+%     current academic year)                                                        %
+% \mymaketitle(*)[<style 1 or 2>]  (*: keeps the page geometry)                     %
+% An item left empty is not shown.                                                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tl_new:N \g__myreport_course_tl
+\tl_new:N \g__myreport_course_id_tl
+\tl_new:N \g__myreport_title_tl
+\bool_new:N \g__myreport_title_underline_bool
+\tl_new:N \g__myreport_subtitle_tl
+\tl_new:N \g__myreport_image_tl
+\tl_new:N \g__myreport_logo_tl
+\tl_new:N \g__myreport_date_tl
+\tl_new:N \g__myreport_acyear_tl
+\tl_gset:Nn \g__myreport_date_tl { \today }
+\tl_gset:Nn \g__myreport_acyear_tl { \mycurrentacyear }
+\clist_map_inline:nn { professor , assistant , author } {
+  \seq_new:c { g__myreport_ #1 _seq }
+  \seq_new:c { g__myreport_ #1 _gender_seq }
+}
+\seq_new:N \g__myreport_author_id_seq
+\seq_new:N \l__myreport_author_seq
+\NewDocumentCommand \mycourse { m o } {
+  \tl_gset:Nn \g__myreport_course_tl {#1}
+  \IfNoValueF {#2} {
+    \tl_if_blank:nF {#2} { \tl_gset:Nn \g__myreport_course_id_tl {#2} }
+  }
+}
+\cs_new_protected:Npn \__myreport_add_person:nnnn #1#2#3#4 {
+  \seq_gput_right:cn { g__myreport_ #1 _seq } { \textsc {#3} \space #4 }
+  \seq_gput_right:ce { g__myreport_ #1 _gender_seq } {
+    \IfBooleanTF {#2} {
+      f
+    } {
+      m
+    }
+  }
+}
+\NewDocumentCommand \myaddprofessor { s m m } {
+  \__myreport_add_person:nnnn { professor } {#1} {#2} {#3}
+}
+\NewDocumentCommand \myaddassistant { s m m } {
+  \__myreport_add_person:nnnn { assistant } {#1} {#2} {#3}
+}
+\NewDocumentCommand \myaddauthor { s m m O{} } {
+  \__myreport_add_person:nnnn { author } {#1} {#2} {#3}
+  \seq_gput_right:Nn \g__myreport_author_id_seq {#4}
+}
+\NewDocumentCommand \myacademicyear { m } {
+  \tl_gset:Nn \g__myreport_acyear_tl {#1}
+}
+\NewDocumentCommand \mytitle { s m } {
+  \IfBooleanTF {#1} {
+    \bool_gset_false:N \g__myreport_title_underline_bool
+  } {
+    \bool_gset_true:N \g__myreport_title_underline_bool
+  }
+  \tl_gset:Nn \g__myreport_title_tl {#2}
+}
+\NewDocumentCommand \mysubtitle { m } {
+  \tl_gset:Nn \g__myreport_subtitle_tl {#1}
+}
+\NewDocumentCommand \myimage { O{width=1} m } {
+  \tl_gset:Nn \g__myreport_image_tl { \myinclude [#1] {#2} }
+}
+\NewDocumentCommand \mylogo { O{height=0.035} m } {
+  \tl_gset:Nn \g__myreport_logo_tl { \myinclude [#1] {#2} }
+}
+\NewDocumentCommand \mydate { m } {
+  \tl_gset:Nn \g__myreport_date_tl {#1}
+}
+\cs_new:Npn \__myreport_role:n #1 {
+  \int_compare:nNnTF { \seq_count:c { g__myreport_ #1 _seq } } = { 1 } {
+    \str_if_eq:eeTF { \seq_item:cn { g__myreport_ #1 _gender_seq } { 1 } } { f } {
+      \use:c { my #1 fname }
+    } {
+      \use:c { my #1 mname }
+    }
+  } {
+    \seq_if_in:cnTF { g__myreport_ #1 _gender_seq } { m } {
+      \use:c { my #1 mpname }
+    } {
+      \use:c { my #1 fpname }
+    }
+  }
+}
+\prg_new_conditional:Npnn \__myreport_if_people:n #1 { T , F , TF } {
+  \seq_if_empty:cTF { g__myreport_ #1 _seq } {
+    \prg_return_false:
+  } {
+    \prg_return_true:
+  }
+}
+\cs_new_protected:Npn \__myreport_title_course: {
+  \tl_if_empty:NF \g__myreport_course_tl {
+    \textbf { \textsc { \g__myreport_course_tl } }
+  }
+  \tl_if_empty:NF \g__myreport_course_id_tl {
+    \textbf { \textsc { \space [ \g__myreport_course_id_tl ] } }
+  }
+}
+\cs_new_protected:Npn \__myreport_title_text: {
+  \begin { center }
+    \tl_if_empty:NF \g__myreport_title_tl {
+      \bool_if:NTF \g__myreport_title_underline_bool {
+        \textbf { \Huge \underline { \g__myreport_title_tl } }
+      } {
+        \textbf { \Huge \g__myreport_title_tl }
+      }
+    }
+    \tl_if_empty:NF \g__myreport_subtitle_tl {
+      \textbf {
+        \textsc {
+          \\ [ 0.015 \textheight ]
+          \LARGE
+          \textcolor { darkgray } { \g__myreport_subtitle_tl }
+        }
+      }
+    }
+  \end { center }
+}
+\cs_new_protected:Npn \__myreport_title_image: {
+  \tl_if_empty:NF \g__myreport_image_tl {
+    \begin { center }
+      \vspace { 0.05 \textheight }
+      \g__myreport_image_tl
+      \vspace { 0.05 \textheight }
+    \end { center }
+  }
+}
+\cs_new_protected:Npn \__myreport_title_acyear: {
+  \tl_if_empty:NF \g__myreport_acyear_tl {
+    \textbf { \textsc { \myacyearname \c_colon_str \space } }
+    \textsc { \g__myreport_acyear_tl }
+  }
+}
+\cs_new_protected:Npn \__myreport_title_date: {
+  \tl_if_empty:NF \g__myreport_date_tl {
+    \textbf { \g__myreport_date_tl }
+  }
+}
+% \begingroup Improve
+% Make image be a certain amount of space from the page bottom instead of centered with title
+\cs_new_protected:cpn { __myreport_titlepage_1: } {
+  \begin { tabularx } { \textwidth } { > { \raggedright \arraybackslash } X > { \raggedleft \arraybackslash } X }
+    \__myreport_title_course:
+    &
+    \__myreport_if_people:nT { professor } {
+      \textbf { \__myreport_role:n { professor } }
+      \textbf { \c_colon_str \space }
+      \seq_use:Nn \g__myreport_professor_seq { \space \& \space }
+    }
+  \end { tabularx }
+  \vspace { 2pt }
+  \hrule height 4pt width \hsize
+  \vspace { -2pt }
+  \begin { tabularx } { \textwidth } { c > { \raggedleft \arraybackslash } X }
+    & \__myreport_title_acyear:
+  \end { tabularx }
+  \vspace { 0.05 \textheight }
+  \vspace* { \fill }
+  \__myreport_title_text:
+  \__myreport_title_image:
+  \vspace* { \fill }
+  \begin { tabularx } { \textwidth } { c > { \raggedleft \arraybackslash } X }
+    \tl_if_empty:NF \g__myreport_logo_tl {
+      \adjustbox { valign = b } { \g__myreport_logo_tl }
+    }
+    &
+    \__myreport_title_date:
+  \end { tabularx }
+  \vspace { 2pt }
+  \hrule height 4pt width \hsize
+  \vspace { -2pt }
+  \begin { center }
+    \__myreport_if_people:nT { author } {
+      \textbf {
+        \begin { tabular } {
+          * { \seq_count:N \g__myreport_author_seq }
+          { > { \centering \arraybackslash } p { \fp_eval:n { 0.8 / \seq_count:N \g__myreport_author_seq } \textwidth }}
+        }
+          \seq_use:Nn \g__myreport_author_seq { & } \\
+          \seq_use:Nn \g__myreport_author_id_seq { & }
+        \end { tabular }
+      }
+    }
+  \end { center }
+}
+\cs_new_protected:cpn { __myreport_titlepage_2: } {
+  \begin { tabularx } { \textwidth } { > { \raggedright \arraybackslash } X r }
+    \__myreport_title_course:
+    &
+    \tl_if_empty:NF \g__myreport_logo_tl {
+      \adjustbox { valign = t } { \g__myreport_logo_tl }
+    }
+  \end { tabularx }
+  \vspace* { \fill }
+  \hrule height 1.5pt width \hsize
+  \vspace { 8pt }
+  \__myreport_title_text:
+  \vspace { 16pt }
+  \hrule height 1.5pt width \hsize
+  \__myreport_title_image:
+  \vspace* { \fill }
+  \par
+  \seq_clear:N \l__myreport_author_seq
+  \int_step_inline:nn { \seq_count:N \g__myreport_author_seq } {
+    \tl_if_blank:eTF { \seq_item:Nn \g__myreport_author_id_seq {##1} } {
+      \seq_put_right:Ne \l__myreport_author_seq
+        { \seq_item:Nn \g__myreport_author_seq {##1} }
+    } {
+      \seq_put_right:Ne \l__myreport_author_seq
+        {
+          \seq_item:Nn \g__myreport_author_seq {##1}
+          \exp_not:N \space
+          ( \seq_item:Nn \g__myreport_author_id_seq {##1} )
+        }
+    }
+  }
+  \hspace { 45pt }
+  \bool_lazy_or:nnT {
+    ! \seq_if_empty_p:N \g__myreport_professor_seq
+  } {
+    ! \seq_if_empty_p:N \g__myreport_assistant_seq
+  } {
+    \begin { tabular } [t] { l | l }
+      \__myreport_if_people:nT { professor } {
+        \textbf { \__myreport_role:n { professor } }
+        & \seq_use:Nn \g__myreport_professor_seq { \\ & } \\
+      }
+      \__myreport_if_people:nT { assistant } {
+        \textbf { \__myreport_role:n { assistant } }
+        & \seq_use:Nn \g__myreport_assistant_seq { \\ & } \\
+      }
+    \end { tabular }
+  }
+  \hspace { \fill }
+  \__myreport_if_people:nT { author } {
+    \begin { tabular } [t] { l | l }
+      \textbf { \__myreport_role:n { author } }
+      & \seq_use:Nn \l__myreport_author_seq { \\ & } \\
+    \end { tabular }
+  }
+  \hspace* { 45pt }
+  \\ [ 25pt ]
+  \begin { tabularx } { \textwidth } { > { \raggedright \arraybackslash } X r }
+    \__myreport_title_acyear:
+    &
+    \__myreport_title_date:
+  \end { tabularx }
+}
+\NewDocumentCommand \mymaketitle { s O{1} } {
+  \hypersetup { pageanchor = false }
+  \IfBooleanF {#1} { \newgeometry { margin = 1cm } }
+  \cs_if_exist:cT { __myreport_titlepage_ #2 : } {
+    \begin { titlepage }
+      \setlength { \parindent } { 0cm }
+      \use:c { __myreport_titlepage_ #2 : }
+    \end { titlepage }
+  }
+  \IfBooleanF {#1} { \restoregeometry }
+  \hypersetup { pageanchor = true }
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% SECTIONING %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \mypart(*){<title>}[name=<word>, number=<n>, label=<label>]                       %
+% \mychapter(*), \mysection(*), \mysubsection(*), \mysubsubsection(*)               %
+%     {<title>}[number=<n>, label=<label>]                                          %
+% *: unnumbered and not in the TOC. Labels: part:, chap:, sec:, subsec:,            %
+% subsubsec: (ann:<prefix>: in an annex). Inside a myannex environment the          %
+% parts are named \myannexname and the pages are numbered a, b, ...                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tl_new:N \l__myreport_section_number_tl
+\tl_new:N \l__myreport_section_label_tl
+\tl_new:N \l__myreport_section_name_tl
+\tl_new:N \l__myreport_section_givenname_tl
+\tl_new:N \l__myreport_section_numtext_tl
+\tl_new:N \l__myreport_section_fulllabel_tl
+\bool_new:N \l__myreport_section_number_bool
+\bool_new:N \l__myreport_section_label_bool
+\bool_new:N \l__myreport_section_name_bool
+\keys_define:nn { myreport / section } {
+  number.code:n = {
+    \bool_set_true:N \l__myreport_section_number_bool
+    \tl_set:Nn \l__myreport_section_number_tl {#1}
+  },
+  label.code:n = {
+    \bool_set_true:N \l__myreport_section_label_bool
+    \tl_set:Nn \l__myreport_section_label_tl {#1}
+  },
+}
+\keys_define:nn { myreport / part } {
+  number.meta:nn = { myreport / section } { number = {#1} },
+  label.meta:nn = { myreport / section } { label = {#1} },
+  name.code:n = {
+    \bool_set_true:N \l__myreport_section_name_bool
+    \tl_set:Nn \l__myreport_section_givenname_tl {#1}
+  },
+}
+% \begingroup Idea
+% Make this a package constant instead (look for other examples)
+\prop_const_from_keyval:Nn \c__myreport_label_prefix_prop {
+  part = part,
+  chapter = chap,
+  section = sec,
+  subsection = subsec,
+  subsubsection = subsubsec,
+}
+% \__myreport_section:nnnn {<level>} {<star>} {<title>} {<options>}
+\cs_new_protected:Npn \__myreport_section:nnnn #1#2#3#4 {
+  \bool_set_false:N \l__myreport_section_number_bool
+  \bool_set_false:N \l__myreport_section_label_bool
+  \bool_set_false:N \l__myreport_section_name_bool
+  \str_if_eq:nnTF {#1} { part } {
+    \keys_set:nn { myreport / part } {#4}
+  } {
+    \keys_set:nn { myreport / section } {#4}
+  }
+  \mypackage_register_level:n {#1}
+  \__myreport_main_pagenumbering:
+  \bool_if:NTF \l_mypackage_annex_bool {
+    \tl_set:Nn \l__myreport_section_name_tl { \myannexname }
+  } {
+    \tl_set:Nn \l__myreport_section_name_tl { \mypartname }
+  }
+  \bool_if:NT \l__myreport_section_name_bool {
+    \tl_set_eq:NN \l__myreport_section_name_tl \l__myreport_section_givenname_tl
+  }
+  \IfBooleanTF {#2} {
+    \__myreport_heading_any:nnn {#1} { } {#3}
+  } {
+    \clist_if_in:nnT { section , subsection , subsubsection } {#1} {
+      \mypackage_if_above_used:nF {#1} {
+        \clist_map_inline:nn { myfigure , myprogram , myequation , mytable } {
+          \setcounter {##1} { 0 }
+        }
+      }
+    }
+    \bool_if:NTF \l__myreport_section_number_bool {
+      \setcounter { my #1 } { \l__myreport_section_number_tl }
+    } {
+      \stepcounter { my #1 }
+    }
+    \__myreport_section_numtext:n {#1}
+    \__myreport_heading_any:nVn {#1} \l__myreport_section_numtext_tl {#3}
+  }
+  \mypackage_anchor:n { my #1 }
+  \bool_if:NT \l__myreport_section_label_bool {
+    \tl_set:Ne \l__myreport_section_fulllabel_tl {
+      \bool_if:NT \l_mypackage_annex_bool { ann \c_colon_str }
+      \prop_item:Nn \c__myreport_label_prefix_prop {#1}
+      \c_colon_str
+      \exp_not:V \l__myreport_section_label_tl
+    }
+    \mypackage_label:nV { my #1 } \l__myreport_section_fulllabel_tl
+  }
+  \IfBooleanF {#2} {
+    \__myreport_section_numtext:n {#1}
+    \mypackage_add_to_toc:nn {#1} {
+      \use:c { my #1 box } [l] { \l__myreport_section_numtext_tl }
+      \hspace { 1em } #3
+    }
+  }
+}
+% \begingroup Improve
+% Move all of the variants underneath their respective base functions
+\cs_generate_variant:Nn \__myreport_heading_any:nnn { nV }
+\cs_generate_variant:Nn \mypackage_label:nn { nV }
+\cs_new_protected:Npn \__myreport_section_numtext:n #1 {
+  \str_if_eq:nnTF {#1} { part } {
+    \tl_set:Ne \l__myreport_section_numtext_tl {
+      \exp_not:V \l__myreport_section_name_tl \exp_not:N \space \exp_not:N \themypart
+    }
+  } {
+    \tl_set:Nn \l__myreport_section_numtext_tl { \use:c { themy #1 } }
+  }
+}
+\NewDocumentCommand \mypart { s m O{} } {
+  \__myreport_section:nnnn { part } {#1} {#2} {#3}
+}
+\NewDocumentCommand \mychapter { s m O{} } {
+  \__myreport_section:nnnn { chapter } {#1} {#2} {#3}
+}
+\NewDocumentCommand \mysection { s m O{} } {
+  \__myreport_section:nnnn { section } {#1} {#2} {#3}
+}
+\NewDocumentCommand \mysubsection { s m O{} } {
+  \__myreport_section:nnnn { subsection } {#1} {#2} {#3}
+}
+\NewDocumentCommand \mysubsubsection { s m O{} } {
+  \__myreport_section:nnnn { subsubsection } {#1} {#2} {#3}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% FRONT MATTER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \myabstract(*)[<label>] abstract (pages I, II, ...), label abst:                  %
+% \myintroduction(*)[number=<n>, label=<label>] introduction, at the highest        %
+%     level used, starts the arabic page numbering; label intro:                    %
+% \mytableofcontents(*)[<label>] label toc:                                         %
+% \mylistoffigures(*)[<label>], \mylistoftables(*), \mylistofprograms(*),           %
+% \mylistofequations(*) labels lof:, lot:, lop:, loe:                               %
+% *: no line in the table of contents (\myintroduction*: also unnumbered).          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cs_new_protected:Npn \__myreport_front_pagenumbering: {
+  \__myreport_set_pagenumbering:n { Roman }
+}
+% \__myreport_front_anchor:nnn {<word>} {<label prefix>} {<label or NoValue>}
+\cs_generate_variant:Nn \mypackage_label_name:nn { nV }
+\cs_new_protected:Npn \__myreport_front_anchor:nnn #1#2#3 {
+  \mypackage_anchor_name:n {#1}
+  \IfNoValueF {#3} {
+    \mypackage_label_name:nn {#1} { #2 \c_colon_str #3 }
+  }
+}
+\NewDocumentCommand \myabstract { s o } {
+  \__myreport_front_pagenumbering:
+  \__myreport_front_heading:n { \myabstractname }
+  \__myreport_front_anchor:nnn { myabstract } { abst } {#2}
+  \IfBooleanF {#1} {
+    \mypackage_add_to_toc:en { \mypackage_highest_level: } { \myabstractname }
+  }
+}
+\NewDocumentCommand \myintroduction { s O{} } {
+  \bool_set_false:N \l__myreport_section_number_bool
+  \bool_set_false:N \l__myreport_section_label_bool
+  \keys_set:nn { myreport / section } {#2}
+  \__myreport_set_pagenumbering:n { arabic }
+  \exp_args:Ne \__myreport_introduction:nn { \mypackage_highest_level: } {#1}
+}
+\cs_new_protected:Npn \__myreport_introduction:nn #1#2 {
+  \IfBooleanTF {#2} {
+    \__myreport_heading_any:nnn {#1} { } { \myintroductionname }
+  } {
+    \bool_if:NT \l__myreport_section_number_bool {
+      \setcounter { my #1 } { \l__myreport_section_number_tl }
+    }
+    \tl_set:Nn \l__myreport_section_name_tl { \mypartname }
+    \__myreport_section_numtext:n {#1}
+    \__myreport_heading_any:nVn {#1} \l__myreport_section_numtext_tl { \myintroductionname }
+  }
+  \mypackage_anchor_name:n { myintroduction }
+  \bool_if:NT \l__myreport_section_label_bool {
+    \tl_set:Ne \l__myreport_section_fulllabel_tl {
+      intro \c_colon_str \exp_not:V \l__myreport_section_label_tl
+    }
+    \mypackage_label_name:nV { myintroduction } \l__myreport_section_fulllabel_tl
+  }
+  \IfBooleanF {#2} {
+    \mypackage_add_to_toc:nn {#1} {
+      \use:c { my #1 box } [l] { \l__myreport_section_numtext_tl }
+      \hspace { 1em } \myintroductionname
+    }
+  }
+}
+% \begingroup Improve
+% Make page numbering appear after \clearpage
+% Make it work with \__myreport_listof
+\NewDocumentCommand \mytableofcontents { s o } {
+  \__myreport_front_pagenumbering:
+  \group_begin:
+    \clearpage
+    \cs_set_eq:NN \\ \space
+    \__myreport_front_heading:n { \mycontentsname }
+    \__myreport_front_anchor:nnn { mycontents } { toc } {#2}
+    \addvspace { 20pt }
+    \@starttoc { mytoc }
+    \IfBooleanF {#1} {
+      \mypackage_add_to_toc:en { \mypackage_highest_level: } { \mycontentsname }
+    }
+  \group_end:
+  \clearpage
+}
+% \begingroup Idea
+% Make mylof and lof not needed by getting them through a list
+\cs_new_protected:Npn \__myreport_listof:nnnnn #1#2#3#4#5 {
+  \clearpage
+  \__myreport_front_pagenumbering:
+  \__myreport_front_heading:n { \use:c { #3 name } }
+  \__myreport_front_anchor:nnn {#3} {#5} {#2}
+  \addvspace { 20pt }
+  \@starttoc {#4}
+  \IfBooleanF {#1} {
+    \mypackage_add_to_toc:ee { \mypackage_highest_level: } { \exp_not:c { #3 name } }
+  }
+  \clearpage
+}
+\cs_generate_variant:Nn \mypackage_add_to_toc:nn { ee }
+\NewDocumentCommand \mylistoffigures { s o } {
+  \__myreport_listof:nnnnn {#1} {#2} { mylistfigure } { mylof } { lof }
+}
+\NewDocumentCommand \mylistoftables { s o } {
+  \__myreport_listof:nnnnn {#1} {#2} { mylisttable } { mylot } { lot }
+}
+\NewDocumentCommand \mylistofprograms { s o } {
+  \__myreport_listof:nnnnn {#1} {#2} { mylistprogram } { mylop } { lop }
+}
+\NewDocumentCommand \mylistofequations { s o } {
+  \__myreport_listof:nnnnn {#1} {#2} { mylistequation } { myloe } { loe }
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% TABLE OF CONTENTS LINES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \l@my<level>(*){<text>}{<page>}: a line of the TOC, indented by 1em for each      %
+% level used above it (* : no indent, no extra space). Lines of the lists           %
+% (\l@myfigure, ...) are unindented section lines "<Word> <number> <text>".         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\dim_new:N \l__myreport_toc_indent_dim
+\cs_new_protected:Npn \__myreport_toc_line:nnnnnnn #1#2#3#4#5#6#7 {
+  \group_begin:
+    \dim_zero:N \l__myreport_toc_indent_dim
+    \IfBooleanF {#1} {
+      \clist_map_inline:Nn \c_mypackage_levels_clist {
+        \str_if_eq:nnT {##1} {#4} { \clist_map_break: }
+        \mypackage_if_level_used:nT {##1} {
+          \dim_add:Nn \l__myreport_toc_indent_dim { 1em }
+        }
+      }
+    }
+    \setlength { \parindent } { 0cm }
+    #5
+    \addvspace { 5pt }
+    \tl_if_empty:nF {#6} { \IfBooleanF {#1} { \addvspace {#6} } }
+    \noindent
+    \setlength { \rightskip } { 2em }
+    \setlength { \parfillskip } { -2em }
+    \hyperlink { \Hy@tocdestname } {
+      \hspace { \l__myreport_toc_indent_dim }
+      \hangindent = \l__myreport_toc_indent_dim
+      \hangafter = 1
+      #2
+      \nobreak
+      \leavevmode
+      \bool_lazy_or:nnTF {
+        \str_if_eq_p:nn {#7} { always }
+      } {
+        \mypackage_if_above_used_p:n {#4}
+      } {
+        \mypackage_dotfill:
+      } {
+        \hfill
+      }
+      \nobreak
+      #3
+    }
+    \par
+  \group_end:
+}
+\NewDocumentCommand \l@mypart { s m m } {
+  \__myreport_toc_line:nnnnnnn {#1} {#2} {#3} { part } { \bfseries \large } { 20pt } { above }
+}
+\NewDocumentCommand \l@mychapter { s m m } {
+  \__myreport_toc_line:nnnnnnn {#1} {#2} {#3} { chapter } { \bfseries \normalsize } { 10pt } { above }
+}
+\NewDocumentCommand \l@mysection { s m m } {
+  \__myreport_toc_line:nnnnnnn {#1} {#2} {#3} { section } { \normalsize } { } { above }
+}
+\NewDocumentCommand \l@mysubsection { s m m } {
+  \__myreport_toc_line:nnnnnnn {#1} {#2} {#3} { subsection } { \normalsize } { } { always }
+}
+\NewDocumentCommand \l@mysubsubsection { s m m } {
+  \__myreport_toc_line:nnnnnnn {#1} {#2} {#3} { subsubsection } { \normalsize } { } { always }
+}
+\NewDocumentCommand \l@myfigure { m m } {
+  \l@mysection* { \myfigurename \space #1 } {#2}
+}
+\NewDocumentCommand \l@mytable { m m } {
+  \l@mysection* { \mytablename \space #1 } {#2}
+}
+\NewDocumentCommand \l@myequation { m m } {
+  \l@mysection* { \myequationname \space #1 } {#2}
+}
+\NewDocumentCommand \l@myprogram { m m } {
+  \l@mysection* { \myprogramname \space #1 } {#2}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% BIBLIOGRAPHY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \mybibliography(*)[<label>]: the bibliography at the front-matter level           %
+% (part, chapter or section), the entries of no category first, then one            %
+% heading per category of mypackage, one level below. *: no TOC lines.              %
+% Biblatex headings myreport/<level> (unnumbered) and myreport/<level>/toc          %
+% (unnumbered, with a TOC line).                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \__myreport_bib_heading:nnn {<level>} {<in TOC: true/false>} {<title>}
+\cs_new_protected:Npn \__myreport_bib_heading:nnn #1#2#3 {
+  \__myreport_heading_any:nnn {#1} { } {#3}
+  \mypackage_anchor_name:n {#3}
+  \bool_if:nT {#2} { \mypackage_add_to_toc:nn {#1} {#3} }
+  \markboth {#3} {#3}
+}
+\clist_map_inline:Nn \c_mypackage_levels_clist {
+  \defbibheading { myreport / #1 } [ \mybibname ] {
+    \__myreport_bib_heading:nnn {#1} { \c_false_bool } {##1}
+  }
+  \defbibheading { myreport / #1 / toc } [ \mybibname ] {
+    \__myreport_bib_heading:nnn {#1} { \c_true_bool } {##1}
+  }
+}
+% \begingroup Idea
+% Make it a package list
+\prop_const_from_keyval:Nn \c__myreport_level_below_prop {
+  part = chapter,
+  chapter = section,
+  section = subsection
+}
+\tl_new:N \l__myreport_bib_level_tl
+\tl_new:N \l__myreport_bib_toc_tl
+\NewDocumentCommand \mybibliography { s o } {
+  \bool_set_true:N \l_mypackage_bibliography_bool
+  \clearpage
+  % \begingroup Why??
+  % Use \__myreport_set_pagenumbering ??
+  \mypackage_if_pagenumbering:nF { Roman } { \newpage \pagenumbering { roman } }
+  \mypackage_anchor_name:n { mybib }
+  \IfNoValueF {#2} { \mypackage_label_name:nn { mybib } { bib \c_colon_str #2 } }
+  \tl_set:Ne \l__myreport_bib_level_tl { \__myreport_front_level: }
+  \IfBooleanTF {#1} {
+    \tl_clear:N \l__myreport_bib_toc_tl
+    \__myreport_bib_heading:Vnn \l__myreport_bib_level_tl { \c_false_bool } { \mybibname }
+  } {
+    \tl_set:Nn \l__myreport_bib_toc_tl { / toc }
+    \__myreport_bib_heading:Vnn \l__myreport_bib_level_tl { \c_true_bool } { \mybibname }
+  }
+  \printbibliography [ heading = none , filter = mypackage/none ]
+  \seq_map_inline:Nn \g_mypackage_bib_categories_seq {
+    \use:e {
+      \exp_not:N \printbibliography [
+        heading = myreport / \prop_item:NV \c__myreport_level_below_prop \l__myreport_bib_level_tl \l__myreport_bib_toc_tl,
+        filter = mypackage / ##1,
+        title = { \mypackage_bib_category_name:n {##1} },
+      ]
+    }
+  }
+  \bool_set_false:N \l_mypackage_bibliography_bool
+}
+\cs_generate_variant:Nn \__myreport_bib_heading:nnn { V }
+\cs_generate_variant:Nn \prop_item:Nn { NV }
 \ExplSyntaxOff
-\ExplSyntaxOn
-  \NewDocumentCommand{\myaddassistant}{s m m}{%
-    \str_if_eq:VnTF\myassistantval{-NoValue-}{%
-      \gdef\myassistantval{\textsc{#2}\space#3}%
-      \gdef\myassistanttabval{\textsc{#2}\space#3}%
-      \IfBooleanTF{#1}{%
-        \gdef\myassistantgenderval{f}%
-      }{%
-        \gdef\myassistantgenderval{m}%
-      }%
-    }{%
-      \g@addto@macro\myassistantval{\space\&\space\textsc{#2}\space#3}%
-      \g@addto@macro\myassistanttabval{&\textsc{#2}\space#3}%
-      \IfBooleanTF{#1}{%
-        \g@addto@macro\myassistantgenderval{,f}%
-      }{%
-        \g@addto@macro\myassistantgenderval{,m}%
-      }%
-    }%
-  }
-\ExplSyntaxOff
-\NewDocumentCommand{\myacademicyear}{m}{%
-  \def\myacademicyearval{#1}%
-}
-\NewDocumentCommand{\mytitle}{s m}{%
-  \IfBooleanTF{#1}{%
-    \def\mytitlestarval{true}%
-  }{%
-    \def\mytitlestarval{false}%
-  }%
-  \def\mytitleval{#2}%
-}
-\NewDocumentCommand{\mysubtitle}{m}{%
-  \def\mysubtitleval{#1}%
-}
-\NewDocumentCommand{\myimage}{O{width=1} m}{%
-  \def\myimageval{\myinclude[#1]{#2}}%
-}
-\NewDocumentCommand{\mylogo}{O{height=0.035} m}{%
-  \def\mylogoval{\myinclude[#1]{#2}}%
-}
-\NewDocumentCommand{\mydate}{m}{%
-  \def\mydateval{#1}%
-}
-\ExplSyntaxOn
-  \NewDocumentCommand{\myaddauthor}{s m m O{}}{%
-    \str_if_eq:VnTF\myauthorval{-NoValue-}{%
-      \gdef\myauthorval{\textsc{#2}\space#3}%
-      \gdef\myauthortabval{\textsc{#2}\space#3}%
-      \gdef\myauthoridval{#4}%
-      \gdef\myauthoridtabval{#4}%
-      \IfBooleanTF{#1}{%
-        \gdef\myauthorgenderval{f}%
-      }{%
-        \gdef\myauthorgenderval{m}%
-      }%
-    }{%
-      \g@addto@macro\myauthorval{\space\&\space\textsc{#2}\space#3}%
-      \g@addto@macro\myauthortabval{&\textsc{#2}\space#3}%
-      \g@addto@macro\myauthoridval{\space\&\space#4}%
-      \g@addto@macro\myauthoridtabval{&#4}%
-      \IfBooleanTF{#1}{%
-        \g@addto@macro\myauthorgenderval{,f}%
-      }{%
-        \g@addto@macro\myauthorgenderval{,m}%
-      }%
-    }%
-  }
-\ExplSyntaxOff
-\ExplSyntaxOn
-  \seq_new:N{\l_mymaketitle_authname_seq}
-  \seq_new:N{\l_mymaketitle_authid_seq}
-  \seq_new:N{\l_mymaketitle_auth_seq}
-  \NewDocumentCommand{\mymaketitle}{s O{1}}{%
-    \hypersetup{pageanchor=false}%
-    \IfBooleanF{#1}{%
-      \newgeometry{margin=1cm}%
-    }%
-    \str_case_e:nn{#2}{%
-      {1}{%
-        \begin{titlepage}%
-          \setlength{\parindent}{0cm}%
-          \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedleft\arraybackslash}X}%
-            \str_if_eq:VnF{\mycourseval}{-NoValue-}{%
-              \textbf{%
-                \textsc{\mycourseval}%
-              }%
-            }%
-            \str_if_eq:VnF{\mycourseidval}{-NoValue-}{%
-              \str_if_eq:VnTF{\mycoursestarval}{-NoValue-}{%
-                \textbf{%
-                  \textsc{\space[\mycourseidval]}%
-                }%
-              }{%
-                \str_if_eq:VnTF{\mycoursestarval}{false}{%
-                  \textbf{%
-                    \space\cite{\mycourseidval}%
-                  }%
-                }{%
-                  \textbf{%
-                    \textsc{\space[\mycourseidval]}%
-                  }%
-                }%
-              }%
-            }%
-            &%
-            \str_if_eq:VnF{\myprofessorgenderval}{-NoValue-}{%
-              \str_if_eq:VnTF{\myprofessorgenderval}{m}{%
-                \textbf{\myprofessormname}%
-              }{%
-                \str_if_eq:VnTF{\myprofessorgenderval}{f}{%
-                  \textbf{\myprofessorfname}%
-                }{%
-                  \regex_match:nVTF{^[f,]*$}{\myprofessorgenderval}{%
-                    \textbf{\myprofessorfpname}%
-                  }{%
-                    \textbf{\myprofessormpname}%
-                  }%
-                }%
-              }%
-              \textbf{%
-                :\space%
-              }%
-            }%
-            \str_if_eq:VnF{\myprofessorval}{-NoValue-}{%
-              \myprofessorval%
-            }%
-          \end{tabularx}%
-          \vspace{2pt}%
-          \hrule height 4pt width \hsize%
-          \vspace{-2pt}%
-          \begin{tabularx}{\textwidth}{c >{\raggedleft\arraybackslash}X}%
-            &%
-            \str_if_eq:VnF{\myacademicyearval}{-NoValue-}{%
-              \textbf{\textsc{\myacyearname\c_colon_str\space}}%
-              \textsc{\myacademicyearval}%
-            }%
-          \end{tabularx}%
-          \vspace{0.05\textheight}%
-          \vspace*{\fill}%
-          \begin{center}%
-            \str_if_eq:VnF{\mytitleval}{-NoValue-}{%
-              \str_if_eq:VnTF{\mytitlestarval}{true}{%
-                \textbf{%
-                  \Huge%
-                  \mytitleval%
-                }%
-              }{%
-                \textbf{%
-                  \Huge%
-                  \underline{\mytitleval}%
-                }%
-              }%
-            }%
-            \str_if_eq:VnF{\mysubtitleval}{-NoValue-}{%
-              \textbf{%
-                \textsc{%
-                  \\[0.015\textheight]%
-                  \LARGE%
-                  \textcolor{darkgray}{\mysubtitleval}%
-                }%
-              }%
-            }%
-          \end{center}%
-          \str_if_eq:VnF{\myimageval}{-NoValue-}{%
-            \begin{center}%
-              \vspace{0.05\textheight}%
-              \myimageval%
-              \vspace{0.05\textheight}%
-            \end{center}%
-          }%
-          \vspace*{\fill}%
-          \begin{tabularx}{\textwidth}{c >{\raggedleft\arraybackslash}X}%
-            \str_if_eq:VnF{\mylogoval}{-NoValue-}{%
-              \adjustbox{valign=b}{\mylogoval}%
-            }%
-            &%
-            \str_if_eq:VnF{\mydateval}{-NoValue-}{%
-              \textbf{\mydateval}%
-            }%
-          \end{tabularx}%
-          \vspace{2pt}%
-          \hrule height 4pt width \hsize%
-          \vspace{-2pt}%
-          \begin{center}%
-            \str_if_eq:VnF{\myauthorval}{-NoValue-}{%
-              \textbf{%
-                \seq_set_split:NnV{\l_tmpa_seq}{&}{\myauthortabval}%
-                \begin{tabular}{*{\int_eval:n{\seq_count:N \l_tmpa_seq}}{>{\centering\arraybackslash}p{\fp_eval:n{0.8 / \seq_count:N \l_tmpa_seq}\textwidth}}}%
-                  \myauthortabval \\%
-                  \myauthoridtabval%
-                \end{tabular}%
-              }%
-            }%
-          \end{center}%
-        \end{titlepage}%
-      }%
-      {2}{%
-        \begin{titlepage}%
-          \setlength{\parindent}{0cm}%
-          \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X r}%
-            \str_if_eq:VnF{\mycourseval}{-NoValue-}{%
-              \textbf{%
-                \textsc{\mycourseval}%
-              }%
-            }%
-            \str_if_eq:VnF{\mycourseidval}{-NoValue-}{%
-              \str_if_eq:VnTF{\mycoursestarval}{-NoValue-}{%
-                \textbf{%
-                  \textsc{\space[\mycourseidval]}%
-                }%
-              }{%
-                \str_if_eq:VnTF{\mycoursestarval}{false}{%
-                  \textbf{%
-                    \space\cite{\mycourseidval}%
-                  }%
-                }{%
-                  \textbf{%
-                    \textsc{\space[\mycourseidval]}%
-                  }%
-                }%
-              }%
-            }%
-            &%
-            \str_if_eq:VnF{\mylogoval}{-NoValue-}{%
-              \adjustbox{valign=t}{\mylogoval}%
-            }%
-          \end{tabularx}%
-          \vspace*{\fill}%
-          \hrule height 1.5pt width \hsize%
-          \vspace{8pt}%
-          \begin{center}%
-            \str_if_eq:VnF{\mytitleval}{-NoValue-}{%
-              \str_if_eq:VnTF{\mytitlestarval}{true}{%
-                \textbf{%
-                  \Huge%
-                  \mytitleval%
-                }%
-              }{%
-                \textbf{%
-                  \Huge%
-                  \underline{\mytitleval}%
-                }%
-              }%
-            }%
-            \str_if_eq:VnF{\mysubtitleval}{-NoValue-}{%
-              \textbf{%
-                \textsc{%
-                  \\[0.015\textheight]%
-                  \LARGE%
-                  \textcolor{darkgray}{\mysubtitleval}%
-                }%
-              }%
-            }%
-          \end{center}%
-          \vspace{16pt}%
-          \hrule height 1.5pt width \hsize%
-          \str_if_eq:VnF{\myimageval}{-NoValue-}{%
-            \begin{center}%
-              \vspace{0.05\textheight}%
-              \myimageval%
-              \vspace{0.05\textheight}%
-            \end{center}%
-          }%
-          \vspace*{\fill}%
-          \par%
-          \seq_set_split:NnV{\l_tmpa_seq}{&}{\myprofessortabval}%
-          \seq_set_split:NnV{\l_tmpb_seq}{&}{\myassistanttabval}%
-          \seq_set_split:NnV{\l_mymaketitle_authname_seq}{&}{\myauthortabval}%
-          \seq_set_split:NnV{\l_mymaketitle_authid_seq}{&}{\myauthoridtabval}%
-          \seq_clear:N{\l_mymaketitle_auth_seq}%
-          \int_step_inline:nnn{1}{\int_eval:n{\seq_count:N{\l_mymaketitle_authname_seq}}}{%
-            \tl_if_blank:eTF{\seq_item:Nn{\l_mymaketitle_authid_seq}{##1}}{%
-              \seq_put_right:Nn{\l_mymaketitle_auth_seq}{%
-                \seq_item:Nn{\l_mymaketitle_authname_seq}{##1}%
-              }%
-            }{%
-              \seq_put_right:Nn{\l_mymaketitle_auth_seq}{%
-                \seq_item:Nn{\l_mymaketitle_authname_seq}{##1}\space(\seq_item:Nn{\l_mymaketitle_authid_seq}{##1})%
-              }%
-            }%
-          }%
-          \hspace{45pt}%
-          \bool_lazy_and:nnF{\str_if_eq_p:Vn{\myprofessorval}{-NoValue-}}{\str_if_eq_p:Vn{\myassistantval}{-NoValue-}}{%
-            \begin{tabular}[t]{l|l}%
-              \str_if_eq:VnF{\myprofessorgenderval}{-NoValue-}{%
-                \str_if_eq:VnTF{\myprofessorgenderval}{m}{%
-                  \textbf{\myprofessormname}%
-                }{%
-                  \str_if_eq:VnTF{\myprofessorgenderval}{f}{%
-                    \textbf{\myprofessorfname}%
-                  }{%
-                    \regex_match:nVTF{^[f,]*$}{\myprofessorgenderval}{%
-                      \textbf{\myprofessorfpname}%
-                    }{%
-                      \textbf{\myprofessormpname}%
-                    }%
-                  }%
-                }%
-              }%
-              \str_if_eq:VnF{\myprofessorval}{-NoValue-}{%
-                &\seq_use:Nn{\l_tmpa_seq}{\\&}\\%
-              }%
-              \str_if_eq:VnF{\myassistantgenderval}{-NoValue-}{%
-                \str_if_eq:VnTF{\myassistantgenderval}{m}{%
-                  \textbf{\myassistantmname}%
-                }{%
-                  \str_if_eq:VnTF{\myassistantgenderval}{f}{%
-                    \textbf{\myassistantfname}%
-                  }{%
-                    \regex_match:nVTF{^[f,]*$}{\myassistantgenderval}{%
-                      \textbf{\myassistantfpname}%
-                    }{%
-                      \textbf{\myassistantmpname}%
-                    }%
-                  }%
-                }%
-              }%
-              \str_if_eq:VnF{\myassistantval}{-NoValue-}{%
-                &\seq_use:Nn{\l_tmpb_seq}{\\&}%
-              }%
-            \end{tabular}%
-          }%
-          \hspace{\fill}%
-          \str_if_eq:VnF{\myauthorval}{-NoValue-}{%
-            \begin{tabular}[t]{l|l}%
-              \str_if_eq:VnF{\myauthorgenderval}{-NoValue-}{%
-                \str_if_eq:VnTF{\myauthorgenderval}{m}{%
-                  \textbf{\myauthormname}%
-                }{%
-                  \str_if_eq:VnTF{\myauthorgenderval}{f}{%
-                    \textbf{\myauthorfname}%
-                  }{%
-                    \regex_match:nVTF{^[f,]*$}{\myauthorgenderval}{%
-                      \textbf{\myauthorfpname}%
-                    }{%
-                      \textbf{\myauthormpname}%
-                    }%
-                  }%
-                }%
-              }%
-              \str_if_eq:VnF{\myauthorval}{-NoValue-}{%
-                &\seq_use:Nn{\l_mymaketitle_auth_seq}{\\&}%
-              }%
-            \end{tabular}%
-          }%
-          \hspace*{45pt}%
-          \\[25pt]%
-          \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X r}%
-            \str_if_eq:VnF{\myacademicyearval}{-NoValue-}{%
-              \textbf{\textsc{\myacyearname\c_colon_str\space}}%
-              \textsc{\myacademicyearval}%
-            }%
-            &%
-            \str_if_eq:VnF{\mydateval}{-NoValue-}{%
-              \textbf{\mydateval}%
-            }%
-          \end{tabularx}%
-        \end{titlepage}%
-      }%
-    }%
-    \IfBooleanF{#1}{%
-      \restoregeometry%
-    }%
-    \hypersetup{pageanchor=true}%
-  }
-\ExplSyntaxOff
-\ExplSyntaxOn
-  \tl_new:N{\l_mypartheading_sectioning_tl}
-  \tl_new:N{\l_mypartheading_name_tl}
-  \bool_new:N{\l_mypartheading_nameUsed_bool}
-  \keys_define:nn{mypartheading}{%
-    number.code:n = {%
-      \setcounter{mypart}{#1}%
-    },%
-    name.code:n = {%
-      \bool_set_true:N{\l_mypartheading_nameUsed_bool}%
-      \tl_set:Nn{\l_mypartheading_name_tl}{#1}%
-    },%
-    sectioning.tl_set:N = \l_mypartheading_sectioning_tl,%
-    sectioning.initial:n = \myreport@sect@part,%
-  }
-  \NewDocumentCommand{\mypartheading}{s O{} m}{%
-    \bool_set_false:N{\l_mypartheading_nameUsed_bool}%
-    \keys_set:nn{mypartheading}{%
-      name=\mypartname,%
-      #2%
-    }%
-    \begingroup%
-      \vspace{3em}%
-      \myclearpage{mypart}{\l_mypartheading_sectioning_tl}%
-      \setlength{\parindent}{0cm}%
-      \vspace{-2em}%
-      \centering\bfseries\itshape\Huge%
-      \IfBooleanF{#1}{%
-        \l_mypartheading_name_tl \c_space_token \themypart \\%
-      }%
-      \vspace{-0.5em}%
-      \rule{\textwidth}{1pt}\\%
-      #3\\%
-      \vspace{-0.5em}%
-      \rule{\textwidth}{0.3pt}%
-      \vspace{0em}%
-      \par%
-    \endgroup%
-  }
-\ExplSyntaxOff
-\ExplSyntaxOn
-  \tl_new:N{\l_mychapterheading_sectioning_tl}
-  \keys_define:nn{mychapterheading}{%
-    number.code:n = {%
-      \setcounter{mychapter}{#1}%
-    },%
-    sectioning.tl_set:N = \l_mychapterheading_sectioning_tl,%
-    sectioning.initial:n = \myreport@sect@chapter,%
-  }
-  \NewDocumentCommand{\mychapterheading}{s O{} m}{%
-    \keys_set:nn{mychapterheading}{%
-      #2%
-    }%
-    \begingroup%
-      \vspace{4em}%
-      \myclearpage{mychapter}{\l_mychapterheading_sectioning_tl}%
-      \setlength{\parindent}{0cm}%
-      \vspace{-3em}%
-      \bfseries\LARGE%
-      \IfBooleanF{#1}{%
-        \themychapter\hspace{1em}%
-      }%
-      #3\\%
-      \vspace{-0.5em}%
-      \par%
-    \endgroup%
-  }
-\ExplSyntaxOff
-\ExplSyntaxOn
-  \tl_new:N{\l_mysectionheading_sectioning_tl}
-  \keys_define:nn{mysectionheading}{%
-    number.code:n = {%
-      \setcounter{mysection}{#1}%
-    },%
-    sectioning.tl_set:N = \l_mysectionheading_sectioning_tl,%
-    sectioning.initial:n = \myreport@sect@section,%
-  }
-  \NewDocumentCommand{\mysectionheading}{s O{} m}{%
-    \keys_set:nn{mysectionheading}{%
-      #2%
-    }%
-    \begingroup%
-      \vspace{4em}%
-      \myclearpage{mysection}{\l_mysectionheading_sectioning_tl}%
-      \setlength{\parindent}{0cm}%
-      \vspace{-3em}%
-      \bfseries\Large%
-      \IfBooleanF{#1}{%
-        \themysection\hspace{1em}%
-      }%
-      #3\\%
-      \vspace{-1em}%
-      \par%
-    \endgroup%
-  }
-\ExplSyntaxOff
-\ExplSyntaxOn
-  \tl_new:N{\l_mysubsectionheading_sectioning_tl}
-  \keys_define:nn{mysubsectionheading}{%
-    number.code:n = {%
-      \setcounter{mysubsection}{#1}%
-    },%
-    sectioning.tl_set:N = \l_mysubsectionheading_sectioning_tl,%
-    sectioning.initial:n = \myreport@sect@subsection,%
-  }
-  \NewDocumentCommand{\mysubsectionheading}{s O{} m}{%
-    \keys_set:nn{mysubsectionheading}{%
-      #2%
-    }%
-    \begingroup%
-      \vspace{4em}%
-      \myclearpage{mysubsection}{\l_mysubsectionheading_sectioning_tl}%
-      \setlength{\parindent}{0cm}%
-      \vspace{-3em}%
-      \bfseries\large%
-      \IfBooleanF{#1}{%
-        \themysubsection\hspace{1em}%
-      }%
-      #3\\%
-      \vspace{-1em}%
-      \par%
-    \endgroup%
-  }
-\ExplSyntaxOff
-\ExplSyntaxOn
-  \tl_new:N{\l_mysubsubsectionheading_sectioning_tl}
-  \keys_define:nn{mysubsubsectionheading}{%
-    number.code:n = {%
-      \setcounter{mysubsubsection}{#1}%
-    },%
-    sectioning.tl_set:N = \l_mysubsubsectionheading_sectioning_tl,%
-    sectioning.initial:n = \myreport@sect@subsubsection,%
-  }
-  \NewDocumentCommand{\mysubsubsectionheading}{s O{} m}{%
-    \keys_set:nn{mysubsubsectionheading}{%
-      #2%
-    }%
-    \begingroup%
-      \vspace{4em}%
-      \myclearpage{mysubsubsection}{\l_mysubsubsectionheading_sectioning_tl}%
-      \setlength{\parindent}{0cm}%
-      \vspace{-3em}%
-      \bfseries\normalsize%
-      \IfBooleanF{#1}{%
-        \themysubsubsection\hspace{1em}%
-      }%
-      #3\\%
-      \vspace{-1em}%
-      \par%
-    \endgroup%
-  }
-\ExplSyntaxOff
-\ExplSyntaxOn
-  \dim_new:N{\l_mypart_space_dim}
-  \NewDocumentCommand{\l@mypart}{s m m}{%
-    \begingroup%
-      \dim_zero:N{\l_mypart_space_dim}%
-      \setlength{\parindent}{0cm}%
-      \bfseries\large%
-      \addvspace{5pt}%
-      \IfBooleanF{#1}{%
-        \addvspace{20pt}%
-      }%
-      \noindent%
-      \setlength{\rightskip}{2em}%
-      \setlength{\parfillskip}{-2em}%
-      \hyperlink{\Hy@tocdestname}{%
-        \hspace{\l_mypart_space_dim}%
-        \hangindent=\l_mypart_space_dim%
-        \hangafter=1%
-        #2%
-        \nobreak%
-        \leavevmode%
-        \hfill%
-        \nobreak%
-        #3%
-      }%
-      \par%
-    \endgroup%
-  }
-\ExplSyntaxOff
-\ExplSyntaxOn
-  \dim_new:N{\l_mychapter_space_dim}
-  \NewDocumentCommand{\l@mychapter}{s m m}{%
-    \begingroup%
-      \dim_zero:N{\l_mychapter_space_dim}%
-      \IfBooleanF{#1}{%
-        \ifGlobalMypartUsed%
-          \dim_add:Nn{\l_mychapter_space_dim}{1em}%
-        \fi%
-      }%
-      \setlength{\parindent}{0cm}%
-      \bfseries\normalsize%
-      \addvspace{5pt}%
-      \IfBooleanF{#1}{%
-        \addvspace{10pt}%
-      }%
-      \noindent%
-      \setlength{\rightskip}{2em}%
-      \setlength{\parfillskip}{-2em}%
-      \hyperlink{\Hy@tocdestname}{%
-        \hspace{\l_mychapter_space_dim}%
-        \hangindent=\l_mychapter_space_dim%
-        \hangafter=1%
-        #2%
-        \nobreak%
-        \leavevmode%
-        \ifGlobalMypartUsed%
-          \mydotfill%
-        \else%
-          \hfill%
-        \fi%
-        \nobreak%
-        #3%
-      }%
-      \par%
-    \endgroup%
-  }
-\ExplSyntaxOff
-\ExplSyntaxOn
-  \dim_new:N{\l_mysection_space_dim}
-  \NewDocumentCommand{\l@mysection}{s m m}{%
-    \begingroup%
-      \dim_zero:N{\l_mysection_space_dim}%
-      \IfBooleanF{#1}{%
-        \ifGlobalMypartUsed%
-          \dim_add:Nn{\l_mysection_space_dim}{1em}%
-        \fi%
-        \ifGlobalMychapterUsed%
-          \dim_add:Nn{\l_mysection_space_dim}{1em}%
-        \fi%
-      }%
-      \setlength{\parindent}{0cm}%
-      \normalsize%
-      \addvspace{5pt}%
-      \noindent%
-      \setlength{\rightskip}{2em}%
-      \setlength{\parfillskip}{-2em}%
-      \hyperlink{\Hy@tocdestname}{%
-        \hspace{\l_mysection_space_dim}%
-        \hangindent=\l_mysection_space_dim%
-        \hangafter=1%
-        #2%
-        \nobreak%
-        \leavevmode%
-        \ifGlobalMypartUsed%
-          \mydotfill%
-        \else%
-          \ifGlobalMychapterUsed%
-            \mydotfill%
-          \else%
-            \hfill%
-          \fi%
-        \fi%
-        \nobreak%
-        #3%
-      }%
-      \par%
-    \endgroup%
-  }
-\ExplSyntaxOff
-\ExplSyntaxOn
-  \dim_new:N{\l_mysubsection_space_dim}
-  \NewDocumentCommand{\l@mysubsection}{s m m}{%
-    \begingroup%
-      \dim_zero:N{\l_mysubsection_space_dim}%
-      \IfBooleanF{#1}{%
-        \ifGlobalMypartUsed%
-          \dim_add:Nn{\l_mysubsection_space_dim}{1em}%
-        \fi%
-        \ifGlobalMychapterUsed%
-          \dim_add:Nn{\l_mysubsection_space_dim}{1em}%
-        \fi%
-        \ifGlobalMysectionUsed%
-          \dim_add:Nn{\l_mysubsection_space_dim}{1em}%
-        \fi%
-      }%
-      \setlength{\parindent}{0cm}%
-      \normalsize%
-      \addvspace{5pt}%
-      \noindent%
-      \setlength{\rightskip}{2em}%
-      \setlength{\parfillskip}{-2em}%
-      \hyperlink{\Hy@tocdestname}{%
-        \hspace{\l_mysubsection_space_dim}%
-        \hangindent=\l_mysubsection_space_dim%
-        \hangafter=1%
-        #2%
-        \nobreak%
-        \leavevmode%
-        \mydotfill%
-        \nobreak%
-        #3%
-      }%
-      \par%
-    \endgroup%
-  }
-\ExplSyntaxOff
-\ExplSyntaxOn
-  \dim_new:N{\l_mysubsubsection_space_dim}
-  \NewDocumentCommand{\l@mysubsubsection}{s m m}{%
-    \begingroup%
-      \dim_zero:N{\l_mysubsubsection_space_dim}%
-      \IfBooleanF{#1}{%
-        \ifGlobalMypartUsed%
-          \dim_add:Nn{\l_mysubsubsection_space_dim}{1em}%
-        \fi%
-        \ifGlobalMychapterUsed%
-          \dim_add:Nn{\l_mysubsubsection_space_dim}{1em}%
-        \fi%
-        \ifGlobalMysectionUsed%
-          \dim_add:Nn{\l_mysubsubsection_space_dim}{1em}%
-        \fi%
-        \ifGlobalMysubsectionUsed%
-          \dim_add:Nn{\l_mysubsubsection_space_dim}{1em}%
-        \fi%
-      }%
-      \setlength{\parindent}{0cm}%
-      \normalsize%
-      \addvspace{5pt}%
-      \noindent%
-      \setlength{\rightskip}{2em}%
-      \setlength{\parfillskip}{-2em}%
-      \hyperlink{\Hy@tocdestname}{%
-        \hspace{\l_mysubsubsection_space_dim}%
-        \hangindent=\l_mysubsubsection_space_dim%
-        \hangafter=1%
-        #2%
-        \nobreak%
-        \leavevmode%
-        \mydotfill%
-        \nobreak%
-        #3%
-      }%
-      \par%
-    \endgroup%
-  }
-\ExplSyntaxOff
-\NewDocumentCommand{\l@myfigure}{m m}{%
-  \l@mysection*{\myfigurename\space#1}{#2}%
-}
-\NewDocumentCommand{\l@mytable}{m m}{%
-  \l@mysection*{\mytablename\space#1}{#2}%
-}
-\NewDocumentCommand{\l@myequation}{m m}{%
-  \l@mysection*{\myequationname\space#1}{#2}%
-}
-\NewDocumentCommand{\l@myprogram}{m m}{%
-  \l@mysection*{\myprogramname\space#1}{#2}%
-}
-\NewDocumentCommand{\myabstract}{s o}{%
-  \mypackage@IfPagenumberingF{Roman}{\newpage\pagenumbering{Roman}}%
-  \ifGlobalMypartUsed%
-    \mypartheading*{\myabstractname}%
-  \else%
-    \ifGlobalMychapterUsed%
-      \mychapterheading*{\myabstractname}%
-    \else%
-      \mysectionheading*{\myabstractname}%
-    \fi%
-  \fi%
-  \myhyperanchor*{myabstract}%
-  \IfNoValueF{#2}{%
-    \mylabel*{myabstract}{abst:#2}%
-  }%
-  \IfBooleanF{#1}{%
-    \myaddtotoc{\myhighestsec}{\myabstractname}%
-  }%
-}
-\ExplSyntaxOn
-  \tl_new:N{\l_myintroduction_number_tl}
-  \tl_new:N{\l_myintroduction_label_tl}
-  \bool_new:N{\l_myintroduction_numberUsed_bool}
-  \bool_new:N{\l_myintroduction_labelUsed_bool}
-  \keys_define:nn{myintroduction}{%
-    number.code:n = {%
-      \bool_set_true:N{\l_myintroduction_numberUsed_bool}%
-      \tl_set:Nn{\l_myintroduction_number_tl}{#1}%
-    },%
-    label.code:n = {%
-      \bool_set_true:N{\l_myintroduction_labelUsed_bool}%
-      \tl_set:Nn{\l_myintroduction_label_tl}{#1}%
-    },%
-  }
-  \NewDocumentCommand{\myintroduction}{s O{}}{%
-    \bool_set_false:N{\l_myintroduction_numberUsed_bool}%
-    \bool_set_false:N{\l_myintroduction_labelUsed_bool}%
-    \keys_set:nn{myintroduction}{%
-      #2%
-    }%
-    \mypackage@IfPagenumberingF{arabic}{\newpage\pagenumbering{arabic}}%
-    \ifGlobalMypartUsed%
-      \IfBooleanTF{#1}{%
-        \mypartheading*{\myintroductionname}%
-      }{%
-        \bool_if:NTF{\l_myintroduction_numberUsed_bool}{%
-          \mypartheading[number=\l_myintroduction_number_tl]{\myintroductionname}%
-        }{%
-          \mypartheading{\myintroductionname}%
-        }%
-      }%
-      \myhyperanchor*{myintroduction}%
-      \bool_if:NT{\l_myintroduction_labelUsed_bool}{%
-        \mylabel*{myintroduction}{intro:\l_myintroduction_label_tl}%
-      }%
-      \IfBooleanF{#1}{%
-        \myaddtotoc{mypart}{\mypartbox[l]{\mypartname\space\themypart}\hspace{1em}\myintroductionname}%
-      }%
-    \else%
-      \ifGlobalMychapterUsed%
-        \bool_if:NTF{\l_myintroduction_numberUsed_bool}{%
-          \mychapterheading[number=\l_myintroduction_number_tl]{\myintroductionname}%
-        }{%
-          \mychapterheading{\myintroductionname}%
-        }%
-        \myhyperanchor*{myintroduction}%
-        \bool_if:NT{\l_myintroduction_labelUsed_bool}{%
-          \mylabel*{myintroduction}{intro:\l_myintroduction_label_tl}%
-        }%
-        \IfBooleanF{#1}{%
-          \myaddtotoc{mychapter}{\mychapterbox[l]{\themychapter}\hspace{1em}\myintroductionname}%
-        }%
-      \else%
-        \ifGlobalMysectionUsed%
-          \bool_if:NTF{\l_myintroduction_numberUsed_bool}{%
-            \mysectionheading[number=\l_myintroduction_number_tl]{\myintroductionname}%
-          }{%
-            \mysectionheading{\myintroductionname}%
-          }%
-          \myhyperanchor*{myintroduction}%
-          \bool_if:NT{\l_myintroduction_labelUsed_bool}{%
-            \mylabel*{myintroduction}{intro:\l_myintroduction_label_tl}%
-          }%
-          \IfBooleanF{#1}{%
-            \myaddtotoc{mysection}{\mysectionbox[l]{\themysection}\hspace{1em}\myintroductionname}%
-          }%
-        \else%
-          \ifGlobalMysubsectionUsed%
-            \bool_if:NTF{\l_myintroduction_numberUsed_bool}{%
-              \mysubsectionheading[number=\l_myintroduction_number_tl]{\myintroductionname}%
-            }{%
-              \mysubsectionheading{\myintroductionname}%
-            }%
-            \myhyperanchor*{myintroduction}%
-            \bool_if:NT{\l_myintroduction_labelUsed_bool}{%
-              \mylabel*{myintroduction}{intro:\l_myintroduction_label_tl}%
-            }%
-            \IfBooleanF{#1}{%
-              \myaddtotoc{mysubsection}{\mysubsectionbox[l]{\themysubsection}\hspace{1em}\myintroductionname}%
-            }%
-          \else%
-            \bool_if:NTF{\l_myintroduction_numberUsed_bool}{%
-              \mysubsubsectionheading[number=\l_myintroduction_number_tl]{\myintroductionname}%
-            }{%
-              \mysubsubsectionheading{\myintroductionname}%
-            }%
-            \myhyperanchor*{myintroduction}%
-            \bool_if:NT{\l_myintroduction_labelUsed_bool}{%
-              \mylabel*{myintroduction}{intro:\l_myintroduction_label_tl}%
-            }%
-            \IfBooleanF{#1}{%
-              \myaddtotoc{mysubsubsection}{\mysubsubsectionbox[l]{\themysubsubsection}\hspace{1em}\myintroductionname}%
-            }%
-          \fi%
-        \fi%
-      \fi%
-    \fi%
-  }
-\ExplSyntaxOff
-\ExplSyntaxOn
-  \tl_new:N{\l_mypart_number_tl}
-  \tl_new:N{\l_mypart_name_tl}
-  \tl_new:N{\l_mypart_label_tl}
-  \bool_new:N{\l_mypart_numberUsed_bool}
-  \bool_new:N{\l_mypart_nameUsed_bool}
-  \bool_new:N{\l_mypart_labelUsed_bool}
-  \keys_define:nn{mypart}{%
-    number.code:n = {%
-      \bool_set_true:N{\l_mypart_numberUsed_bool}%
-      \tl_set:Nn{\l_mypart_number_tl}{#1}%
-    },%
-    name.code:n = {%
-      \bool_set_true:N{\l_mypart_nameUsed_bool}%
-      \tl_set:Nn{\l_mypart_name_tl}{#1}%
-    },%
-    label.code:n = {%
-      \bool_set_true:N{\l_mypart_labelUsed_bool}%
-      \tl_set:Nn{\l_mypart_label_tl}{#1}%
-    },%
-  }
-  \NewDocumentCommand{\mypart}{s m O{}}{%
-    \bool_set_false:N{\l_mypart_numberUsed_bool}%
-    \bool_set_false:N{\l_mypart_nameUsed_bool}%
-    \bool_set_false:N{\l_mypart_labelUsed_bool}%
-    \keys_set:nn{mypart}{%
-      #3%
-    }%
-    \RegisterStructureUsage{Mypart}%
-    \ifMyannexUsed%
-      \mypackage@IfPagenumberingF{myalph}{\newpage\pagenumbering{myalph}}%
-      \let\myheadingname\myannexname%
-    \else%
-      \mypackage@IfPagenumberingF{arabic}{\newpage\pagenumbering{arabic}}%
-      \let\myheadingname\mypartname%
-    \fi%
-    \bool_if:NT{\l_mypart_nameUsed_bool}{%
-      \let\myheadingname\l_mypart_name_tl%
-    }%
-    \IfBooleanTF{#1}{%
-      \mypartheading*[name=\myheadingname]{#2}%
-    }{%
-      \bool_if:NTF{\l_mypart_numberUsed_bool}{%
-        \mypartheading[name=\myheadingname, number=\l_mypart_number_tl]{#2}%
-      }{%
-        \stepcounter{mypart}%
-        \mypartheading[name=\myheadingname]{#2}%
-      }%
-    }%
-    \myhyperanchor{mypart}%
-    \bool_if:NT{\l_mypart_labelUsed_bool}{%
-      \ifMyannexUsed%
-        \mylabel{mypart}{ann:part:\l_mypart_label_tl}%
-      \else%
-        \mylabel{mypart}{part:\l_mypart_label_tl}%
-      \fi%
-    }%
-    \IfBooleanF{#1}{%
-      \myaddtotoc{mypart}{\mypartbox[l]{\myheadingname\space\themypart}\hspace{1em}#2}%
-    }%
-  }
-\ExplSyntaxOff
-\ExplSyntaxOn
-  \tl_new:N{\l_mychapter_number_tl}
-  \tl_new:N{\l_mychapter_label_tl}
-  \bool_new:N{\l_mychapter_numberUsed_bool}
-  \bool_new:N{\l_mychapter_labelUsed_bool}
-  \keys_define:nn{mychapter}{%
-    number.code:n = {%
-      \bool_set_true:N{\l_mychapter_numberUsed_bool}%
-      \tl_set:Nn{\l_mychapter_number_tl}{#1}%
-    },%
-    label.code:n = {%
-      \bool_set_true:N{\l_mychapter_labelUsed_bool}%
-      \tl_set:Nn{\l_mychapter_label_tl}{#1}%
-    },%
-  }
-  \NewDocumentCommand{\mychapter}{s m O{}}{%
-    \bool_set_false:N{\l_mychapter_numberUsed_bool}%
-    \bool_set_false:N{\l_mychapter_labelUsed_bool}%
-    \keys_set:nn{mychapter}{%
-      #3%
-    }%
-    \RegisterStructureUsage{Mychapter}%
-    \ifMyannexUsed%
-      \mypackage@IfPagenumberingF{myalph}{\newpage\pagenumbering{myalph}}%
-    \else%
-      \mypackage@IfPagenumberingF{arabic}{\newpage\pagenumbering{arabic}}%
-    \fi%
-    \IfBooleanTF{#1}{%
-      \mychapterheading*{#2}%
-    }{%
-      \bool_if:NTF{\l_mychapter_numberUsed_bool}{%
-        \mychapterheading[number=\l_mychapter_number_tl]{#2}%
-      }{%
-        \stepcounter{mychapter}%
-        \mychapterheading{#2}%
-      }%
-    }%
-    \myhyperanchor{mychapter}%
-    \bool_if:NT{\l_mychapter_labelUsed_bool}{%
-      \ifMyannexUsed%
-        \mylabel{mychapter}{ann:chap:\l_mychapter_label_tl}%
-      \else%
-        \mylabel{mychapter}{chap:\l_mychapter_label_tl}%
-      \fi%
-    }%
-    \IfBooleanF{#1}{%
-      \myaddtotoc{mychapter}{\mychapterbox[l]{\themychapter}\hspace{1em}#2}%
-    }%
-  }
-\ExplSyntaxOff
-\ExplSyntaxOn
-  \tl_new:N{\l_mysection_number_tl}
-  \tl_new:N{\l_mysection_label_tl}
-  \bool_new:N{\l_mysection_numberUsed_bool}
-  \bool_new:N{\l_mysection_labelUsed_bool}
-  \keys_define:nn{mysection}{%
-    number.code:n = {%
-      \bool_set_true:N{\l_mysection_numberUsed_bool}%
-      \tl_set:Nn{\l_mysection_number_tl}{#1}%
-    },%
-    label.code:n = {%
-      \bool_set_true:N{\l_mysection_labelUsed_bool}%
-      \tl_set:Nn{\l_mysection_label_tl}{#1}%
-    },%
-  }
-  \NewDocumentCommand{\mysection}{s m O{}}{%
-    \bool_set_false:N{\l_mysection_numberUsed_bool}%
-    \bool_set_false:N{\l_mysection_labelUsed_bool}%
-    \keys_set:nn{mysection}{%
-      #3%
-    }%
-    \RegisterStructureUsage{Mysection}%
-    \ifMyannexUsed%
-      \mypackage@IfPagenumberingF{myalph}{\newpage\pagenumbering{myalph}}%
-    \else%
-      \mypackage@IfPagenumberingF{arabic}{\newpage\pagenumbering{arabic}}%
-    \fi%
-    \IfBooleanTF{#1}{%
-      \mysectionheading*{#2}%
-    }{%
-      \ifGlobalMypartUsed%
-      \else%
-        \ifGlobalMychapterUsed%
-        \else%
-          \setcounter{myfigure}{0}%
-          \setcounter{myprogram}{0}%
-          \setcounter{myequation}{0}%
-          \setcounter{mytable}{0}%
-        \fi%
-      \fi%
-      \bool_if:NTF{\l_mysection_numberUsed_bool}{%
-        \mysectionheading[number=\l_mysection_number_tl]{#2}%
-      }{%
-        \stepcounter{mysection}%
-        \mysectionheading{#2}%
-      }%
-    }%
-    \myhyperanchor{mysection}%
-    \bool_if:NT{\l_mysection_labelUsed_bool}{%
-      \ifMyannexUsed%
-        \mylabel{mysection}{ann:sec:\l_mysection_label_tl}%
-      \else%
-        \mylabel{mysection}{sec:\l_mysection_label_tl}%
-      \fi%
-    }%
-    \IfBooleanF{#1}{%
-      \myaddtotoc{mysection}{\mysectionbox[l]{\themysection}\hspace{1em}#2}%
-    }%
-  }
-\ExplSyntaxOff
-\ExplSyntaxOn
-  \tl_new:N{\l_mysubsection_number_tl}
-  \tl_new:N{\l_mysubsection_label_tl}
-  \bool_new:N{\l_mysubsection_numberUsed_bool}
-  \bool_new:N{\l_mysubsection_labelUsed_bool}
-  \keys_define:nn{mysubsection}{%
-    number.code:n = {%
-      \bool_set_true:N{\l_mysubsection_numberUsed_bool}%
-      \tl_set:Nn{\l_mysubsection_number_tl}{#1}%
-    },%
-    label.code:n = {%
-      \bool_set_true:N{\l_mysubsection_labelUsed_bool}%
-      \tl_set:Nn{\l_mysubsection_label_tl}{#1}%
-    },%
-  }
-  \NewDocumentCommand{\mysubsection}{s m O{}}{%
-    \bool_set_false:N{\l_mysubsection_numberUsed_bool}%
-    \bool_set_false:N{\l_mysubsection_labelUsed_bool}%
-    \keys_set:nn{mysubsection}{%
-      #3%
-    }%
-    \RegisterStructureUsage{Mysubsection}%
-    \ifMyannexUsed%
-      \mypackage@IfPagenumberingF{myalph}{\newpage\pagenumbering{myalph}}%
-    \else%
-      \mypackage@IfPagenumberingF{arabic}{\newpage\pagenumbering{arabic}}%
-    \fi%
-    \IfBooleanTF{#1}{%
-      \mysubsectionheading*{#2}%
-    }{%
-      \ifGlobalMypartUsed%
-      \else%
-        \ifGlobalMychapterUsed%
-        \else%
-          \ifGlobalMysectionUsed%
-          \else%
-            \setcounter{myfigure}{0}%
-            \setcounter{myprogram}{0}%
-            \setcounter{myequation}{0}%
-            \setcounter{mytable}{0}%
-          \fi%
-        \fi%
-      \fi%
-      \bool_if:NTF{\l_mysubsection_numberUsed_bool}{%
-        \mysubsectionheading[number=\l_mysubsection_number_tl]{#2}%
-      }{%
-        \stepcounter{mysubsection}%
-        \mysubsectionheading{#2}%
-      }%
-    }%
-    \myhyperanchor{mysubsection}%
-    \bool_if:NT{\l_mysubsection_labelUsed_bool}{%
-      \ifMyannexUsed%
-        \mylabel{mysubsection}{ann:subsec:\l_mysubsection_label_tl}%
-      \else%
-        \mylabel{mysubsection}{subsec:\l_mysubsection_label_tl}%
-      \fi%
-    }%
-    \IfBooleanF{#1}{%
-      \myaddtotoc{mysubsection}{\mysubsectionbox[l]{\themysubsection}\hspace{1em}#2}%
-    }%
-  }
-\ExplSyntaxOff
-\ExplSyntaxOn
-  \tl_new:N{\l_mysubsubsection_number_tl}
-  \tl_new:N{\l_mysubsubsection_label_tl}
-  \bool_new:N{\l_mysubsubsection_numberUsed_bool}
-  \bool_new:N{\l_mysubsubsection_labelUsed_bool}
-  \keys_define:nn{mysubsubsection}{%
-    number.code:n = {%
-      \bool_set_true:N{\l_mysubsubsection_numberUsed_bool}%
-      \tl_set:Nn{\l_mysubsubsection_number_tl}{#1}%
-    },%
-    label.code:n = {%
-      \bool_set_true:N{\l_mysubsubsection_labelUsed_bool}%
-      \tl_set:Nn{\l_mysubsubsection_label_tl}{#1}%
-    },%
-  }
-  \NewDocumentCommand{\mysubsubsection}{s m O{}}{%
-    \bool_set_false:N{\l_mysubsubsection_numberUsed_bool}%
-    \bool_set_false:N{\l_mysubsubsection_labelUsed_bool}%
-    \keys_set:nn{mysubsubsection}{%
-      #3%
-    }%
-    \RegisterStructureUsage{Mysubsubsection}%
-    \ifMyannexUsed%
-      \mypackage@IfPagenumberingF{myalph}{\newpage\pagenumbering{myalph}}%
-    \else%
-      \mypackage@IfPagenumberingF{arabic}{\newpage\pagenumbering{arabic}}%
-    \fi%
-    \IfBooleanTF{#1}{%
-      \mysubsubsectionheading*{#2}%
-    }{%
-      \ifGlobalMypartUsed%
-      \else%
-        \ifGlobalMychapterUsed%
-        \else%
-          \ifGlobalMysectionUsed%
-          \else%
-            \ifGlobalMysubsectionUsed%
-            \else%
-              \setcounter{myfigure}{0}%
-              \setcounter{myprogram}{0}%
-              \setcounter{myequation}{0}%
-              \setcounter{mytable}{0}%
-            \fi%
-          \fi%
-        \fi%
-      \fi%
-      \bool_if:NTF{\l_mysubsubsection_numberUsed_bool}{%
-        \mysubsubsectionheading[number=\l_mysubsubsection_number_tl]{#2}%
-      }{%
-        \stepcounter{mysubsubsection}%
-        \mysubsubsectionheading{#2}%
-      }%
-    }%
-    \myhyperanchor{mysubsubsection}%
-    \bool_if:NT{\l_mysubsubsection_labelUsed_bool}{%
-      \ifMyannexUsed%
-        \mylabel{mysubsubsection}{ann:subsubsec:\l_mysubsubsection_label_tl}%
-      \else%
-        \mylabel{mysubsubsection}{subsubsec:\l_mysubsubsection_label_tl}%
-      \fi%
-    }%
-    \IfBooleanF{#1}{%
-      \myaddtotoc{mysubsubsection}{\mysubsubsectionbox[l]{\themysubsubsection}\hspace{1em}#2}%
-    }%
-  }
-\ExplSyntaxOff
-\NewDocumentCommand{\mytableofcontents}{s o}{%
-  \mypackage@IfPagenumberingF{Roman}{\newpage\pagenumbering{Roman}}%
-  \begingroup%
-    \clearpage%
-    \let\\\space%
-    \ifGlobalMypartUsed%
-      \mypartheading*{\mycontentsname}%
-    \else%
-      \ifGlobalMychapterUsed%
-        \mychapterheading*{\mycontentsname}%
-      \else%
-        \mysectionheading*{\mycontentsname}%
-      \fi%
-    \fi%
-    \myhyperanchor*{mycontents}%
-    \IfNoValueF{#2}{%
-      \mylabel*{mycontents}{toc:#2}%
-    }%
-    \addvspace{20pt}%
-    \@starttoc{mytoc}%
-    \IfBooleanF{#1}{%
-      \myaddtotoc{\myhighestsec}{\mycontentsname}%
-    }%
-  \endgroup%
-  \clearpage%
-}
-\NewDocumentCommand{\mylistoffigures}{s o}{%
-  \clearpage%
-  \mypackage@IfPagenumberingF{Roman}{\newpage\pagenumbering{Roman}}%
-  \ifGlobalMypartUsed%
-    \mypartheading*{\mylistfigurename}%
-  \else%
-    \ifGlobalMychapterUsed%
-      \mychapterheading*{\mylistfigurename}%
-    \else%
-      \mysectionheading*{\mylistfigurename}%
-    \fi%
-  \fi%
-  \myhyperanchor*{mylistfigure}%
-  \IfNoValueF{#2}{%
-    \mylabel*{mylistfigure}{lof:#2}%
-  }%
-  \addvspace{20pt}%
-  \@starttoc{mylof}%
-  \IfBooleanF{#1}{%
-    \myaddtotoc{\myhighestsec}{\mylistfigurename}%
-  }%
-  \clearpage%
-}
-\NewDocumentCommand{\mylistoftables}{s o}{%
-  \clearpage%
-  \mypackage@IfPagenumberingF{Roman}{\newpage\pagenumbering{Roman}}%
-  \ifGlobalMypartUsed%
-    \mypartheading*{\mylisttablename}%
-  \else%
-    \ifGlobalMychapterUsed%
-      \mychapterheading*{\mylisttablename}%
-    \else%
-      \mysectionheading*{\mylisttablename}%
-    \fi%
-  \fi%
-  \myhyperanchor*{mylisttable}%
-  \IfNoValueF{#2}{%
-    \mylabel*{mylisttable}{lot:#2}%
-  }%
-  \addvspace{20pt}%
-  \@starttoc{mylot}%
-  \IfBooleanF{#1}{%
-    \myaddtotoc{\myhighestsec}{\mylisttablename}%
-  }%
-  \clearpage%
-}
-\NewDocumentCommand{\mylistofprograms}{s o}{%
-  \clearpage%
-  \mypackage@IfPagenumberingF{Roman}{\newpage\pagenumbering{Roman}}%
-  \ifGlobalMypartUsed%
-    \mypartheading*{\mylistprogramname}%
-  \else%
-    \ifGlobalMychapterUsed%
-      \mychapterheading*{\mylistprogramname}%
-    \else%
-      \mysectionheading*{\mylistprogramname}%
-    \fi%
-  \fi%
-  \myhyperanchor*{mylistprogramname}%
-  \IfNoValueF{#2}{%
-    \mylabel*{mylistprogram}{lop:#2}%
-  }%
-  \addvspace{20pt}%
-  \@starttoc{mylop}%
-  \IfBooleanF{#1}{%
-    \myaddtotoc{\myhighestsec}{\mylistprogramname}%
-  }%
-  \clearpage%
-}
-\NewDocumentCommand{\mylistofequations}{s o}{%
-  \clearpage%
-  \mypackage@IfPagenumberingF{Roman}{\newpage\pagenumbering{Roman}}%
-  \ifGlobalMypartUsed%
-    \mypartheading*{\mylistequationname}%
-  \else%
-    \ifGlobalMychapterUsed%
-      \mychapterheading*{\mylistequationname}%
-    \else%
-      \mysectionheading*{\mylistequationname}%
-    \fi%
-  \fi%
-  \myhyperanchor*{mylistequation}%
-  \IfNoValueF{#2}{%
-    \mylabel*{mylistequation}{loe:#2}%
-  }%
-  \addvspace{20pt}%
-  \@starttoc{myloe}%
-  \IfBooleanF{#1}{%
-    \myaddtotoc{\myhighestsec}{\mylistequationname}%
-  }%
-  \clearpage%
-}
-\NewDocumentCommand{\mypartbibheading}{s m}{%
-  \mypartheading*{#2}%
-  \myhyperanchor*{#2}%
-  \IfBooleanF{#1}{%
-    \myaddtotoc{mypart}{#2}%
-  }%
-  \markboth{#2}{#2}%
-}
-\NewDocumentCommand{\mychapterbibheading}{s m}{%
-  \mychapterheading*{#2}%
-  \myhyperanchor*{#2}%
-  \IfBooleanF{#1}{%
-    \myaddtotoc{mychapter}{#2}%
-  }%
-  \markboth{#2}{#2}%
-}
-\NewDocumentCommand{\mysectionbibheading}{s m}{%
-  \mysectionheading*{#2}%
-  \myhyperanchor*{#2}%
-  \IfBooleanF{#1}{%
-    \myaddtotoc{mysection}{#2}%
-  }%
-  \markboth{#2}{#2}%
-}
-\NewDocumentCommand{\mysubsectionbibheading}{s m}{%
-  \mysubsectionheading*{#2}%
-  \myhyperanchor*{#2}%
-  \IfBooleanF{#1}{%
-    \myaddtotoc{mysubsection}{#2}%
-  }%
-  \markboth{#2}{#2}%
-}
-\NewDocumentCommand{\mysubsubsectionbibheading}{s m}{%
-  \mysubsubsectionheading*{#2}%
-  \myhyperanchor*{#2}%
-  \IfBooleanF{#1}{%
-    \myaddtotoc{mysubsubsection}{#2}%
-  }%
-  \markboth{#2}{#2}%
-}
-\defbibheading{mypartbibintoc}[\mybibname]{%
-  \mypartbibheading{#1}%
-}
-\defbibheading{mychapterbibintoc}[\mybibname]{%
-  \mychapterbibheading{#1}%
-}
-\defbibheading{mysectionbibintoc}[\mybibname]{%
-  \mysectionbibheading{#1}%
-}
-\defbibheading{mysubsectionbibintoc}[\mybibname]{%
-  \mysubsectionbibheading{#1}%
-}
-\defbibheading{mysubsubsectionbibintoc}[\mybibname]{%
-  \mysubsubsectionbibheading{#1}%
-}
-\defbibheading{mypartbib}[\mybibname]{%
-  \mypartbibheading*{#1}%
-}
-\defbibheading{mychapterbib}[\mybibname]{%
-  \mychapterbibheading*{#1}%
-}
-\defbibheading{mysectionbib}[\mybibname]{%
-  \mysectionbibheading*{#1}%
-}
-\defbibheading{mysubsectionbib}[\mybibname]{%
-  \mysubsectionbibheading*{#1}%
-}
-\defbibheading{mysubsubsectionbib}[\mybibname]{%
-  \mysubsubsectionbibheading*{#1}%
-}
-\NewDocumentCommand{\mybibliography}{s o}{
-  \MybibUsedtrue%
-  \clearpage%
-  \mypackage@IfPagenumberingF{Roman}{\newpage\pagenumbering{roman}}%
-  \myhyperanchor*{mybib}%
-  \IfNoValueF{#2}{%
-    \mylabel*{mybib}{bib:#2}%
-  }%
-  \IfBooleanTF{#1}{%
-    \ifGlobalMypartUsed%
-      \mypartbibheading*{\mybibname}%
-      \printbibliography[heading=none, filter=not]%
-      \printbibliography[heading=mychapterbib, filter=articles, title={\myarticlesname}]%
-      \printbibliography[heading=mychapterbib, filter=books, title={\mybooksname}]%
-      \printbibliography[heading=mychapterbib, filter=collections, title={\mycollectionsname}]%
-      \printbibliography[heading=mychapterbib, filter=manuals, title={\mymanualsname}]%
-      \printbibliography[heading=mychapterbib, filter=theses, title={\mythesesname}]%
-      \printbibliography[heading=mychapterbib, filter=references, title={\myreferencesname}]%
-      \printbibliography[heading=mychapterbib, filter=reports, title={\myreportsname}]%
-      \printbibliography[heading=mychapterbib, filter=websites, title={\mywebsitesname}]%
-      \printbibliography[heading=mychapterbib, filter=patents, title={\mypatentsname}]%
-    \else%
-      \ifGlobalMychapterUsed%
-        \mychapterbibheading*{\mybibname}%
-        \printbibliography[heading=none, filter=not]%
-        \printbibliography[heading=mysectionbib, filter=articles, title={\myarticlesname}]%
-        \printbibliography[heading=mysectionbib, filter=books, title={\mybooksname}]%
-        \printbibliography[heading=mysectionbib, filter=collections, title={\mycollectionsname}]%
-        \printbibliography[heading=mysectionbib, filter=manuals, title={\mymanualsname}]%
-        \printbibliography[heading=mysectionbib, filter=theses, title={\mythesesname}]%
-        \printbibliography[heading=mysectionbib, filter=references, title={\myreferencesname}]%
-        \printbibliography[heading=mysectionbib, filter=reports, title={\myreportsname}]%
-        \printbibliography[heading=mysectionbib, filter=websites, title={\mywebsitesname}]%
-        \printbibliography[heading=mysectionbib, filter=patents, title={\mypatentsname}]%
-      \else%
-        \mysectionbibheading*{\mybibname}%
-        \printbibliography[heading=none, filter=not]%
-        \printbibliography[heading=mysubsectionbib, filter=articles, title={\myarticlesname}]%
-        \printbibliography[heading=mysubsectionbib, filter=books, title={\mybooksname}]%
-        \printbibliography[heading=mysubsectionbib, filter=collections, title={\mycollectionsname}]%
-        \printbibliography[heading=mysubsectionbib, filter=manuals, title={\mymanualsname}]%
-        \printbibliography[heading=mysubsectionbib, filter=theses, title={\mythesesname}]%
-        \printbibliography[heading=mysubsectionbib, filter=references, title={\myreferencesname}]%
-        \printbibliography[heading=mysubsectionbib, filter=reports, title={\myreportsname}]%
-        \printbibliography[heading=mysubsectionbib, filter=websites, title={\mywebsitesname}]%
-        \printbibliography[heading=mysubsectionbib, filter=patents, title={\mypatentsname}]%
-      \fi%
-    \fi%
-  }{%
-    \ifGlobalMypartUsed%
-      \mypartbibheading{\mybibname}%
-      \printbibliography[heading=none, filter=not]%
-      \printbibliography[heading=mychapterbibintoc, filter=articles, title={\myarticlesname}]%
-      \printbibliography[heading=mychapterbibintoc, filter=books, title={\mybooksname}]%
-      \printbibliography[heading=mychapterbibintoc, filter=collections, title={\mycollectionsname}]%
-      \printbibliography[heading=mychapterbibintoc, filter=manuals, title={\mymanualsname}]%
-      \printbibliography[heading=mychapterbibintoc, filter=theses, title={\mythesesname}]%
-      \printbibliography[heading=mychapterbibintoc, filter=references, title={\myreferencesname}]%
-      \printbibliography[heading=mychapterbibintoc, filter=reports, title={\myreportsname}]%
-      \printbibliography[heading=mychapterbibintoc, filter=websites, title={\mywebsitesname}]%
-      \printbibliography[heading=mychapterbibintoc, filter=patents, title={\mypatentsname}]%
-    \else%
-      \ifGlobalMychapterUsed%
-        \mychapterbibheading{\mybibname}%
-        \printbibliography[heading=none, filter=not]%
-        \printbibliography[heading=mysectionbibintoc, filter=articles, title={\myarticlesname}]%
-        \printbibliography[heading=mysectionbibintoc, filter=books, title={\mybooksname}]%
-        \printbibliography[heading=mysectionbibintoc, filter=collections, title={\mycollectionsname}]%
-        \printbibliography[heading=mysectionbibintoc, filter=manuals, title={\mymanualsname}]%
-        \printbibliography[heading=mysectionbibintoc, filter=theses, title={\mythesesname}]%
-        \printbibliography[heading=mysectionbibintoc, filter=references, title={\myreferencesname}]%
-        \printbibliography[heading=mysectionbibintoc, filter=reports, title={\myreportsname}]%
-        \printbibliography[heading=mysectionbibintoc, filter=websites, title={\mywebsitesname}]%
-        \printbibliography[heading=mysectionbibintoc, filter=patents, title={\mypatentsname}]%
-      \else%
-        \mysectionbibheading{\mybibname}%
-        \printbibliography[heading=none, filter=not]%
-        \printbibliography[heading=mysubsectionbibintoc, filter=articles, title={\myarticlesname}]%
-        \printbibliography[heading=mysubsectionbibintoc, filter=books, title={\mybooksname}]%
-        \printbibliography[heading=mysubsectionbibintoc, filter=collections, title={\mycollectionsname}]%
-        \printbibliography[heading=mysubsectionbibintoc, filter=manuals, title={\mymanualsname}]%
-        \printbibliography[heading=mysubsectionbibintoc, filter=theses, title={\mythesesname}]%
-        \printbibliography[heading=mysubsectionbibintoc, filter=references, title={\myreferencesname}]%
-        \printbibliography[heading=mysubsectionbibintoc, filter=reports, title={\myreportsname}]%
-        \printbibliography[heading=mysubsectionbibintoc, filter=websites, title={\mywebsitesname}]%
-        \printbibliography[heading=mysubsectionbibintoc, filter=patents, title={\mypatentsname}]%
-      \fi%
-    \fi%
-  }%
-  \MybibUsedfalse%
-}%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

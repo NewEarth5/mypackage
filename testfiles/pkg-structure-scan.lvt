@@ -1,0 +1,29 @@
+% pkg-structure-scan: without information in the .aux file (first run), the
+% package reads the source of the document at \begin{document} to find the
+% sectioning levels it uses.  The source it reads is \jobname.tex: the test
+% writes one (with an \input file), which uses parts and sections, has a
+% commented-out \mysubsection and mentions \mychapterbox (not a heading).
+% The flags are right before the first heading, and stay right; the levels
+% that this run registers are the ones found, so no rerun is requested.
+\begin{filecontents*}[overwrite]{\jobname.tex}
+\documentclass{myreport}
+\begin{document}
+\mypart{A part}% \mysubsection{commented out}
+  \input{pkg-structure-scan-sub}
+Text with \mychapterbox{1} in it. 100\% \mysubsubsection would count here.
+\end{document}
+\end{filecontents*}
+\begin{filecontents*}[overwrite]{\jobname-sub.tex}
+\mysection{A section}
+\end{filecontents*}
+\input{regression-test}
+\documentclass{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\TEST{Levels found in the source, before any heading}{\SHOWFLAGS}
+\mypart{A part}
+\mysection{A section}
+\mysubsubsection{A subsubsection}
+\TEST{After the headings}{\SHOWFLAGS\SHOWTHE}
+\end{document}

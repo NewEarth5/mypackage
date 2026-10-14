@@ -3,13 +3,13 @@ Don't change this file in any respect.
 ============================================================
 TEST 1: Keys
 ============================================================
-OPT \myreport@sect@part=[break]
-OPT \myreport@sect@chapter=[nobreak]
-OPT \myreport@sect@section=[break]
-OPT \myreport@sect@subsection=[nobreak]
-OPT \myreport@sect@subsubsection=[nobreak]
-OPT \myreport@sect@annex=[break]
-OPT \myreport@sect@bib=[nobreak]
+VAR l__myreport_sectioning_part_tl=[break]
+VAR l__myreport_sectioning_chapter_tl=[nobreak]
+VAR l__myreport_sectioning_section_tl=[break]
+VAR l__myreport_sectioning_subsection_tl=[nobreak]
+VAR l__myreport_sectioning_subsubsection_tl=[nobreak]
+VAR l__myreport_sectioning_annex_tl=[break]
+VAR l__myreport_sectioning_bib_tl=[nobreak]
 ============================================================
 (cls-options-sectioning-keys.aux)
 LaTeX Warning: There were undefined references.

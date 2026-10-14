@@ -3,10 +3,10 @@ Don't change this file in any respect.
 ============================================================
 TEST 1: Shorthand position value
 ============================================================
-OPT \mypackage@pos@figure=[tbp]
-OPT \mypackage@pos@table=[tbp]
-OPT \mypackage@pos@program=[tbp]
-OPT \mypackage@pos@pseudocode=[tbp]
+VAR l__mypackage_position_figure_tl=[tbp]
+VAR l__mypackage_position_table_tl=[tbp]
+VAR l__mypackage_position_program_tl=[tbp]
+VAR l__mypackage_position_pseudocode_tl=[tbp]
 ============================================================
 (pkg-options-position.aux)
 LaTeX Warning: There were undefined references.

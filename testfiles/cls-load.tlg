@@ -3,30 +3,30 @@ Don't change this file in any respect.
 ============================================================
 TEST 1: Class option values (defaults)
 ============================================================
-OPT \myreport@text@fontsize=[10pt]
-OPT \myreport@text@fontfamily=[cmr]
-OPT \myreport@text@lang=[british]
-OPT \myreport@position=[h]
-OPT \myreport@sect@part=[break]
-OPT \myreport@sect@chapter=[break]
-OPT \myreport@sect@section=[nobreak]
-OPT \myreport@sect@subsection=[nobreak]
-OPT \myreport@sect@subsubsection=[nobreak]
-OPT \myreport@sect@annex=[break]
-OPT \myreport@sect@bib=[break]
+VAR l__myreport_text_fontsize_tl=[10pt]
+VAR l__myreport_text_fontfamily_tl=[cmr]
+VAR l__myreport_text_lang_tl=[british]
+VAR l__myreport_position_tl=[]
+VAR l__myreport_sectioning_part_tl=[break]
+VAR l__myreport_sectioning_chapter_tl=[break]
+VAR l__myreport_sectioning_section_tl=[nobreak]
+VAR l__myreport_sectioning_subsection_tl=[nobreak]
+VAR l__myreport_sectioning_subsubsection_tl=[nobreak]
+VAR l__myreport_sectioning_annex_tl=[break]
+VAR l__myreport_sectioning_bib_tl=[break]
 ============================================================
 ============================================================
 TEST 2: Values received by mypackage
 ============================================================
-OPT \mypackage@lang=[british]
-OPT \mypackage@paths@images=[images/]
-OPT \mypackage@paths@code=[code/]
-OPT \mypackage@paths@sources=[sources/sources.bib]
-OPT \mypackage@pos@figure=[h]
-OPT \mypackage@pos@table=[h]
-OPT \mypackage@toc@depth=[2]
-OPT \mypackage@toc@annexdepth=[0]
-OPT \mypackage@toc@bibdepth=[1]
+VAR l__mypackage_lang_tl=[british]
+VAR l__mypackage_path_images_tl=[images/]
+VAR l__mypackage_path_code_tl=[code/]
+VAR l__mypackage_path_sources_tl=[sources/sources.bib]
+VAR l__mypackage_position_figure_tl=[h]
+VAR l__mypackage_position_table_tl=[h]
+VAR l__mypackage_toc_depth_int=[2]
+VAR l__mypackage_toc_annexdepth_int=[0]
+VAR l__mypackage_toc_bibdepth_int=[1]
 ============================================================
 ============================================================
 TEST 3: Base class, size, fonts
@@ -51,12 +51,12 @@ NAMES-4: professor=[Professor|Professor|Professors|Professors] assistant=[Assist
 ============================================================
 TEST 5: Title-page defaults
 ============================================================
-OPT \mycourseval=[-NoValue-]
-OPT \mytitleval=[-NoValue-]
-OPT \mydateval=[10th~October 2026]
-OPT \myacademicyearval=[\currentacyear ]
-OPT \myauthorval=[-NoValue-]
-OPT \myprofessorval=[-NoValue-]
+VAR g__myreport_course_tl=[]
+VAR g__myreport_title_tl=[]
+VAR g__myreport_date_tl=[\today ]
+VAR g__myreport_acyear_tl=[\mycurrentacyear ]
+VAR g__myreport_author_seq=[]
+VAR g__myreport_professor_seq=[]
 ============================================================
 (cls-load.aux)
 LaTeX Warning: There were undefined references.

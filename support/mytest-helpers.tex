@@ -39,16 +39,51 @@
     subfigure=[\themysubfigure] table=[\themytable]
     program=[\themyprogram] equation=[\themyequation]}%
 }
+\ExplSyntaxOn
+\cs_new:Npn \__mytest_tf:n #1 { \bool_if:nTF {#1} { T } { F } }
 \newcommand\SHOWFLAGS{%
-  \typeout{FLAGS: part=\ifGlobalMypartUsed T\else F\fi,
-    chapter=\ifGlobalMychapterUsed T\else F\fi,
-    section=\ifGlobalMysectionUsed T\else F\fi,
-    subsection=\ifGlobalMysubsectionUsed T\else F\fi,
-    subsubsection=\ifGlobalMysubsubsectionUsed T\else F\fi,
-    annex=\ifMyannexUsed T\else F\fi,
-    bib=\ifMybibUsed T\else F\fi,
+  \typeout{FLAGS:~part=\__mytest_tf:n { \mypackage_if_level_used_p:n { part } },~
+    chapter=\__mytest_tf:n { \mypackage_if_level_used_p:n { chapter } },~
+    section=\__mytest_tf:n { \mypackage_if_level_used_p:n { section } },~
+    subsection=\__mytest_tf:n { \mypackage_if_level_used_p:n { subsection } },~
+    subsubsection=\__mytest_tf:n { \mypackage_if_level_used_p:n { subsubsection } },~
+    annex=\__mytest_tf:n { \l_mypackage_annex_bool },~
+    bib=\__mytest_tf:n { \l_mypackage_bibliography_bool },~
     highest=\myhighestsec}%
 }
+% \SETUSED{<levels>}: marks levels as used, *locally* (inside a \TEST group),
+% as if the .aux file had recorded them.
+\NewDocumentCommand \SETUSED { m }
+  {
+    \clist_map_inline:nn {#1}
+      {
+        \bool_set_true:c { g__mypackage_ ##1 _used_bool }
+        \int_set:Nn \g__mypackage_highest_int
+          { \int_min:nn { \g__mypackage_highest_int } { \mypackage_level_index:n {##1} } }
+      }
+  }
+% \SETANNEX: annex mode, locally (as inside a myannex environment).
+\NewDocumentCommand \SETANNEX { } { \bool_set_true:N \l_mypackage_annex_bool }
+% \IFPAGENUMBERING{<style>}{<true>}{<false>}
+\NewDocumentCommand \IFPAGENUMBERING { m m m }
+  { \mypackage_if_pagenumbering:nTF {#1} {#2} {#3} }
+% \SHOWVAR{<expl3 variable name, without backslash>}: its value; integers
+% and booleans are evaluated, token lists and sequences shown as strings.
+\NewDocumentCommand \SHOWVAR { m }
+  {
+    \cs_if_exist:cTF {#1}
+      {
+        \str_case_e:nnF { \str_range:nnn {#1} { -4 } { -1 } }
+          {
+            { _int } { \typeout { VAR~#1=[ \int_use:c {#1} ] } }
+            { bool } { \typeout { VAR~#1=[ \bool_if:cTF {#1} { true } { false } ] } }
+            { _seq } { \typeout { VAR~#1=[ \exp_args:Ne \tl_to_str:n { \seq_use:cn {#1} { ~|~ } } ] } }
+          }
+          { \typeout { VAR~#1=[ \tl_to_str:v {#1} ] } }
+      }
+      { \typeout { VAR~#1=[UNDEFINED] } }
+  }
+\ExplSyntaxOff
 % ---------------------------------------------------------------- words
 \newcommand\SHOWNAMES{%
   \typeout{NAMES-1: contents=[\mycontentsname] lof=[\mylistfigurename]

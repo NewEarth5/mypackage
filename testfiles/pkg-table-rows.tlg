@@ -1,0 +1,17 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+mytable: rownum=4
+mytable*: rownum=3
+[1
+Non-PDF special ignored!
+<special> header=psfrag.pro
+]
+(pkg-table-rows.aux)
+LaTeX Warning: There were undefined references.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+Package rerunfilecheck Warning: File `pkg-table-rows.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                pkg-table-rows
+(biblatex)                and rerun LaTeX afterwards.

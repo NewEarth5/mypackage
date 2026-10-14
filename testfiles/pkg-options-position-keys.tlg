@@ -3,10 +3,10 @@ Don't change this file in any respect.
 ============================================================
 TEST 1: Keyed position values
 ============================================================
-OPT \mypackage@pos@figure=[H]
-OPT \mypackage@pos@table=[t]
-OPT \mypackage@pos@program=[h]
-OPT \mypackage@pos@pseudocode=[h]
+VAR l__mypackage_position_figure_tl=[H]
+VAR l__mypackage_position_table_tl=[t]
+VAR l__mypackage_position_program_tl=[h]
+VAR l__mypackage_position_pseudocode_tl=[h]
 ============================================================
 (pkg-options-position-keys.aux)
 LaTeX Warning: There were undefined references.

@@ -1,0 +1,23 @@
+% pkg-structure-aux: the sectioning levels in use come from the .aux file of
+% the previous run.  Here that file is written by the test itself, as a
+% previous run would have left it: it records the parts level (and contains
+% the lines written by version 0.6.5, which must be harmless).  The document
+% only uses chapters: during this run the numbering keeps the levels of the
+% .aux file (chapters are *not* added when the first \mychapter comes, the
+% parts are not removed), and the package asks for another run at the end.
+\begin{filecontents*}[overwrite]{\jobname.aux}
+\relax
+\global \csname GlobalMypartUsedtrue\endcsname
+\mypackage@structure {}
+\mypackage@structure {part}
+\end{filecontents*}
+\input{regression-test}
+\documentclass{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\TEST{Levels read from the .aux file}{\SHOWFLAGS}
+\mychapter{Only chapters}
+\mychapter{Second chapter}
+\TEST{After two chapters: unchanged until the next run}{\SHOWFLAGS\SHOWTHE}
+\end{document}

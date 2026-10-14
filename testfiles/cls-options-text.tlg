@@ -3,10 +3,10 @@ Don't change this file in any respect.
 ============================================================
 TEST 1: Sub-option values
 ============================================================
-OPT \myreport@text@fontsize=[12pt]
-OPT \myreport@text@fontfamily=[lmr]
-OPT \myreport@text@lang=[french]
-OPT \mypackage@lang=[french]
+VAR l__myreport_text_fontsize_tl=[12pt]
+VAR l__myreport_text_fontfamily_tl=[lmr]
+VAR l__myreport_text_lang_tl=[french]
+VAR l__mypackage_lang_tl=[french]
 ============================================================
 ============================================================
 TEST 2: Effect

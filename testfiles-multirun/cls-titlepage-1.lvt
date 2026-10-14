@@ -3,7 +3,7 @@
 \input{regression-test}
 \documentclass{myreport}
 \input{mytest-helpers}
-\mycourse*{Fluid mechanics}[MECA0025]
+\mycourse{Fluid mechanics}[MECA0025]
 \myaddprofessor{Delhez}{Eric}
 \myaddassistant*{Doe}{Jane}
 \myacademicyear{2025-2026}

@@ -9,8 +9,14 @@
   toc={depth=1, annexdepth=0, bibdepth=0},
 ]{myreport}
 \usepackage{mydemo}
-\makeatletter
-\newcommand\showopt[2]{\texttt{#1} & \texttt{\detokenize\expandafter{#2}} \\}
+% The values are private variables of the class and the package (they may
+% be renamed at any version): shown here for the demonstration only.
+\ExplSyntaxOn
+\NewDocumentCommand \showopt { m m }
+  { \texttt {#1} & \texttt { \tl_to_str:v {#2} } \\ }
+\NewDocumentCommand \showint { m m }
+  { \texttt {#1} & \texttt { \int_use:c {#2} } \\ }
+\ExplSyntaxOff
 \begin{document}
 \demoheader{\string\documentclass[...]\{myreport\}}{Class options. The
 class is based on \texttt{report} (A4) and loads mypackage, amsmath,
@@ -48,13 +54,13 @@ inside \texttt{myannex} and to the bibliography categories.
 \mysection*{Values in this document}
 \begin{mytable*}[firstrow=2]{ll}{values}{Values seen by the class.}
   \textbf{Option} & \textbf{Value} \\
-  \showopt{text/fontsize}{\myreport@text@fontsize}
-  \showopt{text/fontfamily}{\myreport@text@fontfamily}
-  \showopt{text/lang}{\myreport@text@lang}
-  \showopt{sectioning/part}{\myreport@sect@part}
-  \showopt{sectioning/chapter}{\myreport@sect@chapter}
-  \showopt{sectioning/annex}{\myreport@sect@annex}
-  \showopt{sectioning/bib}{\myreport@sect@bib}
-  \showopt{toc/depth}{\mypackage@toc@depth}
+  \showopt{text/fontsize}{l__myreport_text_fontsize_tl}
+  \showopt{text/fontfamily}{l__myreport_text_fontfamily_tl}
+  \showopt{text/lang}{l__myreport_text_lang_tl}
+  \showopt{sectioning/part}{l__myreport_sectioning_part_tl}
+  \showopt{sectioning/chapter}{l__myreport_sectioning_chapter_tl}
+  \showopt{sectioning/annex}{l__myreport_sectioning_annex_tl}
+  \showopt{sectioning/bib}{l__myreport_sectioning_bib_tl}
+  \showint{toc/depth}{l__mypackage_toc_depth_int}
 \end{mytable*}
 \end{document}

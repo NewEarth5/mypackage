@@ -27,10 +27,15 @@ MyPackage:
       ° Make it possible to change every package's default options using [package_name]={[clist_options]}
       ° Make hyperref options actually affect the document
     - Improve robustness:
+      ° Make package self sustaining (no need for exterior includes/imports)
       ° Add error and warning messages
       ° Make every command key be validated and return an error or warning
       ° Error message when mypseudocode is used without clrscode3e
       ° Labels compatible with cleveref
+    - Improve unit and values typesetting:
+      ° Add an equivalent to siunitx (or add to it) for imperial
+      ° Improve/simplify siunitx interface (make it automatic??)
+      ° Add a way to set unit standard (imperial or metric) that converts automaticly between the two with tables for units mapping and settings for rounding
     - Hooks:
       ° Add hooks for override or other ways
 # V0.8:
@@ -99,6 +104,7 @@ MyReport:
       ° One-sided or two-sided layout
       ° Print or screen mode
     - Improve robustness:
+      ° Make package self sustaining (no need for exterior includes/imports)
       ° Add error and warning messages
       ° Make every command key be validated and return an error or warning
     - Hooks:
@@ -110,11 +116,18 @@ MyReport:
     - Improve title page:
       ° Add to first optional clist argument options for custom names (to replace professor, assistant, ...), for gender (male, female, ...), etc.
       ° Add background image option to title page with options for size (as a separate command such as \bgimage{})
+      ° Make title page spacings and layout scale perfectly with paper size
     - Improve localisation:
       ° Make indentation change with supported language
       ° Make decimal separator change with supported language
       ° Make SI unit defaults change with supported language
       ° etc.
+    - Improve sectionning:
+      ° Make sections be able to auto page break if they are close to the bottom of the page (instead of having only the title on the bottom of one page and the content on the next one)
+      ° Make it a class option
+    - Improve page numbering:
+      ° Make it so that if an annex is added in the middle, the arrabic numbering continues
+      ° Same thing for annexes, make the numbering continue even if it got interrupted
     - Improve global presentation:
       ° Add main and secondary color options that change colors in the whole document (with the defaults making it look as it is currently)
       ° Add the possibility to add a header for every page
