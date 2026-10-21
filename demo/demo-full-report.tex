@@ -10,7 +10,7 @@
 \usepackage{clrscode3e}
 \usepackage[locale=UK]{siunitx}
 
-\mycourse*{Fluid mechanics}[MECA0025]
+\mycourse{Fluid mechanics}[MECA0025]
 \myaddprofessor{Professor}{Paul}
 \myaddassistant*{Assistant}{Alice}
 \mytitle{Demonstration report}
@@ -66,11 +66,11 @@ does not go to the list of figures.}
 \mychapter{Code}[label=code]
 \myprogram{hello}{hello.py}{python}{A post-processing script.}
 \begin{mypseudocode}{search}{Searching for the optimal angle.}
-\proc{Optimise}($\theta_{min}, \theta_{max}$)
-\li \For $\theta \gets \theta_{min}$ \To $\theta_{max}$
-\li   \Do run a simulation
-    \End
-\li \Return the best angle
+  \Procname{\proc{Optimise}($\theta_{min}, \theta_{max}$)}
+  \li \For $\theta \gets \theta_{min}$ \To $\theta_{max}$
+  \li   \Do run a simulation
+      \End
+  \li \Return the best angle
 \end{mypseudocode}
 Results: \myref{fig:wide}, \myref{fig:mesh:b}, \myref{tab:params},
 \myref{code:py:hello}, \myref{code:pseudo:search}, cited from

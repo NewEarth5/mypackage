@@ -193,7 +193,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% PAGE BREAKS AND HEADINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \__myreport_clearpage:nn {<level>} {<break|nobreak>}: what comes before a         %
+% \__myreport_clearpage:n {<level>}: what comes before a                            %
 % heading. nobreak: a new paragraph (in an annex the highest level still starts     %
 % a new page). break: a new page; a right-hand page (\cleardoublepage) for the      %
 % highest level used. In an annex or in the bibliography, sectioning={annex=        %
@@ -204,10 +204,8 @@
 % the part heading ("Part 1" above the title, nothing if <label> is empty).         %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \tl_new:N \l__myreport_break_tl
-% \begingroup Improve
-% Remove #2 by find it's value from #1
-\cs_new_protected:Npn \__myreport_clearpage:nn #1#2 {
-  \tl_set:Nn \l__myreport_break_tl {#2}
+\cs_new_protected:Npn \__myreport_clearpage:n #1 {
+  \tl_set:Nv \l__myreport_break_tl { l__myreport_sectioning_ #1 _tl }
   \bool_if:NT \l_mypackage_annex_bool {
     \str_if_eq:VnT \l__myreport_sectioning_annex_tl { nobreak } {
       \tl_set:Nn \l__myreport_break_tl { nobreak }
@@ -257,7 +255,7 @@
 \cs_new_protected:Npn \__myreport_heading:nnn #1#2#3 {
   \group_begin:
     \vspace { 4em }
-    \__myreport_clearpage:nv {#1} { l__myreport_sectioning_ #1 _tl }
+    \__myreport_clearpage:n {#1}
     \setlength { \parindent } { 0cm }
     \vspace { -3em }
     \prop_item:Nn \c__myreport_heading_font_prop {#1}
@@ -270,7 +268,7 @@
 \cs_new_protected:Npn \__myreport_part_heading:nn #1#2 {
   \group_begin:
     \vspace { 3em }
-    \__myreport_clearpage:nV { part } \l__myreport_sectioning_part_tl
+    \__myreport_clearpage:n { part }
     \setlength { \parindent } { 0cm }
     \vspace { -2em }
     \prop_item:Nn \c__myreport_heading_font_prop { part }
@@ -284,7 +282,6 @@
     \par
   \group_end:
 }
-\cs_generate_variant:Nn \__myreport_clearpage:nn { nV , nv }
 \cs_new_protected:Npn \__myreport_heading_any:nnn #1#2#3 {
   \str_if_eq:nnTF {#1} { part } {
     \__myreport_part_heading:nn {#2} {#3}
@@ -292,8 +289,8 @@
     \__myreport_heading:nnn {#1} {#2} {#3}
   }
 }
-% \begingroup Improve
-% Make it work for subsection and subsubsection also if those are the highest used levels
+\cs_generate_variant:Nn \__myreport_heading_any:nnn { e }
+\cs_generate_variant:Nn \__myreport_heading_any:nnn { nV }
 \cs_new:Npn \__myreport_front_level: {
   \mypackage_if_level_used:nTF { part } {
     part
@@ -304,7 +301,6 @@
 \cs_new_protected:Npn \__myreport_front_heading:n #1 {
   \__myreport_heading_any:enn { \__myreport_front_level: } { } {#1}
 }
-\cs_generate_variant:Nn \__myreport_heading_any:nnn { e }
 \cs_new_protected:Npn \__myreport_set_pagenumbering:n #1 {
   \mypackage_if_pagenumbering:nF {#1} {
     \newpage \pagenumbering {#1}
@@ -411,7 +407,7 @@
     }
   }
 }
-\prg_new_conditional:Npnn \__myreport_if_people:n #1 { T , F , TF } {
+\prg_new_conditional:Npnn \__myreport_if_people:n #1 { p, T , F , TF } {
   \seq_if_empty:cTF { g__myreport_ #1 _seq } {
     \prg_return_false:
   } {
@@ -468,14 +464,36 @@
 }
 % \begingroup Improve
 % Make image be a certain amount of space from the page bottom instead of centered with title
+\tl_new:N \l__myreport_cols_tl
 \cs_new_protected:cpn { __myreport_titlepage_1: } {
-  \begin { tabularx } { \textwidth } { > { \raggedright \arraybackslash } X > { \raggedleft \arraybackslash } X }
+  \tl_set:Nn \l__myreport_cols_tl { > { \raggedright \arraybackslash } X }
+  \bool_lazy_and:nnT {
+    \__myreport_if_people_p:n { professor }
+  } {
+    \__myreport_if_people_p:n { assistant }
+  } {
+    \tl_put_right:Nn \l__myreport_cols_tl { > { \centering \arraybackslash } X }
+  }
+  \bool_lazy_or:nnT {
+    \__myreport_if_people_p:n { professor }
+  } {
+    \__myreport_if_people_p:n { assistant }
+  } {
+    \tl_put_right:Nn \l__myreport_cols_tl { > { \raggedleft \arraybackslash } X }
+  }
+  \exp_args:NnnV \begin { tabularx } { \textwidth } \l__myreport_cols_tl
     \__myreport_title_course:
-    &
     \__myreport_if_people:nT { professor } {
+      &
       \textbf { \__myreport_role:n { professor } }
       \textbf { \c_colon_str \space }
       \seq_use:Nn \g__myreport_professor_seq { \space \& \space }
+    }
+    \__myreport_if_people:nT { assistant } {
+      &
+      \textbf { \__myreport_role:n { assistant } }
+      \textbf { \c_colon_str \space }
+      \seq_use:Nn \g__myreport_assistant_seq { \space \& \space }
     }
   \end { tabularx }
   \vspace { 2pt }
@@ -486,6 +504,7 @@
   \end { tabularx }
   \vspace { 0.05 \textheight }
   \vspace* { \fill }
+  \tl_if_empty:NF \g__myreport_image_tl {\vspace* { \fill }}  
   \__myreport_title_text:
   \__myreport_title_image:
   \vspace* { \fill }
@@ -522,6 +541,7 @@
     }
   \end { tabularx }
   \vspace* { \fill }
+  \tl_if_empty:NF \g__myreport_image_tl {\vspace* { \fill }}  
   \hrule height 1.5pt width \hsize
   \vspace { 8pt }
   \__myreport_title_text:
@@ -625,8 +645,6 @@
     \tl_set:Nn \l__myreport_section_givenname_tl {#1}
   },
 }
-% \begingroup Idea
-% Make this a package constant instead (look for other examples)
 \prop_const_from_keyval:Nn \c__myreport_label_prefix_prop {
   part = part,
   chapter = chap,
@@ -634,7 +652,6 @@
   subsection = subsec,
   subsubsection = subsubsec,
 }
-% \__myreport_section:nnnn {<level>} {<star>} {<title>} {<options>}
 \cs_new_protected:Npn \__myreport_section:nnnn #1#2#3#4 {
   \bool_set_false:N \l__myreport_section_number_bool
   \bool_set_false:N \l__myreport_section_label_bool
@@ -690,10 +707,6 @@
     }
   }
 }
-% \begingroup Improve
-% Move all of the variants underneath their respective base functions
-\cs_generate_variant:Nn \__myreport_heading_any:nnn { nV }
-\cs_generate_variant:Nn \mypackage_label:nn { nV }
 \cs_new_protected:Npn \__myreport_section_numtext:n #1 {
   \str_if_eq:nnTF {#1} { part } {
     \tl_set:Ne \l__myreport_section_numtext_tl {
@@ -732,8 +745,6 @@
 \cs_new_protected:Npn \__myreport_front_pagenumbering: {
   \__myreport_set_pagenumbering:n { Roman }
 }
-% \__myreport_front_anchor:nnn {<word>} {<label prefix>} {<label or NoValue>}
-\cs_generate_variant:Nn \mypackage_label_name:nn { nV }
 \cs_new_protected:Npn \__myreport_front_anchor:nnn #1#2#3 {
   \mypackage_anchor_name:n {#1}
   \IfNoValueF {#3} {
@@ -780,50 +791,49 @@
     }
   }
 }
-% \begingroup Improve
-% Make page numbering appear after \clearpage
-% Make it work with \__myreport_listof
-\NewDocumentCommand \mytableofcontents { s o } {
-  \__myreport_front_pagenumbering:
+\prop_const_from_keyval:Nn \c__myreport_listof_names_prop {
+  mycontents = mytoc,
+  mylistfigure = mylof,
+  mylisttable = mylot,
+  mylistprogram = mylop,
+  mylistequation = myloe
+}
+\prop_const_from_keyval:Nn \c__myreport_listof_extensions_prop {
+  mytoc = toc,
+  mylof = lof,
+  mylot = lot,
+  mylop = lop,
+  myloe = loe
+}
+\cs_new_protected:Npn \__myreport_listof:nnnnn #1#2#3 {
   \group_begin:
     \clearpage
     \cs_set_eq:NN \\ \space
-    \__myreport_front_heading:n { \mycontentsname }
-    \__myreport_front_anchor:nnn { mycontents } { toc } {#2}
+    \__myreport_front_pagenumbering:
+    \__myreport_front_heading:n { \use:c { #3 name } }
+    \__myreport_front_anchor:nnn {#3} { \prop_item:Ne \c__myreport_listof_extensions_prop { \prop_item:Nn \c__myreport_listof_names_prop {#3} } } {#2}
     \addvspace { 20pt }
-    \@starttoc { mytoc }
+    \@starttoc {\prop_item:Nn \c__myreport_listof_names_prop {#3}}
     \IfBooleanF {#1} {
-      \mypackage_add_to_toc:en { \mypackage_highest_level: } { \mycontentsname }
+      \mypackage_add_to_toc:ee { \mypackage_highest_level: } { \exp_not:c { #3 name } }
     }
   \group_end:
   \clearpage
 }
-% \begingroup Idea
-% Make mylof and lof not needed by getting them through a list
-\cs_new_protected:Npn \__myreport_listof:nnnnn #1#2#3#4#5 {
-  \clearpage
-  \__myreport_front_pagenumbering:
-  \__myreport_front_heading:n { \use:c { #3 name } }
-  \__myreport_front_anchor:nnn {#3} {#5} {#2}
-  \addvspace { 20pt }
-  \@starttoc {#4}
-  \IfBooleanF {#1} {
-    \mypackage_add_to_toc:ee { \mypackage_highest_level: } { \exp_not:c { #3 name } }
-  }
-  \clearpage
+\NewDocumentCommand \mytableofcontents { s o } {
+  \__myreport_listof:nnnnn {#1} {#2} { mycontents }
 }
-\cs_generate_variant:Nn \mypackage_add_to_toc:nn { ee }
 \NewDocumentCommand \mylistoffigures { s o } {
-  \__myreport_listof:nnnnn {#1} {#2} { mylistfigure } { mylof } { lof }
+  \__myreport_listof:nnnnn {#1} {#2} { mylistfigure }
 }
 \NewDocumentCommand \mylistoftables { s o } {
-  \__myreport_listof:nnnnn {#1} {#2} { mylisttable } { mylot } { lot }
+  \__myreport_listof:nnnnn {#1} {#2} { mylisttable }
 }
 \NewDocumentCommand \mylistofprograms { s o } {
-  \__myreport_listof:nnnnn {#1} {#2} { mylistprogram } { mylop } { lop }
+  \__myreport_listof:nnnnn {#1} {#2} { mylistprogram }
 }
 \NewDocumentCommand \mylistofequations { s o } {
-  \__myreport_listof:nnnnn {#1} {#2} { mylistequation } { myloe } { loe }
+  \__myreport_listof:nnnnn {#1} {#2} { mylistequation }
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% TABLE OF CONTENTS LINES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -916,6 +926,7 @@
   \bool_if:nT {#2} { \mypackage_add_to_toc:nn {#1} {#3} }
   \markboth {#3} {#3}
 }
+\cs_generate_variant:Nn \__myreport_bib_heading:nnn { V }
 \clist_map_inline:Nn \c_mypackage_levels_clist {
   \defbibheading { myreport / #1 } [ \mybibname ] {
     \__myreport_bib_heading:nnn {#1} { \c_false_bool } {##1}
@@ -924,21 +935,12 @@
     \__myreport_bib_heading:nnn {#1} { \c_true_bool } {##1}
   }
 }
-% \begingroup Idea
-% Make it a package list
-\prop_const_from_keyval:Nn \c__myreport_level_below_prop {
-  part = chapter,
-  chapter = section,
-  section = subsection
-}
 \tl_new:N \l__myreport_bib_level_tl
 \tl_new:N \l__myreport_bib_toc_tl
 \NewDocumentCommand \mybibliography { s o } {
   \bool_set_true:N \l_mypackage_bibliography_bool
   \clearpage
-  % \begingroup Why??
-  % Use \__myreport_set_pagenumbering ??
-  \mypackage_if_pagenumbering:nF { Roman } { \newpage \pagenumbering { roman } }
+  \__myreport_set_pagenumbering:n { roman }
   \mypackage_anchor_name:n { mybib }
   \IfNoValueF {#2} { \mypackage_label_name:nn { mybib } { bib \c_colon_str #2 } }
   \tl_set:Ne \l__myreport_bib_level_tl { \__myreport_front_level: }
@@ -953,7 +955,7 @@
   \seq_map_inline:Nn \g_mypackage_bib_categories_seq {
     \use:e {
       \exp_not:N \printbibliography [
-        heading = myreport / \prop_item:NV \c__myreport_level_below_prop \l__myreport_bib_level_tl \l__myreport_bib_toc_tl,
+        heading = myreport / \mypackage_index_level:e { \int_eval:n { \mypackage_level_index:V { \l__myreport_bib_level_tl } + 1} } \l__myreport_bib_toc_tl,
         filter = mypackage / ##1,
         title = { \mypackage_bib_category_name:n {##1} },
       ]
@@ -961,8 +963,6 @@
   }
   \bool_set_false:N \l_mypackage_bibliography_bool
 }
-\cs_generate_variant:Nn \__myreport_bib_heading:nnn { V }
-\cs_generate_variant:Nn \prop_item:Nn { NV }
 \ExplSyntaxOff
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

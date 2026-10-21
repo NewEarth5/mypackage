@@ -7,7 +7,7 @@ that fill it in.}
 
 \mysection*{Syntax}
 \begin{demosyntax}
-\mycourse[*]{<course name>}[<course ID>]  % no star: the ID is a \cite key
+\mycourse{<course name>}[<course ID>]  % no star: the ID is a \cite key
 \myaddprofessor[*]{<surname>}{<first name>}  % * = female; repeat for more
 \myaddassistant[*]{<surname>}{<first name>}
 \myaddauthor[*]{<surname>}{<first name>}[<student ID>]
@@ -26,8 +26,9 @@ Style 1 shows the professors, not the assistants. An item given an empty
 value (\texttt{\string\mydate\{\}}) is not shown.}
 
 \begin{demo}
-\mycourse*{Fluid mechanics}[MECA0025]
-\myaddprofessor{Delhez}{Eric}
+\mycourse{Fluid mechanics}[MECA0025]
+\myaddprofessor{Salles}{Loic}
+\myaddassistant{Devigne}{Olivier}
 \myacademicyear{2025-2026}
 \mytitle{Project: fluid simulation}
 \mysubtitle{Flow around a windscreen}
