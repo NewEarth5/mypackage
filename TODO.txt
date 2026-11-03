@@ -57,6 +57,7 @@ MyPackage:
     - Documentation:
       ° Add the .ins and .dtx
       ° Update .cwl
+      ° Change the documentation.txt to a .md
     - Better metadata:
       ° Add engine support list
       ° Tag PDF
@@ -122,6 +123,7 @@ MyReport:
     - Documentation:
       ° Add the .ins and .dtx
       ° Update .cwl
+      ° Change the documentation.txt to a .md
     - Better metadata:
       ° Add engine support list
       ° Tag PDF
