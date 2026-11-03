@@ -1,0 +1,68 @@
+% pkg-subfigure-size: the widths of \mysubfigure in a mysub group.  With
+% base=text the widths are fractions of the space that the gaps between the
+% subfigures of a row leave (size={gap=...}, 1em): widths adding up to 1
+% fill the row.  Rows end at \\ or a blank line.  A row wider than the line
+% gives a warning and is not scaled.  WIDTH: width of the subfigure, and
+% whether it starts its row (no gap before it).
+\input{regression-test}
+\documentclass{article}
+\usepackage{mypackage}
+\input{mytest-helpers}
+\ExplSyntaxOn
+\NewDocumentCommand \W { } {
+  \bool_if:NF \l__mypackage_sub_scan_bool {
+    \typeout { WIDTH~\dim_use:N \l__mypackage_sub_width_dim
+      \bool_if:NT \l__mypackage_sub_first_bool { ~(first~of~its~row) } }
+  }
+}
+\NewDocumentCommand \SETGAP { m } { \tl_set:Nn \l__mypackage_size_gap_tl {#1} }
+\ExplSyntaxOff
+\begin{document}
+\START
+\TEST{Reference lengths}{%
+  \TYPE{textwidth=\the\textwidth, 1em=\the\dimexpr1em\relax}%
+  \TYPE{(textwidth-1em)/2=\the\dimexpr(\textwidth-1em)/2\relax}%
+}
+\TEST{Two halves fill the row}{%
+  \begin{mysub}{halves}{Two halves.}[H]
+    \mysubfigure{wide.png}[A]{0.5}\W
+    \mysubfigure{wide.png}[B]{0.5}\W
+  \end{mysub}
+}
+\TEST{Three thirds, with hfill (kept)}{%
+  \begin{mysub}{thirds}{Three thirds.}[H]
+    \mysubfigure{wide.png}[A]{0.3333}\W\hfill
+    \mysubfigure{wide.png}[B]{0.3333}\W\hfill
+    \mysubfigure{wide.png}[C]{0.3333}\W
+  \end{mysub}
+}
+\TEST{Rows: a row of 0.6 + 0.6 is too wide}{%
+  \begin{mysub}{rows}{Three rows.}[H]
+    \mysubfigure{wide.png}[A]{0.5}\W
+    \mysubfigure{wide.png}[B]{0.5}\W\\
+    \mysubfigure{wide.png}{0.6}\W
+    \mysubfigure{wide.png}{0.6}\W
+
+    \mysubfigure{wide.png}[E]{1}\W
+  \end{mysub}
+}
+\TEST{Lengths and base=cm: a fraction ignores them (too wide)}{%
+  \begin{mysub}{abs}{Lengths.}[H]
+    \mysubfigure{wide.png}{4cm}\W
+    \mysubfigure[base=cm]{wide.png}{4}\W
+    \mysubfigure{wide.png}{0.5}\W
+  \end{mysub}
+}
+\TEST{Gap set to 0pt}{%
+  \SETGAP{0pt}%
+  \begin{mysub*}{nogap}{No gap.}[H]
+    \mysubfigure{wide.png}{0.25}\W
+    \mysubfigure{wide.png}{0.75}\W
+  \end{mysub*}
+}
+\TEST{Outside a mysub group: a fraction of the text width}{%
+  \begin{figure}[H]
+    \mysubfigure{wide.png}{0.5}\W
+  \end{figure}
+}
+\end{document}

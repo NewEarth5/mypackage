@@ -13,6 +13,8 @@ VAR l__mypackage_position_pseudocode_tl=[h]
 VAR l__mypackage_toc_depth_int=[3]
 VAR l__mypackage_toc_annexdepth_int=[1]
 VAR l__mypackage_toc_bibdepth_int=[0]
+VAR l__mypackage_size_base_tl=[mm]
+VAR l__mypackage_size_figure_tl=[base=mm,width=50]
 ============================================================
 (cls-options-forwarded.aux)
 LaTeX Warning: There were undefined references.

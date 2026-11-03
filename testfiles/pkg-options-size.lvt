@@ -1,0 +1,19 @@
+% pkg-options-size: size=<base> (shorthand) changes the base only; the
+% default sizes keep the base they were written with (text), so that
+% size=cm does not turn height=0.2 into 0.2cm.
+\input{regression-test}
+\documentclass{article}
+\usepackage[size=cm]{mypackage}
+\input{mytest-helpers}
+\makeatletter
+\begin{document}
+\START
+\TEST{Shorthand size=cm}{%
+  \SHOWVAR{l__mypackage_size_base_tl}
+  \SHOWVAR{l__mypackage_size_gap_tl}
+  \SHOWVAR{l__mypackage_size_gap_base_tl}
+  \SHOWVAR{l__mypackage_size_figure_tl}
+  \SHOWVAR{l__mypackage_size_subfigure_tl}
+  \SHOWVAR{l__mypackage_size_program_tl}
+}
+\end{document}

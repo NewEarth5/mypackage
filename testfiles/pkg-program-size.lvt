@@ -1,0 +1,36 @@
+% pkg-program-size: width= and base= of \myincludeprogram (the tcolorbox
+% gets width=<size>); numwidth= is a size too.  In a box made by \myprogram
+% the listing has its own width; in the text it is centred in the line
+% (tcolorbox's "center": the box is as wide as the line).
+\input{regression-test}
+\documentclass{article}
+\usepackage{mypackage}
+\input{mytest-helpers}
+\ExplSyntaxOn
+\NewDocumentCommand \BOXED { } { \bool_set_true:N \l__mypackage_program_boxed_bool }
+\ExplSyntaxOff
+\newcommand\PROG[1]{%
+  \sbox0{\myincludeprogram[#1]{short.c}{c}}%
+  \TYPE{[#1]: \the\wd0}}
+\begin{document}
+\START
+\TEST{Reference lengths}{%
+  \TYPE{textwidth=\the\textwidth, 0.5 textwidth=\the\dimexpr0.5\textwidth\relax}%
+}
+\TEST{Width of the listing in a box (as in myprogram)}{%
+  \BOXED
+  \PROG{}
+  \PROG{width=0.5}
+  \PROG{width=6cm}
+  \PROG{base=cm, width=6}
+  \PROG{width=0.5, numwidth=0.02}
+  \PROG{base=mm, width=100, numwidth=5}
+}
+\TEST{In the text: as wide as the line (centred)}{%
+  \PROG{width=0.5}
+}
+\TEST{base=none: a number is an error}{%
+  \BOXED
+  \PROG{base=none, width=8}
+}
+\end{document}

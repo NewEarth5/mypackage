@@ -70,7 +70,131 @@
 %   annexdepth=<n>,                                % - 0                            %
 %   bibdepth=<n>                                   % - 1                            %
 % }                                                %                                %
+% size=<base>                                      % shorthand for size={base=...}  %
+% size={                                           % defaults:                      %
+%   base=<text|none|unit>,                         % - text                         %
+%   gap=<size>,                                    % - 1em                          %
+%   figure={<size options>},                       % - height=0.2                   %
+%   subfigure={<size options>},                    % - width=1                      %
+%   program={<size options>}                       % - (width of the line)          %
+% }                                                %                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Sizes (see the section SIZES below).  The base says how a size without a unit     %
+% is read: text = a fraction (0 to 1) of \textwidth (widths) or \textheight         %
+% (heights); none = no base, every size needs a unit (as in LaTeX); a unit (cm,     %
+% mm, pt, em, px, ...) = the unit given to the sizes that have none.  A size        %
+% with a unit is always taken as it is.  Every command with sizes also accepts      %
+% base=... in its options.  The defaults figure=, subfigure=, program= are used     %
+% when the options of a command give no size; they keep the base in effect when     %
+% they were set (so size={base=cm} does not turn height=0.2 into 0.2cm).            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ExplSyntaxOn
+\msg_new:nnn { mypackage } { size-unknown-base } {
+  Unknown~size~base~'#1':~use~'text',~'none'~or~a~unit~
+  (em,~ex,~pt,~pc,~in,~cm,~mm,~bp,~dd,~cc,~sp,~px).~
+  The~base~'#2'~is~kept.
+}
+\msg_new:nnn { mypackage } { size-no-unit } {
+  The~size~'#1'~has~no~unit.~With~base=none~every~size~needs~one~
+  (for~example~'#1cm').~It~is~read~as~a~fraction~of~the~text~#2.
+}
+\msg_new:nnn { mypackage } { size-not-fraction } {
+  The~size~'#1'~is~not~between~0~and~1:~with~base=text~it~is~a~
+  fraction~of~the~text~#2~(1~=~the~whole~text~#2).
+}
+\msg_new:nnn { mypackage } { subfigure-row-too-wide } {
+  The~subfigures~of~row~#1~of~figure~'#2'~are~#3~wider~than~the~line~
+  (their~widths~add~up~to~more~than~100~\c_percent_str \c_space_tl
+  of~the~space~left~by~the~gaps).~They~are~not~scaled~down.
+}
+\clist_const:Nn \c__mypackage_size_bases_clist {
+  text, none, em, ex, pt, pc, in, cm, mm, bp, dd, cc, nd, nc, sp, px
+}
+\tl_new:N \l__mypackage_size_tmp_tl
+% \__mypackage_size_base_set:Nn <tl> {<base>}: <tl> = <base> if it is valid.
+\cs_new_protected:Npn \__mypackage_size_base_set:Nn #1#2 {
+  \tl_set:Ne \l__mypackage_size_tmp_tl { \tl_trim_spaces:n {#2} }
+  \clist_if_in:NVTF \c__mypackage_size_bases_clist \l__mypackage_size_tmp_tl {
+    \tl_set_eq:NN #1 \l__mypackage_size_tmp_tl
+  } {
+    \bool_if:NF \l__mypackage_size_quiet_bool {
+      \msg_error:nnVV { mypackage } { size-unknown-base }
+        \l__mypackage_size_tmp_tl #1
+    }
+  }
+}
+\cs_generate_variant:Nn \msg_error:nnnn { nnVV }
+\bool_new:N \l__mypackage_size_quiet_bool
+\tl_new:N \l__mypackage_size_base_tl
+\tl_set:Nn \l__mypackage_size_base_tl { text }
+\tl_new:N \l__mypackage_size_gap_tl
+\tl_new:N \l__mypackage_size_gap_base_tl
+\tl_new:N \l__mypackage_size_figure_tl
+\tl_new:N \l__mypackage_size_subfigure_tl
+\tl_new:N \l__mypackage_size_program_tl
+\tl_set:Nn \l__mypackage_size_gap_tl { 1em }
+\tl_set:Nn \l__mypackage_size_gap_base_tl { text }
+\tl_set:Nn \l__mypackage_size_figure_tl { base = text , height = 0.2 }
+\tl_set:Nn \l__mypackage_size_subfigure_tl { base = text , width = 1 }
+\tl_set:Nn \l__mypackage_size_program_tl { }
+% The values given in one size={...} are first collected, then stored with
+% the base of the end of the list: the order of the keys does not matter.
+\clist_const:Nn \c__mypackage_size_defaults_clist { figure, subfigure, program }
+\clist_map_inline:Nn \c__mypackage_size_defaults_clist {
+  \tl_new:c { l__mypackage_size_ #1 _new_tl }
+  \bool_new:c { l__mypackage_size_ #1 _new_bool }
+}
+\tl_new:N \l__mypackage_size_gap_new_tl
+\bool_new:N \l__mypackage_size_gap_new_bool
+\keys_define:nn { mypackage / size } {
+  base.code:n = {
+    \__mypackage_size_base_set:Nn \l__mypackage_size_base_tl {#1}
+  },
+  gap.code:n = {
+    \tl_set:Nn \l__mypackage_size_gap_new_tl {#1}
+    \bool_set_true:N \l__mypackage_size_gap_new_bool
+  },
+  figure.code:n = {
+    \tl_set:Nn \l__mypackage_size_figure_new_tl {#1}
+    \bool_set_true:N \l__mypackage_size_figure_new_bool
+  },
+  subfigure.code:n = {
+    \tl_set:Nn \l__mypackage_size_subfigure_new_tl {#1}
+    \bool_set_true:N \l__mypackage_size_subfigure_new_bool
+  },
+  program.code:n = {
+    \tl_set:Nn \l__mypackage_size_program_new_tl {#1}
+    \bool_set_true:N \l__mypackage_size_program_new_bool
+  },
+}
+\cs_new_protected:Npn \__mypackage_size_option:n #1 {
+  \tl_if_blank:nF {#1} {
+    \tl_if_in:nnTF {#1} { = } {
+      \bool_set_false:N \l__mypackage_size_gap_new_bool
+      \clist_map_inline:Nn \c__mypackage_size_defaults_clist {
+        \bool_set_false:c { l__mypackage_size_ ##1 _new_bool }
+      }
+      \keys_set:nn { mypackage / size } {#1}
+      \bool_if:NT \l__mypackage_size_gap_new_bool {
+        \tl_set_eq:NN \l__mypackage_size_gap_tl \l__mypackage_size_gap_new_tl
+        \tl_set_eq:NN \l__mypackage_size_gap_base_tl \l__mypackage_size_base_tl
+      }
+      \clist_map_inline:Nn \c__mypackage_size_defaults_clist {
+        \bool_if:cT { l__mypackage_size_ ##1 _new_bool } {
+          \tl_set:ce { l__mypackage_size_ ##1 _tl } {
+            base = \exp_not:V \l__mypackage_size_base_tl ,
+            \exp_not:v { l__mypackage_size_ ##1 _new_tl }
+          }
+        }
+      }
+    } {
+      \__mypackage_size_base_set:Nn \l__mypackage_size_base_tl {#1}
+    }
+  }
+}
+\cs_generate_variant:Nn \__mypackage_size_option:n { o }
+\cs_generate_variant:Nn \tl_set:Nn { ce }
+\ExplSyntaxOff
 \ExplSyntaxOn
 \tl_new:N  \l__mypackage_lang_tl
 \tl_new:N  \l__mypackage_path_images_tl
@@ -96,6 +220,9 @@
   },
   toc.code:n = {
     \keys_set:no { mypackage / toc } {#1}
+  },
+  size.code:n = {
+    \__mypackage_size_option:o {#1}
   },
 }
 \keys_define:nn { mypackage / paths } {
@@ -1266,6 +1393,106 @@
   \leaders \hbox { $ \m@th \mkern \@dotsep mu \hbox { . } \mkern \@dotsep mu $ } \hfill \kern \z@
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% SIZES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% A size is a number or a length.  A number is read with the base of the command    %
+% (its base= option, or the base of the package option size): base=text gives       %
+% <number>\textwidth for a width and <number>\textheight for a height (inside a     %
+% subfigure \textwidth is the width of the subfigure); base=<unit> gives            %
+% <number><unit>; base=none refuses a number (error, then read as base=text).       %
+% A length (5cm, 0.3\linewidth, \mylength, ...) is used as it is with every base.   %
+%                                                                                   %
+% \mypackage_size_resolve:Nnnn <tl> {<base>} {<size>} {<w|h>}  sets <tl> to the     %
+%     length (unevaluated, so that \textwidth is the one of the place of use)       %
+%     and \l_mypackage_size_fraction_bool to true when the size was a fraction      %
+%     of the text (base=text and a number).                                         %
+% Options of the commands with sizes: base=<base>, width=<size>, height=<size>      %
+% (\myinclude, \myfigure, \mysubfigure), natural (no scaling, \myinclude,           %
+% \myfigure, \mysubfigure).  With no width= / height= / natural, the defaults of    %
+% the package option size are used.                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\regex_const:Nn \c__mypackage_size_number_regex
+  { \A [\+\-]? (?: \d+ (?: \. \d* )? | \. \d+ ) \Z }
+\bool_new:N \l_mypackage_size_fraction_bool
+\cs_new_protected:Npn \mypackage_size_resolve:Nnnn #1#2#3#4 {
+  \bool_set_false:N \l_mypackage_size_fraction_bool
+  \tl_set:Nn #1 {#3}
+  \tl_trim_spaces:N #1
+  \regex_match:NVT \c__mypackage_size_number_regex #1 {
+    \str_case:nnF {#2} {
+      { text } { \__mypackage_size_fraction:Nn #1 {#4} }
+      { none } {
+        \bool_if:NF \l__mypackage_size_quiet_bool {
+          \msg_error:nnVe { mypackage } { size-no-unit } #1
+            { \__mypackage_size_axis:n {#4} }
+        }
+        \group_begin:
+          \bool_set_true:N \l__mypackage_size_quiet_bool
+          \__mypackage_size_fraction:Nn #1 {#4}
+        \exp_args:NNNV \group_end:
+        \tl_set:Nn #1 #1
+        \bool_set_true:N \l_mypackage_size_fraction_bool
+      }
+    } {
+      \tl_put_right:Nn #1 {#2}
+    }
+  }
+}
+\cs_generate_variant:Nn \mypackage_size_resolve:Nnnn { NVnn , NVVn }
+\cs_generate_variant:Nn \regex_match:NnT { NV }
+\cs_generate_variant:Nn \msg_error:nnnn { nnVe }
+\cs_generate_variant:Nn \msg_warning:nnnn { nnVe }
+\cs_new:Npn \__mypackage_size_axis:n #1 {
+  \str_if_eq:nnTF {#1} { h } { height } { width }
+}
+\cs_new_protected:Npn \__mypackage_size_fraction:Nn #1#2 {
+  \bool_set_true:N \l_mypackage_size_fraction_bool
+  \bool_lazy_or:nnT {
+    \fp_compare_p:nNn {#1} < { 0 }
+  } {
+    \fp_compare_p:nNn {#1} > { 1 }
+  } {
+    \bool_if:NF \l__mypackage_size_quiet_bool {
+      \msg_warning:nnVe { mypackage } { size-not-fraction } #1
+        { \__mypackage_size_axis:n {#2} }
+    }
+  }
+  \str_if_eq:nnTF {#2} { h } {
+    \tl_put_right:Nn #1 { \textheight }
+  } {
+    \tl_put_right:Nn #1 { \textwidth }
+  }
+}
+% The options of a command: its base, the raw width= and height= (resolved
+% only once every option is read, so that base= may come after them).
+\tl_new:N \l__mypackage_size_local_base_tl
+\tl_new:N \l__mypackage_size_width_tl
+\tl_new:N \l__mypackage_size_height_tl
+\bool_new:N \l__mypackage_size_natural_bool
+\cs_new_protected:Npn \__mypackage_size_init: {
+  \tl_set_eq:NN \l__mypackage_size_local_base_tl \l__mypackage_size_base_tl
+  \tl_clear:N \l__mypackage_size_width_tl
+  \tl_clear:N \l__mypackage_size_height_tl
+  \bool_set_false:N \l__mypackage_size_natural_bool
+}
+\prg_new_conditional:Npnn \__mypackage_size_if_given: { TF , F } {
+  \bool_lazy_any:nTF {
+    { \l__mypackage_size_natural_bool }
+    { ! \tl_if_empty_p:N \l__mypackage_size_width_tl }
+    { ! \tl_if_empty_p:N \l__mypackage_size_height_tl }
+  } { \prg_return_true: } { \prg_return_false: }
+}
+% \__mypackage_size_gap:N <dim>: the space between two subfigures.
+\cs_new_protected:Npn \__mypackage_size_gap:N #1 {
+  \group_begin:
+    \mypackage_size_resolve:NVVn \l__mypackage_size_tmp_tl
+      \l__mypackage_size_gap_base_tl \l__mypackage_size_gap_tl { w }
+    \dim_set:Nn \l__mypackage_size_gap_dim { \l__mypackage_size_tmp_tl }
+  \exp_args:NNNV \group_end:
+  \dim_set:Nn #1 \l__mypackage_size_gap_dim
+}
+\dim_new:N \l__mypackage_size_gap_dim
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% FLOATS: COMMON PARTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Every numbered object is made of the same steps: begin the float with the       %
@@ -1300,60 +1527,84 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% IMAGES AND FIGURES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \myinclude[height=<f>, width=<f>]{<file>}  an image of the images folder,         %
-%     <f> as a fraction of \textheight / \textwidth (.svg: \includesvg).            %
+% \myinclude[<options>]{<file>}  an image of the images folder (.svg:               %
+%     \includesvg); options: width=, height= (sizes, see SIZES), base=, natural.    %
+%     With both width= and height=, the image keeps its proportions and fits in     %
+%     the box.  Without size, the default size={figure=...} (height=0.2).           %
 % \myfigure(*)[<options>]{<file>}[<short>]{<caption>}[<placement>]                  %
 % \begin{mysub}{<label>}[<short>]{<caption>}[<placement>] ... \end{mysub}           %
 % \begin{mysub*}{<label>}{<caption>}[<placement>] ... \end{mysub*}                  %
 % \mysubfigure[<options>]{<file>}[<caption>]{<width>}[<position>]                   %
+%     <width>: a size (with the base of <options>); with base=text it is a          %
+%     fraction of the space left in the row by the gaps between the subfigures      %
+%     (size={gap=...}, 1em): widths adding up to 1 fill the row exactly.  Rows      %
+%     end at \\, \newline or a blank line.  The image options are relative to the   %
+%     subfigure (default size={subfigure=...}: width=1).                            %
+%                                                                                   %
+% mysub reads its content twice: a first pass, where \mysubfigure only records      %
+% its <width> (nothing is typeset, the box is thrown away), counts the              %
+% subfigures of each row; the second pass typesets them with their widths.          %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\tl_new:N \l__mypackage_include_height_tl
-\tl_new:N \l__mypackage_include_width_tl
-\bool_new:N \l__mypackage_include_height_bool
-\bool_new:N \l__mypackage_include_width_bool
 \clist_new:N \l__mypackage_include_clist
 \keys_define:nn { mypackage / include } {
-  height.code:n = {
-    \bool_set_true:N \l__mypackage_include_height_bool
-    \tl_set:Nn \l__mypackage_include_height_tl {#1}
+  base.code:n = {
+    \__mypackage_size_base_set:Nn \l__mypackage_size_local_base_tl {#1}
   },
-  width.code:n = {
-    \bool_set_true:N \l__mypackage_include_width_bool
-    \tl_set:Nn \l__mypackage_include_width_tl {#1}
-  },
+  height.tl_set:N = \l__mypackage_size_height_tl,
+  width.tl_set:N = \l__mypackage_size_width_tl,
+  natural.bool_set:N = \l__mypackage_size_natural_bool,
+  natural.default:n = true,
 }
-\NewDocumentCommand \myinclude { O{height=0.2} m } {
+% \__mypackage_include:Nnn <default options> {<options>} {<file>}
+\cs_new_protected:Npn \__mypackage_include:Nnn #1#2#3 {
   \group_begin:
-    \bool_set_false:N \l__mypackage_include_height_bool
-    \bool_set_false:N \l__mypackage_include_width_bool
-    \keys_set:nn { mypackage / include } {#1}
+    \__mypackage_size_init:
+    \keys_set:nn { mypackage / include } {#2}
+    \__mypackage_size_if_given:F {
+      \keys_set:nV { mypackage / include } #1
+    }
     \clist_clear:N \l__mypackage_include_clist
-    \bool_if:NT \l__mypackage_include_height_bool {
+    \tl_if_empty:NF \l__mypackage_size_height_tl {
+      \mypackage_size_resolve:NVVn \l__mypackage_size_tmp_tl
+        \l__mypackage_size_local_base_tl \l__mypackage_size_height_tl { h }
       \clist_put_right:Ne \l__mypackage_include_clist {
-        height = \l__mypackage_include_height_tl \exp_not:N \textheight
+        height = \exp_not:V \l__mypackage_size_tmp_tl
       }
     }
-    \bool_if:NT \l__mypackage_include_width_bool {
+    \tl_if_empty:NF \l__mypackage_size_width_tl {
+      \mypackage_size_resolve:NVVn \l__mypackage_size_tmp_tl
+        \l__mypackage_size_local_base_tl \l__mypackage_size_width_tl { w }
       \clist_put_right:Ne \l__mypackage_include_clist {
-        width = \l__mypackage_include_width_tl \exp_not:N \textwidth
+        width = \exp_not:V \l__mypackage_size_tmp_tl
       }
     }
-    \filename@parse {#2}
+    \filename@parse {#3}
+    \str_if_eq:eeTF { \filename@ext } { svg } {
+      % svg keeps the proportions by itself (its option distort=false).
+      \tl_set:Nn \l__mypackage_size_tmp_tl { \includesvg }
+    } {
+      \tl_set:Nn \l__mypackage_size_tmp_tl { \includegraphics }
+      \int_compare:nNnT { \clist_count:N \l__mypackage_include_clist } = { 2 } {
+        \clist_put_right:Nn \l__mypackage_include_clist { keepaspectratio }
+      }
+    }
     \use:e {
-      \str_if_eq:eeTF { \filename@ext } { svg } {
-        \exp_not:N \includesvg
-      } {
-        \exp_not:N \includegraphics
-      }
-      [ \clist_use:Nn \l__mypackage_include_clist { , } ] { \exp_not:V \l__mypackage_path_images_tl \exp_not:n {#2} }
+      \exp_not:V \l__mypackage_size_tmp_tl
+      [ \clist_use:Nn \l__mypackage_include_clist { , } ]
+      { \exp_not:V \l__mypackage_path_images_tl \exp_not:n {#3} }
     }
   \group_end:
 }
-\NewDocumentCommand \myfigure { s O{height=0.2} m O{#5} +m O{\l__mypackage_position_figure_tl} } {
+\NewDocumentCommand \myinclude { O{} m } {
+  \__mypackage_include:Nnn \l__mypackage_size_figure_tl {#1} {#2}
+}
+\NewDocumentCommand \myfigure { s O{} m O{#5} +m O{\l__mypackage_position_figure_tl} } {
   \filename@parse {#3}
   \begin { __mypackage_float } { figure } {#6}
     \centering
-    \sbox \l__mypackage_content_box { \myinclude [#2] {#3} }
+    \sbox \l__mypackage_content_box {
+      \__mypackage_include:Nnn \l__mypackage_size_figure_tl {#2} {#3}
+    }
     \begin { minipage } { \mylenmax { \box_wd:N \l__mypackage_content_box } { 0.75 \linewidth } }
       \centering
       \__mypackage_object_start:nn { myfigure } { fig: \filename@base }
@@ -1373,21 +1624,154 @@
     \IfNoValueF {#2} { \__mypackage_list_add:nn { myfigure } {#2} }
   \end { __mypackage_float }
 }
-\NewDocumentEnvironment { mysub } { m O{#3} +m O{\l__mypackage_position_figure_tl} } {
+\NewDocumentEnvironment { mysub } { m O{#3} +m O{\l__mypackage_position_figure_tl} +b } {
   \begin { __mypackage_sub } {#1} [#2] {#3} {#4}
-} {
+    \__mypackage_sub_body:n {#5}
   \end { __mypackage_sub }
-}
-\NewDocumentEnvironment { mysub* } { m +m O{\l__mypackage_position_figure_tl} } {
+} { }
+\NewDocumentEnvironment { mysub* } { m +m O{\l__mypackage_position_figure_tl} +b } {
   \begin { __mypackage_sub } {#1} {#2} {#3}
-} {
+    \__mypackage_sub_body:n {#4}
   \end { __mypackage_sub }
+} { }
+% Pass 1 (the row list and its number are global: the content is typeset in
+% a box, whose group would forget them).  The queue receives one item per subfigure, in order:
+% {<subfigures in its row>} {<1: first of its row, 0: not>} {<base>} {<width>}.
+\seq_new:N \g__mypackage_sub_queue_seq
+\seq_new:N \g__mypackage_sub_row_seq
+\int_new:N \g__mypackage_sub_row_int
+\int_new:N \l__mypackage_sub_count_int
+\bool_new:N \l__mypackage_sub_scan_bool
+\bool_new:N \l__mypackage_sub_first_bool
+\box_new:N \l__mypackage_sub_scan_box
+\tl_new:N \l__mypackage_sub_base_tl
+\tl_new:N \l__mypackage_sub_item_tl
+\dim_new:N \l__mypackage_sub_width_dim
+\dim_new:N \l__mypackage_sub_total_dim
+\dim_new:N \l__mypackage_sub_gap_dim
+\cs_new_protected:Npn \__mypackage_sub_body:n #1 {
+  \__mypackage_sub_scan:n {#1}
+  #1
+  \seq_gclear:N \g__mypackage_sub_queue_seq
 }
-\NewDocumentCommand \mysubfigure { O{width=1} m +o m O{T} } {
-  \begin { subfigure } [#5] { #4 \textwidth }
+\cs_new_protected:Npn \__mypackage_sub_scan:n #1 {
+  \seq_gclear:N \g__mypackage_sub_queue_seq
+  \group_begin:
+    \bool_set_true:N \l__mypackage_sub_scan_bool
+    \bool_set_true:N \l__mypackage_size_quiet_bool
+    \int_gzero:N \g__mypackage_sub_row_int
+    \seq_gclear:N \g__mypackage_sub_row_seq
+    \cs_set_protected:Npn \\ { \__mypackage_sub_row_end: }
+    \cs_set_eq:NN \newline \\
+    \cs_set_eq:NN \par \__mypackage_sub_row_end:
+    \hbox_set:Nn \l__mypackage_sub_scan_box {#1}
+    \__mypackage_sub_row_end:
+  \group_end:
+}
+% The base of the options of a subfigure (quietly: the messages are given
+% once, when the image is included).
+\cs_new_protected:Npn \__mypackage_sub_base:n #1 {
+  \group_begin:
+    \bool_set_true:N \l__mypackage_size_quiet_bool
+    \__mypackage_size_init:
+    \keys_set_known:nn { mypackage / include } {#1}
+  \exp_args:NNNV \group_end:
+  \tl_set:Nn \l__mypackage_sub_base_tl \l__mypackage_size_local_base_tl
+}
+\cs_new_protected:Npn \__mypackage_sub_record:nn #1#2 {
+  \__mypackage_sub_base:n {#1}
+  \seq_gput_right:Ne \g__mypackage_sub_row_seq {
+    { \exp_not:V \l__mypackage_sub_base_tl } { \exp_not:n {#2} }
+  }
+}
+\cs_new_protected:Npn \__mypackage_sub_row_end: {
+  \seq_if_empty:NF \g__mypackage_sub_row_seq {
+    \int_gincr:N \g__mypackage_sub_row_int
+    \int_set:Nn \l__mypackage_sub_count_int { \seq_count:N \g__mypackage_sub_row_seq }
+    \dim_zero:N \l__mypackage_sub_total_dim
+    \bool_set_true:N \l__mypackage_sub_first_bool
+    \seq_map_inline:Nn \g__mypackage_sub_row_seq {
+      \__mypackage_sub_row_item:nn ##1
+    }
+    \__mypackage_size_gap:N \l__mypackage_sub_gap_dim
+    \dim_add:Nn \l__mypackage_sub_total_dim {
+      \l__mypackage_sub_gap_dim * ( \l__mypackage_sub_count_int - 1 ) - \textwidth
+    }
+    \dim_compare:nNnT \l__mypackage_sub_total_dim > { 0.1pt } {
+      \msg_warning:nneee { mypackage } { subfigure-row-too-wide }
+        { \int_use:N \g__mypackage_sub_row_int }
+        { fig: \l__mypackage_subfigure_label_tl }
+        { \dim_use:N \l__mypackage_sub_total_dim }
+    }
+    \seq_gclear:N \g__mypackage_sub_row_seq
+  }
+}
+\cs_generate_variant:Nn \msg_warning:nnnnn { nneee }
+\cs_new_protected:Npn \__mypackage_sub_row_item:nn #1#2 {
+  \seq_gput_right:Ne \g__mypackage_sub_queue_seq {
+    { \int_use:N \l__mypackage_sub_count_int }
+    { \bool_if:NTF \l__mypackage_sub_first_bool { 1 } { 0 } }
+    { \exp_not:n {#1} } { \exp_not:n {#2} }
+  }
+  \__mypackage_sub_slot:Nnnn \l__mypackage_sub_width_dim
+    { \l__mypackage_sub_count_int } {#1} {#2}
+  \dim_add:Nn \l__mypackage_sub_total_dim { \l__mypackage_sub_width_dim }
+  \bool_set_false:N \l__mypackage_sub_first_bool
+}
+% \__mypackage_sub_slot:Nnnn <dim> {<subfigures in the row>} {<base>} {<width>}
+\cs_new_protected:Npn \__mypackage_sub_slot:Nnnn #1#2#3#4 {
+  \mypackage_size_resolve:Nnnn \l__mypackage_size_tmp_tl {#3} {#4} { w }
+  \bool_if:NTF \l_mypackage_size_fraction_bool {
+    \__mypackage_size_gap:N \l__mypackage_sub_gap_dim
+    \dim_set:Nn #1 {
+      \fp_to_dim:n {
+        ( \tl_trim_spaces:n {#4} )
+        * ( \textwidth - ( #2 - 1 ) * \l__mypackage_sub_gap_dim )
+      }
+    }
+  } {
+    \dim_set:Nn #1 { \l__mypackage_size_tmp_tl }
+  }
+}
+\cs_generate_variant:Nn \__mypackage_sub_slot:Nnnn { NnVn }
+% Pass 2.  A space typed between two subfigures is replaced by the gap
+% (\hfill and other explicit spaces are kept).
+\cs_new_protected:Npn \__mypackage_sub_unspace: {
+  \mode_if_horizontal:T {
+    \skip_if_eq:nnT { \lastskip } {
+      \fontdimen 2 \font plus \fontdimen 3 \font minus \fontdimen 4 \font
+    } { \unskip }
+  }
+}
+\cs_new_protected:Npn \__mypackage_sub_item:nnnn #1#2#3#4 {
+  \__mypackage_sub_slot:Nnnn \l__mypackage_sub_width_dim {#1} {#3} {#4}
+  \int_compare:nNnTF {#2} = { 1 } {
+    \bool_set_true:N \l__mypackage_sub_first_bool
+  } {
+    \bool_set_false:N \l__mypackage_sub_first_bool
+  }
+}
+\cs_new_protected:Npn \__mypackage_subfigure:nnnnn #1#2#3#4#5 {
+  \seq_gpop_left:NNTF \g__mypackage_sub_queue_seq \l__mypackage_sub_item_tl {
+    \exp_after:wN \__mypackage_sub_item:nnnn \l__mypackage_sub_item_tl
+  } {
+    \__mypackage_sub_base:n {#1}
+    \__mypackage_sub_slot:NnVn \l__mypackage_sub_width_dim { 1 }
+      \l__mypackage_sub_base_tl {#4}
+    \bool_set_true:N \l__mypackage_sub_first_bool
+  }
+  \bool_if:NF \l__mypackage_sub_first_bool {
+    \__mypackage_sub_unspace:
+    \__mypackage_size_gap:N \l__mypackage_sub_gap_dim
+    \skip_horizontal:N \l__mypackage_sub_gap_dim
+  }
+  \begin { subfigure } [#5] { \l__mypackage_sub_width_dim }
     \centering
-    \sbox \l__mypackage_content_box { \myinclude [#1] {#2} }
-    \begin { minipage } { \box_wd:N \l__mypackage_content_box }
+    \sbox \l__mypackage_content_box {
+      \__mypackage_include:Nnn \l__mypackage_size_subfigure_tl {#1} {#2}
+    }
+    \begin { minipage } { \mylenmax { \box_wd:N \l__mypackage_content_box } { 0.75 \linewidth } }
+      \centering
       \__mypackage_object_start:nn { mysubfigure } {
         fig: \l__mypackage_subfigure_label_tl : \alph { mysubfigure }
       }
@@ -1398,13 +1782,22 @@
     \end { minipage }
   \end { subfigure }
 }
+\NewDocumentCommand \mysubfigure { O{} m +o m O{T} } {
+  \bool_if:NTF \l__mypackage_sub_scan_bool {
+    \__mypackage_sub_record:nn {#1} {#4}
+  } {
+    \__mypackage_subfigure:nnnnn {#1} {#2} {#3} {#4} {#5}
+  }
+}
 \ExplSyntaxOff
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% PROGRAMS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \myincludeprogram[<options>]{<file>}{<language>} a listing of the code            %
 %     folder; options: bgcol, framecol, numcol, numbgcol, numwidth (auto: two       %
-%     millimetres per digit of the last line number), minted={...}.                 %
+%     millimetres per digit of the last line number, or a size), width (a size,     %
+%     default size={program=...}: the width of the line; a narrower listing is      %
+%     centred), base, minted={...}.                                                 %
 % \myprogram(*)[<options>]{<label>}{<file>}{<language>}[<short>]{<caption>}         %
 %     [<placement>] the same with a caption and the label                           %
 %     code:<extension>:<label>.                                                     %
@@ -1418,8 +1811,8 @@
 % (0.6.5 typeset each listing three times.)                                         %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % The tcolorbox listing: [<minted options>]{<file>}{<language>}{<background>}  %
-% {<frame>}{<width of the numbers>}{<background of the numbers>}              %
-\newtcbinputlisting{\mypackage@listing}[7][]{%
+% {<frame>}{<width of the numbers>}{<background of the numbers>}{<options>}    %
+\newtcbinputlisting{\mypackage@listing}[8][]{%
   before skip=7pt,%
   breakable,%
   enhanced,%
@@ -1434,6 +1827,7 @@
       \fill[#7] (frame.south west) rectangle ([xshift=#6]frame.north west);%
     \end{tcbclipinterior}%
   },%
+  #8,%
   minted options={%
     fontsize=\normalsize,%
     linenos=true,%
@@ -1476,6 +1870,23 @@
   numwidth.initial:n = auto,
   minted.tl_set:N = \l__mypackage_program_minted_tl,
   minted.initial:n = { },
+  width.tl_set:N = \l__mypackage_size_width_tl,
+  base.code:n = {
+    \__mypackage_size_base_set:Nn \l__mypackage_size_local_base_tl {#1}
+  },
+}
+\tl_new:N \l__mypackage_program_tcb_tl
+% true while \myprogram puts the listing in a box (a float is centred by
+% itself; tcolorbox's "center" would make the box as wide as the line).
+\bool_new:N \l__mypackage_program_boxed_bool
+% The options of \myincludeprogram (in its group): every key, then the
+% default size when no width= is given.
+\cs_new_protected:Npn \__mypackage_program_keys:n #1 {
+  \__mypackage_size_init:
+  \keys_set:nn { mypackage / program } {#1}
+  \tl_if_empty:NT \l__mypackage_size_width_tl {
+    \keys_set:nV { mypackage / program } \l__mypackage_size_program_tl
+  }
 }
 \keys_define:nn { mypackage / program / minted } {
   firstline.int_set:N = \l__mypackage_program_firstline_int ,
@@ -1528,8 +1939,22 @@
 }
 \NewDocumentCommand \myincludeprogram { O{} m m } {
   \group_begin:
-    \keys_set:nn { mypackage / program } {#1}
+    \__mypackage_program_keys:n {#1}
     \__mypackage_program_options:
+    \tl_clear:N \l__mypackage_program_tcb_tl
+    \tl_if_empty:NF \l__mypackage_size_width_tl {
+      \mypackage_size_resolve:NVVn \l__mypackage_size_tmp_tl
+        \l__mypackage_size_local_base_tl \l__mypackage_size_width_tl { w }
+      \tl_set:Ne \l__mypackage_program_tcb_tl {
+        width = \exp_not:V \l__mypackage_size_tmp_tl
+        \bool_if:NF \l__mypackage_program_boxed_bool { , center }
+      }
+    }
+    \tl_if_eq:NnF \l__mypackage_program_numwidth_tl { auto } {
+      \mypackage_size_resolve:NVVn \l__mypackage_size_tmp_tl
+        \l__mypackage_size_local_base_tl \l__mypackage_program_numwidth_tl { w }
+      \tl_set_eq:NN \l__mypackage_program_numwidth_tl \l__mypackage_size_tmp_tl
+    }
     \tl_if_eq:NnT \l__mypackage_program_numwidth_tl { auto } {
       \int_compare:nNnTF \l__mypackage_program_lastline_int < { 0 } {
         \__mypackage_program_scan_code:n {#2}
@@ -1572,6 +1997,8 @@
         \exp_not:V \l__mypackage_program_numwidth_tl + 1mm
       } {
         \exp_not:V \l__mypackage_program_numbgcol_tl
+      } {
+        \exp_not:V \l__mypackage_program_tcb_tl
       }
     }
   \group_end:
@@ -1581,7 +2008,7 @@
 \cs_new_protected:Npn \__mypackage_program_need_box:nn #1#2 {
   \bool_gset_true:N \g__mypackage_program_measure_bool
   \group_begin:
-    \keys_set:nn { mypackage / program } {#1}
+    \__mypackage_program_keys:n {#1}
     \__mypackage_program_options:
     \bool_if:NT \l__mypackage_program_exact_bool {
       \__mypackage_program_scan_code:n {#2}
@@ -1607,7 +2034,10 @@
     \centering
     \__mypackage_object_start:nn { myprogram } { code: \filename@ext : #3 }
     \bool_if:NT \g__mypackage_program_measure_bool {
-      \sbox \l__mypackage_program_box { \myincludeprogram [#2] {#4} {#5} }
+      \sbox \l__mypackage_program_box {
+        \bool_set_true:N \l__mypackage_program_boxed_bool
+        \myincludeprogram [#2] {#4} {#5}
+      }
       \hbox_set:Nn \l__mypackage_content_box {
         \begin { minipage } [b] { \textwidth }
           \usebox \l__mypackage_program_box
@@ -1619,12 +2049,21 @@
       }
     }
     \bool_if:NTF \g__mypackage_program_measure_bool {
-      \begin { __mypackage_float } { listing } {#8}
+      % The caption is made outside the float: inside a "listing" float (float
+      % package) it would be placed at the left of the line, not under a
+      % listing narrower than the line.
+      \hbox_set:Nn \l__mypackage_content_box {
         \begin { minipage } { \box_wd:N \l__mypackage_program_box }
           \usebox \l__mypackage_program_box
           \__mypackage_program_caption:n {#7}
           \IfBooleanF {#1} { \__mypackage_list_add:nn { myprogram } {#6} }
         \end { minipage }
+      }
+      \begin { __mypackage_float } { listing } {#8}
+        \centering
+        \mode_leave_vertical:
+        \box_use:N \l__mypackage_content_box
+        \par
       \end { __mypackage_float }
     } {
       \group_begin:

@@ -1,0 +1,31 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+============================================================
+TEST 1: Keyed size values
+============================================================
+VAR l__mypackage_size_base_tl=[mm]
+VAR l__mypackage_size_gap_tl=[2]
+VAR l__mypackage_size_gap_base_tl=[mm]
+VAR l__mypackage_size_figure_tl=[base=mm,height=5]
+VAR l__mypackage_size_subfigure_tl=[base=text,width=1]
+VAR l__mypackage_size_program_tl=[base=mm,width=0.8, base=text]
+============================================================
+============================================================
+TEST 2: Sizes that result
+============================================================
+<images/square.jpg, id=6, 200.75pt x 200.75pt>
+File: images/square.jpg Graphic file (type jpg)
+<use images/square.jpg>
+default figure (height=5, base=mm): 14.22636pt
+File: images/square.jpg Graphic file (type jpg)
+<use images/square.jpg>
+height=10 (base=mm): 28.45274pt
+============================================================
+(pkg-options-size-keys.aux)
+LaTeX Warning: There were undefined references.
+Package rerunfilecheck Warning: File `pkg-options-size-keys.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                pkg-options-size-keys
+(biblatex)                and rerun LaTeX afterwards.

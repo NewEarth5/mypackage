@@ -1,9 +1,10 @@
-% cls-options-forwarded: paths, position and toc are passed on to mypackage.
+% cls-options-forwarded: paths, position, toc and size are passed on to mypackage.
 \input{regression-test}
 \documentclass[
   paths={images=img/, code=src/, sources=refs.bib},
   position={figure=t, program=b},
   toc={depth=3, annexdepth=1, bibdepth=0},
+  size={base=mm, figure={width=50}},
 ]{myreport}
 \input{mytest-helpers}
 \makeatletter
@@ -16,5 +17,6 @@
   \SHOWVAR{l__mypackage_position_program_tl} \SHOWVAR{l__mypackage_position_pseudocode_tl}
   \SHOWVAR{l__mypackage_toc_depth_int} \SHOWVAR{l__mypackage_toc_annexdepth_int}
   \SHOWVAR{l__mypackage_toc_bibdepth_int}
+  \SHOWVAR{l__mypackage_size_base_tl} \SHOWVAR{l__mypackage_size_figure_tl}
 }
 \end{document}

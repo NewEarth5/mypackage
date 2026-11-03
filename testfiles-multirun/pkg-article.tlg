@@ -8,7 +8,7 @@ File: images/wide.png Graphic file (type png)
 <images/tall.png, id=11, 100.375pt x 401.5pt>
 File: images/tall.png Graphic file (type png)
 <use images/tall.png>
-LaTeX Warning: Float too large for page by 64.7058pt on input line ....
+LaTeX Warning: Float too large for page by 48.71591pt on input line ....
 THE: part=[] chapter=[] section=[] subsection=[] subsubsection=[] figure=[2] subfigure=[2.b] table=[1] program=[0] equation=[1]
 FLAGS: part=F, chapter=F, section=F, subsection=F, subsubsection=F, annex=F, bib=F, highest=mysubsubsection
 REF fig:wide: number=[1] page=[1] anchor=[myfigure.1]

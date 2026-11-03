@@ -43,14 +43,17 @@ TEST 4: Both height= and width=
 ============================================================
 File: images/square.jpg Graphic file (type jpg)
 <use images/square.jpg>
-[height=0.1, width=0.5]{square.jpg}: 227.63821ptx 70.28499pt
+[height=0.1, width=0.5]{square.jpg}: 70.28499ptx 70.28499pt
 ============================================================
 ============================================================
-TEST 5: Empty option list (natural size)
+TEST 5: Empty option list (default size) and natural
 ============================================================
 File: images/square.jpg Graphic file (type jpg)
 <use images/square.jpg>
-[]{square.jpg}: 200.7495ptx 200.7495pt
+[]{square.jpg}: 140.56384ptx 140.55446pt
+File: images/square.jpg Graphic file (type jpg)
+<use images/square.jpg>
+[natural]{square.jpg}: 200.7495ptx 200.7495pt
 ============================================================
 ============================================================
 TEST 6: SVG files

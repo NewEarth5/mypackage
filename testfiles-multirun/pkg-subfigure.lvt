@@ -2,12 +2,13 @@
 \input{regression-test}
 \documentclass{myreport}
 \input{mytest-helpers}
-% A sub-caption is as wide as its image (see v0.7.5 in TODO.txt): the
-% second image is only 17.6pt wide.  Its sub-caption is a word that fits,
-% so that the result does not depend on the hyphenation patterns of the TeX
-% distribution (a longer word was hyphenated by TeX Live and overfull with
-% MiKTeX; caption's \sloppy prevents silencing it with \hfuzz).  The
-% (b) label alone on its line is an underfull box: not reported.
+% Since 0.7.5 a sub-caption is at least 3/4 of the width of its
+% subfigure (before: as wide as the image; the second image is only 17.6pt
+% wide) and the widths are fractions of the row without the gaps (see
+% pkg-subfigure-size).  The sub-captions stay words that fit, so that the
+% result does not depend on the hyphenation patterns of the TeX
+% distribution (caption's \sloppy prevents silencing it with \hfuzz).
+% Underfull boxes are not reported.
 \hbadness=10000
 \begin{document}
 \START

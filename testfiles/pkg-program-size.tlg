@@ -1,0 +1,44 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+============================================================
+TEST 1: Reference lengths
+============================================================
+textwidth=455.24411pt, 0.5 textwidth=227.62206pt
+============================================================
+============================================================
+TEST 2: Width of the listing in a box (as in myprogram)
+============================================================
+[]: 455.24411pt
+[width=0.5]: 227.62206pt
+[width=6cm]: 170.71652pt
+[base=cm, width=6]: 170.71652pt
+[width=0.5, numwidth=0.02]: 227.62206pt
+[base=mm, width=100, numwidth=5]: 284.52756pt
+============================================================
+============================================================
+TEST 3: In the text: as wide as the line (centred)
+============================================================
+[width=0.5]: 455.24413pt
+============================================================
+============================================================
+TEST 4: base=none: a number is an error
+============================================================
+! Package mypackage Error: The size '8' has no unit. With base=none every size
+(mypackage)                needs one (for example '8cm'). It is read as a
+(mypackage)                fraction of the text width.
+Type <return> to continue.
+ ...                                              
+l. ...
+LaTeX does not know anything more about this error, sorry.
+Try typing <return> to proceed.
+If that doesn't work, type X <return> to quit.
+[base=none, width=8]: 3641.95288pt
+============================================================
+(pkg-program-size.aux)
+LaTeX Warning: There were undefined references.
+Package rerunfilecheck Warning: File `pkg-program-size.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                pkg-program-size
+(biblatex)                and rerun LaTeX afterwards.

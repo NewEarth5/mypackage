@@ -5,6 +5,7 @@
   paths={images=images/, code=code/, sources=sources/sources.bib},
   position={figure=H, table=H, program=h, pseudocode=h},
   toc={depth=2, annexdepth=0, bibdepth=1},
+  size={base=text, gap=1em, figure={height=0.2}, subfigure={width=1}},
 ]{mypackage}
 \usepackage{mydemo}
 % The values are private variables of the package (they may be renamed at
@@ -26,6 +27,8 @@ the myreport class, give the same options to \string\documentclass.}
   paths={images=<dir/>, code=<dir/>, sources=<file.bib>},
   position=<placement>  or  position={figure=..., table=..., program=..., pseudocode=...},
   toc={depth=<n>, annexdepth=<n>, bibdepth=<n>},
+  size=<base>  or  size={base=<text|none|unit>, gap=<size>,
+                         figure={...}, subfigure={...}, program={...}},
 ]{mypackage}
 \end{democode}
 
@@ -43,12 +46,25 @@ the myreport class, give the same options to \string\documentclass.}
   \showint{toc/depth}{l__mypackage_toc_depth_int}
   \showint{toc/annexdepth}{l__mypackage_toc_annexdepth_int}
   \showint{toc/bibdepth}{l__mypackage_toc_bibdepth_int}
+  \showopt{size/base}{l__mypackage_size_base_tl}
+  \showopt{size/gap}{l__mypackage_size_gap_tl}
+  \showopt{size/figure}{l__mypackage_size_figure_tl}
+  \showopt{size/subfigure}{l__mypackage_size_subfigure_tl}
+  \showopt{size/program}{l__mypackage_size_program_tl}
 \end{mytable*}
 
 \section*{Defaults}
+\sloppy
 \texttt{lang=british}, \texttt{images=images/}, \texttt{code=code/},
 \texttt{sources=sources/sources.bib}, all positions \texttt{h},
-\texttt{depth=2}, \texttt{annexdepth=0}, \texttt{bibdepth=1}.
+\texttt{depth=2}, \texttt{annexdepth=0}, \texttt{bibdepth=1},
+and for \texttt{size}: \texttt{base=text}, \texttt{gap=1em},
+\texttt{figure=\{height=0.2\}}, \texttt{subfigure=\{width=1\}} and, for
+programs, the width of the line. With
+\texttt{base=text} a size without unit is a fraction (0 to 1) of the text
+width or height; \texttt{base=none} requires a unit; \texttt{base=cm} (or
+any unit) gives that unit to the numbers. A default keeps the base given
+with it.
 The TOC depths count from the highest level used in the document (0).
 
 \demonote{The package loads, among others, babel, biblatex (biber),

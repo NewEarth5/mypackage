@@ -274,6 +274,36 @@
 %   -----------                                                                     %
 %     - <label> (optional): label to be able to reference.                          %
 %                                                                                   %
+% Sizes                                                                             %
+%   Description:                                                                    %
+%   ------------                                                                    %
+%     Every size of a command (width=, height=, the <width> of \mysubfigure,        %
+%     numwidth= of \myprogram) is a number or a length. A number is read            %
+%     according to the base, set for the document with the package (or class)       %
+%     option size=<base> and for one command with its option base=<base>:           %
+%     - text (default): a fraction, between 0 and 1, of the text width (for a       %
+%       width) or of the text height (for a height): 0.5 is half the width.         %
+%       Inside a subfigure, the text width is the width of the subfigure.           %
+%     - none: as in LaTeX, every size needs a unit (5cm); a number is an error.     %
+%     - a unit (em, ex, pt, pc, in, cm, mm, bp, dd, cc, sp, px): the unit of        %
+%       the numbers (with base=cm, 5 is 5cm).                                       %
+%     A length (5cm, 2em, 0.3\linewidth, ...) is always used as it is.              %
+%   Package option:                                                                 %
+%   ---------------                                                                 %
+%     size=<base> or size={<keys>}, with the keys:                                  %
+%     - base: see above. By default, 'text'.                                        %
+%     - gap: the space between two subfigures of a row (a size).                    %
+%            By default, '1em'.                                                     %
+%     - figure: the size of \myfigure and \myinclude when their options give        %
+%               none. By default, 'height=0.2'.                                     %
+%     - subfigure: the size of the image of \mysubfigure when its options give      %
+%                  none. By default, 'width=1' (the width of the subfigure).        %
+%     - program: the width of \myprogram and \myincludeprogram when their           %
+%                options give none. By default, the width of the line.              %
+%     The defaults keep the base given with them: size={base=cm} does not make      %
+%     'height=0.2' a height of 0.2cm; size={base=cm, figure={height=5}} does        %
+%     give a height of 5cm.                                                         %
+%                                                                                   %
 % \myfigure[<options>]{<file>}[<short>]{<caption>}[<positon>]                       %
 %   Description:                                                                    %
 %   ------------                                                                    %
@@ -281,9 +311,13 @@
 %     Adds a line in the list of figures.                                           %
 %   Parameters:                                                                     %
 %   -----------                                                                     %
-%     - <options> (optional): can have 'height=' and/or 'width=' to a percentage    %
-%                             of the page height/width respectively.                %
-%                             By default, 'height=0.2'.                             %
+%     - <options> (optional): 'width=' and/or 'height=' (sizes, see "Sizes"         %
+%                             above), 'base=' (how these sizes are read),           %
+%                             'natural' (natural size of the image).                %
+%                             With both sizes, the image keeps its proportions      %
+%                             and fits in the box.                                  %
+%                             By default, 'height=0.2' (package option              %
+%                             size={figure=...}).                                   %
 %     - <file>: name of the image with the extension (.svg, .png, .jpeg, ...).      %
 %               File must be located in the folder set by the class option          %
 %               'images'.                                                           %
@@ -302,9 +336,13 @@
 %     Does not add a line in the list of figures.                                   %
 %   Parameters:                                                                     %
 %   -----------                                                                     %
-%     - <options> (optional): can have 'height=' and/or 'width=' to a percentage    %
-%                             of the page height/width respectively.                %
-%                             By default, 'height=0.2'.                             %
+%     - <options> (optional): 'width=' and/or 'height=' (sizes, see "Sizes"         %
+%                             above), 'base=' (how these sizes are read),           %
+%                             'natural' (natural size of the image).                %
+%                             With both sizes, the image keeps its proportions      %
+%                             and fits in the box.                                  %
+%                             By default, 'height=0.2' (package option              %
+%                             size={figure=...}).                                   %
 %     - <file>: name of the image with the extension (.svg, .png, .jpeg, ...).      %
 %               File must be located in the folder set by the class option          %
 %               'images'.                                                           %
@@ -351,15 +389,24 @@
 %     Does not add a line in the list of figures.                                   %
 %   Parameters:                                                                     %
 %   -----------                                                                     %
-%     - <options> (optional): can have 'height=' and/or 'width=' to a percentage    %
-%                             of the subpage height/width respectively.             %
-%                             By default, 'width=1'.                                %
+%     - <options> (optional): 'width=', 'height=', 'base=' and 'natural' as for     %
+%                             \myfigure, relative to the subfigure (width=1 is      %
+%                             the width of the subfigure). 'base=' also applies     %
+%                             to <width>.                                           %
+%                             By default, 'width=1' (package option                 %
+%                             size={subfigure=...}).                                %
 %     - <file>: name of the image with the extension (.svg, .png, .jpeg, ...).      %
 %               File must be located in the folder set by the class option          %
 %               'images'.                                                           %
 %     - <caption> (optional): the subcaption of the subfigure, shown underneath it. %
-%     - <width>: the width of the subfigure environment as a percentage             %
-%                of the page width.                                                 %
+%     - <width>: the width of the subfigure (a size, see "Sizes").                  %
+%                With base=text, a fraction of the space left in its row by the     %
+%                gaps between the subfigures (package option size={gap=...}):       %
+%                widths that add up to 1 fill the row exactly. A row ends at        %
+%                '\\' or at a blank line. When the widths of a row add up to        %
+%                more than 1, a warning is given (they are not scaled down).        %
+%                The spaces between two \mysubfigure are replaced by the gap;       %
+%                '\hfill' is kept (it fills what the widths leave).                 %
 %     - <position> (optional): the position of the subfigure.                       %
 %                              Can be 'c', 't', 'T', 'b', 'B' or a                  %
 %                              combination of them.                                 %
@@ -373,7 +420,10 @@
 %   Parameters:                                                                     %
 %   -----------                                                                     %
 %     - <options> (optional): can be 'bgcol=', 'framecol=', 'numcol=', 'numbgcol=', %
-%                             'numwidth=', or 'minted={<minted options>}'.          %
+%                             'numwidth=' (a size, or 'auto'), 'width=' (a size:    %
+%                             the width of the listing, centred; by default the     %
+%                             width of the line), 'base=' (see "Sizes"), or         %
+%                             'minted={<minted options>}'.                          %
 %                              /!\ Ask for more info on options and command /!\     %
 %     - <label>: label to be able to reference.                                     %
 %     - <file>: name of the file with the extension (.c, .py, .java, ...).          %
@@ -395,7 +445,10 @@
 %   Parameters:                                                                     %
 %   -----------                                                                     %
 %     - <options> (optional): can be 'bgcol=', 'framecol=', 'numcol=', 'numbgcol=', %
-%                             'numwidth=', or 'minted={<minted options>}'.          %
+%                             'numwidth=' (a size, or 'auto'), 'width=' (a size:    %
+%                             the width of the listing, centred; by default the     %
+%                             width of the line), 'base=' (see "Sizes"), or         %
+%                             'minted={<minted options>}'.                          %
 %                              /!\ Ask for more info on options and command /!\     %
 %     - <label>: label to be able to reference.                                     %
 %     - <file>: name of the file with the extension (.c, .py, .java, ...).          %

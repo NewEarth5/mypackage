@@ -1,0 +1,129 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+============================================================
+TEST 1: Reference lengths
+============================================================
+textwidth=455.24411pt, textheight=702.78308pt
+============================================================
+============================================================
+TEST 2: base=text: a number is a fraction of the text
+============================================================
+RESOLVE text | 0.5 | w -> [0.5\textwidth ] fraction=T
+RESOLVE text | .25 | h -> [.25\textheight ] fraction=T
+RESOLVE text |  1  | w -> [1\textwidth ] fraction=T
+RESOLVE text | 0 | h -> [0\textheight ] fraction=T
+============================================================
+============================================================
+TEST 3: A length is kept with every base
+============================================================
+RESOLVE text | 3cm | w -> [3cm] fraction=F
+RESOLVE text | 0.5\linewidth  | w -> [0.5\linewidth ] fraction=F
+RESOLVE mm | 2pt | h -> [2pt] fraction=F
+RESOLVE none | 1.5em | w -> [1.5em] fraction=F
+============================================================
+============================================================
+TEST 4: base=<unit>: the unit is added
+============================================================
+RESOLVE cm | 2 | w -> [2cm] fraction=F
+RESOLVE mm | 2.5 | h -> [2.5mm] fraction=F
+RESOLVE px | 100 | w -> [100px] fraction=F
+RESOLVE em | -1 | w -> [-1em] fraction=F
+============================================================
+============================================================
+TEST 5: base=none: a number is an error
+============================================================
+! Package mypackage Error: The size '2' has no unit. With base=none every size
+(mypackage)                needs one (for example '2cm'). It is read as a
+(mypackage)                fraction of the text width.
+Type <return> to continue.
+ ...                                              
+l. ...
+LaTeX does not know anything more about this error, sorry.
+Try typing <return> to proceed.
+If that doesn't work, type X <return> to quit.
+RESOLVE none | 2 | w -> [2\textwidth ] fraction=T
+============================================================
+============================================================
+TEST 6: base=text: warning outside 0..1
+============================================================
+Package mypackage Warning: The size '1.5' is not between 0 and 1: with
+(mypackage)                base=text it is a fraction of the text width (1 =
+(mypackage)                the whole text width).
+RESOLVE text | 1.5 | w -> [1.5\textwidth ] fraction=T
+Package mypackage Warning: The size '-0.1' is not between 0 and 1: with
+(mypackage)                base=text it is a fraction of the text height (1 =
+(mypackage)                the whole text height).
+RESOLVE text | -0.1 | h -> [-0.1\textheight ] fraction=T
+============================================================
+============================================================
+TEST 7: Option base= of myinclude
+============================================================
+<images/wide.png, id=6, 301.125pt x 100.375pt>
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+[base=cm, width=3]{wide.png}: 85.35826ptx 28.45247pt
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+[width=3, base=cm]{wide.png}: 85.35826ptx 28.45247pt
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+[base=mm, height=20]{wide.png}: 170.71947ptx 56.9055pt
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+[base=none, width=4cm]{wide.png}: 113.81102ptx 37.93765pt
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+[width=50mm]{wide.png}: 142.26378ptx 47.42284pt
+============================================================
+============================================================
+TEST 8: Unknown base: error, the base is kept
+============================================================
+! Package mypackage Error: Unknown size base 'furlong': use 'text', 'none' or
+(mypackage)                a unit (em, ex, pt, pc, in, cm, mm, bp, dd, cc,
+(mypackage)                sp, px). The base 'text' is kept.
+Type <return> to continue.
+ ...                                              
+l. ...
+LaTeX does not know anything more about this error, sorry.
+Try typing <return> to proceed.
+If that doesn't work, type X <return> to quit.
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+[base=furlong, width=0.5]{wide.png}: 227.62206ptx 75.87685pt
+============================================================
+============================================================
+TEST 9: No size: the default (height=0.2, base=text); natural
+============================================================
+<images/square.jpg, id=7, 200.75pt x 200.75pt>
+File: images/square.jpg Graphic file (type jpg)
+<use images/square.jpg>
+[]{square.jpg}: 140.56384ptx 140.55446pt
+File: images/square.jpg Graphic file (type jpg)
+<use images/square.jpg>
+[base=cm]{square.jpg}: 140.56384ptx 140.55446pt
+File: images/square.jpg Graphic file (type jpg)
+<use images/square.jpg>
+[natural]{square.jpg}: 200.7495ptx 200.7495pt
+============================================================
+============================================================
+TEST 10: Both sizes: the image keeps its proportions
+============================================================
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+[width=0.5, height=0.1]{wide.png}: 210.85957ptx 70.28651pt
+<images/tall.png, id=8, 100.375pt x 401.5pt>
+File: images/tall.png Graphic file (type png)
+<use images/tall.png>
+[width=0.5, height=0.1]{tall.png}: 17.57048ptx 70.28192pt
+File: images/square.jpg Graphic file (type jpg)
+<use images/square.jpg>
+[base=cm, width=3, height=3]{square.jpg}: 85.35896ptx 85.35896pt
+============================================================
+(pkg-size.aux)
+LaTeX Warning: There were undefined references.
+Package rerunfilecheck Warning: File `pkg-size.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                pkg-size
+(biblatex)                and rerun LaTeX afterwards.

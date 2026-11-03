@@ -1,6 +1,8 @@
 % pkg-include: \myinclude[options]{file} -- sizes are fractions of the
 % text height/width, files are looked up in the "images" path, .svg files
-% go through the svg package.
+% go through the svg package.  Since 0.7.5 an empty option list gives the
+% default size (natural= gives the natural size) and an image given both
+% sizes keeps its proportions (see pkg-size for the other options).
 \input{regression-test}
 \documentclass{article}
 \usepackage{mypackage}
@@ -32,8 +34,9 @@
 \TEST{Both height= and width=}{%
   \SIZEOPT{height=0.1, width=0.5}{square.jpg}
 }
-\TEST{Empty option list (natural size)}{%
+\TEST{Empty option list (default size) and natural}{%
   \SIZEOPT{}{square.jpg}
+  \SIZEOPT{natural}{square.jpg}
 }
 \TEST{SVG files}{%
   \SIZE{plot.svg}

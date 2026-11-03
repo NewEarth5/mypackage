@@ -16,8 +16,11 @@ the list of programs.}
   \item \texttt{<options>}: \texttt{bgcol=}, \texttt{framecol=},
     \texttt{numcol=}, \texttt{numbgcol=} (colours), \texttt{numwidth=}
     (width of the number column; \texttt{auto} = 2\,mm per digit of the
-    last line number), \texttt{minted=\{...\}} (options passed to minted,
-    e.g.\ \texttt{firstline}, \texttt{lastline}).
+    last line number, or a size), \texttt{width=} (width of the listing,
+    centred; default: the width of the line), \texttt{base=} (how the
+    sizes are read, see the package options), \texttt{minted=\{...\}}
+    (options passed to minted, e.g.\ \texttt{firstline},
+    \texttt{lastline}).
   \item \texttt{<file>}: in the \texttt{code} folder
     (\texttt{paths=\{code=...\}}); \texttt{<language>}: a Pygments lexer
     name (\texttt{python}, \texttt{c}, \texttt{java}, \dots).
@@ -31,6 +34,10 @@ the list of programs.}
 \begin{demo}
 \myprogram{hello}{hello.py}{python}{A Python program.}[H]
 Reference: \myref{code:py:hello}.
+\end{demo}
+\begin{demo}
+\myprogram[width=0.6]{narrow}{short.c}{c}{A listing 60\,\% of the text
+width (\texttt{width=0.6}), centred.}[H]
 \end{demo}
 \begin{demo}
 \myprogram[bgcol=white, framecol=gray, numcol=black,

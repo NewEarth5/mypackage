@@ -11,9 +11,13 @@ caption, an automatic label and an entry in the list of figures.}
 \myfigure*[<options>]{<file>}{<caption>}[<position>]
 \end{demosyntax}
 \begin{itemize}
-  \item \texttt{<options>}: \texttt{height=} and/or \texttt{width=}, as a
-    fraction of \verb|\textheight| / \verb|\textwidth| (default
-    \texttt{height=0.2}).
+  \item \texttt{<options>}: \texttt{height=} and/or \texttt{width=} (with
+    the default base \texttt{text}, a fraction of \verb|\textheight| /
+    \verb|\textwidth|; a length such as \texttt{5cm} is also accepted),
+    \texttt{base=} (\texttt{text}, \texttt{none} or a unit such as
+    \texttt{cm}: how a number is read), \texttt{natural} (natural size).
+    The default, \texttt{height=0.2}, is set by the package option
+    \texttt{size}. With both sizes, the image keeps its proportions.
   \item \texttt{<file>}: image with its extension (\texttt{.png},
     \texttt{.jpg}, \texttt{.pdf}, \texttt{.svg}, \dots), looked up in the
     folder given by the \texttt{paths=\{images=...\}} option. The file name
@@ -41,6 +45,17 @@ height). See \myref{fig:wide}.}
 \begin{demo}
 \myfigure[width=0.4]{square.jpg}[Short caption for the list.]{A long caption,
 with several sentences. Only the short caption goes to the list.}[H]
+\end{demo}
+
+\mysection{Bases and lengths}
+\begin{demo}
+\myfigure[base=cm, width=4]{sig.jpg}{4\,cm wide: \texttt{base=cm,
+width=4}.}[H]
+\myfigure[width=30mm]{logo.svg}{30\,mm wide: a length is used as it
+is.}[H]
+Both sizes (\verb|\myinclude[width=0.3, height=0.03]{wide.png}|): the
+image keeps its proportions and fits in the box:
+\myinclude[width=0.3, height=0.03]{wide.png}.
 \end{demo}
 
 \mysection{SVG image}

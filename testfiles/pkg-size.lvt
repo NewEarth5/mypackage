@@ -1,0 +1,68 @@
+% pkg-size: how a size is read (\mypackage_size_resolve:Nnnn) and the
+% options base=, width=, height=, natural of \myinclude; the messages for a
+% size without unit (base=none), a fraction outside 0..1 and an unknown base.
+\input{regression-test}
+\documentclass{article}
+\usepackage{mypackage}
+\input{mytest-helpers}
+\ExplSyntaxOn
+\NewDocumentCommand \RESOLVE { m m m } {
+  \mypackage_size_resolve:Nnnn \l_tmpa_tl {#1} {#2} {#3}
+  \typeout { RESOLVE~#1~|~#2~|~#3~->~[ \tl_to_str:N \l_tmpa_tl ]~
+    fraction=\bool_if:NTF \l_mypackage_size_fraction_bool { T } { F } }
+}
+\ExplSyntaxOff
+\newcommand\SIZEOPT[2]{%
+  \setbox0\hbox{\myinclude[#1]{#2}}%
+  \TYPE{[#1]{#2}: \the\wd0\space x \the\ht0}}
+\begin{document}
+\START
+\TEST{Reference lengths}{%
+  \TYPE{textwidth=\the\textwidth, textheight=\the\textheight}%
+}
+\TEST{base=text: a number is a fraction of the text}{%
+  \RESOLVE{text}{0.5}{w}
+  \RESOLVE{text}{.25}{h}
+  \RESOLVE{text}{ 1 }{w}
+  \RESOLVE{text}{0}{h}
+}
+\TEST{A length is kept with every base}{%
+  \RESOLVE{text}{3cm}{w}
+  \RESOLVE{text}{0.5\linewidth}{w}
+  \RESOLVE{mm}{2pt}{h}
+  \RESOLVE{none}{1.5em}{w}
+}
+\TEST{base=<unit>: the unit is added}{%
+  \RESOLVE{cm}{2}{w}
+  \RESOLVE{mm}{2.5}{h}
+  \RESOLVE{px}{100}{w}
+  \RESOLVE{em}{-1}{w}
+}
+\TEST{base=none: a number is an error}{%
+  \RESOLVE{none}{2}{w}
+}
+\TEST{base=text: warning outside 0..1}{%
+  \RESOLVE{text}{1.5}{w}
+  \RESOLVE{text}{-0.1}{h}
+}
+\TEST{Option base= of myinclude}{%
+  \SIZEOPT{base=cm, width=3}{wide.png}
+  \SIZEOPT{width=3, base=cm}{wide.png}
+  \SIZEOPT{base=mm, height=20}{wide.png}
+  \SIZEOPT{base=none, width=4cm}{wide.png}
+  \SIZEOPT{width=50mm}{wide.png}
+}
+\TEST{Unknown base: error, the base is kept}{%
+  \SIZEOPT{base=furlong, width=0.5}{wide.png}
+}
+\TEST{No size: the default (height=0.2, base=text); natural}{%
+  \SIZEOPT{}{square.jpg}
+  \SIZEOPT{base=cm}{square.jpg}
+  \SIZEOPT{natural}{square.jpg}
+}
+\TEST{Both sizes: the image keeps its proportions}{%
+  \SIZEOPT{width=0.5, height=0.1}{wide.png}
+  \SIZEOPT{width=0.5, height=0.1}{tall.png}
+  \SIZEOPT{base=cm, width=3, height=3}{square.jpg}
+}
+\end{document}

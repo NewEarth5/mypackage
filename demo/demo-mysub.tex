@@ -16,9 +16,14 @@ sub-figures, each with an optional sub-caption (a), (b), ...}
 \begin{itemize}
   \item \texttt{<label>}: the figure is \texttt{fig:<label>}, its
     sub-figures \texttt{fig:<label>:a}, \texttt{fig:<label>:b}, \dots
-  \item \texttt{<width>} of \verb|\mysubfigure|: fraction of
-    \verb|\textwidth| given to the sub-figure; \texttt{<options>}
-    (\texttt{width=}, \texttt{height=}) are relative to that width
+  \item \texttt{<width>} of \verb|\mysubfigure|: the share of the row
+    given to the sub-figure, as a fraction of the space left by the gaps
+    between the sub-figures of the row (\texttt{size=\{gap=...\}},
+    1\,em): widths that add up to 1 fill the row exactly (more than 1: a
+    warning). A row ends at \verb|\\| or a blank line. A length
+    (\texttt{4cm}) or \texttt{base=<unit>} in the options gives a fixed
+    width. \texttt{<options>} (\texttt{width=}, \texttt{height=},
+    \texttt{base=}, \texttt{natural}) are relative to the sub-figure
     (default \texttt{width=1}).
   \item \texttt{<alignment>}: vertical alignment of the sub-figure
     (\texttt{T} by default, or \texttt{t}, \texttt{c}, \texttt{b},
@@ -27,10 +32,10 @@ sub-figures, each with an optional sub-caption (a), (b), ...}
 
 \mysection*{Examples}
 \begin{demo}
-\begin{mysub}{pair}{Two sub-figures side by side.}[H]
-  \mysubfigure{wide.png}[A wide image]{0.48}
-  \hfill
-  \mysubfigure[height=0.1]{tall.png}[A tall image]{0.48}
+\begin{mysub}{pair}{Two sub-figures side by side: 0.5 + 0.5 fill the
+row.}[H]
+  \mysubfigure{wide.png}[A wide image]{0.5}
+  \mysubfigure[height=0.1]{tall.png}[A tall image]{0.5}
 \end{mysub}
 See \myref{fig:pair} and \myref{fig:pair:b}.
 \end{demo}
@@ -41,6 +46,16 @@ without sub-caption, bottom-aligned.}[H]
   \mysubfigure{wide.png}[A]{0.3}[b]\hfill
   \mysubfigure{square.jpg}[B]{0.3}[b]\hfill
   \mysubfigure[width=0.5]{tall.png}{0.3}[b]
+\end{mysub}
+\end{demo}
+
+\begin{demo}
+\begin{mysub}{grid}{Two rows: a row ends at \textbackslash\textbackslash{}
+or a blank line.}[H]
+  \mysubfigure{wide.png}[A]{0.5}
+  \mysubfigure{wide.png}[B]{0.5}\\
+  \mysubfigure{square.jpg}[C]{0.25}
+  \mysubfigure{wide.png}[D]{0.75}
 \end{mysub}
 \end{demo}
 

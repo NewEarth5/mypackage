@@ -1,0 +1,20 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+============================================================
+TEST 1: Shorthand size=cm
+============================================================
+VAR l__mypackage_size_base_tl=[cm]
+VAR l__mypackage_size_gap_tl=[1em]
+VAR l__mypackage_size_gap_base_tl=[text]
+VAR l__mypackage_size_figure_tl=[base=text,height=0.2]
+VAR l__mypackage_size_subfigure_tl=[base=text,width=1]
+VAR l__mypackage_size_program_tl=[]
+============================================================
+(pkg-options-size.aux)
+LaTeX Warning: There were undefined references.
+Package rerunfilecheck Warning: File `pkg-options-size.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                pkg-options-size
+(biblatex)                and rerun LaTeX afterwards.

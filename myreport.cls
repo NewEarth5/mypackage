@@ -51,6 +51,7 @@
 %   annexdepth=<n>,                                % - 0                            %
 %   bibdepth=<n>                                   % - 1                            %
 % }                                                %                                %
+% size=<base> or size={...}                        % sizes, see mypackage.sty       %
 % sectioning=<break|nobreak>                       % page break for every level     %
 % sectioning={                                     % per level; defaults:           %
 %   part=<break|nobreak>,                          % - break                        %
@@ -69,6 +70,7 @@
 \tl_new:N \l__myreport_paths_tl
 \tl_new:N \l__myreport_position_tl
 \tl_new:N \l__myreport_toc_tl
+\tl_new:N \l__myreport_size_tl
 \clist_const:Nn \c__myreport_sectioning_clist {
   part,
   chapter,
@@ -86,6 +88,7 @@
   paths.tl_set:N = \l__myreport_paths_tl,
   position.tl_set:N = \l__myreport_position_tl,
   toc.tl_set:N = \l__myreport_toc_tl ,
+  size.tl_set:N = \l__myreport_size_tl ,
   sectioning.code:n = { \__myreport_sectioning_set:o {#1} },
 }
 \keys_define:nn { myreport / text } {
@@ -143,6 +146,7 @@
     paths = { \exp_not:V \l__myreport_paths_tl },       % - Folder paths                 %
     position = { \exp_not:V \l__myreport_position_tl }, % - Float placement              %
     toc = { \exp_not:V \l__myreport_toc_tl },      % - TOC options                  %
+    size = { \exp_not:V \l__myreport_size_tl },    % - Sizes                        %
   ] { mypackage }                                  %                                %
 }                                                  %                                %
 \ExplSyntaxOff                                     %                                %

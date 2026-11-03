@@ -1,0 +1,104 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+============================================================
+TEST 1: Reference lengths
+============================================================
+textwidth=455.24411pt, 1em=9.99756pt
+(textwidth-1em)/2=222.62328pt
+============================================================
+============================================================
+TEST 2: Two halves fill the row
+============================================================
+<images/wide.png, id=6, 301.125pt x 100.375pt>
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+WIDTH 222.62328pt (first of its row)
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+WIDTH 222.62328pt
+============================================================
+============================================================
+TEST 3: Three thirds, with hfill (kept)
+============================================================
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+WIDTH 145.0685pt (first of its row)
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+WIDTH 145.0685pt
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+WIDTH 145.0685pt
+============================================================
+============================================================
+TEST 4: Rows: a row of 0.6 + 0.6 is too wide
+============================================================
+Package mypackage Warning: The subfigures of row 2 of figure 'fig:rows' are
+(mypackage)                89.04932pt wider than the line (their widths add up
+(mypackage)                to more than 100 % of the space left by the gaps).
+(mypackage)                They are not scaled down.
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+WIDTH 222.62328pt (first of its row)
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+WIDTH 222.62328pt
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+WIDTH 267.14793pt (first of its row)
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+WIDTH 267.14793pt
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+WIDTH 455.24411pt (first of its row)
+============================================================
+============================================================
+TEST 5: Lengths and base=cm: a fraction ignores them (too wide)
+============================================================
+Package mypackage Warning: The subfigures of row 1 of figure 'fig:abs' are
+(mypackage)                9.99754pt wider than the line (their widths add up
+(mypackage)                to more than 100 % of the space left by the gaps).
+(mypackage)                They are not scaled down.
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+WIDTH 113.81102pt (first of its row)
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+WIDTH 113.81102pt
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+WIDTH 217.6245pt
+[1
+Non-PDF special ignored!
+<special> header=psfrag.pro
+ <./images/wide.png (PNG copy)>]
+============================================================
+============================================================
+TEST 6: Gap set to 0pt
+============================================================
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+WIDTH 113.81104pt (first of its row)
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+WIDTH 341.43307pt
+============================================================
+============================================================
+TEST 7: Outside a mysub group: a fraction of the text width
+============================================================
+File: images/wide.png Graphic file (type png)
+<use images/wide.png>
+WIDTH 227.62206pt (first of its row)
+[2]
+============================================================
+[3]
+(pkg-subfigure-size.aux)
+LaTeX Warning: There were undefined references.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+Package rerunfilecheck Warning: File `pkg-subfigure-size.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                pkg-subfigure-size
+(biblatex)                and rerun LaTeX afterwards.

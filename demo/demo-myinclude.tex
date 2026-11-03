@@ -12,9 +12,14 @@ sized relative to the text block.  Used by \string\myfigure,
 \end{demosyntax}
 \begin{itemize}
   \item \texttt{height=<f>}: height = $f\times$\verb|\textheight|;
-        \texttt{width=<f>}: width = $f\times$\verb|\textwidth|.
-        Default: \texttt{height=0.2}. With both keys the image is
-        stretched to exactly that size.
+        \texttt{width=<f>}: width = $f\times$\verb|\textwidth| (with
+        the default base \texttt{text}). A length (\texttt{3cm}) is used
+        as it is. \texttt{base=}: \texttt{text}, \texttt{none} (a unit
+        is required) or a unit (\texttt{base=cm, width=3} is 3\,cm).
+        \texttt{natural}: natural size. The default,
+        \texttt{height=0.2}, is set by the package option \texttt{size}.
+        With both keys the image keeps its proportions and fits in the
+        box.
   \item \texttt{<file>}: name with extension, in the \texttt{images}
         folder. \texttt{.svg} files are converted with Inkscape
         (\texttt{-shell-escape} needed).
@@ -28,7 +33,9 @@ sized relative to the text block.  Used by \string\myfigure,
 \myinclude[width=0.3]{wide.png}\hfill\myinclude[height=0.1]{tall.png}
 \end{demo}
 \begin{demo}
-\myinclude[height=0.05, width=0.5]{square.jpg} % stretched
+\myinclude[height=0.05, width=0.5]{square.jpg} % fits: 0.05 high
+\hfill \myinclude[base=cm, width=3]{wide.png}   % 3 cm
+\hfill \myinclude[width=2cm]{wide.png}          % 2 cm
 \end{demo}
 \begin{demo}
 In a sentence: \myinclude[height=0.02]{square.jpg} inline.

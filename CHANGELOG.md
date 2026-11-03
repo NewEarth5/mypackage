@@ -9,6 +9,100 @@ Sections: **Added** (new features), **Changed** (different behaviour on
 purpose), **Fixed** (bugs), **Removed**, **Known issues** (found, not fixed
 yet, with the version that should address them).
 
+## [0.7.5] - unreleased (branch `v0.7.5`)
+
+### mypackage.sty
+
+#### Added
+- **Sizes** (roadmap 0.7.5, "Better and more consistent size controls").
+  Every size of a command is a number or a length; a number is read
+  according to a *base*:
+  - `text` (default): a fraction (0 to 1) of `\textwidth` for a width and
+    of `\textheight` for a height (inside a subfigure, `\textwidth` is the
+    width of the subfigure), as before;
+  - `none`: no base, every size needs a unit, as in LaTeX (a number is an
+    error and is then read as `text`);
+  - a unit (`em`, `ex`, `pt`, `pc`, `in`, `cm`, `mm`, `bp`, `dd`, `cc`,
+    `sp`, `px`): the unit of the numbers (`base=cm`: `5` is `5cm`).
+
+  A length (`5cm`, `0.3\linewidth`) is used as it is with every base.
+- Package option `size=<base>` or `size={base=..., gap=..., figure={...},
+  subfigure={...}, program={...}}` (also an option of `myreport`): the base
+  of the document, the space between two subfigures (`1em`) and the
+  default sizes of `\myfigure`/`\myinclude` (`height=0.2`), of the image of
+  `\mysubfigure` (`width=1`) and of `\myprogram`/`\myincludeprogram` (the
+  width of the line). A default keeps the base given with it, whatever the
+  order of the keys: `size={base=cm}` does not turn `height=0.2` into
+  0.2 cm.
+- Option `base=` of `\myinclude`, `\myfigure`, `\mysubfigure` (also for its
+  `<width>`), `\myincludeprogram` and `\myprogram`: the base for this
+  command only.
+- Option `natural` of `\myinclude`, `\myfigure`, `\mysubfigure`: the
+  natural size of the image.
+- Options `width=` (the listing is centred) and `base=` of
+  `\myincludeprogram` and `\myprogram`; `numwidth=` is a size too.
+- Messages: error "Unknown size base", error "The size '2' has no unit"
+  (`base=none`), warning "The size '1.5' is not between 0 and 1"
+  (`base=text`), warning "The subfigures of row <n> of figure '<label>'
+  are <length> wider than the line".
+- Programmer interface: `\mypackage_size_resolve:Nnnn <tl> {<base>}
+  {<size>} {<w|h>}` and `\l_mypackage_size_fraction_bool`.
+
+#### Changed
+- `\mysubfigure`: with `base=text`, `<width>` is a fraction of the space
+  left in its row by the gaps between the subfigures (`size={gap=...}`),
+  not of `\textwidth`: widths that add up to 1 fill the row exactly
+  (before, `0.5` + `0.5` did not fit and the second subfigure went to the
+  next line). `mysub` reads its content twice to count the subfigures of
+  each row (a row ends at `\\`, `\newline` or a blank line; the first pass
+  typesets nothing). The space typed between two `\mysubfigure` is
+  replaced by the gap; `\hfill` is kept. Existing documents with widths
+  such as `0.48` + `\hfill` + `0.48` keep their layout, with slightly
+  narrower subfigures (the gap is taken out).
+- `\mysubfigure`: the sub-caption is at least 3/4 of the width of the
+  subfigure, as the caption of `\myfigure` (before: as wide as the image,
+  a narrow image had a sub-caption of one word per line).
+- `\myinclude`, `\myfigure`, `\mysubfigure`: the default size is used when
+  the options give no `width=`, `height=` or `natural` (before: only when
+  the optional argument was absent; `\myinclude[]{...}` gave the natural
+  size, use `natural` for that now).
+- `\myprogram`: the listing and its caption are made before the float,
+  then centred in it (a narrower listing would otherwise get its caption at
+  the left of the line: the `listing` float of the `float` package places
+  captions itself).
+- `\mysub`, `mysub*`: the content is read as an argument (`+b`); it cannot
+  contain verbatim material (it could not before either, inside a float).
+
+#### Fixed
+- `\myinclude`/`\myfigure`/`\mysubfigure` with both `height=` and `width=`
+  no longer distort the image: it keeps its proportions and fits in the
+  box (`keepaspectratio`; `.svg` files already did). Known issue of 0.7.0.
+
+#### Checked, unchanged
+- `\myfigure` (`width=1`), `\myprogram`, `mypseudocode`: no padding is
+  added around the content, a size of 100 % fits the line. In a list,
+  `width=1` is still `\textwidth` (wider than the line of the list), as
+  before.
+- `mytable`: column widths do not include `\tabcolsep` and the rules, so
+  `p{}` columns adding up to `\textwidth` are overfull; left for 0.8.0
+  (percentage column type).
+
+### myreport.cls
+
+#### Added
+- Class option `size` (passed on to mypackage, like `paths`, `position`
+  and `toc`).
+
+### Tests
+- New: `pkg-options-size`, `pkg-options-size-keys`, `pkg-size`,
+  `pkg-subfigure-size`, `pkg-program-size` (`testfiles/`).
+- `pkg-include`: the empty option list now gives the default size, a new
+  line for `natural`; both sizes keep the proportions.
+- `cls-options-forwarded`: the `size` option.
+- `.tlg` changes of existing tests: the subfigure widths and sub-captions
+  (`pkg-subfigure`, ...), `\myfigure` with both sizes (`pkg-figure`), the
+  boxes of `\myprogram` floats.
+
 ## [0.7.0] - unreleased (branch `v0.7.0`)
 
 Refactoring release (roadmap 0.7.0). The commands, their arguments and the
