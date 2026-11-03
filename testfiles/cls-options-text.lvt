@@ -6,10 +6,10 @@
 \begin{document}
 \START
 \TEST{Sub-option values}{%
-  \SHOWOPT\myreport@text@fontsize
-  \SHOWOPT\myreport@text@fontfamily
-  \SHOWOPT\myreport@text@lang
-  \SHOWOPT\mypackage@lang
+  \SHOWVAR{l__myreport_text_fontsize_tl}
+  \SHOWVAR{l__myreport_text_fontfamily_tl}
+  \SHOWVAR{l__myreport_text_lang_tl}
+  \SHOWVAR{l__mypackage_lang_tl}
 }
 \TEST{Effect}{%
   \TYPE{size: \f@size pt; family: \f@family; language: \languagename}%

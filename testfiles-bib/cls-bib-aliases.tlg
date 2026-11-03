@@ -1,0 +1,65 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+[1
+Non-PDF special ignored!
+<special> header=psfrag.pro
+]
+LaTeX Warning: Empty bibliography on input line ....
+LaTeX Warning: Empty bibliography on input line ....
+LaTeX Warning: Empty bibliography on input line ....
+LaTeX Warning: Empty bibliography on input line ....
+LaTeX Warning: Empty bibliography on input line ....
+============================================================
+TEST 1: Numbers, in printed order
+============================================================
+> \box...=
+\hbox(7.49817+2.49939)x63.31787
+.\T1/cmr/m/n/10 [
+.\pdfstartlink(*+*)x* attr{/Border[0 0 0]/H/I/C[0 1 0]} action goto name{cite.0@misc}
+.\pdfcolorstack 0 push {0 g 0 G}
+.\T1/cmr/m/n/10 1
+.\pdfcolorstack 0 pop
+.\pdfendlink
+.\T1/cmr/m/n/10 ]
+.\T1/cmr/m/n/10 [
+.\pdfstartlink(*+*)x* attr{/Border[0 0 0]/H/I/C[0 1 0]} action goto name{cite.0@conf}
+.\pdfcolorstack 0 push {0 g 0 G}
+.\T1/cmr/m/n/10 2
+.\pdfcolorstack 0 pop
+.\pdfendlink
+.\T1/cmr/m/n/10 ]
+.\T1/cmr/m/n/10 [
+.\pdfstartlink(*+*)x* attr{/Border[0 0 0]/H/I/C[0 1 0]} action goto name{cite.0@art}
+.\pdfcolorstack 0 push {0 g 0 G}
+.\T1/cmr/m/n/10 3
+.\pdfcolorstack 0 pop
+.\pdfendlink
+.\T1/cmr/m/n/10 ]
+.\T1/cmr/m/n/10 [
+.\pdfstartlink(*+*)x* attr{/Border[0 0 0]/H/I/C[0 1 0]} action goto name{cite.0@phd}
+.\pdfcolorstack 0 push {0 g 0 G}
+.\T1/cmr/m/n/10 4
+.\pdfcolorstack 0 pop
+.\pdfendlink
+.\T1/cmr/m/n/10 ]
+.\T1/cmr/m/n/10 [
+.\pdfstartlink(*+*)x* attr{/Border[0 0 0]/H/I/C[0 1 0]} action goto name{cite.0@tech}
+.\pdfcolorstack 0 push {0 g 0 G}
+.\T1/cmr/m/n/10 5
+.\pdfcolorstack 0 pop
+.\pdfendlink
+.\T1/cmr/m/n/10 ]
+.\T1/cmr/m/n/10 [
+.\pdfstartlink(*+*)x* attr{/Border[0 0 0]/H/I/C[0 1 0]} action goto name{cite.0@www}
+.\pdfcolorstack 0 push {0 g 0 G}
+.\T1/cmr/m/n/10 6
+.\pdfcolorstack 0 pop
+.\pdfendlink
+.\T1/cmr/m/n/10 ]
+! OK.
+\SHOWTEXT #1->\setbox \z@ \hbox {#1}\showbox \z@ 
+l. ...
+============================================================
+[1
+]
+(cls-bib-aliases.aux)

@@ -9,31 +9,33 @@
 \START
 
 \TEST{Option values (defaults)}{%
-  \SHOWOPT\mypackage@lang
-  \SHOWOPT\mypackage@paths@images
-  \SHOWOPT\mypackage@paths@code
-  \SHOWOPT\mypackage@paths@sources
-  \SHOWOPT\mypackage@pos@figure
-  \SHOWOPT\mypackage@pos@table
-  \SHOWOPT\mypackage@pos@program
-  \SHOWOPT\mypackage@pos@pseudocode
-  \SHOWOPT\mypackage@toc@depth
-  \SHOWOPT\mypackage@toc@annexdepth
-  \SHOWOPT\mypackage@toc@bibdepth
+  \SHOWVAR{l__mypackage_lang_tl}
+  \SHOWVAR{l__mypackage_path_images_tl}
+  \SHOWVAR{l__mypackage_path_code_tl}
+  \SHOWVAR{l__mypackage_path_sources_tl}
+  \SHOWVAR{l__mypackage_position_figure_tl}
+  \SHOWVAR{l__mypackage_position_table_tl}
+  \SHOWVAR{l__mypackage_position_program_tl}
+  \SHOWVAR{l__mypackage_position_pseudocode_tl}
+  \SHOWVAR{l__mypackage_toc_depth_int}
+  \SHOWVAR{l__mypackage_toc_annexdepth_int}
+  \SHOWVAR{l__mypackage_toc_bibdepth_int}
 }
 
-\TEST{Depth counters}{%
-  \TYPE{toc=\the\c@mytocdepth, annex=\the\c@myannexdepth,
-    bib=\the\c@mybibdepth, part=\the\c@mypartdepth,
-    chapter=\the\c@mychapterdepth, section=\the\c@mysectiondepth,
-    subsection=\the\c@mysubsectiondepth,
-    subsubsection=\the\c@mysubsubsectiondepth}%
+\ExplSyntaxOn
+\TEST{Level~indices~(depth~0~=~highest~level~used)}{
+  \TYPE{part=\mypackage_level_index:n{part},~
+    chapter=\mypackage_level_index:n{chapter},~
+    section=\mypackage_level_index:n{section},~
+    subsection=\mypackage_level_index:n{subsection},~
+    subsubsection=\mypackage_level_index:n{subsubsection}}
 }
+\ExplSyntaxOff
 
 \TEST{Required packages are loaded}{%
   \@for\@tempa:=adjustbox,babel,bbm,biblatex,caption,chemmacros,enumitem,%
     geometry,graphicx,hyperref,mhchem,multirow,subcaption,svg,tabularx,%
-    tcolorbox,upgreek,xurl,xcolor,xstring,kvoptions,kvsetkeys,%
+    tcolorbox,upgreek,xurl,xcolor,%
     minted\do{%
       \@ifpackageloaded\@tempa
         {\TYPE{\@tempa: loaded}}{\TYPE{\@tempa: MISSING}}}%
@@ -41,12 +43,19 @@
 
 \TEST{Public commands and environments are defined}{%
   \@for\@tempa:=myinclude,myfigure,mysubfigure,myincludeprogram,myprogram,%
-    myref,myseeref,currentacyear,mycleantext,mycleanline,mycleanfirstline,%
-    mylenmax,mylenmin,myhighestsec,myaddtotoc,myhyperanchor,mylabel,%
+    myref,myseeref,mycurrentacyear,mycleantext,mycleanline,%
+    mycleanfirstline,mylenmax,mylenmin,myhighestsec,%
     mypartbox,mychapterbox,mysectionbox,mysubsectionbox,mysubsubsectionbox,%
     mysub,mysub*,myequation,myequation*,mytable,mytable*,mypseudocode,%
     mypseudocode*,myannex\do{%
       \@ifundefined\@tempa{\TYPE{\@tempa: UNDEFINED}}{\TYPE{\@tempa: ok}}}%
+}
+
+\TEST{Former internal commands are no longer defined}{%
+  \@for\@tempa:=RegisterStructureUsage,myaddtotoc,myhyperanchor,mylabel,%
+    mybeginfloat,mydotfill,mytcbincludeprogram,ifGlobalMypartUsed,%
+    ifMyannexUsed,ifMybibUsed,mysubfigurelabel\do{%
+      \@ifundefined\@tempa{\TYPE{\@tempa: undefined}}{\TYPE{\@tempa: DEFINED}}}%
 }
 
 \TEST{Initial state}{%

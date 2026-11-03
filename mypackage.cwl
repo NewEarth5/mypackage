@@ -5,21 +5,27 @@
 #include:graphicx
 #include:xcolor
 #include:hyperref
-#include:xstring
 
 # Internal commands
-\RegisterStructureUsage{GlobalVariable}#i
-\IsRoman{true}{false}#i
-\mytcbincludeprogram{options}{path}{language}{background color}{frame color}{number width}{number background color}#i
-\myhyperanchor{name}#i
-\mylabel{label}#il
+\mypartbox[alignment]{number}#i
+\mychapterbox[alignment]{number}#i
+\mysectionbox[alignment]{number}#i
+\mysubsectionbox[alignment]{number}#i
+\mysubsubsectionbox[alignment]{number}#i
 
 # Commands
-\currentacyear#Sn
+\mycurrentacyear#Sn
+\currentacyear#S
+\mycleantext{text}#Sn
+\mycleanline{text}#Sn
+\mycleanfirstline{text}#Sn
+\mylenmax{length}{length}#Sn
+\mylenmin{length}{length}#Sn
+\myhighestsec#Sn
 \themyequation#Sn
 \themyfigure#Sn
 \themytable#Sn
-\themylisting#Sn
+\themyprogram#Sn
 \themypart#Sn
 \themychapter#Sn
 \themysection#Sn

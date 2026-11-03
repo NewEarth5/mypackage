@@ -1,21 +1,9 @@
 # Include dependent packages
 #include:mypackage
 
-# Internal commands
-\mypartheading{name}#i
-\mypartheading*{name}#i
-\mychapterheading{name}#i
-\mychapterheading*{name}#i
-\mysectionheading{name}#i
-\mysectionheading*{name}#i
-\mysubsectionheading{name}#i
-\mysubsectionheading*{name}#i
-\mysubsubsectionheading{name}#i
-\mysubsubsectionheading*{name}#i
-
 # Commands
 \mycourse{name}#Sn
-\myacademicyears{years text}#Sn
+\myacademicyear{years text}#Sn
 \mytitle{title}#Sn
 \myimage[options]{path}#Sn
 \mylogo[options]{path}#Sn

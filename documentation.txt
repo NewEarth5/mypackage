@@ -411,7 +411,7 @@
 % \end{myequation}                                                                  %
 %   Description:                                                                    %
 %   ------------                                                                    %
-%     Creates an environment to write math equations.                              %
+%     Creates an environment to write math equations.                               %
 %     You can also align equations with the '&' symbol.                             %
 %     Adds a line in the list of equations.                                         %
 %   Parameters:                                                                     %
@@ -424,7 +424,7 @@
 % \end{myequation*}                                                                 %
 %   Description:                                                                    %
 %   ------------                                                                    %
-%     Creates an environment to write math equations.                              %
+%     Creates an environment to write math equations.                               %
 %     You can also align equations with the '&' symbol.                             %
 %     Does not add a line in the list of equations.                                 %
 %   Parameters:                                                                     %

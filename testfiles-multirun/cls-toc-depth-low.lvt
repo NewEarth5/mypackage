@@ -1,0 +1,16 @@
+% cls-toc-depth-low: the depth of a TOC line counts from the highest level
+% used (0), also when that level is the subsection or the subsubsection
+% (0.6.5 counted from the section level in that case, so toc={depth=0} left
+% out the subsections of a document that has no section).
+\input{regression-test}
+\documentclass[toc={depth=0}]{myreport}
+\input{mytest-helpers}
+\begin{document}
+\START
+\SHOWLIST{mytoc}
+\mytableofcontents
+\mysubsection{First subsection}
+\mysubsubsection{Not in the TOC (depth 1)}
+\mysubsection{Second subsection}
+\SHOWFLAGS
+\end{document}

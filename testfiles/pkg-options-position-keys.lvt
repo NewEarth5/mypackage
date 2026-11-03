@@ -8,9 +8,9 @@
 \begin{document}
 \START
 \TEST{Keyed position values}{%
-  \SHOWOPT\mypackage@pos@figure
-  \SHOWOPT\mypackage@pos@table
-  \SHOWOPT\mypackage@pos@program
-  \SHOWOPT\mypackage@pos@pseudocode
+  \SHOWVAR{l__mypackage_position_figure_tl}
+  \SHOWVAR{l__mypackage_position_table_tl}
+  \SHOWVAR{l__mypackage_position_program_tl}
+  \SHOWVAR{l__mypackage_position_pseudocode_tl}
 }
 \end{document}

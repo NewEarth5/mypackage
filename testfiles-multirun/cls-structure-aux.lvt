@@ -1,0 +1,49 @@
+% cls-structure-aux: each sectioning level is written once to the .aux file
+% of the part of the document where it is first used (0.6.5 wrote one line
+% per heading); an \include'd file has its own .aux file.  The test shows the
+% lines \mypackage@structure of both files as the previous run left them,
+% then the flags: after three runs nothing asks for another run.
+\begin{filecontents*}[overwrite]{\jobname-inc.tex}
+\mychapter{Included chapter}
+\mysection{Included section}
+\mysubsection{Included subsection}
+\end{filecontents*}
+\input{regression-test}
+\documentclass{myreport}
+\input{mytest-helpers}
+\ExplSyntaxOn
+% The lines are read in the preamble: at \begin{document} LaTeX starts
+% writing a new .aux file.
+\seq_new:N \g_mytest_lines_seq
+\cs_new_protected:Npn \__mytest_read:n #1
+  {
+    \ior_open:NnT \g_tmpa_ior {#1}
+      {
+        \ior_str_map_inline:Nn \g_tmpa_ior
+          {
+            \str_if_in:nnT {##1} { mypackage@structure }
+              { \seq_gput_right:Nn \g_mytest_lines_seq { #1:~##1 } }
+          }
+        \ior_close:N \g_tmpa_ior
+      }
+  }
+\__mytest_read:n { \jobname.aux }
+\__mytest_read:n { \jobname-inc.aux }
+\NewDocumentCommand \SHOWSTRUCTURE { }
+  { \seq_map_inline:Nn \g_mytest_lines_seq { \typeout {##1} } }
+\ExplSyntaxOff
+\begin{document}
+\START
+\SHOWSTRUCTURE
+\mychapter{One}
+\mysection{One one}
+\mysection{One two}
+\mychapter{Two}
+\mysection{Two one}
+\mysection{Two two}
+\include{\jobname-inc}
+\mychapter{Three}
+\mysection{Three one}
+\SHOWFLAGS
+\SHOWTHE
+\end{document}

@@ -4,7 +4,7 @@ Don't change this file in any respect.
 (cls-listof.mytoc)
 \contentsline {mychapter}{Contents}{I}{mycontents}%[nl]
 \contentsline {mychapter}{List of Figures}{II}{mylistfigure}%[nl]
-\contentsline {mychapter}{List of Programs}{IV}{mylistprogramname}%[nl]
+\contentsline {mychapter}{List of Programs}{IV}{mylistprogram}%[nl]
 \contentsline {mychapter}{\mychapterbox [l]{1}\hspace {1em}Content}{1}{mychapter.1}%[nl]
 -------- cls-listof.mytoc (end) -----------
 -------- cls-listof.mylof (start) ---------
@@ -58,7 +58,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 REF toc:toc: number=[Contents] page=[I] anchor=[mycontents]
 REF lof:lof: number=[List of Figures] page=[II] anchor=[mylistfigure]
 REF lot:lot: number=[List of Tables] page=[III] anchor=[mylisttable]
-REF lop:lop: number=[List of Programs] page=[IV] anchor=[mylistprogramname]
+REF lop:lop: number=[List of Programs] page=[IV] anchor=[mylistprogram]
 REF loe:loe: number=[List of Equations] page=[V] anchor=[mylistequation]
 [1
  <./images/wide.png (PNG copy)> <./images/tall.png (PNG copy)>] [2 <./images/square.jpg>]

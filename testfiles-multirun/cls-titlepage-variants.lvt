@@ -10,8 +10,8 @@
 \begin{document}
 \START
 \TEST{Defaults}{%
-  \SHOWOPT\mycourseval \SHOWOPT\mycourseidval \SHOWOPT\mycoursestarval
-  \SHOWOPT\myacademicyearval \SHOWOPT\mydateval \SHOWOPT\mytitlestarval
+  \SHOWVAR{g__myreport_course_tl} \SHOWVAR{g__myreport_course_id_tl}
+  \SHOWVAR{g__myreport_acyear_tl} \SHOWVAR{g__myreport_date_tl} \SHOWVAR{g__myreport_title_underline_bool}
 }
 \SEPARATOR
 \TYPE{Empty title page, both styles, twice each}
@@ -35,14 +35,14 @@
 \mysubtitle{Subtitle}
 \mydate{Today}
 \myacademicyear{2000-2001}
-\SHOWOPT\mycourseval \SHOWOPT\mycourseidval \SHOWOPT\mycoursestarval
-\SHOWOPT\myprofessorval \SHOWOPT\myprofessortabval
-\SHOWOPT\myprofessorgenderval
-\SHOWOPT\myassistantval \SHOWOPT\myassistantgenderval
-\SHOWOPT\myauthorval \SHOWOPT\myauthortabval \SHOWOPT\myauthoridval
-\SHOWOPT\myauthoridtabval \SHOWOPT\myauthorgenderval
-\SHOWOPT\mytitleval \SHOWOPT\mytitlestarval \SHOWOPT\mysubtitleval
-\SHOWOPT\mydateval \SHOWOPT\myacademicyearval
+\SHOWVAR{g__myreport_course_tl} \SHOWVAR{g__myreport_course_id_tl}
+\SHOWVAR{g__myreport_professor_seq}
+\SHOWVAR{g__myreport_professor_gender_seq}
+\SHOWVAR{g__myreport_assistant_seq} \SHOWVAR{g__myreport_assistant_gender_seq}
+\SHOWVAR{g__myreport_author_seq}  \SHOWVAR{g__myreport_author_id_seq}
+ \SHOWVAR{g__myreport_author_gender_seq}
+\SHOWVAR{g__myreport_title_tl} \SHOWVAR{g__myreport_title_underline_bool} \SHOWVAR{g__myreport_subtitle_tl}
+\SHOWVAR{g__myreport_date_tl} \SHOWVAR{g__myreport_acyear_tl}
 \SEPARATOR
 \TYPE{Geometry kept by \string\mymaketitle* and restored by \string\mymaketitle}
 \SEPARATOR

@@ -7,8 +7,8 @@
 \begin{document}
 \START
 \TEST{Paths given as keys}{%
-  \SHOWOPT\mypackage@paths@images
-  \SHOWOPT\mypackage@paths@code
-  \SHOWOPT\mypackage@paths@sources
+  \SHOWVAR{l__mypackage_path_images_tl}
+  \SHOWVAR{l__mypackage_path_code_tl}
+  \SHOWVAR{l__mypackage_path_sources_tl}
 }
 \end{document}

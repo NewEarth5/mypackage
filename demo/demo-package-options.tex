@@ -7,8 +7,14 @@
   toc={depth=2, annexdepth=0, bibdepth=1},
 ]{mypackage}
 \usepackage{mydemo}
-\makeatletter
-\newcommand\showopt[2]{\texttt{#1} & \texttt{\detokenize\expandafter{#2}} \\}
+% The values are private variables of the package (they may be renamed at
+% any version): shown here for the demonstration only.
+\ExplSyntaxOn
+\NewDocumentCommand \showopt { m m }
+  { \texttt {#1} & \texttt { \tl_to_str:v {#2} } \\ }
+\NewDocumentCommand \showint { m m }
+  { \texttt {#1} & \texttt { \int_use:c {#2} } \\ }
+\ExplSyntaxOff
 \begin{document}
 \demoheader{\string\usepackage[...]\{mypackage\}}{Package options. With
 the myreport class, give the same options to \string\documentclass.}
@@ -26,17 +32,17 @@ the myreport class, give the same options to \string\documentclass.}
 \section*{Values in this document}
 \begin{mytable*}[firstrow=2]{ll}{values}{Values seen by the package.}
   \textbf{Option} & \textbf{Value} \\
-  \showopt{lang}{\mypackage@lang}
-  \showopt{paths/images}{\mypackage@paths@images}
-  \showopt{paths/code}{\mypackage@paths@code}
-  \showopt{paths/sources}{\mypackage@paths@sources}
-  \showopt{position/figure}{\mypackage@pos@figure}
-  \showopt{position/table}{\mypackage@pos@table}
-  \showopt{position/program}{\mypackage@pos@program}
-  \showopt{position/pseudocode}{\mypackage@pos@pseudocode}
-  \showopt{toc/depth}{\mypackage@toc@depth}
-  \showopt{toc/annexdepth}{\mypackage@toc@annexdepth}
-  \showopt{toc/bibdepth}{\mypackage@toc@bibdepth}
+  \showopt{lang}{l__mypackage_lang_tl}
+  \showopt{paths/images}{l__mypackage_path_images_tl}
+  \showopt{paths/code}{l__mypackage_path_code_tl}
+  \showopt{paths/sources}{l__mypackage_path_sources_tl}
+  \showopt{position/figure}{l__mypackage_position_figure_tl}
+  \showopt{position/table}{l__mypackage_position_table_tl}
+  \showopt{position/program}{l__mypackage_position_program_tl}
+  \showopt{position/pseudocode}{l__mypackage_position_pseudocode_tl}
+  \showint{toc/depth}{l__mypackage_toc_depth_int}
+  \showint{toc/annexdepth}{l__mypackage_toc_annexdepth_int}
+  \showint{toc/bibdepth}{l__mypackage_toc_bibdepth_int}
 \end{mytable*}
 
 \section*{Defaults}

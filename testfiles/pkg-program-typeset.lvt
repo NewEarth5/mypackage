@@ -1,0 +1,41 @@
+% pkg-program-typeset: \myprogram typesets each listing once (0.6.5: twice
+% for a listing put in a float, three times for one in the text flow).
+%
+% The tcolorbox listing command is replaced by a spy that counts its calls
+% and typesets a rule of a chosen height instead of the code: the result
+% then does not depend on minted's version (minted 2 and 3, TeX Live and
+% MiKTeX give listings of different heights).  The decisions are those of
+% \myprogram itself:
+% - a listing that fits goes into a float: typeset once;
+% - a listing whose non-empty lines alone (counted in the file) are taller
+%   than \textheight - 1cm goes to the text flow without being measured:
+%   typeset once;
+% - a listing with options that change its height (fontsize, ...) is
+%   measured: once if it fits, twice if it does not (measured, then typeset
+%   in the text flow).
+\input{regression-test}
+\documentclass{article}
+\usepackage[paths={code=code/}]{mypackage}
+\input{mytest-helpers}
+\makeatletter
+\newcount\CALLS
+\newcommand\SPYHEIGHT{3cm}
+\renewcommand\mypackage@listing[7][]{%
+  \global\advance\CALLS\@ne\par\noindent\rule{0.8\textwidth}{\SPYHEIGHT}\par}
+\newcommand\RUN[3]{% #1 = description, #2 = height of the listing, #3 = code
+  \renewcommand\SPYHEIGHT{#2}\global\CALLS=\z@ #3%
+  \TYPE{#1: typeset \the\CALLS\space time(s)}\clearpage}
+\begin{document}
+\START
+\RUN{Short listing (float)}{3cm}{%
+  \myprogram{hello}{hello.py}{python}{A short program.}}
+\RUN{Lines 1-90 (text flow, not measured)}{3cm}{%
+  \myprogram[minted={lastline=90}]{long}{long.c}{c}{A long program.}}
+\RUN{Larger font, does not fit (measured, text flow)}{0.95\textheight}{%
+  \myprogram[minted={lastline=56, fontsize=\large}]{mid}{long.c}{c}{Measured.}}
+\RUN{Larger font, fits (measured, float)}{3cm}{%
+  \myprogram[minted={fontsize=\large}]{fits}{short.c}{c}{Measured, fits.}}
+\RUN{Starred, short (float)}{3cm}{%
+  \myprogram*{star}{short.c}{c}{Starred.}}
+\SHOWCOUNTERS
+\end{document}

@@ -1,0 +1,33 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+============================================================
+TEST 1: Levels read from the .aux file
+============================================================
+FLAGS: part=T, chapter=F, section=F, subsection=F, subsubsection=F, annex=F, bib=F, highest=mypart
+============================================================
+[1
+Non-PDF special ignored!
+<special> header=psfrag.pro
+]
+pdfTeX warning (ext4): destination with the same identifier (name{mychapter.0}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l. ...
+          {After two chapters: unchanged until the next run}{\SHOWFLAGS\SHOW...
+============================================================
+TEST 2: After two chapters: unchanged until the next run
+============================================================
+FLAGS: part=T, chapter=F, section=F, subsection=F, subsubsection=F, annex=F, bib=F, highest=mypart
+THE: part=[0] chapter=[0] section=[0] subsection=[0] subsubsection=[0] figure=[0.0] subfigure=[0.0.] table=[0.0] program=[0.0] equation=[0.0]
+============================================================
+[2
+]
+Package mypackage Warning: The sectioning levels used by the document have changed. Rerun to get the numbering right.
+(pkg-structure-aux.aux)
+LaTeX Warning: There were undefined references.
+Package rerunfilecheck Warning: File `pkg-structure-aux.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                pkg-structure-aux
+(biblatex)                and rerun LaTeX afterwards.

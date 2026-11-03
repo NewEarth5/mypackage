@@ -1,0 +1,22 @@
+% pkg-table-rows: the end of mytable must not start a new row: a table
+% ending with \hline has exactly its own rows (the row counter of xcolor's
+% \rowcolors counts them).  A protected macro at the start of a row (after
+% \\ or \hline) would begin an empty extra row.
+\input{regression-test}
+\documentclass{article}
+\usepackage{mypackage}
+\input{mytest-helpers}
+\begin{document}
+\START
+\begin{mytable}{|l|c|}{rows}{Three rows, ending with hline.}
+  \hline a & b \\ \hline
+  c & d \\
+  e & f \\ \hline
+\end{mytable}
+\TYPE{mytable: rownum=\the\rownum}
+\begin{mytable*}{lc}{rowsb}{Two rows.}
+  a & b \\
+  c & d \\
+\end{mytable*}
+\TYPE{mytable*: rownum=\the\rownum}
+\end{document}

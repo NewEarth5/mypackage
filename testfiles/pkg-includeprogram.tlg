@@ -3,8 +3,8 @@ Don't change this file in any respect.
 ============================================================
 TEST 1: Defaults, 8-line file (1 digit) and 121-line file (3 digits)
 ============================================================
-listing: file=hello.py, lang=python, bg=bg, frame=black!70, numwidth=2mm+1mm, numbg=linebg, minted=[]
-listing: file=long.c, lang=c, bg=bg, frame=black!70, numwidth=6mm+1mm, numbg=linebg, minted=[]
+listing: file=hello.py, lang=python, bg=mypackage-program-bg, frame=black!70, numwidth=2mm+1mm, numbg=mypackage-program-numbg, minted=[]
+listing: file=long.c, lang=c, bg=mypackage-program-bg, frame=black!70, numwidth=6mm+1mm, numbg=mypackage-program-numbg, minted=[]
 ============================================================
 ============================================================
 TEST 2: Colour keys
@@ -14,19 +14,19 @@ listing: file=short.c, lang=c, bg=white, frame=blue, numwidth=2mm+1mm, numbg=gra
 ============================================================
 TEST 3: Options do not leak into the next call
 ============================================================
-listing: file=short.c, lang=c, bg=white, frame=black!70, numwidth=9mm+1mm, numbg=linebg, minted=[]
-listing: file=short.c, lang=c, bg=bg, frame=black!70, numwidth=2mm+1mm, numbg=linebg, minted=[]
+listing: file=short.c, lang=c, bg=white, frame=black!70, numwidth=9mm+1mm, numbg=mypackage-program-numbg, minted=[]
+listing: file=short.c, lang=c, bg=mypackage-program-bg, frame=black!70, numwidth=2mm+1mm, numbg=mypackage-program-numbg, minted=[]
 ============================================================
 ============================================================
 TEST 4: Explicit numwidth
 ============================================================
-listing: file=long.c, lang=c, bg=bg, frame=black!70, numwidth=1cm+1mm, numbg=linebg, minted=[]
+listing: file=long.c, lang=c, bg=mypackage-program-bg, frame=black!70, numwidth=1cm+1mm, numbg=mypackage-program-numbg, minted=[]
 ============================================================
 ============================================================
 TEST 5: minted options; lastline sets the digit count
 ============================================================
-listing: file=long.c, lang=c, bg=bg, frame=black!70, numwidth=2mm+1mm, numbg=linebg, minted=[firstline=2, lastline=9]
-listing: file=long.c, lang=c, bg=bg, frame=black!70, numwidth=6mm+1mm, numbg=linebg, minted=[firstline=1, lastline=120]
+listing: file=long.c, lang=c, bg=mypackage-program-bg, frame=black!70, numwidth=2mm+1mm, numbg=mypackage-program-numbg, minted=[firstline=2, lastline=9]
+listing: file=long.c, lang=c, bg=mypackage-program-bg, frame=black!70, numwidth=6mm+1mm, numbg=mypackage-program-numbg, minted=[firstline=1, lastline=120]
 ============================================================
 ============================================================
 TEST 6: Real listings are typeset without errors

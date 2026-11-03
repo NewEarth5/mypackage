@@ -1,0 +1,17 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+-------- cls-toc-depth-low.mytoc (start) ---------
+(cls-toc-depth-low.mytoc)
+\contentsline {mysubsection}{Contents}{I}{mycontents}%[nl]
+\contentsline {mysubsection}{\mysubsectionbox [l]{1}\hspace {1em}First subsection}{1}{mysubsection.1}%[nl]
+\contentsline {mysubsection}{\mysubsectionbox [l]{2}\hspace {1em}Second subsection}{1}{mysubsection.2}%[nl]
+-------- cls-toc-depth-low.mytoc (end) -----------
+(cls-toc-depth-low.mytoc
+[1
+Non-PDF special ignored!
+<special> header=psfrag.pro
+]
+FLAGS: part=F, chapter=F, section=F, subsection=T, subsubsection=T, annex=F, bib=F, highest=mysubsection
+[1
+]
+(cls-toc-depth-low.aux)

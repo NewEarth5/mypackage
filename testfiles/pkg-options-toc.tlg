@@ -3,10 +3,9 @@ Don't change this file in any respect.
 ============================================================
 TEST 1: TOC depth options
 ============================================================
-OPT \mypackage@toc@depth=[4]
-OPT \mypackage@toc@annexdepth=[1]
-OPT \mypackage@toc@bibdepth=[2]
-counters: toc=4, annex=1, bib=2
+VAR l__mypackage_toc_depth_int=[4]
+VAR l__mypackage_toc_annexdepth_int=[1]
+VAR l__mypackage_toc_bibdepth_int=[2]
 ============================================================
 (pkg-options-toc.aux)
 LaTeX Warning: There were undefined references.

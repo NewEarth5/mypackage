@@ -3,22 +3,22 @@ Don't change this file in any respect.
 ============================================================
 TEST 1: Option values (defaults)
 ============================================================
-OPT \mypackage@lang=[british]
-OPT \mypackage@paths@images=[images/]
-OPT \mypackage@paths@code=[code/]
-OPT \mypackage@paths@sources=[sources/sources.bib]
-OPT \mypackage@pos@figure=[h]
-OPT \mypackage@pos@table=[h]
-OPT \mypackage@pos@program=[h]
-OPT \mypackage@pos@pseudocode=[h]
-OPT \mypackage@toc@depth=[2]
-OPT \mypackage@toc@annexdepth=[0]
-OPT \mypackage@toc@bibdepth=[1]
+VAR l__mypackage_lang_tl=[british]
+VAR l__mypackage_path_images_tl=[images/]
+VAR l__mypackage_path_code_tl=[code/]
+VAR l__mypackage_path_sources_tl=[sources/sources.bib]
+VAR l__mypackage_position_figure_tl=[h]
+VAR l__mypackage_position_table_tl=[h]
+VAR l__mypackage_position_program_tl=[h]
+VAR l__mypackage_position_pseudocode_tl=[h]
+VAR l__mypackage_toc_depth_int=[2]
+VAR l__mypackage_toc_annexdepth_int=[0]
+VAR l__mypackage_toc_bibdepth_int=[1]
 ============================================================
 ============================================================
-TEST 2: Depth counters
+TEST 2: Level indices (depth 0 = highest level used)
 ============================================================
-toc=2, annex=0, bib=1, part=-1, chapter=0, section=1, subsection=2, subsubsection=3
+part=0, chapter=1, section=2, subsection=3, subsubsection=4
 ============================================================
 ============================================================
 TEST 3: Required packages are loaded
@@ -42,9 +42,6 @@ tcolorbox: loaded
 upgreek: loaded
 xurl: loaded
 xcolor: loaded
-xstring: loaded
-kvoptions: loaded
-kvsetkeys: loaded
 minted: loaded
 ============================================================
 ============================================================
@@ -57,16 +54,13 @@ myincludeprogram: ok
 myprogram: ok
 myref: ok
 myseeref: ok
-currentacyear: ok
+mycurrentacyear: ok
 mycleantext: ok
 mycleanline: ok
 mycleanfirstline: ok
 mylenmax: ok
 mylenmin: ok
 myhighestsec: ok
-myaddtotoc: ok
-myhyperanchor: ok
-mylabel: ok
 mypartbox: ok
 mychapterbox: ok
 mysectionbox: ok
@@ -83,14 +77,29 @@ mypseudocode*: ok
 myannex: ok
 ============================================================
 ============================================================
-TEST 5: Initial state
+TEST 5: Former internal commands are no longer defined
+============================================================
+RegisterStructureUsage: undefined
+myaddtotoc: undefined
+myhyperanchor: undefined
+mylabel: undefined
+mybeginfloat: undefined
+mydotfill: undefined
+mytcbincludeprogram: undefined
+ifGlobalMypartUsed: undefined
+ifMyannexUsed: undefined
+ifMybibUsed: undefined
+mysubfigurelabel: undefined
+============================================================
+============================================================
+TEST 6: Initial state
 ============================================================
 COUNTERS: part=0, chapter=0, section=0, subsection=0, subsubsection=0, figure=0, subfigure=0, table=0, program=0, equation=0, annex=0, page=1 (1)
 FLAGS: part=F, chapter=F, section=F, subsection=F, subsubsection=F, annex=F, bib=F, highest=mysubsubsection
 THE: part=[] chapter=[] section=[] subsection=[] subsubsection=[] figure=[0] subfigure=[0.] table=[0] program=[0] equation=[0]
 ============================================================
 ============================================================
-TEST 6: Font encoding and page geometry
+TEST 7: Font encoding and page geometry
 ============================================================
 encoding=T1, paper=597.50787pt x 845.04684pt, textwidth=455.24411pt, textheight=702.78308pt, oddsidemargin=-1.1381pt, topmargin=-38.1381pt
 ============================================================
