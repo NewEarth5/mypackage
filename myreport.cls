@@ -498,7 +498,7 @@
   \end { tabularx }
   \vspace { 2pt }
   \hrule height 4pt width \hsize
-  \vspace { -2pt }
+  \vspace { 2pt }
   \begin { tabularx } { \textwidth } { c > { \raggedleft \arraybackslash } X }
     & \__myreport_title_acyear:
   \end { tabularx }

@@ -62,7 +62,7 @@ Completed box being shipped out [1]
 .....\pdfcolorstack 0 pop
 ...\glue 25.0
 ...\glue(\lineskip) 0.0
-...\vbox(788.14136+0.0)x540.60239, glue set 205.01fill
+...\vbox(788.14136+0.0)x540.60239, glue set 135.34fill
 ....\write1{\def\@LN@column{1}}
 ....\write-{}
 ....\write1{\noexpand \providecommand \noexpand \oddpage@label [2]{}}
@@ -77,12 +77,12 @@ Completed box being shipped out [1]
 ......\vbox(8.5+3.5)x540.60239
 .......\hbox(8.39996+3.60004)x540.60239
 ........\glue(\tabskip) 0.0
-........\hbox(8.39996+3.60004)x270.3012
+........\hbox(8.39996+3.60004)x180.2008
 .........\rule(8.39996+3.60004)x0.0
 .........\glue 6.0
 .........\rule(8.39996+*)x0.0
-.........\vbox(8.39996+3.60004)x258.3012
-..........\hbox(8.39996+3.60004)x258.3012, glue set 44.71fil
+.........\vbox(8.39996+3.60004)x168.2008
+..........\hbox(8.39996+3.60004)x168.2008, glue set -0.26
 ...........\hbox(0.0+0.0)x0.0
 ...........\rule(8.39996+*)x0.0
 ...........\T1/cmr/bx/sc/10 F
@@ -121,11 +121,11 @@ Completed box being shipped out [1]
 .........\glue 0.0 plus 1.0fil
 .........\glue 6.0
 ........\glue(\tabskip) 0.0
-........\hbox(8.39996+3.60004)x270.3012
+........\hbox(8.39996+3.60004)x180.2008
 .........\glue 6.0
 .........\rule(8.39996+*)x0.0
-.........\vbox(8.39996+3.60004)x258.3012
-..........\hbox(8.39996+3.60004)x258.3012, glue set 146.32fil
+.........\vbox(8.39996+3.60004)x168.2008
+..........\hbox(8.39996+3.60004)x168.2008, glue set 28.11fil
 ...........\glue(\leftskip) 0.0 plus 1.0fil
 ...........\hbox(0.0+0.0)x0.0
 ...........\rule(8.39996+*)x0.0
@@ -158,6 +158,45 @@ Completed box being shipped out [1]
 ...........\rule(0.0+3.60004)x0.0
 ...........\penalty 10000
 ...........\glue(\parfillskip) 0.0
+...........\glue(\rightskip) 0.0 plus 1.0fil
+.........\glue 0.0 plus 1.0fil
+.........\glue 6.0
+........\glue(\tabskip) 0.0
+........\hbox(8.39996+3.60004)x180.2008
+.........\glue 6.0
+.........\rule(8.39996+*)x0.0
+.........\vbox(8.39996+3.60004)x168.2008
+..........\hbox(8.39996+3.60004)x168.2008, glue set 70.12fil
+...........\glue(\leftskip) 0.0 plus 1.0fil
+...........\hbox(0.0+0.0)x0.0
+...........\rule(8.39996+*)x0.0
+...........\T1/cmr/bx/n/10 A
+...........\T1/cmr/bx/n/10 s
+...........\T1/cmr/bx/n/10 s
+...........\T1/cmr/bx/n/10 i
+...........\T1/cmr/bx/n/10 s
+...........\T1/cmr/bx/n/10 t
+...........\T1/cmr/bx/n/10 a
+...........\T1/cmr/bx/n/10 n
+...........\kern-0.31937
+...........\T1/cmr/bx/n/10 t
+...........\kern 0.0
+...........\T1/cmr/bx/n/10 :
+...........\kern 0.0
+...........\glue 5.10986 plus 3.8324 minus 0.63873
+...........\T1/cmr/m/sc/10 D
+...........\T1/cmr/m/sc/10 o
+...........\T1/cmr/m/sc/10 e
+...........\kern 0.0
+...........\glue 3.33252 plus 1.66626 minus 1.11084
+...........\T1/cmr/m/n/10 J
+...........\T1/cmr/m/n/10 a
+...........\T1/cmr/m/n/10 n
+...........\T1/cmr/m/n/10 e
+...........\penalty 10000
+...........\rule(0.0+3.60004)x0.0
+...........\penalty 10000
+...........\glue(\parfillskip) 0.0
 ...........\glue(\rightskip) 0.0
 .........\glue 0.0 plus 1.0fil
 .........\glue 6.0
@@ -168,7 +207,7 @@ Completed box being shipped out [1]
 ....\glue 2.0
 ....\glue 0.0
 ....\rule(4.0+0.0)x540.60239
-....\glue -2.0
+....\glue 2.0
 ....\glue 0.0
 ....\glue(\parskip) 0.0 plus 1.0
 ....\glue(\parskip) 0.0
@@ -235,6 +274,10 @@ Completed box being shipped out [1]
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
 ....\glue 39.40947
+....\glue 0.0
+....\rule(0.0+0.0)x*
+....\penalty 10000
+....\glue 0.0 plus 1.0fill
 ....\glue 0.0
 ....\rule(0.0+0.0)x*
 ....\penalty 10000
