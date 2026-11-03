@@ -1526,8 +1526,6 @@
 \cs_new:Npn \__mypackage_program_digits:n #1 {
   \tl_count:e { \int_eval:n {#1} }
 }
-% \begingroup Improve
-% Make code line column width a percentage or measure the numbers size directly instead of being a size in mm to make it scalable with font size 
 \NewDocumentCommand \myincludeprogram { O{} m m } {
   \group_begin:
     \keys_set:nn { mypackage / program } {#1}

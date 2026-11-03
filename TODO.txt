@@ -4,7 +4,7 @@ MyPackage:
   @ V0.7.5:
     - Better and more consistent size controls:
       ° Make the default size of commands be a package option (text, none, a dimension, etc.)
-      ° Make all sizes be a percentage of \textwidth for the width or \textheight for the height for commands (figures, subfigures, tables, etc.)
+      ° Make all sizes be a percentage of \textwidth for the width or \textheight for the height for commands (figures, subfigures, tables, listing, etc.)
       ° Make the size base of a command an option in the clist to override package default
       ° Make it so that commands with multiple sizes (subfigures, tables, etc.) have the sum of their sizes be equal to 100%, make it be a percentage of usable space after padding, if the size's base is text
     - Make commands consistent:
@@ -16,7 +16,7 @@ MyPackage:
       ° Make it possible to change every package's default options using [package_name]={[clist_options]}
       ° Make hyperref options actually affect the document
     - Improve robustness:
-      ° Make package self sustaining (no need for exterior includes/imports)
+      ° Make package self sustaining (no need for exterior includes/imports) and remove (comment out) unused imports by the package
       ° Add error and warning messages
       ° Make every command key be validated and return an error or warning
       ° Error message when mypseudocode is used without clrscode3e
@@ -28,7 +28,10 @@ MyPackage:
     - Hooks:
       ° Add hooks for override or other ways
 # V0.8:
-  @ V0.8.0
+  @ V0.8.
+    - Improve program include to work as intended:
+      ° colors do not seem to be working correctly
+      ° line numbers do not seem to be showing up correctly
     - Improve tables to try and make the user interface more readable and easier to create tables:
       ° Better column type that always take a percentage of width
       ° Make it possible and simpler to center p/m/b types of column using >{\centering\arraybackslash} by adding l/c/r as prefixes
